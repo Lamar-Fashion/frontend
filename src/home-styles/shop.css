@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 2rem 0;
 }
 
 .shop .leftSection {
@@ -62,4 +63,5 @@
 
 .shop .text {
   margin-bottom: 1rem;
+  font-weight: lighter;
 }
