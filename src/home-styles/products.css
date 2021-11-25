@@ -1,0 +1,6 @@
+.products{
+    padding-bottom: var(--main-padding-bottom);
+    padding-top: var(--main-padding-top);
+    background-color: #ececec;
+    height: 100vh;
+}
