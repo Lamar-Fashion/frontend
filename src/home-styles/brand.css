@@ -1,4 +1,128 @@
 .brand{
-    background-color: #ececec;
-    height: 100vh;
+    background-color: #f3ed9ec4;
+    padding-bottom: var(--main-padding-bottom);
+    padding-top: 80px;
+}
+.brand .title-section{
+    text-align: center;
+    margin: 0 auto 80px;
+}
+.brand .title-section p{
+color: #666;
+font-size: 22px;
+
+}
+.main-text{
+    text-align: center;
+    width: fit-content;
+    font-size: 60px;
+    font-weight:500;
+    margin: 0 auto 10px;
+    text-transform: uppercase;
+    
+}
+.brand .container{
+    display: grid;
+    grid-template-areas:
+    'lamar lamar montaha montaha nero nero'
+    'lamar lamar shera shera shera shera';
+  grid-gap: 10px;
+  height: 450px;
+
+}
+.item1 { grid-area: lamar; }
+.item2 { grid-area: montaha; }
+.item3 { grid-area: nero; }
+.item4 { grid-area: shera; }
+.brand .container > div {
+    padding:10px;
+    position: relative;
+    box-shadow: 0 2px 12px rgba(128, 128, 128, 0.486);
+    height: 100%;
+  }
+
+
+.brand .item1{ 
+    background-color: whitesmoke;
+}
+.brand .item2{
+    background-color: #ffd369;
+}
+.brand .item3{
+    background-color: #d7385e;
+}
+.brand .item4{
+    background-color: #41584b;
+}
+.brand .item1 img{
+    position: absolute;
+    left: -60px;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+.brand .item1 h3{
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 40px;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+.brand .item2 img{
+    position: absolute;
+    right: -35px;
+    bottom: 0;
+    height: 128%;
+    width: 65%;
+    
+}
+.brand .item2 h3{
+    position: absolute;
+    bottom: 35px;
+    left: 20px;
+    color: white;
+    font-size: 40px;
+    text-transform: capitalize;
+    font-weight: 400;
+    
+}
+.brand .item3 img{
+    position: absolute;
+    left: -35px;
+    bottom: 0;
+    height: 113%;
+    width: 69%;
+}
+.brand .item3 h3{
+    position: absolute;
+    bottom: 35px;
+    right: 20px;
+    color: white;
+    font-size: 40px;
+    text-transform: capitalize;
+    font-weight: 400;
+    
+}
+.brand .item4 img{
+    position: absolute;
+    right: 90px;
+    bottom: 0;
+    height: 106%;
+    width: 28%;
+   
+}
+
+.brand .item4 h3{
+position: absolute;
+font-size: 40px;
+font-weight: 400;
+top: 50%;
+transform: translateY(-50%);
+left: 100px;
+color: white;
+text-transform: capitalize;
+
+
+    
 }
