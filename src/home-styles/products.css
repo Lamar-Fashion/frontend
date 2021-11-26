@@ -1,6 +1,125 @@
-.products{
-    padding-bottom: var(--main-padding-bottom);
-    padding-top: var(--main-padding-top);
-    background-color: #ececec;
-    height: 100vh;
+ .products{
+    padding-bottom: 50px;
+    padding-top: 50px;
+    background-color:var(--main-color-alt);
+}
+
+.products .title-section{
+    text-align: center;
+    margin: 0 auto 80px;
+}
+.products .title-section p{
+color: #666;
+font-size: 22px;
+
+}
+.products .container{
+    width:100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+
+.products .box{
+   width:290px;
+   box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+   /* border-radius: 10px; */
+   overflow: hidden;
+   margin: 20px;
+ background-color: whitesmoke;
+ transition: transform 0.6s , box-shadow 0.3s;
+}
+.products .box:hover{
+ transform: translateY(-10px);
+ box-shadow: 0px 2px 20px rgb(0 0 0 / 30%);
+}
+.products .box .slide-img{
+ height:340px;
+  background-color: rgba(128, 128, 128, 0.884);
+  position: relative;
+}
+.products .box .slide-img img{
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+}
+.products .box .slide-img .overlay{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+ width: 100%;;
+ height: 100%;
+ background-color: #f3ed9e5d;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ transition: 0.3s ;
+}
+.products .box .overlay .buy-btn{
+ width: 160px;
+ height: 40px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-weight: 700;
+ letter-spacing: 1px;
+ border-radius: 20px;
+ box-shadow: 2px 2px 30px rgb(0,0,0,0.2);
+ color: #252525;
+ background-color: #ffffff;
+ text-transform: uppercase;
+ font-family: 'Courier New', Courier, monospace
+}
+.products .box .overlay .buy-btn:hover{
+ color: #ffffff;
+ background-color: rgba(128, 128, 128, 0.884);
+ transition: all ease 0.3s;
+}
+.products .box .slide-img .overlay{
+ visibility: hidden
+}
+.products .box .slide-img:hover .overlay{
+   visibility:visible;
+   animation: overlay 0.5s ;
+}
+
+@keyframes overlay{
+ 0%{
+   opacity: 0;
+ }
+ 100%{
+   opacity: 1;
+ }
+}
+.products .details{
+ padding: 10px 20px;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ width: 100%;
+
+}
+.products .details .type{
+ display: flex;
+ flex-direction: column;
+ 
+}
+.products .details .type a{
+ color: #222222;
+ padding: 8px;
+ margin: 5px 0;
+ font-weight: 700;
+ letter-spacing: 0.5px;
+ font-size: 1.1rem
+}
+.products .details .type span{
+ color: rgb(26, 26, 26,0.5)
+}
+.products .details .price{
+ color: #333333;
+ font-weight: 600;
+ letter-spacing: 0.5px;
+ font-size: 1.1rem;
 }
