@@ -48,7 +48,15 @@ ul {
   border: black 2px solid;
   transition: 0.3s;
 }
-
+.main-title{
+  text-align: center;
+  width: fit-content;
+  font-size: 60px;
+  font-weight:500;
+  margin: 0 auto 10px;
+  text-transform: uppercase;
+  
+}
 /* Small */
 @media (min-width: 768px) {
   
