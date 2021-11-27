@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import '../../header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
@@ -24,11 +25,11 @@ function Header() {
             <img src={logo} alt='logo' className='logo' />
           </div>
           <section className='rightContainer'>
-            <div class='searchContainer'>
-              <input type='text' name='search' placeholder='Search...' class='input' />
+            <div className='searchContainer'>
+              <input type='text' name='search' placeholder='Search...' className='input' />
 
-              <a href='#' class='btn'>
-                <i class='fas fa-search'></i>
+              <a href='#' className='btn'>
+                <i className='fas fa-search'></i>
               </a>
             </div>
             <ul className='right-nav'>
