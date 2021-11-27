@@ -1,50 +1,41 @@
 import React from 'react';
 import hero from '../../../images/hero.jpg';
 import '../../../home-styles/hero.css';
+import { Carousel } from 'react-bootstrap';
+import shop1 from '../../../images/hero/hero1.png';
+import shop2 from '../../../images/hero/hero2.png';
+import shop3 from '../../../images/hero/hero3.png';
+import shop4 from '../../../images/shop/shop4.jpeg';
+
 function Hero() {
-  //   const coursol = document.querySelector('.carousel__slide')[0];
-  //   const carousel = {
-  //     run: function () {
-  //       $('.carousel__slide:gt(0)').hide();
-  //       setInterval(function () {
-  //         $('.carousel__slide:first').fadeOut(1000).next().fadeIn(1000).end().appendTo('.carousel');
-  //       }, 5000);
-  //     },
-  //   };
-  //   carousel.run();
   return (
     <>
       <div className='hero'>
-        <div class='carousel'>
-          <div class='carousel__slide'>
-            <img
-              class='slide__image'
-              src='https://images.unsplash.com/photo-1472745942893-4b9f730c7668?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8ab8b170ea9cf28aa06afd94cebd7ea4&auto=format&fit=crop&w=1049&q=80'
-              alt=''
-            />
-          </div>
-          <div class='carousel__slide'>
-            <img
-              class='slide__image'
-              src='https://images.unsplash.com/photo-1510090658125-0706ab1d38e1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=97255cdff9a483b526ceb41bbbf8651f&auto=format&fit=crop&w=1350&q=80'
-              alt=''
-            />
-          </div>
-          <div class='carousel__slide'>
-            <img
-              class='slide__image'
-              src='https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=891fe858de061305b9d58986c3970d60&auto=format&fit=crop&w=1350&q=80'
-              alt=''
-            />
-          </div>
-          <div class='carousel__slide'>
-            <img
-              class='slide__image'
-              src='https://images.unsplash.com/photo-1497169345602-fbb1a307de16?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=efb46d876163a615ce7e33c9a81aa586&auto=format&fit=crop&w=1052&q=80'
-              alt=''
-            />
-          </div>
-        </div>
+        <Carousel className='carousel' fade controls={false} indicators={false} pause={false}>
+          <Carousel.Item className='carouselItem'>
+            <img className='d-block w-100' src={shop1} alt='First slide' />
+            {/* <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption> */}
+          </Carousel.Item>
+          <Carousel.Item className='carouselItem'>
+            <img className='d-block w-100' src={shop2} alt='Second slide' />
+
+            {/* <Carousel.Caption>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption> */}
+          </Carousel.Item>
+          <Carousel.Item className='carouselItem'>
+            <img className='d-block w-100' src={shop3} alt='Third slide' />
+
+            {/* <Carousel.Caption>
+              <h3>Third slide label</h3>
+              <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            </Carousel.Caption> */}
+          </Carousel.Item>
+        </Carousel>
       </div>
     </>
   );
