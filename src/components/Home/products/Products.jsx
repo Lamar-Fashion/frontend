@@ -4,7 +4,6 @@ import "../../../home-styles/products.css"
 import test from "../../../images/img4--removebg-preview.png"
 function Products() {
 
-
     return (
         <>
            <section className="products">
