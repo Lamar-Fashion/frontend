@@ -1,5 +1,5 @@
 .shop {
-  background-color: whitesmoke;
+  background-color: var(--main-color-alt2);
   height: 110vh;
   padding-top: 200px;
   padding-bottom: 200px;
@@ -10,13 +10,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
 }
 
 .shop .leftSection {
   width: 58%;
   position: relative;
-
 }
 .shop .rightSection {
   flex: 1;
@@ -26,10 +24,8 @@
 
 .shop .shopImg {
   /* box-shadow: 0 0px 5px 2px #fbd46d; */
-  border-right: 5px solid #fbd46d;
-  border-bottom: 5px solid #fbd46d;
-}
-.shop .shopImg:hover {
+  border-right: 5px solid var(--main-color-alt);
+  border-bottom: 5px solid var(--main-color-alt);
 }
 
 .shop .img1 {

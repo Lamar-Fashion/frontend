@@ -57,12 +57,12 @@ function Footer() {
           </div>
         </div>
         <div className="box footer-gallery">
-          <img src="imgs/gallery-01.png" alt="" />
-          <img src="imgs/gallery-02.png" alt="" />
-          <img src="imgs/gallery-03.jpg" alt="" />
-          <img src="imgs/gallery-04.png" alt="" />
-          <img src="imgs/gallery-05.jpg" alt="" />
-          <img src="imgs/gallery-06.png" alt="" />
+          <img src="https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg" alt="" />
+          <img src="https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg" alt="" />
+          <img src="https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg" alt="" />
+          <img src="https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg" alt="" />
+          <img src="https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg" alt="" />
+          <img src="https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg" alt="" />
         </div>
       </div>
       <p className="copyright">Made With &lt;3 By A.A</p>
