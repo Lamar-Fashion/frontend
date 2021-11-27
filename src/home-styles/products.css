@@ -4,27 +4,19 @@
   background-color: var(--main-color-alt);
 }
 
-.products .title-section {
-  text-align: center;
-  margin: 0 auto 80px;
-}
-.products .title-section p {
-  color: #666;
-  font-size: 22px;
-}
-.products .lamar-container {
+.products .container {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
 }
 
 .products .box {
-  width: 250px;
-  /* box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2); */
+  width: 290px;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
   /* border-radius: 10px; */
   overflow: hidden;
-  margin: 14px;
+  margin: 20px;
   background-color: whitesmoke;
   transition: transform 0.6s, box-shadow 0.3s;
 }
