@@ -3,15 +3,7 @@
     padding-bottom: var(--main-padding-bottom);
     padding-top: 80px;
 }
-.brand .title-section{
-    text-align: center;
-    margin: 0 auto 80px;
-}
-.brand .title-section p{
-color: #666;
-font-size: 22px;
 
-}
 .brand .lamar-container{
     display: grid;
     grid-template-areas:
