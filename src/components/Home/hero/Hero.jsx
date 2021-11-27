@@ -6,7 +6,7 @@ import shop1 from '../../../images/hero/hero1.png';
 import shop2 from '../../../images/hero/hero2.png';
 import shop3 from '../../../images/hero/hero3.png';
 import shop4 from '../../../images/shop/shop4.jpeg';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function Hero() {
   return (
     <>

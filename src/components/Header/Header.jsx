@@ -6,7 +6,7 @@ function Header() {
         <>
     
             <section className="header">
-                <div className="container" >
+                <div className="lamar-container" >
                     
 
                     <div className="image">

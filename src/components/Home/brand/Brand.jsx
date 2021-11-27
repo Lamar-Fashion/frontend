@@ -15,7 +15,7 @@ function Brand() {
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus illum vel cupiditate dolorum laborum!</p>
 
                 </div>
-                <div className="container">
+                <div className="lamar-container">
                     <div className="item1" >
                         <div className="image">
                         <img src={lamar} alt="lamar"/>

@@ -4,7 +4,7 @@ function Footer() {
     return (
         <>
         <div className="footer">
-      <div className="container">
+      <div className="lamar-container">
         <div className="box">
           <h3>Lamar</h3>
           <ul className="social">

@@ -15,7 +15,7 @@ function Products() {
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus illum vel cupiditate dolorum laborum!</p>
 
                 </div>
-            <div className="container">
+            <div className="lamar-container">
             <ul id="autoWidth" class="cs-hidden">
   <li class="item-a">
      <div class="box">

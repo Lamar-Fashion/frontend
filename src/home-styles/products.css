@@ -13,8 +13,8 @@ color: #666;
 font-size: 22px;
 
 }
-.products .container{
-    width:100%;
+.products .lamar-container{
+    
    display: flex;
    justify-content: center;
    align-items: center;
@@ -22,11 +22,11 @@ font-size: 22px;
 
 
 .products .box{
-   width:290px;
+   width:298px;
    box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
    /* border-radius: 10px; */
    overflow: hidden;
-   margin: 20px;
+   margin:27.8px;
  background-color: whitesmoke;
  transition: transform 0.6s , box-shadow 0.3s;
 }
