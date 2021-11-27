@@ -12,7 +12,7 @@ color: #666;
 font-size: 22px;
 
 }
-.brand .container{
+.brand .lamar-container{
     display: grid;
     grid-template-areas:
     'lamar lamar montaha montaha nero nero'
@@ -25,7 +25,7 @@ font-size: 22px;
 .item2 { grid-area: montaha; }
 .item3 { grid-area: nero; }
 .item4 { grid-area: shera; }
-.brand .container > div {
+.brand .lamar-container > div {
     padding:10px;
     position: relative;
     box-shadow: 0 2px 12px rgba(128, 128, 128, 0.486);

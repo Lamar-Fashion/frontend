@@ -27,7 +27,7 @@ ul {
   margin: 0;
   padding: 0;
 }
-.container {
+.lamar-container {
   padding-left: 15px;
   padding-right: 15px;
   margin-left: auto;
@@ -60,19 +60,19 @@ ul {
 /* Small */
 @media (min-width: 768px) {
   
-  .container {
+  .lamar-container {
     width: 750px;
   }
 }
 /* Medium */
 @media (min-width: 992px) {
-  .container {
+  .lamar-container {
     width: 970px;
   }
 }
 /* Large */
 @media (min-width: 1200px) {
-  .container {
+  .lamar-container {
     width: 1170px;
   }
 }
