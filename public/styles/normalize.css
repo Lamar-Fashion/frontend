@@ -61,7 +61,7 @@ ul {
 }
 .main-title::before,
 .main-title::after {
-  content: "";
+  content: '';
   width: 12px;
   height: 12px;
   background-color: black;
@@ -117,19 +117,18 @@ ul {
   }
 }
 
-.title-section{
+.title-section {
   text-align: center;
   margin: 0px auto 60px;
   padding: 0 15px;
 }
-.title-section p{
+.title-section p {
   color: #666;
-font-size: 22px;
-margin: 5px auto;
-
+  font-size: 22px;
+  margin: 5px auto;
 }
-@media(max-width: 768px){
-  .title-section p{
+@media (max-width: 768px) {
+  .title-section p {
     color: #666;
     font-size: 16px;
     margin: 5px auto;
@@ -137,7 +136,6 @@ margin: 5px auto;
 }
 /* Small */
 @media (min-width: 768px) {
-  
   .lamar-container {
     width: 750px;
   }
