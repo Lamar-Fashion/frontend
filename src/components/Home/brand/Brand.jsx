@@ -9,7 +9,7 @@ function Brand() {
         <>
             <section className="brand">
                 <div className="title-section">
-                <h2 className="main-text">
+                <h2 className="main-title">
                     brands 
                 </h2>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus illum vel cupiditate dolorum laborum!</p>
