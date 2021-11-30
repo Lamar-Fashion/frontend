@@ -1,25 +1,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import { React, useState } from 'react';
 import '../../header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsHeart, BsPersonCircle } from 'react-icons/bs';
 
 function Header() {
+  const [showDashes, setshowDashes] = useState(false);
   return (
     <>
       <section className='header'>
         <div className='lamar-container'>
-          <ul className='main-nav'>
-            <li>
-              <a href='#home'>Home</a>
-            </li>
-            <li>
-              <a href='#Abaya'>Abaya</a>
-            </li>
-            <li>
-              <a href='#shalat'>Shalat</a>
-            </li>
-          </ul>
+          {false && (
+            <ul className={!showDashes ? 'main-nav' : 'main-nav-phone'}>
+              <li>
+                <a href='#home'>Home</a>
+              </li>
+              <li>
+                <a href='#Abaya'>Abaya</a>
+              </li>
+              <li>
+                <a href='#shalat'>Shalat</a>
+              </li>
+            </ul>
+          )}
 
           <div className='image'>
             <img src={logo} alt='logo' className='logo' />
@@ -50,6 +53,11 @@ function Header() {
               </li>
             </ul>
           </section>
+          <div className={!showDashes ? 'three-dashs' : 'hidden-three-dashs'} onClick={() => setshowDashes(!showDashes)}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </section>
     </>

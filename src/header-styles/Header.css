@@ -1,22 +1,69 @@
 .header {
   background-color: transparent;
   position: fixed;
-  /* -webkit-box-shadow: 0 0 10px #ddd;
-    -moz-box-shadow: 0 0 10px #ddd;
-    box-shadow: 0 0 10px #ddd; */
   top: 0;
   width: 100%;
-
   height: 7rem;
   z-index: 1;
+}
+
+/* small phones */
+@media (max-width: 530px) {
+  .header {
+    height: 70px;
+  }
 }
 .header .lamar-container {
   display: grid;
   height: 7rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  /* justify-content: space-between; */
-  /* align-items: top; */
+  position: relative;
+}
+
+/* small phones */
+@media (max-width: 530px) {
+  .header .lamar-container {
+    width: 95%;
+    display: grid;
+    /* height: 7rem; */
+    grid-template-columns: 20% 67% 10%;
+    gap: 5px;
+    height: 70px;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
+/* phones */
+@media (min-width: 531px) and (max-width: 768px) {
+  .header .lamar-container {
+    width: 100%;
+    display: grid;
+    /* height: 7rem; */
+    grid-template-columns: 45% 40% 5%;
+    gap: 25px;
+  }
+}
+/* Small */
+@media (min-width: 769px) and (max-width: 991px) {
+  .header .lamar-container {
+    display: grid;
+    grid-template-columns: 33% 35% 30%;
+    gap: 0;
+    position: relative;
+  }
+}
+/* Medium */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .header .lamar-container {
+    display: grid;
+    grid-template-columns: 32% 30% 38%;
+    gap: 5px;
+    position: relative;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
 }
 /* @media(min-width:768px){
   .header .lamar-container{
@@ -24,7 +71,54 @@
   }
 } */
 
-.header .image {
+/* /////////////////////////////////////////////////////////////////////////////////////////////////// */
+.header .lamar-container .three-dashs {
+  display: none;
+  width: 30px;
+  /* margin: 0 auto; */
+}
+
+.header .lamar-container .three-dashs span {
+  height: 5px;
+  width: 25px;
+  background-color: var(--main-color-alt);
+}
+
+/* small phones */
+@media (max-width: 530px) {
+  .header .lamar-container .three-dashs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    align-items: center;
+    height: 70px;
+  }
+}
+
+/* phones */
+@media (min-width: 531px) and (max-width: 768px) {
+  .header .lamar-container .three-dashs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    height: 7rem;
+  }
+}
+/* Small */
+@media (min-width: 768px) and (max-width: 991px) {
+}
+/* Medium */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+/* Large */
+@media (min-width: 1200px) {
+}
+
+/*center side*/
+.header .lamar-container .image {
   width: 160px;
   position: relative;
 
@@ -34,7 +128,32 @@
   align-items: center;
   margin: 0 auto;
 }
-.header .logo {
+
+/* small phones */
+@media (max-width: 530px) {
+  .header .lamar-container .image {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* phones */
+@media (min-width: 531px) and (max-width: 768px) {
+  .header .lamar-container .image {
+    width: 110px;
+    height: 90px;
+  }
+}
+
+/* Small */
+@media (min-width: 769px) and (max-width: 991px) {
+  .header .lamar-container .image {
+    width: 130px;
+    height: 110px;
+  }
+}
+
+.header .lamar-container .image .logo {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -42,12 +161,13 @@
   top: 5px;
   transform: translateX(-50%);
 }
-.header .main-nav {
+
+/* left side*/
+.header .lamar-container .main-nav {
   display: flex;
-  padding-left: 110px !important;
 }
 
-.header .main-nav > li > a {
+.header .lamar-container .main-nav > li > a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,29 +179,65 @@
   font-size: 18px;
   transition: var(--main-transition);
 }
+/* right container >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.header .lamar-container .rightContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7rem;
+}
+
+/* small phones */
+@media (max-width: 530px) {
+  .header .lamar-container .rightContainer {
+    height: 70px;
+  }
+}
+.header .lamar-container .rightContainer .right-nav {
+  display: flex;
+}
+
+.header .lamar-container .rightContainer .right-nav > li > a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 7rem;
+  color: black;
+  padding: 0 5px;
+}
+
+/* small phones */
+@media (max-width: 530px) {
+  .header .lamar-container .rightContainer .right-nav > li > a {
+    padding: 0;
+  }
+}
+/* phones */
+@media (min-width: 531px) and (max-width: 768px) {
+  .header .lamar-container .rightContainer .right-nav > li > a {
+    padding: 0;
+  }
+}
+/* Small */
+@media (min-width: 769px) and (max-width: 991px) {
+  .header .lamar-container .rightContainer .right-nav > li > a {
+    padding: 0;
+  }
+}
 
 /* search box styling >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-.header .searchContainer {
-  /* margin: 200px auto; */
+.header .lamar-container .rightContainer .searchContainer {
   background: transparent;
   height: 30px;
-  /* border-radius: 30px; */
   border: none;
-  /* padding: 10px 10px 10px 30px; */
   display: flex;
   align-items: center;
   cursor: pointer;
   transition: 0.8s;
-  /* margin-right: 2rem; */
+}
 
-  /* box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.4); */
-}
-.header .searchContainer:hover .input {
-  /* width: 300px;
-  border-bottom: 1px solid; */
-}
-.header .searchContainer .input {
+.header .lamar-container .rightContainer .searchContainer .input {
   background: transparent;
   border: none;
   outline: none;
@@ -92,36 +248,44 @@
   width: 180px;
   border-bottom: 1px solid;
 }
+/* small phones */
+@media (max-width: 530px) {
+  .header .lamar-container .rightContainer .searchContainer .input {
+    width: 100%;
+  }
+}
+/* phones */
+@media (min-width: 531px) and (max-width: 768px) {
+  .header .lamar-container .rightContainer .searchContainer .input {
+    width: 100%;
+  }
+}
 
-.header .searchContainer .btn .fas {
+/* Small */
+@media (min-width: 769px) and (max-width: 991px) {
+  .header .lamar-container .rightContainer .searchContainer .input {
+    width: 100px;
+  }
+}
+
+.header .lamar-container .rightContainer .searchContainer .btn .fas {
   color: black;
 }
 
-/* right container >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-.header .rightContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 7rem;
-}
-.header .right-nav {
-  display: flex;
-}
-
-.header .rightContainer .right-nav > li > a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 7rem;
-  /* position: relative; */
-  color: black;
-  padding: 0 5px;
-  /* overflow: hidden; */
-  /* font-size: 18px; */
-  /* transition: var(--main-transition); */
-}
-
-.header-icons {
+.header .lamar-container .rightContainer .right-nav .header-icons {
   font-size: 35px;
   padding: 0 6px;
+}
+
+/* phones */
+@media (min-width: 531px) and (max-width: 768px) {
+}
+/* Small */
+@media (min-width: 769px) and (max-width: 991px) {
+}
+/* Medium */
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+/* Large */
+@media (min-width: 1200px) {
 }
