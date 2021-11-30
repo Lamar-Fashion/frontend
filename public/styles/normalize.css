@@ -51,6 +51,27 @@ ul {
   border: black 2px solid;
   transition: var(--main-transition);
 }
+
+.go-up{
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  width: 40px;
+  height: 40px;
+  background-color:#f3ed9e;
+  border-radius: 25% 50% ;
+  cursor: pointer;
+  transition: 1s;
+  border: 1px solid var(--main-color);
+  z-index: 100;
+}
+
+
+.go-up i{
+  font-size: 30px;
+  color: #666;
+
+}
 /*  start main title  */
 
 .title-section {

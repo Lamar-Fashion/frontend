@@ -1,63 +1,85 @@
 .shop {
   background-color: var(--main-color-alt2);
-  height: 110vh;
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  height: 700px;
 }
-.shop .bigContainer {
-  width: 100%;
+.shop .lamar-container {
   height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .shop .leftSection {
-  width: 58%;
+  width: 50%;
   position: relative;
 }
 .shop .rightSection {
+  position: relative;
   flex: 1;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  height: 500px;
+
 }
 
 .shop .shopImg {
-  /* box-shadow: 0 0px 5px 2px #fbd46d; */
   border-right: 5px solid var(--main-color-alt);
   border-bottom: 5px solid var(--main-color-alt);
+  width: 250px;
 }
 
-.shop .img1 {
-  height: 16rem;
-  width: 15rem;
+.shop .rightSection .image1 {
+  height: 300px;
   position: absolute;
-  top: -15rem;
-  left: 1rem;
+  top: -60px;
+  left: 15px;
+}
+.shop .rightSection .image1 img {
+height: 100%;
+width: 100%;
+object-fit: cover;
+
 }
 
-.shop .img2 {
-  height: 18.5rem;
-  width: 18rem;
+.shop  .rightSection .image2 {
+  height: 320px;
   position: absolute;
-  top: -1rem;
-  right: 23rem;
+  top: -10px;
+  right: 35px;
+  width: 280px;
+}
+.shop  .rightSection .image2  img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
-.shop .img3 {
-  height: 19rem;
-  width: 16rem;
+.shop  .rightSection  .image3 {
+  height: 320px;
+  width: 280px;
   position: absolute;
-  top: -18rem;
-  right: 12.5rem;
+  bottom: 10px;
+  left: -10px;
+  
+}
+.shop  .rightSection  .image3 img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
 }
 
-.shop .img4 {
-  height: 19rem;
-  width: 17rem;
+.shop  .rightSection .image4 {
+  height: 300px;
   position: absolute;
-  top: -3.5rem;
-  right: 1.5rem;
+  bottom: -42px;
+  right: 65px;
+}
+.shop  .rightSection .image4 img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .shop .text {

@@ -65,6 +65,11 @@
 /* Large */
 @media (min-width: 1200px) {
 }
+/* @media(min-width:768px){
+  .header .lamar-container{
+
+  }
+} */
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////// */
 .header .lamar-container .three-dashs {

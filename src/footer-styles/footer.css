@@ -50,8 +50,8 @@
   .footer .box .social .twitter:hover {
     background-color: #1da1f2;
   }
-  .footer .box .social .youtube:hover {
-    background-color: #ff0000;
+  .footer .box .social .instagram:hover {
+    background:linear-gradient(15deg,#ffb13d,#dd277b,#4d5ed4);
   }
   .footer .box .text {
     line-height: 2;
@@ -79,7 +79,7 @@
     content: "\F101";
     font-weight: 900;
     margin-right: 10px;
-    color: var(--main-color);
+    color: var(--main-color-alt);
   }
   .footer .box .line {
     display: flex;
@@ -94,7 +94,7 @@
   }
   .footer .box .line i {
     font-size: 25px;
-    color: var(--main-color);
+    color: var(--main-color-alt);
     margin-right: 10px;
   }
   @media (max-width: 767px) {

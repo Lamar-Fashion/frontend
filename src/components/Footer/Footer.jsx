@@ -14,13 +14,13 @@ function Footer() {
               </a>
             </li>
             <li>
-              <a href="#" className="twitter">
-                <i className="fab fa-twitter"></i>
+              <a href="#" className="instagram">
+              <i class="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="#" className="youtube">
-                <i className="fab fa-youtube"></i>
+              <a href="#" className="twitter">
+                <i className="fab fa-twitter"></i>
               </a>
             </li>
           </ul>
