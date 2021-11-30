@@ -1,49 +1,31 @@
-import React from 'react'
+import {React,useState} from 'react'
 import Brand from './brand/Brand'
 import Hero from './hero/Hero'
 import Feedback from './feedback/Feedback'
 import Products from './products/Products'
 import Shop from './shop/Shop'
 
+
 function Home() {
-
-    let button=document.querySelector(".go-up")
-    function scroll(){
-        if(window.scrollY===0){
-         
-           button.style.display="none"
-           
-        }
-      }
-
-      scroll()
-
+    const [y, setY] = useState(window.scrollY)
       window.onscroll=function(){
-        if(window.scrollY===0){
-         
-         button.style.display="none"
-          
-        }else if(window.scrollY>=120){
-           
-            button.style.display="block"
-        }
-      }
-      
-      button.onclick=function(){
-        window.scrollTo({
-          top:0,
-          left:0,
-          behavior:"smooth"
-      
-      
-        })
+        setY(window.scrollY)
       }
     return (
         <>
-      
-      <button class="go-up" >
-      <i class="fas fa-angle-up"></i>
-      </button>
+      {
+           Number(y)>=120 &&  <button className="go-up"  onClick={()=>{
+            window.scrollTo({
+                top:0,
+                left:0,
+                behavior:"smooth"
+              })
+                  }}>
+                  <i className="fas fa-angle-up"></i>
+                  </button>
+
+      }
+   
         <Hero/>
         <Brand/>
         <Shop/>
