@@ -5,7 +5,7 @@
   position: relative;
 }
 /* start Slider styling */
-.multi-slider .lamar-container{
+.multi-slider .lamar-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,7 @@
 }
 
 .multi-slider .box {
-  width:250px;
+  width: 250px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   overflow: hidden;
@@ -27,7 +27,7 @@
 }
 .multi-slider .box .slide-img {
   height: 340px;
-  background-color:  var(--main-color-alt2);
+  background-color: var(--main-color-alt2);
   position: relative;
 }
 .multi-slider .box .slide-img img {
@@ -102,6 +102,7 @@
   font-weight: 700;
   letter-spacing: 0.5px;
   font-size: 1.1rem;
+  text-transform: capitalize;
 }
 .multi-slider .details .type span {
   color: rgb(26, 26, 26, 0.5);

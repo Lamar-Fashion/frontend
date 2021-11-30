@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React from 'react';
 import shera from '../../../images/brand/shera.png';
 import lamar from '../../../images/brand/lamar.png';
 import neo from '../../../images/brand/neo.png';
 import '../../../home-styles/products.css';
 function Slider() {
-    return (
-        <>
-        <section className="multi-slider">
+  return (
+    <>
+      <section className='multi-slider'>
         <div className='lamar-container'>
           <ul id='autoWidth' className='cs-hidden'>
             <li className='item-a'>
@@ -37,7 +37,7 @@ function Slider() {
             <li className='item-b'>
               <div className='box'>
                 <div className='slide-img'>
-                <img src={lamar} alt='' />
+                  <img src={lamar} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -61,7 +61,7 @@ function Slider() {
             <li className='item-c'>
               <div className='box'>
                 <div className='slide-img'>
-                <img src={neo} alt='' />
+                  <img src={neo} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -85,7 +85,7 @@ function Slider() {
             <li className='item-d'>
               <div className='box'>
                 <div className='slide-img'>
-                <img src={lamar} alt='' />
+                  <img src={lamar} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -96,11 +96,11 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#' >alio kksmk</a>
+                    <a href='#'>alio kksmk</a>
                     <span>lamar</span>
                   </div>
 
-                  <a href='#'  className='price'>
+                  <a href='#' className='price'>
                     $230
                   </a>
                 </div>
@@ -109,10 +109,10 @@ function Slider() {
             <li className='item-e'>
               <div className='box'>
                 <div className='slide-img'>
-                <img src={shera} alt='' />
+                  <img src={shera} alt='' />
 
                   <div className='overlay'>
-                    <a href='#'  className='buy-btn'>
+                    <a href='#' className='buy-btn'>
                       buy now
                     </a>
                   </div>
@@ -120,11 +120,11 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#' >alio kksmk</a>
+                    <a href='#'>alio kksmk</a>
                     <span>lamar</span>
                   </div>
 
-                  <a href='#'  className='price'>
+                  <a href='#' className='price'>
                     $230
                   </a>
                 </div>
@@ -133,10 +133,10 @@ function Slider() {
             <li className='item-f'>
               <div className='box'>
                 <div className='slide-img'>
-                <img src={lamar} alt='' />
+                  <img src={lamar} alt='' />
 
                   <div className='overlay'>
-                    <a href='#'  className='buy-btn'>
+                    <a href='#' className='buy-btn'>
                       buy now
                     </a>
                   </div>
@@ -144,11 +144,11 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#' >alio kksmk</a>
+                    <a href='#'>alio kksmk</a>
                     <span>lamar</span>
                   </div>
 
-                  <a href='#'  className='price'>
+                  <a href='#' className='price'>
                     $230
                   </a>
                 </div>
@@ -157,10 +157,10 @@ function Slider() {
             <li className='item-g'>
               <div className='box'>
                 <div className='slide-img'>
-                <img src={neo} alt='' />
+                  <img src={neo} alt='' />
 
                   <div className='overlay'>
-                    <a href='#'  className='buy-btn'>
+                    <a href='#' className='buy-btn'>
                       buy now
                     </a>
                   </div>
@@ -168,11 +168,11 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#' >alio kksmk</a>
+                    <a href='#'>alio kksmk</a>
                     <span>lamar</span>
                   </div>
 
-                  <a href='#'  className='price'>
+                  <a href='#' className='price'>
                     $230
                   </a>
                 </div>
@@ -181,10 +181,10 @@ function Slider() {
             <li className='item-h'>
               <div className='box'>
                 <div className='slide-img'>
-                <img src={shera} alt='' />
+                  <img src={shera} alt='' />
 
                   <div className='overlay'>
-                    <a href='#'  className='buy-btn'>
+                    <a href='#' className='buy-btn'>
                       buy now
                     </a>
                   </div>
@@ -192,11 +192,11 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#' >alio kksmk</a>
+                    <a href='#'>alio kksmk</a>
                     <span>lamar</span>
                   </div>
 
-                  <a href='#'  className='price'>
+                  <a href='#' className='price'>
                     $230
                   </a>
                 </div>
@@ -204,11 +204,9 @@ function Slider() {
             </li>
           </ul>
         </div>
-        </section>
-        
-            
-        </>
-    )
+      </section>
+    </>
+  );
 }
 
-export default Slider
+export default Slider;
