@@ -18,6 +18,11 @@
   /* justify-content: space-between; */
   /* align-items: top; */
 }
+/* @media(min-width:768px){
+  .header .lamar-container{
+
+  }
+} */
 
 .header .image {
   width: 160px;
