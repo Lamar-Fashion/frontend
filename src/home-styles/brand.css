@@ -10,15 +10,16 @@
     'lamar lamar montaha montaha nero nero'
     'lamar lamar shera shera shera shera';
   grid-gap: 10px;
-  height: 450px;
+  height: 500px;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .brand .lamar-container{
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         gap: 30px;
         width: 100%;
+        height: 600px;
     } 
 
   }
@@ -34,13 +35,13 @@
     height: 100%;
     transition: transform 0.5s , box-shadow 0.5s;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .brand .lamar-container > div{
         padding:5px;
         position: relative;
         box-shadow: 0 2px 12px rgba(0,0,0,0.2);
         transition: transform 0.5s , box-shadow 0.5s;
-        height: 600px;
+        height: 700px;
         width: 80%;
         margin: 0 auto;
     } 
@@ -75,7 +76,7 @@
     font-weight: 700;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .brand .lamar-container .item1 .image {
         position: absolute;
         left: -10px;
@@ -128,7 +129,7 @@
     
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .brand .lamar-container .item2 .image {
         position: absolute;
         right: 10px;
@@ -161,7 +162,7 @@
     left: -35px;
     bottom: 0;
     height: 113%;
-    width: 69%;
+    width: 65%;
 }
 .brand .item3 .image img{
    width: 100%;
@@ -177,13 +178,13 @@
     font-weight: 700;
     
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .brand .lamar-container .item3 .image {
         position: absolute;
         left: -10px;
         bottom: 0;
         height: 120%;
-        width: 40%;
+        width: 54%;
     } 
     .brand .lamar-container .item3 h3 {
         position: absolute;
@@ -232,7 +233,7 @@ color: var(--main-color-alt2);
 text-transform: capitalize;
   
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .brand .lamar-container .item4 .image {
         position: absolute;
         right: 20px;
