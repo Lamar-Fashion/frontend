@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import '../../header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsHeart, BsPersonCircle } from 'react-icons/bs';
@@ -16,13 +16,6 @@ function Header() {
       <section className={y > 0 ? 'header header-scroll' : 'header'}>
         {showVerticalNav && (
           <div className='vertical-nav-container'>
-            {/* <span
-              onClick={() => {
-                setshowVerticalNav(false);
-              }}
-            >
-              x
-            </span> */}
             <ul className='main-nav-phone'>
               <li>
                 <a href='#home'>Home</a>
