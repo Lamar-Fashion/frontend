@@ -9,11 +9,15 @@
   padding: 0;
 }
 :root {
-  --main-color-alt: #f3ed9ec4;
+  /* --main-color-alt: #5fd4da; */
+  /* --main-color-alt: #e4e1e8; */
+  --main-color-alt: #d6c4a8;
+  /* --main-color-alt: #f3ed9ec4; */
   --main-transition: 0.5s;
   --main-padding-top: 80px;
   --main-padding-bottom: 80px;
-  --main-color-alt2:whitesmoke;
+  /* --main-color-alt2:whitesmoke; */
+  --main-color-alt2:#e4e1e8;
   --text-color:#666;
 }
 html {
@@ -38,16 +42,20 @@ ul {
 }
 
 .button {
-  background-color: #fbd46d;
+  background-color: var(--main-color-alt);
+  /* background-color: #fbd46d; */
   padding: 0.5rem;
   border-radius: 0.3rem;
-  border: #f3ed9ec4 2px solid;
+  border: var(--main-color-alt) 2px solid;
+  /* border: #f3ed9ec4 2px solid; */
   font-weight: bold;
+  width: 160px;
 }
 
 .button:hover {
   background-color: black;
-  color: #fbd46d;
+  color: var(--main-color-alt);
+  /* color: #fbd46d; */
   border: black 2px solid;
   transition: var(--main-transition);
 }
@@ -58,7 +66,8 @@ ul {
   bottom: 40px;
   width: 40px;
   height: 40px;
-  background-color:#f3ed9e;
+  background-color:var(--main-color-alt);
+  /* background-color:#f3ed9e; */
   border-radius: 25% 50% ;
   cursor: pointer;
   transition: 1s;
@@ -84,13 +93,14 @@ ul {
 .main-title {
   text-transform: uppercase;
   margin: 0 auto 30px;
-  border: 3px solid black;
+  border: 3px solid whitesmoke;
   padding: 10px 20px;
   font-size: 30px;
   width: fit-content;
   position: relative;
   z-index: 1;
   transition: var(--main-transition);
+  color: whitesmoke;
 
 }
 .main-title::before,
@@ -98,7 +108,8 @@ ul {
   content: '';
   width: 12px;
   height: 12px;
-  background-color: black;
+  background-color: whitesmoke;
+  /* background-color:var(--main-color-alt2); */
   position: absolute;
   border-radius: 50%;
   top: 50%;
@@ -119,7 +130,9 @@ ul {
   animation: right-move 0.5s linear forwards;
 }
 .main-title:hover {
-  color: var(--main-color-alt2);
+  color: var(--main-color-alt);
+  /* border: 2px solid black; */
+  /* color: var(--main-color-alt2); */
   border: 2px solid var(--main-color-alt2);
   transition-delay: 0.5s;
 }
