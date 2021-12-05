@@ -1,5 +1,8 @@
 import React from 'react'
 import "../../footer-styles/footer.css"
+import master from "../../images/header/MasterCard_Logo.svg.png"
+import visa from "../../images/header/Visa_Logo.png"
+import pay_pal from "../../images/header/PayPal.svg.png"
 function Footer() {
     return (
         <>
@@ -30,11 +33,11 @@ function Footer() {
         </div>
         <div className="box">
           <ul className="links">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Delivery</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Returns Policy</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#"><i class="fas fa-angle-double-right"></i> About Us</a></li>
+            <li><a href="#"><i class="fas fa-angle-double-right"></i> Delivery</a></li>
+            <li><a href="#"><i class="fas fa-angle-double-right"></i> Privacy Policy</a></li>
+            <li><a href="#"><i class="fas fa-angle-double-right"></i> Returns Policy</a></li>
+            <li><a href="#"><i class="fas fa-angle-double-right"></i> Terms & Conditions</a></li>
           </ul>
         
 
@@ -65,7 +68,29 @@ function Footer() {
           <img src="https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg" alt="" />
         </div>
       </div>
+      <div className="footer-pay">
+      <div className="lamar-container">
       <p className="copyright">Made With &lt;3 By A.A</p>
+      <div className="info-pay">
+        <a href="#policy" >
+          <div className="image">
+          <img src={visa} alt="" />
+          </div>
+        </a>
+        <a href="#policy" >
+          <div className="image pay-pal">
+          <img src={pay_pal} alt="" />
+          </div>
+        </a>
+        <a href="#policy" >
+          <div className="image">
+          <img src={master} alt="" />
+          </div>
+        </a>
+      </div>
+      </div>
+      
+      </div>
     </div>
             
         </>
