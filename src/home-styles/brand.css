@@ -2,7 +2,28 @@
     background-color:var(--main-color-alt);
     padding-bottom: var(--main-padding-bottom);
     padding-top: var(--main-padding-top);
+    position: relative;
 }
+.brand .custom-shape-divider-top-1638712956 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+  
+  .brand .custom-shape-divider-top-1638712956 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 90px;
+    transform: rotateY(180deg);
+  }
+  
+  .brand .custom-shape-divider-top-1638712956 .shape-fill {
+    fill: rgba(0, 0, 0, 0.89);
+  }
 
 .brand .lamar-container{
     display: grid;
@@ -60,7 +81,7 @@
     position: absolute;
     left: -60px;
     bottom: 0;
-    height: 120%;
+    height: 110%;
     width: 100%;
 }
 .brand .item1 .image img{
