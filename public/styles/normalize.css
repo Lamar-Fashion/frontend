@@ -66,20 +66,25 @@ ul {
   bottom: 40px;
   width: 40px;
   height: 40px;
-  background-color:var(--main-color-alt);
-  /* background-color:#f3ed9e; */
+  background-image:linear-gradient(to right, var(--main-color-alt2),var(--main-color-alt));
   border-radius: 25% 50% ;
   cursor: pointer;
   transition: 1s;
   border: 1px solid var(--main-color);
-  z-index: 100;
+  z-index: 99;
 }
 
 
 .go-up i{
   font-size: 30px;
-  color: #666;
+  color: var(--text-color);
 
+}
+.go-up:hover{
+  background-image:linear-gradient(to right, var(--text-color),var(--main-color-alt));
+}
+.go-up:hover i{
+  color: var(--main-color-alt);
 }
 /*  start main title  */
 

@@ -1,8 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import shera from '../../../images/brand/shera.png';
-import lamar from '../../../images/brand/lamar.png';
-import neo from '../../../images/brand/neo.png';
+import brand13 from '../../../images/brand/test/brand13.jpeg';
+import brand12 from '../../../images/brand/test/brand12.jpeg';
+import brand11 from '../../../images/brand/test/brand11.jpeg';
+import brand14 from '../../../images/brand/test/brand14.jpeg';
+import brand2 from '../../../images/brand/test/brand2.jpeg';
+import brand7 from '../../../images/brand/test/brand7.jpeg';
+import brand18 from '../../../images/brand/test/brand18.jpeg';
+import brand1 from '../../../images/brand/test/brand1.jpeg';
 import '../../../home-styles/products.css';
 function Slider() {
   return (
@@ -13,7 +18,7 @@ function Slider() {
             <li className='item-a'>
               <div className='box'>
                 <div className='slide-img'>
-                  <img src={shera} alt='' />
+                  <img src={brand13} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -37,7 +42,7 @@ function Slider() {
             <li className='item-b'>
               <div className='box'>
                 <div className='slide-img'>
-                  <img src={lamar} alt='' />
+                  <img src={brand12} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -61,7 +66,7 @@ function Slider() {
             <li className='item-c'>
               <div className='box'>
                 <div className='slide-img'>
-                  <img src={neo} alt='' />
+                  <img src={brand7} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -85,7 +90,7 @@ function Slider() {
             <li className='item-d'>
               <div className='box'>
                 <div className='slide-img'>
-                  <img src={lamar} alt='' />
+                  <img src={brand1} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -109,7 +114,7 @@ function Slider() {
             <li className='item-e'>
               <div className='box'>
                 <div className='slide-img'>
-                  <img src={shera} alt='' />
+                  <img src={brand14} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -133,7 +138,7 @@ function Slider() {
             <li className='item-f'>
               <div className='box'>
                 <div className='slide-img'>
-                  <img src={lamar} alt='' />
+                  <img src={brand11} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -157,7 +162,7 @@ function Slider() {
             <li className='item-g'>
               <div className='box'>
                 <div className='slide-img'>
-                  <img src={neo} alt='' />
+                  <img src={brand2} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
@@ -181,7 +186,7 @@ function Slider() {
             <li className='item-h'>
               <div className='box'>
                 <div className='slide-img'>
-                  <img src={shera} alt='' />
+                  <img src={brand18} alt='' />
 
                   <div className='overlay'>
                     <a href='#' className='buy-btn'>
