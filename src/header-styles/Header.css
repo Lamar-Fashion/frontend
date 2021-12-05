@@ -7,13 +7,18 @@
   z-index: 3;
   transition: 1s linear;
 }
-
+/*  phones */
+@media (min-width: 531px) and (max-width: 652px) {
+  .header {
+    top: 3rem;
+  }
+}
 @media (min-width: 769px) {
   .header.header-scroll {
     background-color: whitesmoke;
     box-shadow: 0px 2px 12px rgb(0, 0, 0, 0.2);
     height: 5rem;
-    top: 1rem;
+    top: 2rem;
   }
 
   .header .lamar-container.lamar-container-scroll {
@@ -28,6 +33,7 @@
   .header .lamar-container .main-nav.main-nav-scroll {
     height: 5rem;
   }
+
   .header .lamar-container .rightContainer.rightContainer-scroll {
     height: 5rem;
   }
@@ -35,11 +41,18 @@
     height: 5rem;
   }
 }
-@media (max-width: 768px) {
+@media (min-width: 769px) and (max-width:991px){
+  .header .lamar-container .main-nav.main-nav-scroll > li > a {
+    height: 5rem;
+    padding-right: 30px;
+  }
+}
+@media (min-width: 531px) and (max-width: 768px) {
   .header.header-scroll {
     background-color: whitesmoke;
     box-shadow: 0px 2px 12px rgb(0, 0, 0, 0.2);
-    top: 1rem;
+    top: 2rem;
+    height: 6rem;
   }
 }
 
@@ -100,18 +113,22 @@
 }
 .header .vertical-nav-container .main-nav-phone {
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  align-items: center;
   width: 100%;
+  position: relative;
 }
 .header .vertical-nav-container .main-nav-phone > li {
-  box-shadow: 2px 2px 12px rgb(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.2);
   width: 100%;
-  text-align: center;
+  text-align: left;
   padding: 10px;
-  border-radius: 2px;
   cursor: pointer;
+  position: relative;
+}
+.header .vertical-nav-container .main-nav-phone > li .fa-angle-down{
+float: right;
+margin: 0;
+cursor: pointer;
 }
 .header .vertical-nav-container .main-nav-phone > li > a {
   padding: 10px;
@@ -121,6 +138,48 @@
   font-weight: 500;
   text-decoration: none;
   color: black;
+}
+.header .vertical-nav-container .main-nav-phone  .drop-ul-phone {
+  display: none;
+  transition: 0.4s;
+  width: 100%;
+  
+}
+.header .vertical-nav-container .main-nav-phone  .drop-ul-phone.drop-ul-phone-scroll {
+  display: block;
+  transition: 0.4s;
+  width: 100%;
+  
+}
+.header .vertical-nav-container .main-nav-phone  .drop-ul-phone li{
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+.header .vertical-nav-container .main-nav-phone  .drop-ul-phone li::before{
+content: "";
+position: absolute;
+background-color: black;
+width: 0%;
+height: 2px;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+transition: 0.5s;
+}
+.header .vertical-nav-container .main-nav-phone  .drop-ul-phone li:hover::before{
+  width: 18%;
+}
+.header .vertical-nav-container .main-nav-phone  .drop-ul-phone li a{
+  color: black;
+  font-size: 15px;
+  transition: 0.3s;
+}
+.header .vertical-nav-container .main-nav-phone  .drop-ul-phone li:hover a{
+  font-weight: bold;
 }
 .header .lamar-container {
   display: grid;
@@ -319,7 +378,78 @@
 .header .lamar-container .main-nav {
   display: flex;
   transition: 1s linear;
+  position: relative;
 }
+.header .lamar-container .main-nav li{
+  position: relative;
+}
+
+/* for drop down  */
+.header .lamar-container .main-nav .drop-ul-home {
+	display:none;
+	position:absolute;
+	top:65%;
+	left:-24px;
+	background: var(--main-color-alt2);
+  height: auto;
+}
+.header .lamar-container .main-nav .drop-ul-home li{
+	width:100px;
+  height: 30px;
+  background-color: var(--main-color-alt2);
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.2);
+  padding-left: 10px;
+  transition: 0.5s;
+}
+.header .lamar-container .main-nav .drop-ul-home a{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+color: black;
+font-size: 15px;
+height: 30px;
+transition: 0.3s;
+
+}
+/* end drop down  */
+/* start  drop down on scroll */
+.header .lamar-container .main-nav .drop-ul-home-scroll {
+	display:none;
+	position:absolute;
+	top:70%;
+	left:-24px;
+	background: var(--main-color-alt2);
+  height: auto;
+}
+.header .lamar-container .main-nav .drop-ul-home-scroll li{
+	width:100px;
+  height: 30px;
+  background-color: var(--main-color-alt2);
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.1);
+  padding-left: 10px;
+  transition: 0.5s;
+}
+.header .lamar-container .main-nav .drop-ul-home-scroll a{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+color: black;
+font-size: 15px;
+height: 30px;
+transition: 0.3s;
+
+}
+.header .lamar-container .main-nav li:hover > ul {
+  display: block;
+}
+.header .lamar-container .main-nav li > ul > li:hover{
+  padding-left: 20px;
+  background-color: #121314;
+}
+.header .lamar-container .main-nav li > ul > li:hover a{
+color: whitesmoke;
+}
+/* end drop down  */
 
 /* phones */
 @media (max-width: 768px) {
@@ -340,6 +470,11 @@
   font-size: 18px;
   transition: var(--main-transition);
 }
+.header .lamar-container .main-nav > li > a > i{
+font-size: 15px;
+margin-left: 5px;
+}
+
 /* right container >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 .header .lamar-container .rightContainer {
   display: flex;

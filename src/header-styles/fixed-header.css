@@ -1,11 +1,10 @@
 .fixed-header {
   background-color: black;
-  position: absolute;
-  top: -2rem;
+  position: fixed;
   height: 2rem;
   width: 100%;
-  position: static;
   color: var(--main-color-alt);
+  z-index: 4;
 }
 /* very small */
 @media (max-width: 399px) {

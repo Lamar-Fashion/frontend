@@ -71,7 +71,7 @@ ul {
   cursor: pointer;
   transition: 1s;
   border: 1px solid var(--main-color);
-  z-index: 99;
+  z-index: 100;
 }
 
 
