@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import '../../header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsHeart, BsPersonCircle } from 'react-icons/bs';
+import { HiOutlineShoppingBag } from 'react-icons/hi';
 
 function Header() {
   const [showVerticalNav, setshowVerticalNav] = useState(false);
@@ -10,6 +11,10 @@ function Header() {
   window.onscroll = function () {
     setY(window.scrollY);
   };
+
+  useEffect(() => {
+    console.log('y', y);
+  }, [y]);
 
   return (
     <>
@@ -56,17 +61,21 @@ function Header() {
             <ul className='right-nav'>
               <li>
                 <a href='#profile'>
-                  <BsPersonCircle className='header-icons' />
+                  <BsPersonCircle className='header-icons profile' />
                 </a>
               </li>
               <li>
                 <a href='#favourite'>
-                  <BsHeart className='header-icons' />
+                  <BsHeart className='header-icons fav' />
+
+                  <strong className='number'>5</strong>
                 </a>
               </li>
               <li>
                 <a href='#cart'>
-                  <BsCartFill className='header-icons' />
+                  <BsCartFill className='header-icons cart' />
+
+                  <strong className='number'>5</strong>
                 </a>
               </li>
             </ul>
