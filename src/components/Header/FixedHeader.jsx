@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../header-styles/fixed-header.css';
-import { AiOutlineMail } from 'react-icons/ai';
 
 function FixedHeader() {
   return (
