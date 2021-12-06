@@ -5,7 +5,8 @@
   position: relative;
   z-index: 0;
   overflow: hidden;
-  height: calc(100vh - 2rem);
+  /* height: calc(100vh - 2rem); */
+  height: 100vh;
 }
 
 .hero .carousel {
