@@ -34,7 +34,7 @@ function Slider() {
                   </div>
 
                   <a href='#' className='price'>
-                    $230
+                    QAR 1,300
                   </a>
                 </div>
               </div>
@@ -58,7 +58,7 @@ function Slider() {
                   </div>
 
                   <a href='#' className='price'>
-                    $230
+                    QAR 1,300
                   </a>
                 </div>
               </div>
@@ -82,7 +82,7 @@ function Slider() {
                   </div>
 
                   <a href='#' className='price'>
-                    $230
+                    QAR 1,300
                   </a>
                 </div>
               </div>
@@ -106,7 +106,7 @@ function Slider() {
                   </div>
 
                   <a href='#' className='price'>
-                    $230
+                    QAR 1,300
                   </a>
                 </div>
               </div>
@@ -130,7 +130,7 @@ function Slider() {
                   </div>
 
                   <a href='#' className='price'>
-                    $230
+                    QAR 1,300
                   </a>
                 </div>
               </div>
@@ -154,7 +154,7 @@ function Slider() {
                   </div>
 
                   <a href='#' className='price'>
-                    $230
+                    QAR 1,300
                   </a>
                 </div>
               </div>
@@ -178,7 +178,7 @@ function Slider() {
                   </div>
 
                   <a href='#' className='price'>
-                    $230
+                    QAR 1,300
                   </a>
                 </div>
               </div>
@@ -202,7 +202,7 @@ function Slider() {
                   </div>
 
                   <a href='#' className='price'>
-                    $230
+                    QAR 1,300
                   </a>
                 </div>
               </div>
