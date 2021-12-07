@@ -3,6 +3,7 @@
     padding-bottom: var(--main-padding-bottom);
     padding-top: var(--main-padding-top);
     position: relative;
+    border-top: black dashed 5px;
 }
 .brand .custom-shape-divider-top-1638712956 {
     position: absolute;
@@ -55,6 +56,7 @@
     box-shadow: 0 2px 12px rgba(0,0,0,0.2);
     height: 100%;
     transition: transform 0.5s , box-shadow 0.5s;
+    cursor: pointer;
   }
   @media (max-width: 767px) {
     .brand .lamar-container > div{
@@ -83,10 +85,12 @@
     bottom: 0;
     height: 110%;
     width: 100%;
+    
 }
 .brand .item1 .image img{
     height: 100%;
     width: 100%;
+    cursor: pointer;
 }
 .brand .item1 h3{
     position: absolute;
@@ -137,7 +141,7 @@
 .brand .item2 .image img{
     height: 100%;
     width: 100%;
-    
+    cursor: pointer;
 }
 .brand .item2 h3{
     position: absolute;
@@ -188,6 +192,7 @@
 .brand .item3 .image img{
    width: 100%;
    height: 100%;
+   cursor: pointer;
 }
 .brand .item3 h3{
     position: absolute;
@@ -237,7 +242,7 @@
    
 }
 .brand .item4 .image img{
-   
+    cursor: pointer;
     height: 100%;
     width: 100%;
    

@@ -7,6 +7,7 @@
   font-family: 'Alegreya', serif;
   margin: 0;
   padding: 0;
+  cursor:default;
 }
 :root {
   /* --main-color-alt: #5fd4da; */
@@ -50,6 +51,7 @@ ul {
   /* border: #f3ed9ec4 2px solid; */
   font-weight: bold;
   width: 160px;
+  cursor: pointer;
 }
 
 .button:hover {
@@ -72,13 +74,14 @@ ul {
   transition: 1s;
   border: 1px solid var(--main-color);
   z-index: 100;
+  cursor: pointer;
 }
 
 
 .go-up i{
   font-size: 30px;
   color: var(--text-color);
-
+  cursor: pointer;
 }
 .go-up:hover{
   background-image:linear-gradient(to right, var(--text-color),var(--main-color-alt));
@@ -133,6 +136,7 @@ ul {
 .main-title:hover::after {
   z-index: -1;
   animation: right-move 0.5s linear forwards;
+ 
 }
 .main-title:hover {
   color: var(--main-color-alt);
@@ -140,6 +144,7 @@ ul {
   /* color: var(--main-color-alt2); */
   border: 2px solid var(--main-color-alt2);
   transition-delay: 0.5s;
+  cursor:default;
 }
 
 @keyframes left-move {
