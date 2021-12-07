@@ -3,7 +3,7 @@
   padding-top: var(--main-padding-top);
   background-color: var(--main-color-alt);
   position: relative;
- 
+ border-top: black dashed 5px;
 }
 .products .custom-shape-divider-top-1638712956 {
   position: absolute;
@@ -42,20 +42,24 @@
   margin: 20px;
   background-color: var(--main-color-alt2);
   transition: transform 0.5s, box-shadow 0.5s;
+  cursor: pointer;
 }
 .multi-slider .box:hover {
   transform: translateY(-10px);
   box-shadow: 0px 2px 12px rgb(0 0 0 / 40%);
+  cursor: pointer;
 }
 .multi-slider .box .slide-img {
   height: 340px;
   background-color: var(--main-color-alt);
   position: relative;
+  cursor: grab;
 }
 .multi-slider .box .slide-img img {
   width: 100%;
   height: 100%;
   /* object-fit: cover; */
+  cursor: grab;
 }
 .multi-slider .box .slide-img .overlay {
   position: absolute;
@@ -69,6 +73,7 @@
   justify-content: center;
   align-items: center;
   transition: 0.3s;
+  cursor: grab;
 }
 .multi-slider .box .overlay .buy-btn {
   width: 160px;
@@ -84,6 +89,7 @@
   background-color: var(--main-color-alt2);
   text-transform: uppercase;
   font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
 }
 .multi-slider .box .overlay .buy-btn:hover {
   color: black;
@@ -112,6 +118,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  cursor: grab;
 }
 .multi-slider .details .type {
   display: flex;

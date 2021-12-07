@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import '../../header-styles/fixed-header.css';
 
@@ -23,15 +25,24 @@ function FixedHeader() {
             </div>
           </section>
           <section className='icons-container'>
-            <div className='icons'>
-              <i class='fab fa-facebook'></i>
-            </div>
-            <div className='icons'>
-              <i class='fab fa-instagram'></i>
-            </div>
-            <div className='icons'>
-              <i class='fab fa-twitter'></i>
-            </div>
+           
+              <a className='icons' href="https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/" target="_blank">
+
+              <i class='fab fa-facebook' ></i>
+              </a>
+           
+          
+              <a className='icons' href="https://www.instagram.com/lamarfashion.qa?utm_medium=copy_link" target="_blank">
+              <i class='fab fa-instagram' ></i>
+
+              </a>
+            
+            
+              <a className='icons' href="https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/" target="_blank">
+              <i class='fab fa-twitter' ></i>
+
+              </a>
+           
           </section>
         </div>
       </div>

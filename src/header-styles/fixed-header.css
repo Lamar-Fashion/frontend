@@ -111,3 +111,9 @@
   align-items: center;
   gap: 15px;
 }
+.fixed-header .icons-container .icons {
+color: var(--main-color-alt);
+}
+.fixed-header .icons-container .icons i{
+  cursor: pointer;
+}
