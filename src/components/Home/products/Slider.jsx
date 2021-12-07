@@ -8,7 +8,7 @@ import brand2 from '../../../images/brand/test/brand2.jpeg';
 import brand7 from '../../../images/brand/test/brand7.jpeg';
 import brand18 from '../../../images/brand/test/brand18.jpeg';
 import brand1 from '../../../images/brand/test/brand1.jpeg';
-import '../../../home-styles/products.css';
+import '../../../styles/home-styles/products.css';
 function Slider() {
   return (
     <>

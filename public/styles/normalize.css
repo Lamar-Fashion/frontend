@@ -7,7 +7,6 @@
   font-family: 'Alegreya', serif;
   margin: 0;
   padding: 0;
-  cursor:default;
 }
 :root {
   /* --main-color-alt: #5fd4da; */
@@ -18,8 +17,8 @@
   --main-padding-top: 80px;
   --main-padding-bottom: 80px;
   /* --main-color-alt2:whitesmoke; */
-  --main-color-alt2:#e4e1e8;
-  --text-color:#666;
+  --main-color-alt2: #e4e1e8;
+  --text-color: #666;
 }
 html {
   scroll-behavior: smooth;
@@ -44,11 +43,9 @@ ul {
 
 .button {
   background-color: var(--main-color-alt);
-  /* background-color: #fbd46d; */
   padding: 0.5rem;
   border-radius: 0.3rem;
   border: var(--main-color-alt) 2px solid;
-  /* border: #f3ed9ec4 2px solid; */
   font-weight: bold;
   width: 160px;
   cursor: pointer;
@@ -57,36 +54,34 @@ ul {
 .button:hover {
   background-color: black;
   color: var(--main-color-alt);
-  /* color: #fbd46d; */
   border: black 2px solid;
   transition: var(--main-transition);
 }
 
-.go-up{
+.go-up {
   position: fixed;
   right: 40px;
   bottom: 40px;
   width: 40px;
   height: 40px;
-  background-image:linear-gradient(to right, var(--main-color-alt2),var(--main-color-alt));
-  border-radius: 25% 50% ;
+  background-image: linear-gradient(to right, var(--main-color-alt2), var(--main-color-alt));
+  border-radius: 25% 50%;
   cursor: pointer;
   transition: 1s;
   border: 1px solid var(--main-color);
-  z-index: 100;
+  z-index: 2;
   cursor: pointer;
 }
 
-
-.go-up i{
+.go-up i {
   font-size: 30px;
   color: var(--text-color);
   cursor: pointer;
 }
-.go-up:hover{
-  background-image:linear-gradient(to right, var(--text-color),var(--main-color-alt));
+.go-up:hover {
+  background-image: linear-gradient(to right, var(--text-color), var(--main-color-alt));
 }
-.go-up:hover i{
+.go-up:hover i {
   color: var(--main-color-alt);
 }
 /*  start main title  */
@@ -96,7 +91,6 @@ ul {
   margin: 0px auto 60px;
   padding: 0 15px;
 }
-
 
 .main-title {
   text-transform: uppercase;
@@ -109,15 +103,13 @@ ul {
   z-index: 1;
   transition: var(--main-transition);
   color: whitesmoke;
-
 }
 .main-title::before,
 .main-title::after {
   content: '';
   width: 12px;
   height: 12px;
-  background-color: whitesmoke;
-  /* background-color:var(--main-color-alt2); */
+  background-color: var(--main-color-alt2);
   position: absolute;
   border-radius: 50%;
   top: 50%;
@@ -136,15 +128,12 @@ ul {
 .main-title:hover::after {
   z-index: -1;
   animation: right-move 0.5s linear forwards;
- 
 }
 .main-title:hover {
   color: var(--main-color-alt);
-  /* border: 2px solid black; */
-  /* color: var(--main-color-alt2); */
   border: 2px solid var(--main-color-alt2);
   transition-delay: 0.5s;
-  cursor:default;
+  cursor: default;
 }
 
 @keyframes left-move {
@@ -173,7 +162,6 @@ ul {
     height: 100%;
   }
 }
-
 
 .title-section p {
   color: var(--text-color);
