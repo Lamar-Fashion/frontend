@@ -11,16 +11,10 @@ function Header() {
   const [dropDown, setDropDown] = useState(false);
   const [dropDownA, setDropDownA] = useState(false);
   const [y, setY] = useState(0);
-  // window.onscroll = function () {
-  //   setY(window.scrollY);
-  // };
 
   function scrollHandler() {
     setY(window.scrollY);
   }
-  useEffect(() => {
-    console.log('y', y);
-  }, [y]);
 
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler, true);
@@ -36,7 +30,7 @@ function Header() {
                 <a href='#home'>
                   Home
                   <i
-                    className={dropDown?'fas fa-angle-up': 'fas fa-angle-down'}
+                    className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
                     onClick={() => {
                       setShowDropHome(!showDropHome);
                       setDropDown(!dropDown);
@@ -59,7 +53,7 @@ function Header() {
                 <a href='#Abaya'>
                   Abaya
                   <i
-                    className={dropDownA?'fas fa-angle-up': 'fas fa-angle-down'}
+                    className={dropDownA ? 'fas fa-angle-up' : 'fas fa-angle-down'}
                     onClick={() => {
                       setShowDropAbay(!showDropAbay);
                       setDropDownA(!dropDownA);
@@ -91,7 +85,7 @@ function Header() {
           <ul className={y > 0 ? 'main-nav main-nav-scroll ' : 'main-nav'}>
             <li>
               <a href='#home'>
-                Home<i class='fas fa-angle-down' ></i>
+                Home<i class='fas fa-angle-down'></i>
               </a>
               <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
                 <li>
@@ -130,7 +124,7 @@ function Header() {
           </ul>
 
           <div className={y > 0 ? 'image image-scroll ' : 'image'}>
-            <img src={logo} alt='logo' className='logo' href="/"/>
+            <img src={logo} alt='logo' className='logo' href='/' />
           </div>
           <section className={y > 0 ? 'rightContainer rightContainer-scroll ' : 'rightContainer'}>
             <div className='searchContainer'>
@@ -149,7 +143,7 @@ function Header() {
               <li>
                 <a href='#favourite'>
                   <BsFillHeartFill className='header-icons fav' />
-                  
+
                   <strong className='number'>5</strong>
                 </a>
               </li>

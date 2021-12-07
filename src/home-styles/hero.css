@@ -57,7 +57,7 @@
   left: 5%;
   font-size: 75px;
   transform: translateY(-100px);
-  font-weight: 700;
+  font-weight: 450;
   letter-spacing: 1.8px;
   text-transform: uppercase;
 }
@@ -99,12 +99,22 @@
   }
 }
 
+@media (max-width: 355px) {
+  .hero .carousel .lamar-container .text {
+    position: relative;
+    right: 20% !important;
+  }
+}
 @media (max-width: 599px) {
+  .hero .carousel .lamar-container .text {
+    position: relative;
+    right: 17%;
+  }
   .hero .carousel .lamar-container .text .h1 {
     position: absolute;
     top: 22%;
     left: 5%;
-    font-size: 36px;
+    font-size: 34px;
     transform: translateY(-49px);
     font-weight: 700;
     letter-spacing: 1.6px;
@@ -118,11 +128,16 @@
     font-weight: 500;
   }
   .hero .carousel .lamar-container .image {
-    width: 60%;
+    width: 70%;
     height: 450px;
     transform: translateY(0%);
     position: relative;
     top: 50px;
+    right: 12%;
+  }
+
+  .hero .carousel .lamar-container .image img {
+    height: 600px;
   }
 }
 
@@ -170,17 +185,17 @@
   }
 }
 /* Medium */
-@media (min-width: 992px) {
+@media (min-width: 992px) and (max-width: 1199px) {
   .hero .carousel .lamar-container {
     width: 970px;
   }
-  .hero .carousel .lamar-container .text .h2 {
-    position: absolute;
-
+  .hero .carousel .lamar-container .text {
     left: 5%;
-    font-size: 30px;
-    transform: translateY(83px);
-    font-weight: lighter;
+    top: 20%;
+  }
+  .hero .carousel .lamar-container .text .h1 {
+    font-size: 65px;
+    font-weight: 700;
   }
   .hero .carousel .lamar-container .text .h2 {
     position: absolute;
@@ -195,16 +210,37 @@
   .hero .carousel .lamar-container {
     width: 1170px;
   }
+  .hero .carousel .lamar-container .text {
+    left: 5%;
+    top: 20%;
+  }
+}
+
+.hero .first-text {
+  color: whitesmoke;
+  text-shadow: 2px 5px 20px black;
+  /* text-shadow: 2px 5px 50px black; */
+}
+.hero .second-text {
+  text-shadow: 2px 5px 15px black;
+  /* font-weight: lighter; */
+}
+.hero .third-text {
+  text-shadow: 2px 5px 15px black;
+  /* font-weight: lighter !important; */
 }
 
 /* lamar logo */
-
-.hero .carousel .lamar-container .lamar-logo {
+.hero .lamar-logo {
   position: absolute;
-  top: 35rem;
-  right: 0rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 5px;
+  bottom: 1px;
+  right: 5px;
+  z-index: 5;
+}
+
+/* Large */
+@media (max-width: 339px) {
+  .hero .lamar-logo {
+    font-size: 14px;
+  }
 }
