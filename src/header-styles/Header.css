@@ -15,7 +15,7 @@
 }
 @media (min-width: 769px) {
   .header.header-scroll {
-    background-color: whitesmoke;
+    background-color: #ececec;
     box-shadow: 0px 2px 12px rgb(0, 0, 0, 0.2);
     height: 5rem;
     top: 2rem;
@@ -54,7 +54,7 @@
 }
 @media (min-width: 531px) and (max-width: 768px) {
   .header.header-scroll {
-    background-color: whitesmoke;
+    background-color: #ececec;
     box-shadow: 0px 2px 12px rgb(0, 0, 0, 0.2);
     top: 2rem;
     height: 6rem;
@@ -75,7 +75,7 @@
   }
 
   .header.header-scroll {
-    background-color: whitesmoke;
+    background-color: #ececec;
     box-shadow: 0px 2px 12px rgb(0, 0, 0, 0.2);
     top: 2rem;
     height: 4.3rem;
@@ -264,6 +264,7 @@
   display: none;
   width: 30px;
   position: relative;
+  /* z-index: 15; */
   /* margin: 0 auto; */
   cursor: pointer;
 }
@@ -440,13 +441,11 @@
   cursor: pointer;
 }
 .header .lamar-container .main-nav > li > a:hover {
-
   font-weight: bold;
   padding-top: 5px;
   color: white;
   text-shadow: black;
 }
-
 
 .header .lamar-container .main-nav > li > a > i {
   font-size: 15px;
@@ -458,7 +457,7 @@
   position: absolute;
   top: 100%;
   left: 0px;
-  background: #fafafa;
+  background: #ececec;
   height: auto;
   width: 100%;
 }
@@ -529,8 +528,6 @@
   }
 }
 
-
-
 /* right container >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 .header .lamar-container .rightContainer {
   display: flex;
@@ -592,7 +589,7 @@
 }
 
 .header .lamar-container .rightContainer .searchContainer .input {
-  background: transparent;
+  background-color: transparent;
   border: none;
   outline: none;
   width: 0px;
@@ -601,6 +598,14 @@
   transition: 0.8s;
   width: 180px;
   border-bottom: 1px solid;
+  cursor: auto;
+}
+.header .lamar-container .rightContainer .searchContainer .input::placeholder {
+  transition: 0.3s;
+}
+
+.header .lamar-container .rightContainer .searchContainer .input:focus::placeholder {
+  opacity: 0;
 }
 /* small phones */
 @media (max-width: 530px) {
@@ -661,9 +666,9 @@
   cursor: pointer;
 }
 .header .lamar-container .rightContainer .right-nav .cart:hover {
-color: whitesmoke;
-background-color: black;
-box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
+  color: whitesmoke;
+  background-color: black;
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
 }
 
 /* small phones */
@@ -688,18 +693,18 @@ box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
 
 .header .lamar-container .rightContainer .right-nav li {
   cursor: pointer;
-transition: 0.3s;
+  transition: 0.3s;
 }
 .header .lamar-container .rightContainer .right-nav .profile {
   cursor: pointer !important;
-transition: 0.3s;
+  transition: 0.3s;
 }
 .header .lamar-container .rightContainer .right-nav .profile:hover {
-color: whitesmoke;
-box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
-background-color: black;
-border-radius: 25%;
-cursor: pointer;
+  color: whitesmoke;
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
+  background-color: black;
+  border-radius: 25%;
+  cursor: pointer;
 }
 .header .lamar-container .rightContainer .right-nav .fav {
   border: black 1px solid;
@@ -709,9 +714,9 @@ cursor: pointer;
   transition: 0.3s;
 }
 .header .lamar-container .rightContainer .right-nav .fav:hover {
- color: whitesmoke ;
- background-color: black;
- box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
+  color: whitesmoke;
+  background-color: black;
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
 }
 
 /* small phones */

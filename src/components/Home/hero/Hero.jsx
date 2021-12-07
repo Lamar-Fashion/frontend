@@ -39,8 +39,8 @@ function Hero() {
                 <img className='d-block w-100' src={hero6} alt='First slide' />
               </div>
               <div className='text third-text'>
-                <h2 className='h1 '>show the world</h2>
-                <h4 className='h2 '>a new you</h4>
+                <h2 className='h1 '>stand out</h2>
+                <h4 className='h2 '>from the crowd</h4>
               </div>
             </div>
           </Carousel.Item>
