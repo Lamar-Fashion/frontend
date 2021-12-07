@@ -29,7 +29,7 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#'>alio kksmk</a>
+                    <a href='#'>lolo fashion</a>
                     <span>lamar</span>
                   </div>
 
@@ -53,7 +53,7 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#'>alio kksmk</a>
+                    <a href='#'>lolo fashion</a>
                     <span>lamar</span>
                   </div>
 
@@ -77,7 +77,7 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href=''>alio kksmk</a>
+                    <a href=''>lolo fashion</a>
                     <span>lamar</span>
                   </div>
 
@@ -101,8 +101,8 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#'>alio kksmk</a>
-                    <span>lamar</span>
+                    <a href='#'>lolo fashion</a>
+                    <span>neo</span>
                   </div>
 
                   <a href='#' className='price'>
@@ -125,7 +125,7 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#'>alio kksmk</a>
+                    <a href='#'>lolo fashion</a>
                     <span>lamar</span>
                   </div>
 
@@ -149,7 +149,7 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#'>alio kksmk</a>
+                    <a href='#'>lolo fashion</a>
                     <span>lamar</span>
                   </div>
 
@@ -173,7 +173,7 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#'>alio kksmk</a>
+                    <a href='#'>lolo fashion</a>
                     <span>lamar</span>
                   </div>
 
@@ -197,8 +197,8 @@ function Slider() {
 
                 <div className='details'>
                   <div className='type'>
-                    <a href='#'>alio kksmk</a>
-                    <span>lamar</span>
+                    <a href='#'>lolo fashion</a>
+                    <span>neo</span>
                   </div>
 
                   <a href='#' className='price'>

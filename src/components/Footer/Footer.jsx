@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-no-target-blank */
 import React from 'react'
 import "../../footer-styles/footer.css"
 import master from "../../images/header/MasterCard_Logo.svg.png"
@@ -12,17 +14,17 @@ function Footer() {
           <h3>Lamar</h3>
           <ul className="social">
             <li>
-              <a href="#" className="facebook">
+              <a href="https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/" className="facebook" target="_blank">
                 <i className="fab fa-facebook-f"></i>
               </a>
             </li>
             <li>
-              <a href="#" className="instagram">
+              <a href="https://www.instagram.com/lamarfashion.qa?utm_medium=copy_link" className="instagram" target="_blank">
               <i class="fab fa-instagram"></i>
               </a>
             </li>
             <li>
-              <a href="#" className="twitter">
+              <a href="https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/" className="twitter" target="_blank">
                 <i className="fab fa-twitter"></i>
               </a>
             </li>
@@ -70,7 +72,7 @@ function Footer() {
       </div>
       <div className="footer-pay">
       <div className="lamar-container">
-      <p className="copyright">Made With &lt;3 By A.A</p>
+      <p className="copyright">Powerd By A.A 💀</p>
       <div className="info-pay">
         <a href="#policy" >
           <div className="image">

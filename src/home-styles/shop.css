@@ -1,11 +1,11 @@
 .shop {
-  background-image: url(../images/brand/test/shop2.jpeg);
+  background-image: url(../images/brand/test/shop3.jpeg);
   padding-top: 70px;
   padding-bottom: 70px;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: 100%;
   height: 100vh;
   position: relative;
   display: flex;
