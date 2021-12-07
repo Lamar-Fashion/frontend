@@ -15,11 +15,10 @@ function Hero() {
               <div className='image'>
                 <img className='d-block w-100' src={hero4} alt='First slide' />
               </div>
-              <div className='text'>
+              <div className='text first-text'>
                 <h2 className='h1'>new arrivals</h2>
                 <h4 className='h2'>Style & Comfort</h4>
               </div>
-              <section className='lamar-logo'>www.lamar-fashion.com</section>
             </div>
           </Carousel.Item>
 
@@ -28,11 +27,10 @@ function Hero() {
               <div className='image'>
                 <img className='d-block w-100' src={hero5} alt='First slide' />
               </div>
-              <div className='text'>
-                <h2 className='h1'>Lamar Fashion</h2>
-                <h4 className='h2'>match your needs..</h4>
+              <div className='text second-text'>
+                <h2 className='h1'>Define fashion</h2>
+                <h4 className='h2'>with Lamar</h4>
               </div>
-              <section className='lamar-logo'>www.lamar-fashion.com</section>
             </div>
           </Carousel.Item>
           <Carousel.Item className='item3'>
@@ -40,14 +38,14 @@ function Hero() {
               <div className='image'>
                 <img className='d-block w-100' src={hero6} alt='First slide' />
               </div>
-              <div className='text'>
-                <h2 className='h1'>50% off</h2>
-                <h4 className='h2'>shop now</h4>
+              <div className='text third-text'>
+                <h2 className='h1 '>show the world</h2>
+                <h4 className='h2 '>a new you</h4>
               </div>
-              <section className='lamar-logo'>www.lamar-fashion.com</section>
             </div>
           </Carousel.Item>
         </Carousel>
+        <section className='lamar-logo'>www.lamar-fashion.com</section>
       </div>
     </>
   );
