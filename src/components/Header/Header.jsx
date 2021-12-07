@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { React, useState, useEffect } from 'react';
-import '../../header-styles/Header.css';
+import '../../styles/header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsFillHeartFill, BsPersonCircle } from 'react-icons/bs';
-
+import { Link } from 'react-router-dom';
 function Header() {
   const [showVerticalNav, setshowVerticalNav] = useState(false);
   const [showDropHome, setShowDropHome] = useState(false);
@@ -27,16 +27,18 @@ function Header() {
           <div className='vertical-nav-container'>
             <ul className='main-nav-phone'>
               <li>
-                <a href='#home'>
-                  Home
-                  <i
-                    className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
-                    onClick={() => {
-                      setShowDropHome(!showDropHome);
-                      setDropDown(!dropDown);
-                    }}
-                  ></i>
-                </a>
+                <Link to='/'>
+                  <a>
+                    Home
+                    <i
+                      className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
+                      onClick={() => {
+                        setShowDropHome(!showDropHome);
+                        setDropDown(!dropDown);
+                      }}
+                    ></i>
+                  </a>
+                </Link>
                 <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
                   <li>
                     <a href='#brands'>Brands</a>
@@ -50,16 +52,18 @@ function Header() {
                 </ul>
               </li>
               <li>
-                <a href='#Abaya'>
-                  Abaya
-                  <i
-                    className={dropDownA ? 'fas fa-angle-up' : 'fas fa-angle-down'}
-                    onClick={() => {
-                      setShowDropAbay(!showDropAbay);
-                      setDropDownA(!dropDownA);
-                    }}
-                  ></i>
-                </a>
+                <Link to='/Abaya'>
+                  <a>
+                    Abaya
+                    <i
+                      className={dropDownA ? 'fas fa-angle-up' : 'fas fa-angle-down'}
+                      onClick={() => {
+                        setShowDropAbay(!showDropAbay);
+                        setDropDownA(!dropDownA);
+                      }}
+                    ></i>
+                  </a>
+                </Link>
                 <ul className={showDropAbay ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
                   <li>
                     <a href='#lamar'>lamar</a>
@@ -84,9 +88,11 @@ function Header() {
         <div className={y > 0 ? 'lamar-container lamar-container-scroll ' : 'lamar-container'}>
           <ul className={y > 0 ? 'main-nav main-nav-scroll ' : 'main-nav'}>
             <li>
-              <a href='#home'>
-                Home<i class='fas fa-angle-down'></i>
-              </a>
+              <Link to='/'>
+                <a>
+                  Home<i class='fas fa-angle-down'></i>
+                </a>
+              </Link>
               <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
                 <li>
                   <a href='#brands'>Brands</a>
@@ -100,9 +106,11 @@ function Header() {
               </ul>
             </li>
             <li>
-              <a href='#Abaya'>
-                Abaya<i class='fas fa-angle-down'></i>
-              </a>
+              <Link to='/Abaya'>
+                <a>
+                  Abaya<i class='fas fa-angle-down'></i>
+                </a>
+              </Link>
               <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
                 <li>
                   <a href='#lamar'>lamar</a>
@@ -119,12 +127,16 @@ function Header() {
               </ul>
             </li>
             <li>
-              <a href='#shalat'>Shalat</a>
+              <Link to='/Shalat'>
+                <a href='#shalat'>Shalat</a>
+              </Link>
             </li>
           </ul>
 
           <div className={y > 0 ? 'image image-scroll ' : 'image'}>
-            <img src={logo} alt='logo' className='logo' href='/' />
+            <Link to='/'>
+              <img src={logo} alt='logo' className='logo' />
+            </Link>
           </div>
           <section className={y > 0 ? 'rightContainer rightContainer-scroll ' : 'rightContainer'}>
             <div className='searchContainer'>
@@ -136,23 +148,29 @@ function Header() {
             </div>
             <ul className='right-nav'>
               <li>
-                <a href='#profile'>
-                  <BsPersonCircle className='header-icons profile' />
-                </a>
+                <Link to='/Profile'>
+                  <a>
+                    <BsPersonCircle className='header-icons profile' />
+                  </a>
+                </Link>
               </li>
               <li>
-                <a href='#favourite'>
-                  <BsFillHeartFill className='header-icons fav' />
+                <Link to='/Favourite'>
+                  <a>
+                    <BsFillHeartFill className='header-icons fav' />
 
-                  <strong className='number'>5</strong>
-                </a>
+                    <strong className='number'>5</strong>
+                  </a>
+                </Link>
               </li>
               <li>
-                <a href='#cart'>
-                  <BsCartFill className='header-icons cart' />
+                <Link to='/Cart'>
+                  <a>
+                    <BsCartFill className='header-icons cart' />
 
-                  <strong className='number'>5</strong>
-                </a>
+                    <strong className='number'>5</strong>
+                  </a>
+                </Link>
               </li>
             </ul>
           </section>

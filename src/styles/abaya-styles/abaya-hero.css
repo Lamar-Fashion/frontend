@@ -1,0 +1,9 @@
+.container-abaya-hero .abaya-hero {
+  background-color: var(--main-color-alt2);
+  height: 300px;
+}
+
+.container-abaya-hero .abaya-slider {
+  height: 80px;
+  background-color: #ececec;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../home-styles/hero.css';
+import '../../../styles/home-styles/hero.css';
 import { Carousel } from 'react-bootstrap';
 import hero4 from '../../../images/hero/hero4.jpeg';
 import hero5 from '../../../images/hero/hero5.jpeg';

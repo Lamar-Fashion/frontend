@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import '../../header-styles/fixed-header.css';
+import '../../styles/header-styles/fixed-header.css';
 
 function FixedHeader() {
   return (
@@ -25,24 +25,17 @@ function FixedHeader() {
             </div>
           </section>
           <section className='icons-container'>
-           
-              <a className='icons' href="https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/" target="_blank">
+            <a className='icons' href='https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/' target='_blank'>
+              <i class='fab fa-facebook'></i>
+            </a>
 
-              <i class='fab fa-facebook' ></i>
-              </a>
-           
-          
-              <a className='icons' href="https://www.instagram.com/lamarfashion.qa?utm_medium=copy_link" target="_blank">
-              <i class='fab fa-instagram' ></i>
+            <a className='icons' href='https://www.instagram.com/lamarfashion.qa?utm_medium=copy_link' target='_blank'>
+              <i class='fab fa-instagram'></i>
+            </a>
 
-              </a>
-            
-            
-              <a className='icons' href="https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/" target="_blank">
-              <i class='fab fa-twitter' ></i>
-
-              </a>
-           
+            <a className='icons' href='https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/' target='_blank'>
+              <i class='fab fa-twitter'></i>
+            </a>
           </section>
         </div>
       </div>

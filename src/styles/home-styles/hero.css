@@ -19,7 +19,7 @@
 }
 .hero .carousel .item1 {
   width: 100%;
-  background-image: url(../images/hero/background1.jpg);
+  background-image: url(../../images/hero/background1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -27,7 +27,7 @@
 }
 .hero .carousel .item2 {
   width: 100%;
-  background-image: url(../images/hero/background2.jpg);
+  background-image: url(../../images/hero/background2.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -36,7 +36,7 @@
 }
 .hero .carousel .item3 {
   width: 100%;
-  background-image: url(../images/hero/background3.jpg);
+  background-image: url(../../images/hero/background3.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
