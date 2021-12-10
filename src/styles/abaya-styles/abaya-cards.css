@@ -1,5 +1,185 @@
 .abaya-cards {
-  background-color: var(--main-color-alt);
+  background-color: var(--main-color-alt2);
   /* width: 100%; */
-  height: 600px;
+  height: auto;
+}
+.abaya-cards .lamar-container{
+display: grid;
+grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+gap: 10px;
+row-gap: 60px;
+}
+.abaya-cards .box{
+  height: 400px;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+.abaya-cards .box:hover{
+  transform: translateY(-10px);
+}
+.abaya-cards .box .over-view{
+  position: absolute;
+  top:150px;
+  right: 40px;
+  height: 120px;
+  width: 0px;
+  border-radius: 10px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition-delay:0.3s;
+  transition: transform 0.5s;
+  visibility: hidden;
+}
+.abaya-cards .box:hover .over-view{
+  transform: rotate(-360deg);
+  width: 30px;
+  visibility: visible;
+}
+.abaya-cards .box .over-view > div{
+  width: 100%;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--main-color-alt2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow:0 2px 12px rgb(0, 0, 0, 0.2);
+  transition:transform 0.3s ,box-shadow 0.3s;
+}
+.abaya-cards .box .over-view > div:hover{
+  transform: translateY(-5px);
+  background-color: var(--main-color-alt);
+  color: var(--main-color-alt2);
+  box-shadow:0 2px 12px rgb(0, 0, 0, 0.4)
+}
+.abaya-cards .box .over-view > div > i{
+  cursor: pointer;
+}
+.abaya-cards .box .over-view > div > i:hover{
+  color: var(--main-color-alt2);
+
+}
+.abaya-cards .box .overlay{
+  position: absolute;
+  height: 0px;
+  width: 100%;
+  background-color: var(--main-color-alt);
+  bottom: -90px;
+  left: 0;
+  border-radius: 15px;
+  visibility: hidden;
+  z-index: 0;
+transition:height 0.5s;
+box-shadow: 4px 10px 12px rgb(0, 0, 0, 0.3);
+}
+.abaya-cards .box:hover .overlay{
+  height: 350px;
+  visibility: visible;
+}
+.abaya-cards .image{
+  /* background-color: whitesmoke; */
+  width: 250px;
+  height: 260px;
+  z-index: 1;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+
+.abaya-cards .image img{
+  width: 100%;
+  height: 100%;
+  margin-bottom: 3px;
+  transition: transform 0.5s;
+}
+.abaya-cards .box:hover .image img{
+  transform:translateX(-50px)
+}
+.abaya-cards .image .shadow{
+  height: 12px;
+  width: 100%;
+  background-image: linear-gradient(to right, rgba(128, 128, 128, 0.883) , rgba(0, 0, 0, 0.87), rgba(128, 128, 128, 0.89));
+  transform: rotate3d(1, 4, 2, 227deg);
+  border-radius: 50%;
+  margin: 0 auto;
+  transition: transform 0.5s;
+}
+
+.abaya-cards .box .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+.abaya-cards .box .info h3{
+  font-size: 22px;
+  font-weight: 600;
+  margin: 5px;
+  text-transform: capitalize;
+}
+.abaya-cards .box:hover .info h3 {
+  color: var(--main-color-alt2);
+}
+.abaya-cards .box .info p{
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.abaya-cards .box .info .price{
+  display: flex;
+  justify-content: space-between;
+align-items: center;
+width: 100%;
+padding: 0px 10px;
+margin: 0 auto 10px;
+}
+.abaya-cards .box .info .price .price-p{
+  font-size: 20px;
+  font-weight: 500;
+}
+.abaya-cards .box:hover .info .price .price-p{
+  color: var(--main-color-alt2);
+}
+.abaya-cards .box .info .price .size{
+  color: var(--text-color);
+}
+.abaya-cards .box .info .add-cart{
+  width: 150px;
+  height: 38px;
+  border-radius: 20px;
+  box-shadow: 0 10px 12px rgb(0, 0, 0, 0.2);
+  background-color: transparent;
+  color: black;
+  border: 1px black solid;
+  transition: box-shadow 0.5s, transform 0.5s;
+}
+
+.abaya-cards .box:hover .info .add-cart{
+  background-color: var(--main-color-alt);
+  border: 1px var(--main-color-alt2) solid;
+  color: var(--main-color-alt2);
+  font-weight: 500;
+  
+}
+.abaya-cards .box .info .add-cart:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 10px 12px rgb(0, 0, 0, 0.4);
+  font-size: 19px;
+  background-color: var(--main-color-alt2);
+  color: var(--main-color-alt);
+  font-weight: bold;
+
 }
