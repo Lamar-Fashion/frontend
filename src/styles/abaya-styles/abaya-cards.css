@@ -1,5 +1,5 @@
 .abaya-cards {
-  padding-bottom: 100px;
+  padding-bottom: 80px;
   padding-top: 30px;
   background-color: var(--main-color-alt2);
   position: relative;
@@ -64,6 +64,26 @@ grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
 gap: 10px;
 row-gap: 50px;
 padding: 0 15px;
+margin-bottom: 80px;
+}
+.abaya-cards .pagaination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.abaya-cards .pagaination nav ul > li > button {
+  background-color: var(--main-color-alt);
+  transition: box-shadow 0.3s;
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+}
+.abaya-cards .pagaination nav ul > li > button:active{
+  background-color: var(--main-color-alt2);
+}
+.abaya-cards .pagaination nav ul > li > button:hover{
+  background-color: var(--main-color-alt);
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.4);
+
 }
 .abaya-cards .box{
   height: 400px;

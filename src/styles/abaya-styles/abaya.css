@@ -1,6 +1,4 @@
-.abaya {
-  min-height: 300vh;
-}
+
 .abaya .lamar-container {
   display: grid;
   grid-template-columns: 80% 20%;
