@@ -1,13 +1,69 @@
 .abaya-cards {
+  padding-bottom: 100px;
+  padding-top: 30px;
   background-color: var(--main-color-alt2);
-  /* width: 100%; */
-  height: auto;
+  position: relative;
 }
+
+.abaya-cards .catagory{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 5px 10px ;
+  margin: 5px auto;
+ 
+}
+.abaya-cards .catagory .catag-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+.abaya-cards .catagory .catag-info .show-item {
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: var(--main-color-alt);
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 5px;
+}
+.abaya-cards .catagory .catag-info .sort-item {
+  width: 160px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: var(--main-color-alt);
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0 5px;
+}
+.abaya-cards .catagory .catag-info  label{
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+}
+.abaya-cards .catagory .catag-info select {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: fit-content;
+  cursor: pointer;
+  background-color: var(--main-color-alt);
+}
+
 .abaya-cards .lamar-container{
 display: grid;
 grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
 gap: 10px;
-row-gap: 60px;
+row-gap: 50px;
+padding: 0 15px;
 }
 .abaya-cards .box{
   height: 400px;
@@ -75,7 +131,7 @@ row-gap: 60px;
   height: 0px;
   width: 100%;
   background-color: var(--main-color-alt);
-  bottom: -90px;
+  bottom: -60px;
   left: 0;
   border-radius: 15px;
   visibility: hidden;
@@ -84,7 +140,7 @@ transition:height 0.5s;
 box-shadow: 4px 10px 12px rgb(0, 0, 0, 0.3);
 }
 .abaya-cards .box:hover .overlay{
-  height: 350px;
+  height: 320px;
   visibility: visible;
 }
 .abaya-cards .image{
@@ -136,6 +192,7 @@ box-shadow: 4px 10px 12px rgb(0, 0, 0, 0.3);
   text-align: center;
   font-size: 16px;
   color: var(--text-color);
+  margin-bottom: 5px;
 }
 
 .abaya-cards .box .info .price{
