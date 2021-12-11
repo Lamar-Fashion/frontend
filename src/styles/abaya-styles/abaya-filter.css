@@ -1,4 +1,88 @@
 .abaya-filter {
   background-color: var(--main-color-alt);
   height: 600px;
+  position: sticky;
+  top: 120px;
+  padding: 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 25px;
+}
+
+.abaya-filter .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.abaya-filter .head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background-color: blue; */
+}
+.abaya-filter .color-filter-hidden {
+  display: none;
+}
+.abaya-filter .price-filter-hidden {
+  display: none;
+}
+.abaya-filter .size-filter-hidden {
+  display: none;
+}
+
+.abaya-filter .color-filter {
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  row-gap: 0;
+  padding-top: 20px;
+}
+.abaya-filter .price-filter {
+  height: 100px;
+  padding-top: 20px;
+  margin: 0 auto; /* background-color: chartreuse; */
+}
+.abaya-filter .size-filter {
+  height: 100px;
+  /* background-color: chartreuse; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.abaya-filter .fas {
+  cursor: pointer;
+}
+
+/* color boxes */
+
+.abaya-filter .color-box {
+  height: 25px;
+  width: 25px;
+  /* border: solid 1px black; */
+  cursor: pointer;
+}
+
+/* size boxes */
+.abaya-filter .size-box {
+  height: 25px;
+  width: 25px;
+  box-sizing: content-box;
+  padding: 3px;
+  background-color: rgb(156, 156, 156);
+  color: whitesmoke;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* price slider */
+.abaya-filter .price-range {
+  text-align: center;
+  color: purple;
 }
