@@ -11,7 +11,7 @@ function AbayaFilter() {
   const [showPriceFilter, setShowPriceFilter] = useState(true);
   const [showSizeFilter, setShowSizeFilter] = useState(true);
   const [value, setValue] = useState([0, 5000]);
-
+  const [showPhoneFilters, setShowPhoneFilters] = useState(false);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -38,11 +38,9 @@ function AbayaFilter() {
             <div className='color-box' style={{ backgroundColor: 'brown' }}></div>
             <div className='color-box' style={{ backgroundColor: 'blue' }}></div>
             <div className='color-box' style={{ backgroundColor: 'gray' }}></div>
-            <div className='color-box' style={{ backgroundColor: 'purple' }}></div>
-            <div className='color-box' style={{ backgroundColor: 'orange' }}></div>
-            <div className='color-box' style={{ backgroundColor: 'white' }}></div>
           </section>
         </div>
+        <hr className='h-r' />
         <div className='price-container container'>
           <section className='head'>
             <h5 className='title'>Price</h5>
@@ -54,14 +52,16 @@ function AbayaFilter() {
             ></i>
           </section>
           <section className={showPriceFilter ? 'price-filter' : 'price-filter-hidden'}>
-            <Box sx={{ width: 200 }}>
+            <Box sx={{ width: '100%' }}>
               <Slider getAriaLabel={() => 'price range'} value={value} onChange={handleChange} valueLabelDisplay='auto' getAriaValueText={valuetext} max={5000} min={0} color='secondary' />
             </Box>
             <p className='price-range'>
-              {value[0]} QAR - {value[1]} QAR{' '}
+              {value[0]} QAR - {value[1]} QAR
             </p>
           </section>
         </div>
+        <hr className='h-r' />
+
         <div className='size-container container'>
           <section className='head'>
             <h5 className='title'>Size</h5>
