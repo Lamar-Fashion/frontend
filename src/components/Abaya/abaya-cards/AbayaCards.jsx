@@ -20,7 +20,7 @@ function AbayaCards() {
         <div className='box'>
           <div className='over-view'>
             <div className='fav'>
-              <i class='fas fa-heart'></i>
+              <i class='fas fa-shopping-bag'></i>
             </div>
             <div className='fav'>
               <i class='fas fa-heart'></i>
