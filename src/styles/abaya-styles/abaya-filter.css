@@ -2,14 +2,37 @@
   background-color: var(--main-color-alt);
   height: 600px;
   position: sticky;
-  top: 120px;
-  padding: 10px 10px 10px;
+  top: 110px;
+  padding: 15px 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 25px;
+  gap: 5px;
 }
-
+.phone-filters-hidden {
+  /* display: none; */
+}
+/* very small */
+@media (max-width: 768px) {
+  .abaya-filter {
+    /* display: none; */
+  }
+}
+/* Small */
+@media (min-width: 768px) and (max-width: 810px) {
+  .abaya-filter {
+    gap: 5px;
+  }
+  .phone-filters {
+    display: none;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+}
+/* Large */
+@media (min-width: 1200px) {
+}
 .abaya-filter .container {
   display: flex;
   flex-direction: column;
@@ -19,7 +42,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* background-color: blue; */
 }
 .abaya-filter .color-filter-hidden {
   display: none;
@@ -32,30 +54,48 @@
 }
 
 .abaya-filter .color-filter {
-  height: 100px;
+  height: fit-content;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
-  row-gap: 0;
+  row-gap: 10px;
   padding-top: 20px;
 }
+
 .abaya-filter .price-filter {
   height: 100px;
   padding-top: 20px;
-  margin: 0 auto; /* background-color: chartreuse; */
+  width: 90%;
+  margin: 0 auto;
 }
 .abaya-filter .size-filter {
   height: 100px;
-  /* background-color: chartreuse; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  padding-top: 20px;
+  padding-top: 25px;
 }
 
+/* Medium */
+@media (min-width: 768px) and (max-width: 1149px) {
+  .abaya-filter .color-filter {
+    gap: 5px;
+    row-gap: 5px;
+    padding-top: 0;
+  }
+  .abaya-filter .price-filter {
+    padding-top: 0;
+    height: fit-content;
+  }
+  .abaya-filter .size-filter {
+    padding-top: 5px;
+    height: fit-content;
+    gap: 5px;
+  }
+}
 .abaya-filter .fas {
   cursor: pointer;
 }
@@ -65,7 +105,6 @@
 .abaya-filter .color-box {
   height: 25px;
   width: 25px;
-  /* border: solid 1px black; */
   cursor: pointer;
 }
 
@@ -73,16 +112,37 @@
 .abaya-filter .size-box {
   height: 25px;
   width: 25px;
-  box-sizing: content-box;
-  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(156, 156, 156);
   color: whitesmoke;
   text-align: center;
   cursor: pointer;
 }
 
+/* Small */
+@media (min-width: 768px) and (max-width: 810px) {
+  .abaya-filter .size-box {
+    height: 20px;
+    width: 20px;
+  }
+  .abaya-filter .size-filter {
+    padding-top: 2px;
+    gap: 5px;
+  }
+}
+
 /* price slider */
 .abaya-filter .price-range {
   text-align: center;
   color: purple;
+  margin-bottom: 0;
+}
+
+.abaya-filter .h-r {
+  height: 1px;
+  color: red;
+  background-color: royalblue;
+  width: 100%;
 }

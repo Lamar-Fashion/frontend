@@ -1,32 +1,50 @@
 .container-abaya-hero .abaya-hero {
   background-image: url(https://www.almotahajiba.com/pub/media/wysiwyg/smartwave/porto/homepage/15/slider/parallax_img_new.jpg);
   background-repeat: no-repeat;
-  background-position:center;
+  background-position: center;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
   height: 300px;
   position: relative;
+  width: 100%;
+}
+
+/* Small */
+@media (min-width: 768px) {
+}
+/* Medium */
+@media (min-width: 992px) {
+}
+/* Large */
+@media (min-width: 1200px) {
 }
 .container-abaya-hero .abaya-hero .info-text {
   position: absolute;
   left: 100px;
   top: 50%;
 }
-.container-abaya-hero .abaya-hero .info-text h3{
+/* very Small */
+@media (max-width: 530px) {
+  .container-abaya-hero .abaya-hero .info-text {
+    left: 10px;
+  }
+}
+.container-abaya-hero .abaya-hero .info-text h3 {
   color: var(--main-color-alt);
   font-size: 20px;
   font-weight: 600;
   margin: 10px auto;
 }
-.container-abaya-hero .abaya-hero .info-text h2{
+.container-abaya-hero .abaya-hero .info-text h2 {
   color: var(--main-color-alt2);
   font-size: 54px;
   font-weight: 800;
-  text-shadow: 10px 10px 10px rgb(0, 0, 0 ,0.4);
+  text-shadow: 10px 10px 10px rgb(0, 0, 0, 0.4);
   text-transform: uppercase;
   letter-spacing: 8px;
 }
-.container-abaya-hero .abaya-hero .info-text .shop-now{
+
+.container-abaya-hero .abaya-hero .info-text .shop-now {
   width: 150px;
   height: 35px;
   background-color: var(--main-color-alt2);
@@ -40,30 +58,36 @@
 }
 
 .container-abaya-hero .abaya-slider {
-  height: 80px;
+  height: 50px;
   background-color: black;
   position: relative;
   margin: auto;
   width: auto;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container-abaya-hero .abaya-slider .slide-trick{
-  animation: scroll 40s linear infinite ;
+.container-abaya-hero .abaya-slider .slide-trick {
+  animation: scroll 40s linear infinite;
   display: flex;
   width: calc(200px * 12);
   gap: 40px;
-  
 }
 
-.container-abaya-hero .abaya-slider .slide-trick .slide{
-  height: 75px;
+.container-abaya-hero .abaya-slider .slide-trick .slide {
+  height: 45px;
 }
-@keyframes scroll{
+.container-abaya-hero .abaya-slider .slide-trick .slide img {
+  height: 45px;
+}
+
+@keyframes scroll {
   0% {
     transform: translateX(0);
   }
-  100%{
+  100% {
     transform: translateX(calc(-200px * 6));
   }
 }

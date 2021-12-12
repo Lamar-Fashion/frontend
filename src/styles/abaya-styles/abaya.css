@@ -1,4 +1,3 @@
-
 .abaya .lamar-container {
   display: grid;
   grid-template-columns: 80% 20%;
@@ -6,4 +5,17 @@
   background-color: var(--main-color-alt2);
   padding-right: 0;
   height: fit-content;
+}
+@media (max-width: 530px) {
+  .abaya .lamar-container {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 767px) {
+  .abaya .lamar-container {
+    grid-template-columns: 100% 0%;
+  }
+  .abaya .lamar-container .web-filter {
+    display: none;
+  }
 }

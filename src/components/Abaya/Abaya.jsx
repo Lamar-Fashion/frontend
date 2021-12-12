@@ -10,7 +10,10 @@ function Abaya() {
         <AbayaHero />
         <div className='lamar-container'>
           <AbayaCards />
-          <AbayaFilter />
+
+          <div className='web-filter'>
+            <AbayaFilter />
+          </div>
         </div>
       </section>
     </>
