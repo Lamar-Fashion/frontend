@@ -148,7 +148,7 @@ function Header() {
             </div>
             <ul className='right-nav'>
               <li>
-                <Link to='/Profile'>
+                <Link to='/SignIn'>
                   <a>
                     <BsPersonCircle className='header-icons profile' />
                   </a>
