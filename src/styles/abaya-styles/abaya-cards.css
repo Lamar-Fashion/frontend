@@ -3,6 +3,7 @@
   padding-top: 30px;
   background-color: var(--main-color-alt2);
   position: relative;
+  width: 100%;
 }
 
 .abaya-cards .catagory {
@@ -115,10 +116,11 @@
 }
 .abaya-cards .lamar-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 10px;
-  row-gap: 50px;
-  padding: 0 15px;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 12px;
+  row-gap: 60px;
+  padding: 0 15px 30px;
+  width: 100%;
   margin-bottom: 80px;
 }
 @media (max-width: 530px) {
@@ -138,19 +140,24 @@
   margin: 0;
 }
 .abaya-cards .pagaination nav ul > li > button {
-  background-color: var(--main-color-alt);
+  background-color: var(--main-color-alt2);
   transition: box-shadow 0.3s;
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  color: var(--main-color-alt);
 }
 .abaya-cards .pagaination nav ul > li > button:active {
-  background-color: var(--main-color-alt2);
+  background-color: var(--main-color-alt);
 }
 .abaya-cards .pagaination nav ul > li > button:hover {
-  background-color: var(--main-color-alt);
+  background-color: var(--main-color-alt2);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.4);
 }
+.css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
+  color: var(--main-color-alt2) !important;
+  background-color: var(--main-color-alt) !important;
+}
 .abaya-cards .box {
-  height: 400px;
+  height: 390px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -229,7 +236,7 @@
   height: 0px;
   width: 100%;
   background-color: var(--main-color-alt);
-  bottom: -60px;
+  bottom: -75px;
   left: 0;
   border-radius: 15px;
   visibility: hidden;
@@ -250,7 +257,7 @@
   }
 }
 .abaya-cards .image {
-  width: 250px;
+  width: 225px;
   height: 260px;
   z-index: 1;
   margin-bottom: 12px;
