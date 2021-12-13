@@ -142,18 +142,19 @@
 .abaya-cards .pagaination nav ul > li > button {
   transition: box-shadow 0.3s;
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.4);
-  color: var(--main-color-alt);
+  color: var(--main-color-alt2);
+  background-color: var(--main-color-alt);
 }
 
 .abaya-cards .pagaination nav ul > li > button:hover {
-  background-color: var(--main-color-alt);
+  background-color: var(--main-color-alt2);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
-  color: var(--main-color-alt2);
+  color: var(--main-color-alt);
 }
 
 .abaya-cards .pagaination  nav ul .css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
-  color: var(--main-color-alt2) !important;
-  background-color: var(--main-color-alt) !important;
+  color: var(--main-color-alt) !important;
+  background-color: var(--main-color-alt2) !important;
 }
 .abaya-cards .box {
   height: 390px;
