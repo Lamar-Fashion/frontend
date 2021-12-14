@@ -14,14 +14,15 @@
   padding: 5px 10px;
   margin: 5px auto;
 }
-.abaya-cards .catag-path,
-.abaya-cards .catag-path a {
-  color: black;
-  font-size: 16px;
-  font-weight: 600;
+
+.abaya-cards .catag-path i {
+  font-size: 22px;
+  margin-right: 10px;
+  color: var(--main-color-alt);
 }
-.abaya-cards .catag-path a {
-  text-decoration: underline !important;
+.abaya-cards .catag-path span {
+  font-size: 20px;
+  font-weight: bold;
 }
 @media (max-width: 530px) {
   .abaya-cards .catagory {
@@ -126,7 +127,7 @@
 @media (max-width: 530px) {
   .abaya-cards .lamar-container {
     display: grid;
-    grid-template-columns: 48% 48%;
+    grid-template-columns: 47% 47%;
     gap: 20px;
     row-gap: 50px;
     padding: 0;
@@ -152,7 +153,7 @@
   color: var(--main-color-alt);
 }
 
-.abaya-cards .pagaination  nav ul .css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
+.abaya-cards .pagaination nav ul > li > button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-text.MuiPaginationItem-circular.MuiPaginationItem-textPrimary.Mui-selected.MuiPaginationItem-page.css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root{
   color: var(--main-color-alt) !important;
   background-color: var(--main-color-alt2) !important;
 }

@@ -8,7 +8,7 @@ function SignIn() {
       <div className="lamar-container">
       <div className="nav-info">
           <div className="nav-path">
-            <Link to="/"> Home </Link> / <Link to="/"> SignIn </Link>
+            <Link to='/'><i class="fas fa-home"></i></Link>  <i class="fas fa-angle-right"></i>  <span>SignIn</span>
           </div>
           <div className="nav-sign-up">
             <Link to="/SignUp"> create an account </Link>

@@ -61,7 +61,7 @@ function AbayaCards() {
         </div>
         <div className='catagory'>
           <div className='catag-path'>
-            <Link to='/'>Home</Link> / <Link to='/abaya'>Abaya</Link>
+            <Link to='/'><i class="fas fa-home"></i></Link>  <i class="fas fa-angle-right"></i>  <span>Abaya</span>
           </div>
           <div className='catag-info'>
             <div className='show-item'>
