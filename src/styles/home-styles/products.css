@@ -34,6 +34,16 @@
   align-items: center;
   background-color: transparent;
 }
+
+
+.multi-slider .flicking-camera{
+ margin-left: 147px;
+}
+@media(max-width:530px){
+  .multi-slider .flicking-camera{
+    margin-left: 0;
+   }
+}
 .multi-slider .box {
   width: 250px;
   box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);

@@ -12,8 +12,17 @@
     align-items: center;
     gap: 30px;
     padding: 10px 15px 0;
-    cursor: pointer;
     width: 100%;
+  }
+  .sign-in .nav-info .nav-path i {
+    font-size: 22px;
+    margin-right: 10px;
+    color: var(--main-color-alt);
+  }
+  .sign-in .nav-info  .nav-path span {
+    font-size: 20px;
+    cursor: auto;
+    font-weight: bold;
   }
   .sign-in .nav-info a {
     cursor: pointer;
