@@ -22,13 +22,13 @@
   .sign-up .nav-info  .nav-path span {
     font-size: 20px;
     cursor: auto;
-    font-weight: bold;
+    font-weight: 600;
   }
   
   .sign-up .nav-info a {
     cursor: pointer;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     text-transform: capitalize;
     color: black;
     text-decoration: underline !important;

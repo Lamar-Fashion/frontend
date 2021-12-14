@@ -9,6 +9,8 @@ import SignIn from './components/Sign/sign-in/SignIn';
 import SignUp from './components/Sign/sign-up/SignUp';
 import AboutUs from './components/About-us/AboutUs';
 import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout/Checkout';
+import Checkout2 from './components/Checkout/Checkout2';
 
 
 function App() {
@@ -43,6 +45,8 @@ function App() {
           <Route exact path="/SignUp" element={<SignUp />}/>
           <Route exact path="/AboutUs" element={<AboutUs />}/>
           <Route exact path="/Cart" element={<Cart />}/>
+          <Route exact path="/Checkout" element={<Checkout />}/>
+          <Route exact path="/Checkout2" element={<Checkout2 />}/>
         </Routes>
         <Footer />
       </Router>

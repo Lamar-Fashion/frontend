@@ -27,7 +27,7 @@ function Cart() {
             </Link>{" "}
             <i class="fas fa-angle-right"></i> <span>Shoping Cart</span>
           </div>
-          <div className="checkout">
+          <div className="checkout-cart">
               <Link to="/Checkout">Go To Checkout </Link>
           </div>
           <div className="total">
