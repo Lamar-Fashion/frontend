@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../../styles/home-styles/brand.css';
-import lamar from '../../../images/brand/test/brand21.jpeg';
-import mortaha from '../../../images/brand/mortaha.png';
-import neo from '../../../images/brand/neo.png';
-import shera from '../../../images/brand/shera.png';
+import lamar from '../../../images/brand/test/brand21.jpg';
+import mortaha from '../../../images/brand/test/img2.jpg';
+import neo from '../../../images/brand/test/img3.jpg';
+import shera from '../../../images/brand/test/img4.jpg';
 function Brand() {
   return (
     <>

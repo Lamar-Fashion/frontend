@@ -4,7 +4,7 @@ import "../../styles/about-us/about-us.css";
 function AboutUs() {
   return (
     <>
-      <section className="about-us">
+      <section className="about-us" id="#About">
         <div className="lamar-container">
           <div className="path">
             <Link to="/">

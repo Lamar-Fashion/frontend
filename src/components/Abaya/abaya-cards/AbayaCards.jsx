@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import '../../../styles/abaya-styles/abaya-cards.css';
-import lamar from '../../../images/brand/test/brand12.jpeg';
+import lamar from '../../../images/brand/test/brand12.jpg';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import AbayaFilter from '../abaya-filter/AbayaFilter';

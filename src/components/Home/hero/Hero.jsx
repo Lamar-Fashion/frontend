@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../../styles/home-styles/hero.css';
 import { Carousel } from 'react-bootstrap';
-import hero4 from '../../../images/hero/hero4.jpeg';
-import hero5 from '../../../images/hero/hero5.jpeg';
-import hero6 from '../../../images/hero/hero6.jpeg';
+import hero4 from '../../../images/hero/hero4.jpg';
+import hero5 from '../../../images/hero/hero5.jpg';
+import hero6 from '../../../images/hero/hero6.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function Hero() {
   return (

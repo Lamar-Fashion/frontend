@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import brand13 from '../../../images/brand/test/brand13.jpeg';
-import brand12 from '../../../images/brand/test/brand12.jpeg';
-import brand11 from '../../../images/brand/test/brand11.jpeg';
-import brand14 from '../../../images/brand/test/brand14.jpeg';
-import brand2 from '../../../images/brand/test/brand2.jpeg';
-import brand7 from '../../../images/brand/test/brand7.jpeg';
-import brand18 from '../../../images/brand/test/brand18.jpeg';
-import brand1 from '../../../images/brand/test/brand1.jpeg';
+import brand13 from '../../../images/brand/test/brand13.jpg';
+import brand12 from '../../../images/brand/test/brand12.jpg';
+import brand11 from '../../../images/brand/test/brand11.jpg';
+import brand14 from '../../../images/brand/test/brand14.jpg';
+import brand2 from '../../../images/brand/test/brand2.jpg';
+import brand7 from '../../../images/brand/test/brand7.jpg';
+import brand18 from '../../../images/brand/test/brand18.jpg';
+import brand1 from '../../../images/brand/test/brand1.jpg';
 import '../../../styles/home-styles/products.css';
 import Flicking from "@egjs/react-flicking";
 function Slider() {

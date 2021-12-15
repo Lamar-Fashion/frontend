@@ -6,6 +6,11 @@
     flex-direction: column;
     
   }
+  @media(max-width:530px){
+    .sign-up{
+      padding: 130px 0 ; 
+    }
+  }
   .sign-up .nav-info{
     display: flex;
     justify-content: space-between;

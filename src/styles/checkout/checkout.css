@@ -5,6 +5,11 @@
     flex-direction: column;
     background-color: var(--main-color-alt2);
 }
+@media(max-width:530px){
+  .checkout{
+    padding: 150px 0 100px; 
+  }
+}
 .checkout  .nav{
     display: flex;
     justify-content: space-between;
