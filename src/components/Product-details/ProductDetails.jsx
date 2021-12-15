@@ -5,7 +5,8 @@ import obj from "../../product-d.json"
 import Flicking from "@egjs/react-flicking";
 function ProductDetails() {
     let images=obj.images
-    const [state, setstate] = useState(images[0])
+    let firstImg=obj.images[0]
+    const [state, setstate] = useState(firstImg)
     let name=obj.name
     let price=obj.price
     let size=obj.size
@@ -87,7 +88,7 @@ function ProductDetails() {
                         <button>add to cart</button>
                     </div>
                     <div className="add-fav">
-                    <button>❤</button>
+                    <button>💖</button>
                 </div>
                 </div>
                 <hr />

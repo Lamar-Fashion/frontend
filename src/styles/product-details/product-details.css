@@ -23,6 +23,7 @@
 }
 .product-d .path{
     text-align: left;
+    width: 100%;
 }
 .product-d .path i {
     font-size: 22px;
@@ -87,12 +88,8 @@
 }
 @media(max-width:530px){
     .product-d .lamar-container .image-product .left-images .flicking-camera{
-    display: flex;
-    grid-gap: 15px;
-    gap: 5px;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: -103px;
+        margin-left: -120px;
+        gap: 5px;
     }
 }
 
@@ -101,6 +98,11 @@
     height: 100%;
     cursor: pointer;
     transition: 0.3s;
+}
+@media(max-width:530px){
+.product-d .lamar-container .image-product .left-images .image{
+    width: 35%;
+    }
 }
 .product-d .lamar-container .product-info{
     display: flex;

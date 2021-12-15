@@ -1,21 +1,29 @@
-import { React, useState } from 'react';
+import { React, useState,useEffect } from 'react';
 import '../../../styles/abaya-styles/abaya-cards.css';
 import lamar from '../../../images/brand/test/brand12.jpg';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import AbayaFilter from '../abaya-filter/AbayaFilter';
 function AbayaCards() {
+ 
   const arralen = 50; // array.length
   const [showItems, setShowItems] = useState(15);
   let array = new Array(arralen).fill(0); // to test the pagenation you can enter 40 for example
   const [pageNumber, setPageNumber] = useState(0);
   const [showVerticalFilter, setShowVerticalFilter] = useState(false);
-  const usersPerPage = showItems;
-  const pagesVisited = pageNumber * usersPerPage;
+  const pagesVisited = pageNumber * showItems;
 
+  useEffect(() => {
+    
+    window.scrollTo({
+      left:0,
+      top:100,
+      behavior:"smooth"
+    })
+  }, [pageNumber])
   const displayUser =
     array.length &&
-    array.slice(pagesVisited, pagesVisited + usersPerPage).map((item, indx) => {
+    array.slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
       return (
         <div className='box'>
           <div className='over-view'>
@@ -52,10 +60,11 @@ function AbayaCards() {
         </div>
       );
     });
-  const pageCount = Math.ceil(array.length / usersPerPage);
+  const pageCount = Math.ceil(array.length / showItems);
   const changePage = (event, value) => {
+  
     setPageNumber(value - 1);
-    console.log(value);
+    
   };
   return (
     <>
@@ -76,8 +85,12 @@ function AbayaCards() {
                 name='show-item'
                 id='show-item'
                 onChange={(e) => {
-                  if (e.target.value === 'all') setShowItems(arralen);
-                  else {
+                  if (e.target.value === 'all' && showItems!==arralen) {
+                    setShowItems(arralen)
+                  setPageNumber(0)
+                  }
+                  else if(showItems!==e.target.value){
+                    setPageNumber(0)
                     setShowItems(Number(e.target.value));
                   }
                 }}
