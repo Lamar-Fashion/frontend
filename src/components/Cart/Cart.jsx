@@ -18,7 +18,7 @@ function Cart() {
             </div>
             </section> */}
 
-      <section className="cart-lamar">
+      <section className="cart-lamar" id="Cart">
           <div className="lamar-container">
           <div className="cart-container ">
           <div className="path">
@@ -27,11 +27,13 @@ function Cart() {
             </Link>{" "}
             <i class="fas fa-angle-right"></i> <span>Shoping Cart</span>
           </div>
-          <div className="checkout-cart">
-              <Link to="/Checkout">Go To Checkout </Link>
-          </div>
+         
           <div className="total">
               <h4>Order Total :  <span>QAR 3600 </span></h4>
+              <div className="go-check">
+              <Link to="/Checkout">Next  <i class="fas fa-angle-right"></i></Link>
+
+              </div>
           </div>
         </div>
           </div>
@@ -88,7 +90,6 @@ function Cart() {
                         </td>
                 <td className="col2">
                     <div className="actions">
-                    <i class="far fa-edit"></i>
                     <i class="fas fa-trash"></i></div> </td>
               </tr>
             </tbody>
@@ -123,7 +124,6 @@ function Cart() {
                         </td>
                 <td className="col2">
                     <div className="actions">
-                    <i class="far fa-edit"></i>
                     <i class="fas fa-trash"></i></div> </td>
               </tr>
             </tbody>
@@ -158,7 +158,7 @@ function Cart() {
                         </td>
                 <td className="col2">
                     <div className="actions">
-                    <i class="far fa-edit"></i>
+                  
                     <i class="fas fa-trash"></i></div> </td>
               </tr>
             </tbody>

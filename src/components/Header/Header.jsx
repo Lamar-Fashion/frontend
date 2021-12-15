@@ -27,7 +27,13 @@ function Header() {
           <div className='vertical-nav-container'>
             <ul className='main-nav-phone'>
               <li>
-                <Link to='/'>
+                <Link to='/' onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                   <a>
                     Home
                     <i
@@ -35,6 +41,7 @@ function Header() {
                       onClick={() => {
                         setShowDropHome(!showDropHome);
                         setDropDown(!dropDown);
+                       
                       }}
                     ></i>
                   </a>
@@ -52,7 +59,13 @@ function Header() {
                 </ul>
               </li>
               <li>
-                <Link to='/Abaya'>
+                <Link to='/Abaya' onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                   <a>
                     Abaya
                     <i
@@ -60,6 +73,9 @@ function Header() {
                       onClick={() => {
                         setShowDropAbay(!showDropAbay);
                         setDropDownA(!dropDownA);
+                      
+                         
+                      
                       }}
                     ></i>
                   </a>
@@ -88,7 +104,13 @@ function Header() {
         <div className={y > 0 ? 'lamar-container lamar-container-scroll ' : 'lamar-container'}>
           <ul className={y > 0 ? 'main-nav main-nav-scroll ' : 'main-nav'}>
             <li>
-              <Link to='/'>
+              <Link to='/' onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                 <a>
                   Home<i class='fas fa-angle-down'></i>
                 </a>
@@ -106,7 +128,13 @@ function Header() {
               </ul>
             </li>
             <li>
-              <Link to='/Abaya'>
+              <Link to='/Abaya' onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                 <a>
                   Abaya<i class='fas fa-angle-down'></i>
                 </a>
@@ -134,7 +162,13 @@ function Header() {
           </ul>
 
           <div className={y > 0 ? 'image image-scroll ' : 'image'}>
-            <Link to='/'>
+            <Link to='/' onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
               <img src={logo} alt='logo' className='logo' />
             </Link>
           </div>
@@ -148,14 +182,26 @@ function Header() {
             </div>
             <ul className='right-nav'>
               <li>
-                <Link to='/SignIn'>
+                <Link to='/SignIn' onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                   <a>
                     <BsPersonCircle className='header-icons profile' />
                   </a>
                 </Link>
               </li>
               <li>
-                <Link to='/Favourite'>
+                <Link to='/Favourite' onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                   <a>
                     <BsFillHeartFill className='header-icons fav' />
 
@@ -164,7 +210,13 @@ function Header() {
                 </Link>
               </li>
               <li>
-                <Link to='/Cart'>
+                <Link to='/Cart' onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                   <a>
                     <BsCartFill className='header-icons cart' />
 

@@ -11,6 +11,8 @@ import AboutUs from './components/About-us/AboutUs';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import Checkout2 from './components/Checkout/Checkout2';
+import DeliveryPolicy from './components/Policy/DeliveryPolicy';
+import PrivacyPolicy from './components/Policy/PrivacyPolicy';
 
 
 function App() {
@@ -47,6 +49,8 @@ function App() {
           <Route exact path="/Cart" element={<Cart />}/>
           <Route exact path="/Checkout" element={<Checkout />}/>
           <Route exact path="/Checkout2" element={<Checkout2 />}/>
+          <Route exact path="/DeliveryPolicy" element={<DeliveryPolicy />}/>
+          <Route exact path="/PrivacyPolicy" element={<PrivacyPolicy />}/>
         </Routes>
         <Footer />
       </Router>

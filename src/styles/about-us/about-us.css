@@ -7,6 +7,11 @@
     flex-direction: column;
     gap: 20px;
 }
+@media(max-width:530px){
+    .about-us{
+      padding: 150px 0 100px; 
+    }
+  }
 .about-us .lamar-container {
     padding-bottom:10px;
 }

@@ -50,28 +50,45 @@ function Footer() {
           <div className="box">
             <ul className="links">
               <li>
-                <Link to="/AboutUs">
+                <Link to="/AboutUs" onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                   <i class="fas fa-angle-double-right"></i> About Us
                 </Link>
               </li>
               <li>
-                <a href="#">
+              
+                  <Link to="/DeliveryPolicy" onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}> 
                   <i class="fas fa-angle-double-right"></i> Delivery
-                </a>
+                  </Link>
+             
               </li>
               <li>
-                <a href="#">
+                
+                <Link to="/PrivacyPolicy" onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}> 
                   <i class="fas fa-angle-double-right"></i> Privacy Policy
-                </a>
+                  </Link>
+             
               </li>
               <li>
                 <a href="#">
-                  <i class="fas fa-angle-double-right"></i> Returns Policy
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="fas fa-angle-double-right"></i> Terms & Conditions
+                  <i class="fas fa-angle-double-right"></i> Contact us 
                 </a>
               </li>
             </ul>
