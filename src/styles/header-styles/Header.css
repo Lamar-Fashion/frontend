@@ -139,16 +139,29 @@
   position: relative;
   transition: 0.5s;
 }
-.header .vertical-nav-container .main-nav-phone > li .fa-angle-down {
+.header .vertical-nav-container .main-nav-phone .fa-angle-down {
   float: right;
   cursor: pointer;
   transition: 0.5s;
+  z-index: 4;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  margin-right: 15px;
 }
-.header .vertical-nav-container .main-nav-phone > li .fa-angle-up {
+.header .vertical-nav-container .main-nav-phone  .fa-angle-up {
   float: right;
   cursor: pointer;
   transition: 0.5s;
   transform: rotate(360deg);
+  z-index: 4;
+  font-size: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
 }
 .header .vertical-nav-container .main-nav-phone > li > a {
   padding: 10px;
@@ -518,8 +531,9 @@
 }
 
 .header .lamar-container .main-nav li > ul > li:hover {
-  padding-left: 20px;
-  background-color: #121314;
+  padding-left: 10px;
+  /* background-color: #121314; */
+  background-color: var(--main-color-alt);
 }
 .header .lamar-container .main-nav li > ul > li:hover a {
   color: whitesmoke;

@@ -111,9 +111,8 @@
 .cart-lamar .cart-container .total a{
     font-size: 20px;
     color: black;
-    font-weight:600;
     height: 40px;
-    background-color: var(--main-color-alt);
+    background-color: var(--main-color-alt2);
     border-radius: 5px;
     box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
     transition: 0.3s , transform 0.3s , box-shadow 0.3s;
@@ -124,8 +123,10 @@
     gap: 10px;
 }
 .cart-lamar .cart-container .total a:hover{
-    background-color: var(--main-color-alt2);
+    background-color: var(--main-color-alt);
     box-shadow: 0 2px 12px rgb(0, 0, 0, 0.4);
+    font-weight: 600;
+    font-size: 22px;
 }
 
 .cart-lamar .cart-container .total h4{
@@ -167,12 +168,17 @@
 }
 .cart-table .cart-table-head-r > th{
     border-bottom: 1px solid var(--main-color-alt);
-    padding-bottom: 15px;
-    padding-top: 24px;
     font-size: 16px;
     font-weight: 600;
-    padding: 0 15px;
+    padding: 10px 15px ;
     text-align: center;
+}
+@media(max-width:530px){
+.cart-table .cart-table-head-r > th{
+   
+    padding: 10px 0px ;
+    }
+
 }
 .cart-table .cart-table-body-r > td{
     border-bottom: 1px solid #ccc;

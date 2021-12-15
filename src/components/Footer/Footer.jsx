@@ -87,9 +87,15 @@ function Footer() {
              
               </li>
               <li>
-                <a href="#">
+              <Link to="/AboutUs" onClick={()=>{
+                  window.scrollTo({
+                    left:0,
+                    top:0,
+                    behavior: 'smooth'
+                  })
+                }}>
                   <i class="fas fa-angle-double-right"></i> Contact us 
-                </a>
+               </Link>
               </li>
             </ul>
           </div>

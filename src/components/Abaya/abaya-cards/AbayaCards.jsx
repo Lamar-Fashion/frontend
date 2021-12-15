@@ -26,7 +26,13 @@ function AbayaCards() {
               <i class='fas fa-heart'></i>
             </div>
             <div className='go-view'>
-              <i class='far fa-eye'></i>
+              <Link to="/ProductDetails" onClick={()=>{
+                window.scrollTo({
+                  left:0,
+                  top:0,
+                  behavior: "smooth"
+                })
+              }}><i class='far fa-eye' ></i></Link>
             </div>
           </div>
           <div className='overlay'></div>
