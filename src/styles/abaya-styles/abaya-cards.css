@@ -226,10 +226,11 @@
   color: var(--main-color-alt2);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.4);
 }
-.abaya-cards .box .over-view > div > i {
+.abaya-cards .box .over-view > div  i {
   cursor: pointer;
+  color: black;
 }
-.abaya-cards .box .over-view > div > i:hover {
+.abaya-cards .box .over-view > div:hover  i {
   color: var(--main-color-alt2);
 }
 .abaya-cards .box .overlay {

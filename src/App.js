@@ -13,6 +13,7 @@ import Checkout from './components/Checkout/Checkout';
 import Checkout2 from './components/Checkout/Checkout2';
 import DeliveryPolicy from './components/Policy/DeliveryPolicy';
 import PrivacyPolicy from './components/Policy/PrivacyPolicy';
+import ProductDetails from './components/Product-details/ProductDetails';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route exact path="/Checkout2" element={<Checkout2 />}/>
           <Route exact path="/DeliveryPolicy" element={<DeliveryPolicy />}/>
           <Route exact path="/PrivacyPolicy" element={<PrivacyPolicy />}/>
+          <Route exact path="/ProductDetails" element={<ProductDetails />}/>
         </Routes>
         <Footer />
       </Router>

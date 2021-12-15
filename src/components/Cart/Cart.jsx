@@ -29,7 +29,7 @@ function Cart() {
           </div>
          
           <div className="total">
-              <h4>Order Total :  <span>QAR 3600 </span></h4>
+              <h4>Order Total :  <span>QAR <span>3600</span> </span></h4>
               <div className="go-check">
               <Link to="/Checkout">Next  <i class="fas fa-angle-right"></i></Link>
 
@@ -80,17 +80,18 @@ function Cart() {
                     </div>
                   </div>
                 </td>
-                <td className="col2"> QAR 1200</td>
-                <td className="col2">
+                <td className="col2"> QAR <span>1200</span></td>
+                <td className="col3">
                     <div className="quantity">
                         <div className="decrease"><i class="fas fa-minus-square"></i> </div>
                         <div className="quantity-q"><span >1 </span></div>
                         <div className="incress"><i class="fas fa-plus-square"></i></div>
                         </div> 
-                        </td>
-                <td className="col2">
+                </td>
+                <td className="col4">
                     <div className="actions">
-                    <i class="fas fa-trash"></i></div> </td>
+                    <i class="fas fa-trash"></i></div> 
+                </td>
               </tr>
             </tbody>
             <tbody>
@@ -114,54 +115,22 @@ function Cart() {
                     </div>
                   </div>
                 </td>
-                <td className="col2"> QAR 1200</td>
-                <td className="col2">
+                <td className="col2"> QAR <span>1200</span></td>
+                <td className="col3">
                     <div className="quantity">
                         <div className="decrease"><i class="fas fa-minus-square"></i> </div>
                         <div className="quantity-q"><span >1 </span></div>
                         <div className="incress"><i class="fas fa-plus-square"></i></div>
                         </div> 
-                        </td>
-                <td className="col2">
-                    <div className="actions">
-                    <i class="fas fa-trash"></i></div> </td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr className="cart-table-body-r">
-                <td className="col1">
-                  <div className="info">
-                    <div className="image">
-                      <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3xTAf2dSMKFMnjf1Px4nC7J0P-HKTHIWLYA&usqp=CAU"
-                        alt=""
-                      />
-                    </div>
-                    <div className="info-shop">
-                      <h4>lamar</h4>
-                      <p>
-                        <span>size :</span> small
-                      </p>
-                      <p>
-                        <span>color :</span> black
-                      </p>
-                    </div>
-                  </div>
                 </td>
-                <td className="col2"> QAR 1200</td>
-                <td className="col2">
-                    <div className="quantity">
-                        <div className="decrease"><i class="fas fa-minus-square"></i> </div>
-                        <div className="quantity-q"><span >1 </span></div>
-                        <div className="incress"><i class="fas fa-plus-square"></i></div>
-                        </div> 
-                        </td>
-                <td className="col2">
+                <td className="col4">
                     <div className="actions">
-                  
-                    <i class="fas fa-trash"></i></div> </td>
+                    <i class="fas fa-trash"></i></div> 
+                </td>
               </tr>
             </tbody>
+          
+           
           </table>
         </div>
       </section>
