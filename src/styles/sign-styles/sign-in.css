@@ -81,7 +81,8 @@
     }
   }
  
-  .sign-in .lamar-container .input-user , .sign-in .lamar-container .input-pass{
+  .sign-in .lamar-container .input-user , 
+  .sign-in .lamar-container .input-pass{
     display: flex;
     justify-content: space-around;
     align-items: center;

@@ -1,0 +1,122 @@
+.profile-info-section .lamar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.profile-info-section .lamar-container  .edit-profile  {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    padding-top: 15px;
+}
+.profile-info-section .lamar-container  .edit-profile i {
+    cursor: pointer;
+}
+.profile-info-section .lamar-container form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:35px;
+    padding-top: 30px;
+}
+
+.profile-info-section .lamar-container .input-user , 
+.profile-info-section .lamar-container .input-pass{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .profile-info-section .lamar-container input {
+    border: none;
+  outline: none;
+  height: 30px;
+  width:200px;
+  border-bottom: 1px solid;
+  background: transparent;
+  font-size: 16px;
+  flex:1
+}
+
+  .profile-info-section .lamar-container input:-webkit-autofill,
+  .profile-info-section .lamar-container input:-webkit-autofill:hover, 
+  .profile-info-section .lamar-container input:-webkit-autofill:focus, 
+  .profile-info-section.lamar-container input:-webkit-autofill:active  {
+      -webkit-box-shadow: 0 0 0 30px var(--main-color-alt2) inset !important;
+  }
+  
+  @-webkit-keyframes autofill {
+      0%,100% {
+          color: #666;
+          background: transparent;
+      }
+  }
+  
+  .profile-info-section .lamar-container input:-webkit-autofill {
+      -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+      -webkit-animation-name: autofill;
+      -webkit-animation-fill-mode: both;
+  }
+  
+
+  .profile-info-section.lamar-container input::placeholder{
+    transition: 0.3s;
+    background: transparent;
+    text-transform: capitalize;
+    color: black;
+  }
+  .profile-info-section .lamar-container input:focus::placeholder{
+  opacity: 0;
+  }
+  .profile-info-section .lamar-container i {
+    font-size: 30px;
+    color: var(--main-color-alt);
+    width: 40px;
+  }
+
+  .profile-info-section .lamar-container .submit{
+    width: 100%;
+    background-color: whitesmoke;
+    border: none;
+    color: black;
+    font-size: 20px;
+    box-shadow: 0 2px 12px rgb(0,0,0,0.3);
+    cursor: pointer;
+    transition:transform 0.3s ,box-shadow 0.3s;
+    height: 40px;
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+    visibility: hidden;
+  }
+  .profile-info-section .lamar-container .submit::before{
+      content: "";
+      position: absolute;
+      background-color: var(--main-color-alt);
+      height: 40px;
+      width: 0%;
+        top: 0;
+        left: -10px;
+        z-index: -1;
+        transition: 0.3s , width 0.5s ;
+        transform: rotate(-20deg);
+  }
+  .profile-info-section .lamar-container .submit:hover::before{
+width: 100%;
+left: 0;
+
+  }
+  .profile-info-section .lamar-container .submit:hover{
+      box-shadow: 0 2px 12px rgb(0,0,0,0.5);
+      font-size: 22px;
+      font-weight: 600;
+      transform: translateY(-3px);
+  }
+
+  .profile-info-section .lamar-container .submit.show-submit{
+      visibility: visible;
+  }

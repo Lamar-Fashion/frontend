@@ -276,6 +276,7 @@
   height: 100%;
   margin-bottom: 3px;
   transition: transform 0.5s;
+
 }
 .abaya-cards .box:hover .image img {
   transform: translateX(-50px);
