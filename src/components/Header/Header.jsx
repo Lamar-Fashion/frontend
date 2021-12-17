@@ -235,7 +235,7 @@ function Header() {
               </li>
               <li>
                 <Link
-                  to="/Favourite"
+                  to="/Profile"
                   onClick={() => {
                     window.scrollTo({
                       left: 0,

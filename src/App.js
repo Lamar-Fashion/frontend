@@ -14,6 +14,7 @@ import Checkout2 from './components/Checkout/Checkout2';
 import DeliveryPolicy from './components/Policy/DeliveryPolicy';
 import PrivacyPolicy from './components/Policy/PrivacyPolicy';
 import ProductDetails from './components/Product-details/ProductDetails';
+import Profile from './components/Profile/profile/Profile';
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
           <Route exact path="/DeliveryPolicy" element={<DeliveryPolicy />}/>
           <Route exact path="/PrivacyPolicy" element={<PrivacyPolicy />}/>
           <Route exact path="/ProductDetails" element={<ProductDetails />}/>
+          <Route exact path="/Profile" element={<Profile />}/>
         </Routes>
         <Footer />
       </Router>
