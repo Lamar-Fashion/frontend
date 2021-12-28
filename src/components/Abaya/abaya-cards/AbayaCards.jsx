@@ -1,11 +1,12 @@
-import { React, useState,useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import '../../../styles/abaya-styles/abaya-cards.css';
-import lamar from '../../../images/brand/test/brand12.jpg';
+// import lamar from '../../../images/brand/test/brand12.jpg';
+// import lamar from '../../../images/abaya/AW2eSkwg.jpeg';
+import lamar from '../../../images/abaya/UTv4UbCw.jpeg';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import AbayaFilter from '../abaya-filter/AbayaFilter';
 function AbayaCards() {
- 
   const arralen = 50; // array.length
   const [showItems, setShowItems] = useState(15);
   let array = new Array(arralen).fill(0); // to test the pagenation you can enter 40 for example
@@ -14,13 +15,12 @@ function AbayaCards() {
   const pagesVisited = pageNumber * showItems;
 
   useEffect(() => {
-    
     window.scrollTo({
-      left:0,
-      top:100,
-      behavior:"smooth"
-    })
-  }, [pageNumber])
+      left: 0,
+      top: 100,
+      behavior: 'smooth',
+    });
+  }, [pageNumber]);
   const displayUser =
     array.length &&
     array.slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
@@ -34,13 +34,18 @@ function AbayaCards() {
               <i class='fas fa-heart'></i>
             </div>
             <div className='go-view'>
-              <Link to="/ProductDetails" onClick={()=>{
-                window.scrollTo({
-                  left:0,
-                  top:0,
-                  behavior: "smooth"
-                })
-              }}><i class='far fa-eye' ></i></Link>
+              <Link
+                to='/ProductDetails'
+                onClick={() => {
+                  window.scrollTo({
+                    left: 0,
+                    top: 0,
+                    behavior: 'smooth',
+                  });
+                }}
+              >
+                <i class='far fa-eye'></i>
+              </Link>
             </div>
           </div>
           <div className='overlay'></div>
@@ -50,7 +55,7 @@ function AbayaCards() {
           </div>
           <div className='info'>
             <h3>lamar</h3>
-            <p>Lorem ipsum dolor sit amet</p>
+            {/* <p>Lorem ipsum dolor sit amet</p> */}
             <div className='price'>
               <span className='size'>small</span>
               <span className='price-p'>QAR 1200</span>
@@ -62,9 +67,7 @@ function AbayaCards() {
     });
   const pageCount = Math.ceil(array.length / showItems);
   const changePage = (event, value) => {
-  
     setPageNumber(value - 1);
-    
   };
   return (
     <>
@@ -76,7 +79,10 @@ function AbayaCards() {
         </div>
         <div className='catagory'>
           <div className='catag-path'>
-            <Link to='/'><i class="fas fa-home"></i></Link>  <i class="fas fa-angle-right"></i>  <span>Abaya</span>
+            <Link to='/'>
+              <i class='fas fa-home'></i>
+            </Link>{' '}
+            <i class='fas fa-angle-right'></i> <span>Abaya</span>
           </div>
           <div className='catag-info'>
             <div className='show-item'>
@@ -85,12 +91,11 @@ function AbayaCards() {
                 name='show-item'
                 id='show-item'
                 onChange={(e) => {
-                  if (e.target.value === 'all' && showItems!==arralen) {
-                    setShowItems(arralen)
-                  setPageNumber(0)
-                  }
-                  else if(showItems!==e.target.value){
-                    setPageNumber(0)
+                  if (e.target.value === 'all' && showItems !== arralen) {
+                    setShowItems(arralen);
+                    setPageNumber(0);
+                  } else if (showItems !== e.target.value) {
+                    setPageNumber(0);
                     setShowItems(Number(e.target.value));
                   }
                 }}

@@ -1,11 +1,12 @@
 .header {
-  background-color: transparent;
+  background-color: #ececec;
   position: fixed;
   top: 2rem;
   width: 100%;
-  height: 7rem;
+  height: 10rem;
   z-index: 3;
   transition: 1s linear;
+  box-shadow: 0px 2px 12px rgb(0, 0, 0, 0.2);
 }
 /*  phones */
 @media (min-width: 531px) and (max-width: 652px) {
@@ -151,7 +152,7 @@
   height: 35px;
   margin-right: 15px;
 }
-.header .vertical-nav-container .main-nav-phone  .fa-angle-up {
+.header .vertical-nav-container .main-nav-phone .fa-angle-up {
   float: right;
   cursor: pointer;
   transition: 0.5s;
@@ -215,7 +216,7 @@
 }
 .header .lamar-container {
   display: grid;
-  height: 7rem;
+  height: 10rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   position: relative;
@@ -530,6 +531,11 @@
   text-transform: capitalize;
 }
 
+.header .lamar-container .main-nav li > ul {
+  width: 10rem !important;
+  position: relative;
+  left: 30% !important;
+}
 .header .lamar-container .main-nav li > ul > li:hover {
   padding-left: 10px;
   /* background-color: #121314; */
@@ -550,9 +556,9 @@
 /* right container >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 .header .lamar-container .rightContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
-  height: 7rem;
+  height: 10rem;
   transition: 1s linear;
 }
 
@@ -618,6 +624,19 @@
   width: 180px;
   border-bottom: 1px solid;
   cursor: auto;
+  animation: search-input 0.5s linear;
+}
+
+@keyframes search-input {
+  0% {
+    width: 0px;
+  }
+  50% {
+    width: 90px;
+  }
+  100% {
+    width: 180px;
+  }
 }
 .header .lamar-container .rightContainer .searchContainer .input::placeholder {
   transition: 0.3s;

@@ -1,12 +1,9 @@
 .container-abaya-hero .abaya-hero {
-  background-image: url(https://www.almotahajiba.com/pub/media/wysiwyg/smartwave/porto/homepage/15/slider/parallax_img_new.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: scroll;
+  background-color: var(--main-color-alt);
   height: 300px;
   position: relative;
   width: 100%;
+  color: black;
 }
 
 /* Small */
@@ -17,6 +14,11 @@
 }
 /* Large */
 @media (min-width: 1200px) {
+}
+.container-abaya-hero .abaya-hero .hero-text {
+  position: relative;
+  top: 14.5rem;
+  left: 37.5%;
 }
 .container-abaya-hero .abaya-hero .info-text {
   position: absolute;
