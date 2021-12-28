@@ -3,7 +3,7 @@
 }
 .abaya .lamar-container {
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 100% 20%;
   height: fit-content;
 }
 @media (max-width: 530px) {

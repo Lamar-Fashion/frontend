@@ -11,9 +11,7 @@ function Abaya() {
         <div className='lamar-container'>
           <AbayaCards />
 
-          <div className='web-filter'>
-            <AbayaFilter />
-          </div>
+          <div className='web-filter'>{/* <AbayaFilter /> */}</div>
         </div>
       </section>
     </>
