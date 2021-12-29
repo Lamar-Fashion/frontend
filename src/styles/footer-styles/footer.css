@@ -60,7 +60,7 @@
 }
 .footer .box .text {
   line-height: 2;
-  color: #b9b9b9;
+  color: black;
 }
 .footer .box .links li {
   padding: 15px 0;
@@ -74,22 +74,22 @@
   padding-left: 10px;
 }
 .footer .box .links li:hover a {
-  color: white;
+  color: black;
 }
 .footer .box .links li a {
-  color: #b9b9b9;
+  color: black;
   transition: var(--main-transition);
   cursor: pointer;
 }
 .footer .box .links li a i {
   font-size: 14px;
   margin-right: 3px;
-  color: var(--main-color-alt);
+  color: black;
 }
 .footer .box .line {
   display: flex;
   align-items: center;
-  color: #b9b9b9;
+  color: black;
   margin-bottom: 30px;
 }
 @media (max-width: 767px) {
@@ -99,7 +99,7 @@
 }
 .footer .box .line i {
   font-size: 25px;
-  color: var(--main-color-alt);
+  color: black;
   margin-right: 10px;
 }
 @media (max-width: 767px) {
@@ -141,13 +141,13 @@
 .footer .footer-pay .lamar-container .copyright {
   padding: 25px 0;
   text-align: left;
-  color: white;
+  color: black;
 }
 @media (max-width: 530px) {
   .footer .footer-pay .lamar-container .copyright {
     padding: 25px 0;
     text-align: center;
-    color: white;
+    color: black;
   }
 }
 .footer .footer-pay .lamar-container .info-pay {

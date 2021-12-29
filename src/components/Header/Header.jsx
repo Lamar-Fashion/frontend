@@ -125,13 +125,24 @@ function Header() {
               </Link>
               <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
                 <li>
-                  <a href='#brands'>Brands</a>
+                  <Link
+                    to='/Abaya'
+                    onClick={() => {
+                      window.scrollTo({
+                        left: 0,
+                        top: 0,
+                        behavior: 'smooth',
+                      });
+                    }}
+                  >
+                    Abaya
+                  </Link>
                 </li>
                 <li>
-                  <a href='#collection'>Collection</a>
+                  <a href='#collection'>Ready to wear</a>
                 </li>
                 <li>
-                  <a href='#feedback'>Feedback</a>
+                  <a href='#feedback'>contact us</a>
                 </li>
               </ul>
             </li>
