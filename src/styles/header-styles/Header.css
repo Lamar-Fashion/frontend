@@ -43,7 +43,7 @@
     height: 5rem;
   }
   .header .lamar-container .main-nav.main-nav-scroll > li > a > a:hover {
-    background-color: #fafafa;
+    /* background-color: #fafafa; */
     color: black;
   }
 }
@@ -542,7 +542,7 @@
   background-color: var(--main-color-alt);
 }
 .header .lamar-container .main-nav li > ul > li:hover a {
-  color: whitesmoke;
+  color: black;
 }
 /* end drop down  */
 

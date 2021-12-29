@@ -25,7 +25,7 @@ function Products() {
           </svg>
         </div>
         <div className='title-section'>
-          <h2 className='main-title'> Collection</h2>
+          <h2 className='main-title'> products</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus illum vel cupiditate dolorum laborum!</p>
         </div>
         <Slider />

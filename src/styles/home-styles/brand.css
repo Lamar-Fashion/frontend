@@ -29,9 +29,9 @@
 .brand .lamar-container {
   display: grid;
   grid-template-areas:
-    'lamar lamar montaha montaha nero nero'
-    'lamar lamar shera shera shera shera';
-  grid-gap: 10px;
+    'new-arrivals  on-sales'
+    'ready-to-wear  abaya';
+  grid-gap: 30px;
   height: 500px;
 }
 @media (max-width: 767px) {
@@ -46,16 +46,16 @@
 }
 
 .item1 {
-  grid-area: lamar;
+  grid-area: new-arrivals;
 }
 .item2 {
-  grid-area: montaha;
+  grid-area: on-sales;
 }
 .item3 {
-  grid-area: nero;
+  grid-area: ready-to-wear;
 }
 .item4 {
-  grid-area: shera;
+  grid-area: abaya;
 }
 .brand .lamar-container > div {
   padding: 10px;
@@ -79,7 +79,11 @@
 
 /* start item one ----------- */
 .brand .item1 {
-  background-color: var(--main-color-alt2);
+  background-image: url(../../images/brand/new-arrivals.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  position: relative;
 }
 .brand .item1:hover {
   transform: translateY(-10px);
@@ -97,14 +101,6 @@
   width: 100%;
   cursor: pointer;
 }
-.brand .item1 h3 {
-  position: absolute;
-  top: 10px;
-  right: 30px;
-  font-size: 40px;
-  text-transform: capitalize;
-  font-weight: 700;
-}
 
 @media (max-width: 767px) {
   .brand .lamar-container .item1 .image {
@@ -114,21 +110,50 @@
     height: 120%;
     width: 40%;
   }
-  .brand .lamar-container .item1 h3 {
-    position: absolute;
-    top: 50%;
-    right: 30%;
-    transform: translate(50%, -50%);
-    font-size: 35px;
-    text-transform: capitalize;
-    font-weight: 700;
-  }
 }
 /* end item one  */
 
+.brand .lamar-container .item-topdiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(12, 12, 12, 0.705);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  cursor: grab;
+  color: var(--main-color-alt);
+}
+.brand .lamar-container .item-topdiv:hover {
+  background-color: rgba(12, 12, 12, 0.6);
+}
+.brand .shop-now {
+  background-color: black;
+  width: 10rem;
+  padding: 5px;
+  text-align: center;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.brand .shop-now:hover {
+  background-color: var(--main-color-alt);
+  color: black;
+  font-weight: bold;
+}
+
 /* start item tow -------- */
 .brand .item2 {
-  background-color: #ffd369;
+  background-image: url(../../images/brand/on-sales.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  position: relative;
 }
 .brand .item2:hover {
   transform: translateY(-10px);
@@ -146,15 +171,6 @@
   width: 100%;
   cursor: pointer;
 }
-.brand .item2 h3 {
-  position: absolute;
-  bottom: 35px;
-  left: 20px;
-  color: var(--main-color-alt2);
-  font-size: 40px;
-  text-transform: capitalize;
-  font-weight: 700;
-}
 
 @media (max-width: 767px) {
   .brand .lamar-container .item2 .image {
@@ -164,23 +180,18 @@
     height: 120%;
     width: 40%;
   }
-  .brand .lamar-container .item2 h3 {
-    position: absolute;
-    bottom: 14px;
-    left: 22px;
-    color: var(--main-color-alt2);
-    font-size: 35px;
-    text-transform: capitalize;
-    font-weight: 700;
-  }
 }
 /* end item tow  */
 /* start item three------------  */
 .brand .item3 {
-  background-color: #d7385e;
+  background-image: url(../../images/brand/ready-to-wear.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  position: relative;
 }
 .brand .item3:hover {
-  transform: translatex(10px);
+  transform: translateY(-10px);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 .brand .item3 .image {
@@ -195,15 +206,7 @@
   height: 100%;
   cursor: pointer;
 }
-.brand .item3 h3 {
-  position: absolute;
-  bottom: 35px;
-  right: 20px;
-  color: var(--main-color-alt2);
-  font-size: 40px;
-  text-transform: capitalize;
-  font-weight: 700;
-}
+
 @media (max-width: 767px) {
   .brand .lamar-container .item3 .image {
     position: absolute;
@@ -212,23 +215,18 @@
     height: 120%;
     width: 54%;
   }
-  .brand .lamar-container .item3 h3 {
-    position: absolute;
-    bottom: 16px;
-    right: 43px;
-    /* transform: translate(50%,-50%); */
-    font-size: 35px;
-    text-transform: capitalize;
-    font-weight: 700;
-  }
 }
 /* end item three------------  */
 /* start item four------------  */
 .brand .item4 {
-  background-color: #41584b;
+  background-image: url(../../images/brand/abaya.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  position: relative;
 }
 .brand .item4:hover {
-  transform: translatex(10px);
+  transform: translateY(-10px);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
@@ -245,16 +243,6 @@
   width: 100%;
 }
 
-.brand .item4 h3 {
-  position: absolute;
-  font-size: 40px;
-  font-weight: 600;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 100px;
-  color: var(--main-color-alt2);
-  text-transform: capitalize;
-}
 @media (max-width: 767px) {
   .brand .lamar-container .item4 .image {
     position: absolute;
@@ -262,15 +250,6 @@
     bottom: 0;
     height: 100%;
     width: 30%;
-  }
-  .brand .lamar-container .item4 h3 {
-    position: absolute;
-    bottom: 5px;
-    left: 20px;
-    color: var(--main-color-alt2);
-    font-size: 30px;
-    text-transform: capitalize;
-    font-weight: 700;
   }
 }
 /* end item four------------  */

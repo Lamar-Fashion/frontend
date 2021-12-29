@@ -27,33 +27,54 @@ function Brand() {
           </svg>
         </div>
         <div className='title-section'>
-          <h2 className='main-title'>brands</h2>
+          <h2 className='main-title'>collections</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus illum vel cupiditate dolorum laborum!</p>
         </div>
         <div className='lamar-container'>
           <div className='item1'>
-            <div className='image'>
+            <div className='item-topdiv'>
+              <h3 className='item-title'>New Arrivals</h3>
+              <span className='shop-now'>Shop Now</span>
+            </div>
+            {/* <div className='image'>
               <img src={lamar} alt='lamar' />
             </div>
-            <h3>lamar</h3>
+            <h3>lamar</h3> */}
           </div>
           <div className='item2'>
-            <div className='image'>
+            <div className='item-topdiv'>
+              {' '}
+              <h3 className='item-title'>On Sales</h3>
+              <span className='shop-now'>Shop Now</span>
+            </div>
+
+            {/* <div className='image'>
               <img src={mortaha} alt='mortaha' />
             </div>
-            <h3>shera</h3>
+            <h3>shera</h3> */}
           </div>
           <div className='item3'>
-            <div className='image'>
+            <div className='item-topdiv'>
+              <h3 className='item-title'>Ready To Wear</h3>
+              <span className='shop-now'>Shop Now</span>
+            </div>
+
+            {/* <div className='image'>
               <img src={neo} alt='neo' />
             </div>
-            <h3>neo</h3>
+            <h3>neo</h3> */}
           </div>
           <div className='item4'>
-            <div className='image'>
+            <div className='item-topdiv'>
+              {' '}
+              <h3 className='item-title'>Abayas</h3>
+              <span className='shop-now'>Shop Now</span>
+            </div>
+
+            {/* <div className='image'>
               <img src={shera} alt='shera' />
             </div>
-            <h3>mortaha</h3>
+            <h3>mortaha</h3> */}
           </div>
         </div>
       </section>
