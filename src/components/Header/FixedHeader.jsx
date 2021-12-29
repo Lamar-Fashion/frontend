@@ -16,12 +16,15 @@ function FixedHeader() {
             </div> */}
             <div className='contact-info'>
               <i className='fas fa-phone-volume fa-fw icon'></i>
-
-              <p className='contact-text'>+974 5010 9900</p>
+              <a className='contact-text' href='http://wa.me/+97466881109' target='_blank'>
+                +974 66881109
+              </a>
             </div>
             <div className='contact-info email'>
               <i class='far fa-envelope icon'></i>
-              <p className='contact-text'>lamar@lamar-fashion.com</p>
+              <a className='contact-text' href='mailto:Info@lamarfashion.qa' target='_blank'>
+                Info@lamarfashion.qa
+              </a>
             </div>
           </section>
           <section className='icons-container'>
