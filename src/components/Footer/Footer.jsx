@@ -93,33 +93,34 @@ function Footer() {
             </ul>
           </div>
           <div className='box'>
-            <div className="container-line">
-            <div className='line'>
-              <i className='fas fa-map-marker-alt fa-fw'></i>
-              <div className='info'><span>Doha, Qatar</span></div>
-            </div>
-            <div className='line'>
-  
-              <i class="far fa-paper-plane fa-fw"></i>
-              <div className='info'>
-                <span>
-              <a href="mailto:anofal719@gmail.com" target="_blank">email@email.com</a>
-
-                </span>
+            <div className='container-line'>
+              <div className='line'>
+                <i className='fas fa-map-marker-alt fa-fw'></i>
+                <div className='info'>
+                  <span>Doha, Qatar</span>
+                </div>
+              </div>
+              <div className='line'>
+                <i class='far fa-paper-plane fa-fw'></i>
+                <div className='info'>
+                  <span>
+                    <a href='mailto:Info@lamarfashion.qa' target='_blank'>
+                      Info@lamarfashion.qa
+                    </a>
+                  </span>
+                </div>
+              </div>
+              <div className='line'>
+                <i class='fab fa-whatsapp fa-fw'></i>
+                <div className='info'>
+                  <span>
+                    <a href='http://wa.me/+97466881109' target='_blank'>
+                      +974 66881109
+                    </a>
+                  </span>
+                </div>
               </div>
             </div>
-            <div className='line'>
-             
-              <i class="fab fa-whatsapp fa-fw"></i>
-              <div className='info'>
-                <span>
-
-                <a href="http://wa.me/+962789006290" target="_blank">+974 5010 9900</a>
-                </span>
-              </div>
-            </div>
-            </div>
-            
           </div>
           <div className='box footer-gallery'>
             <img src='https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg' alt='' />

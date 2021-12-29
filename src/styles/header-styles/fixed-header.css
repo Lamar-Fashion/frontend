@@ -105,6 +105,7 @@
 .fixed-header .lamar-container .contact-container .contact-info .contact-text {
   margin: auto;
   font-size: 14px;
+  color: var(--main-color-alt);
 }
 
 .fixed-header .icons-container {
