@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid var(--main-color-alt2);
+  border-top: 1px solid rgba(180, 177, 177, 0.568);
 }
 .shop .lamar-container {
   height: 55vh;

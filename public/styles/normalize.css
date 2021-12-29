@@ -12,14 +12,14 @@
   /* --main-color-alt: #5fd4da; */
   /* --main-color-alt: #e4e1e8; */
   /* --main-color-alt: #d6c4a8; */
-  --main-color-alt: #ececec;
+  --main-color-alt: whitesmoke;
   /* --main-color-alt: #f3ed9ec4; */
   --main-transition: 0.5s;
   --main-padding-top: 80px;
   --main-padding-bottom: 80px;
   /* --main-color-alt2:whitesmoke; */
   /* --main-color-alt2: #e4e1e8; */
-  --main-color-alt2: rgb(201, 198, 198);
+  --main-color-alt2: #ececec;
   --text-color: #666;
 }
 html {
