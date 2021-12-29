@@ -8,11 +8,13 @@
   transition: 1s linear;
   box-shadow: 0px 2px 12px rgb(0, 0, 0, 0.2);
 }
+@media (max-width: 991px) {
+  .header {
+    height: 8rem;
+  }
+}
 /*  phones */
 @media (min-width: 531px) and (max-width: 652px) {
-  .header {
-    top: 3rem;
-  }
 }
 @media (min-width: 769px) {
   .header.header-scroll {
@@ -85,9 +87,6 @@
 
 /*  phones */
 @media (min-width: 531px) and (max-width: 652px) {
-  .header {
-    top: 3rem;
-  }
 }
 
 .header .vertical-nav-container {
@@ -253,6 +252,7 @@
     grid-template-columns: 33% 35% 30%;
     gap: 0;
     position: relative;
+    height: 8rem;
   }
 }
 /* Medium */
@@ -571,7 +571,11 @@
 .header .lamar-container .rightContainer .right-nav {
   display: flex;
 }
-
+@media (min-width: 769px) and (max-width: 991px) {
+  .header .lamar-container .rightContainer {
+    height: 8rem;
+  }
+}
 .header .lamar-container .rightContainer .right-nav > li > a {
   display: flex;
   justify-content: center;

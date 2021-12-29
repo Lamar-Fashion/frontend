@@ -9,11 +9,11 @@ function FixedHeader() {
       <div className='fixed-header'>
         <div className='lamar-container'>
           <section className='contact-container'>
-            <div className='contact-info location'>
+            {/* <div className='contact-info location'>
               <i className='fas fa-map-marker-alt fa-fw icon'></i>
 
               <p className='contact-text'>Suhaim Bin Hamad Street, Doha, Qatar</p>
-            </div>
+            </div> */}
             <div className='contact-info'>
               <i className='fas fa-phone-volume fa-fw icon'></i>
 
