@@ -73,7 +73,18 @@ function Header() {
                       <a href='#collection'>Ready to wear</a>
                     </li>
                     <li>
-                      <a href='#feedback'>contact us</a>
+                      <Link
+                        to='/Contact-us'
+                        onClick={() => {
+                          window.scrollTo({
+                            left: 0,
+                            top: 0,
+                            behavior: 'smooth',
+                          });
+                        }}
+                      >
+                        contact us
+                      </Link>
                     </li>
                   </ul>
                 </li>
@@ -161,7 +172,18 @@ function Header() {
                   <a href='#collection'>Ready to wear</a>
                 </li>
                 <li>
-                  <a href='#feedback'>contact us</a>
+                  <Link
+                    to='/Contact-us'
+                    onClick={() => {
+                      window.scrollTo({
+                        left: 0,
+                        top: 0,
+                        behavior: 'smooth',
+                      });
+                    }}
+                  >
+                    contact us
+                  </Link>
                 </li>
               </ul>
             </li>

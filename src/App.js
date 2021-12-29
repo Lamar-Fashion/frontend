@@ -15,7 +15,7 @@ import DeliveryPolicy from './components/Policy/DeliveryPolicy';
 import PrivacyPolicy from './components/Policy/PrivacyPolicy';
 import ProductDetails from './components/Product-details/ProductDetails';
 import Profile from './components/Profile/profile/Profile';
-
+import ContactUs from './components/Contact-us/ContactUs';
 
 function App() {
   const [y, setY] = useState(window.scrollY);
@@ -45,16 +45,17 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/Abaya' element={<Abaya />} />
-          <Route exact path="/SignIn" element={<SignIn />}/>
-          <Route exact path="/SignUp" element={<SignUp />}/>
-          <Route exact path="/AboutUs" element={<AboutUs />}/>
-          <Route exact path="/Cart" element={<Cart />}/>
-          <Route exact path="/Checkout" element={<Checkout />}/>
-          <Route exact path="/Checkout2" element={<Checkout2 />}/>
-          <Route exact path="/DeliveryPolicy" element={<DeliveryPolicy />}/>
-          <Route exact path="/PrivacyPolicy" element={<PrivacyPolicy />}/>
-          <Route exact path="/ProductDetails" element={<ProductDetails />}/>
-          <Route exact path="/Profile" element={<Profile />}/>
+          <Route exact path='/SignIn' element={<SignIn />} />
+          <Route exact path='/SignUp' element={<SignUp />} />
+          <Route exact path='/AboutUs' element={<AboutUs />} />
+          <Route exact path='/Cart' element={<Cart />} />
+          <Route exact path='/Checkout' element={<Checkout />} />
+          <Route exact path='/Checkout2' element={<Checkout2 />} />
+          <Route exact path='/DeliveryPolicy' element={<DeliveryPolicy />} />
+          <Route exact path='/PrivacyPolicy' element={<PrivacyPolicy />} />
+          <Route exact path='/ProductDetails' element={<ProductDetails />} />
+          <Route exact path='/Profile' element={<Profile />} />
+          <Route exact path='/Contact-us' element={<ContactUs />} />
         </Routes>
         <Footer />
       </Router>

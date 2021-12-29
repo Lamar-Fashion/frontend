@@ -13,6 +13,11 @@
   }
 }
 
+@media (min-width: 531px) and (max-width: 991px) {
+  .delivery-p {
+    padding: 200px 0;
+  }
+}
 .delivery-p .lamar-container {
   padding-bottom: 10px;
 }

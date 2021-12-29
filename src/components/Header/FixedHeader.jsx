@@ -15,7 +15,7 @@ function FixedHeader() {
               <p className='contact-text'>Suhaim Bin Hamad Street, Doha, Qatar</p>
             </div> */}
             <div className='contact-info'>
-              <i className='fas fa-phone-volume fa-fw icon'></i>
+              <i class='fab fa-whatsapp fa-fw icon'></i>
               <a className='contact-text' href='http://wa.me/+97466881109' target='_blank'>
                 +974 66881109
               </a>

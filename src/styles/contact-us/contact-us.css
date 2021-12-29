@@ -1,67 +1,68 @@
-.checkout {
+.contact-us {
   padding: 250px 0 100px;
   width: 100%;
+  background-color: var(--main-color-alt);
   display: flex;
   flex-direction: column;
-  background-color: var(--main-color-alt);
 }
 @media (max-width: 530px) {
-  .checkout {
-    padding: 135px 0 100px;
+  .contact-us {
+    padding: 135px 0;
   }
 }
+
 @media (min-width: 531px) and (max-width: 991px) {
-  .checkout {
+  .contact-us {
     padding: 200px 0;
   }
 }
-.checkout .nav {
+.contact-us .nav-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
-  padding: 20px 15px 0;
+  padding: 10px 15px 0;
   width: 100%;
 }
-@media (max-width: 767px) {
-  .checkout > .lamar-container {
-    width: 100%;
-  }
-}
-.checkout .nav .path i {
+.contact-us .nav-info .nav-path i {
   font-size: 22px;
   margin-right: 10px;
   color: black;
 }
-.checkout .nav .path span {
+.contact-us .nav-info .nav-path span {
   font-size: 20px;
   cursor: auto;
   font-weight: 600;
 }
-.checkout .nav .check-livel i {
-  font-size: 18px;
-  margin: 0 5px;
-}
-.checkout .nav .check-livel a {
-  color: black;
-}
-.checkout .nav .check-livel .FLivel {
+
+.contact-us .nav-info a {
+  cursor: pointer;
+  font-size: 20px;
   font-weight: 600;
+  text-transform: capitalize;
+  color: black;
+  text-decoration: underline !important;
 }
-.checkout .lamar-container {
-  padding: 0 15px 20px;
+
+.contact-us .lamar-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.checkout .lamar-container h2 {
-  text-transform: capitalize;
+
+@media (max-width: 767px) {
+  .contact-us .lamar-container {
+    width: 100%;
+  }
+}
+.contact-us .lamar-container h2 {
+  text-transform: uppercase;
   font-size: 24px;
   font-weight: 600;
   color: black;
   position: relative;
 }
-.checkout .lamar-container h2::before {
+.contact-us .lamar-container h2::before {
   content: '';
   position: absolute;
   height: 5px;
@@ -69,36 +70,38 @@
   bottom: -10px;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--main-color-alt);
+  background-color: black;
   border-radius: 20px;
 }
-
-.checkout .lamar-container form {
+.contact-us .lamar-container form {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  gap: 45px;
+  gap: 35px;
+}
+@media (max-width: 530px) {
+  .contact-us .lamar-container form {
+    padding-top: 25px;
+  }
 }
 @media (max-width: 767px) {
-  .checkout .lamar-container form {
+  .contact-us .lamar-container form {
     width: 90%;
   }
 }
-
-.checkout .lamar-container form > div {
+.contact-us .lamar-container form > div {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
   width: 100%;
 }
-.checkout .lamar-container form > div > input {
+.contact-us .lamar-container form > div > input,
+textarea {
   flex: 1;
 }
-
-.checkout .lamar-container .name,
-.checkout .lamar-container .address {
+.contact-us .lamar-container .name {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,25 +109,23 @@
   width: 100%;
 }
 @media (max-width: 767px) {
-  .checkout .lamar-container .name,
-  .checkout .lamar-container .address {
+  .contact-us .lamar-container .name {
     flex-wrap: wrap;
   }
 }
-.checkout .lamar-container .name > div,
-.checkout .lamar-container .address > div {
+.contact-us .lamar-container .name > div {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
   width: 100%;
 }
-.checkout .lamar-container .name > div > input,
-.checkout .lamar-container .address > div > input {
+.contact-us .lamar-container .name > div > input,
+textarea {
   flex: 1;
 }
-
-.checkout .lamar-container input {
+.contact-us .lamar-container input,
+textarea {
   border: none;
   outline: none;
   height: 30px;
@@ -133,10 +134,16 @@
   background: transparent;
   font-size: 16px;
 }
-.checkout .lamar-container input:-webkit-autofill,
-.checkout .lamar-container input:-webkit-autofill:hover,
-.checkout .lamar-container input:-webkit-autofill:focus,
-.checkout .lamar-container input:-webkit-autofill:active {
+
+.contact-us textarea {
+  height: 10rem;
+  border: 1px solid black;
+}
+
+.contact-us .lamar-container input:-webkit-autofill,
+.contact-us .lamar-container input:-webkit-autofill:hover,
+.contact-us .lamar-container input:-webkit-autofill:focus,
+.contact-us .lamar-container input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--main-color-alt2) inset !important;
 }
 
@@ -148,27 +155,35 @@
   }
 }
 
-.checkout .lamar-container input:-webkit-autofill {
+.contact-us .lamar-container input:-webkit-autofill {
   -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
 }
 
-.checkout .lamar-container input::placeholder {
+.contact-us .lamar-container input::placeholder {
   transition: 0.3s;
   background: transparent;
   text-transform: capitalize;
   color: black;
 }
-.checkout .lamar-container input:focus::placeholder {
+.contact-us .lamar-container textarea::placeholder {
+  transition: 0.3s;
+  background: transparent;
+  text-transform: capitalize;
+  color: black;
+}
+.contact-us .lamar-container input:focus::placeholder {
   opacity: 0;
 }
-.checkout .lamar-container i {
+.contact-us .lamar-container textarea:focus::placeholder {
+  opacity: 0;
+}
+.contact-us .lamar-container i {
   font-size: 30px;
   color: black;
 }
-
-.checkout .lamar-container .next {
+.contact-us .lamar-container .submit {
   width: 100%;
   height: 50px;
   background-color: whitesmoke;
@@ -178,11 +193,9 @@
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-transform: uppercase;
 }
-.checkout .lamar-container .next:hover {
+.contact-us .lamar-container .submit:hover {
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
   font-size: 22px;

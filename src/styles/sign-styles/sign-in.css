@@ -10,6 +10,11 @@
     padding: 135px 0;
   }
 }
+@media (min-width: 531px) and (max-width: 991px) {
+  .sign-in {
+    padding: 200px 0;
+  }
+}
 .sign-in .nav-info {
   display: flex;
   justify-content: space-between;
@@ -72,6 +77,11 @@
   justify-content: space-between;
   align-items: center;
   gap: 35px;
+}
+@media (max-width: 530px) {
+  .sign-in .lamar-container form {
+    padding-top: 25px;
+  }
 }
 @media (max-width: 767px) {
   .sign-in .lamar-container form {
