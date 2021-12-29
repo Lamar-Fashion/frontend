@@ -6,8 +6,8 @@
   padding-bottom: 50px;
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: scroll;
-  background-size: cover;
+  /* background-attachment: fixed; */
+  background-size: 100% 100%;
   background-color: var(--main-color-alt);
   height: 80vh;
   position: relative;

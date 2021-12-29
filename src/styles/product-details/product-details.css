@@ -2,7 +2,7 @@
 .product-d{
     padding: 200px 0 100px;
     width: 100%;
-    background-color: var(--main-color-alt2);
+    background-color: var(--main-color-alt);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -24,11 +24,12 @@
 .product-d .path{
     text-align: left;
     width: 100%;
+    padding-top: 20px;
 }
 .product-d .path i {
     font-size: 22px;
     margin-right: 10px;
-    color: var(--main-color-alt);
+    color: black;
 }
 .product-d .path span{
     font-size: 20px;
@@ -50,7 +51,7 @@
 }
 
 .product-d .lamar-container .image-product{
-    width: 55%;
+    width: 60%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,27 +65,29 @@
 }
 .product-d .lamar-container .image-product .big-image{
     width: 100%;
-    height: 360px;
+    height: 500px;
     transition: width 0.5s;
 
 }
 .product-d .lamar-container .image-product img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
 }
 .product-d .lamar-container .image-product .left-images{
     width: 100%;
-    height: 120px;
+    height: 150px;
     display: flex;
     align-items: center;
+
 }
 .product-d .lamar-container .image-product .left-images .flicking-camera{
+    width: 100%;
     display: flex;
-    gap: 15px;
+    gap: 5px;
     justify-content: space-between;
     align-items: center;
-    margin-left: -238px;
+    margin-left: -265px;
 }
 @media(max-width:530px){
     .product-d .lamar-container .image-product .left-images .flicking-camera{
@@ -94,11 +97,12 @@
 }
 
 .product-d .lamar-container .image-product .left-images .image{
-    width: 24%;
+    width: 23%;
     height: 100%;
     cursor: pointer;
     transition: 0.3s;
 }
+
 @media(max-width:530px){
 .product-d .lamar-container .image-product .left-images .image{
     width: 35%;
@@ -109,7 +113,7 @@
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    height: 490px;
+    height: 500px;
 }
 @media(max-width:530px){
     .product-d .lamar-container .product-info{
@@ -189,50 +193,41 @@ color: var(--text-color);
 .product-d .lamar-container .product-info .qun-product{
     display: flex;
     align-items: center;
-    gap: 50px;
-}
-@media(max-width:530px){
-.product-d .lamar-container .product-info .qun-product{
-    gap: 15px;
-}
-}
-.product-d .lamar-container .product-info .qun{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     gap: 10px;
-    width: 60px;
+    flex-wrap: wrap;
+
 }
-.product-d .lamar-container .product-info .qun .plus-dec{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-direction: column;
-}
-.product-d .lamar-container .product-info .qun > span {
-    width: 40px;
+.product-d .lamar-container .product-info .qun-product .buttuns{
+    width: fit-content;
     height: 40px;
-    background-color: whitesmoke;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    font-size: 18px;
-    font-weight: bold;
-}
-.product-d .lamar-container .product-info .qun .plus-dec button{
-    width: 15px;
-    height: 15px;
     background-color: var(--main-color-alt);
+    box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
     display: flex;
-    justify-content: center;
     align-items: center;
-    border: none;
-    font-size: 14px;
-    font-weight: bold;
-    color: whitesmoke;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 5px;
 }
+
+.product-d .lamar-container .product-info .qun-product .buttuns label {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .product-d .lamar-container .product-info .qun-product .buttuns select {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: fit-content;
+    cursor: pointer;
+    background-color: var(--main-color-alt);
+  }
+  
+  @media (max-width: 530px) {
+    .abaya-cards .catagory .catag-info label {
+      font-size: 14px;
+    }
+  }
 .product-d .lamar-container .product-info .add-to-cart button{
     width: 140px;
     height: 40px;

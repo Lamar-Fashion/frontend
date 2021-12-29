@@ -1,7 +1,7 @@
 .sign-up{
-    padding: 150px 0 ; 
+    padding: 200px 0 150px; 
     width: 100%;
-    background-color: var(--main-color-alt2);
+    background-color: var(--main-color-alt);
     display: flex;
     flex-direction: column;
     
@@ -22,7 +22,7 @@
   .sign-up .nav-info .nav-path i {
     font-size: 22px;
     margin-right: 10px;
-    color: var(--main-color-alt);
+    color: black;
   }
   .sign-up .nav-info  .nav-path span {
     font-size: 20px;
@@ -40,7 +40,7 @@
   }
  
   .sign-up .lamar-container{
-    padding: 0 15px 40px;
+    padding: 20px 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,7 +65,7 @@
       bottom: -10px;
       left: 50%;
       transform: translate(-50%,-50%);
-      background-color: var(--main-color-alt);
+      background-color:black;
       border-radius: 20px;
     }
   .sign-up .lamar-container form{
@@ -152,7 +152,7 @@ flex-wrap: wrap;
     }
     .sign-up .lamar-container i {
       font-size: 30px;
-     color: var(--main-color-alt);
+     color: black;
     }
   .sign-up .lamar-container .submit{
      width: 100%;

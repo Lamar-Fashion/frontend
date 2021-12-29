@@ -89,6 +89,23 @@
 @media (min-width: 531px) and (max-width: 652px) {
 }
 
+.header .close-vertical{
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  opacity: 0;
+  background-color: rgba(238, 10, 10, 0.86);
+  left: 0;
+  top: 0;
+}
+@media (min-width: 769px) {
+  .header .vertical-nav-container {
+    display: none;
+  }
+  .header .close-vertical{
+    display: none;
+  }
+}
 .header .vertical-nav-container {
   position: absolute;
   background-color: rgba(245, 245, 245, 0.86);

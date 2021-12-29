@@ -5,7 +5,6 @@
   border-top: 1px solid rgba(180, 177, 177, 0.568);
 }
 .feedback .big-container {
-  background-color: #f3ed9e;
   background-color: var(--main-color-alt);
   padding: 20px 100px;
   width: 70%;
@@ -107,8 +106,8 @@
   position: relative;
   height: 320px;
   border-radius: 15px;
-  box-shadow: 2px 2px 12px rgb(0, 0, 0, 0.1);
-  background-color: var(--main-color-alt2);
+  box-shadow: 2px 2px 12px rgb(0, 0, 0, 0.2);
+  background-color: var(--main-color-alt);
   overflow: hidden;
   transition: transform 0.6s, box-shadow 0.3s;
   margin: auto;
@@ -120,7 +119,7 @@
 .feedback .box .box-profile {
   height: 30%;
   width: 100%;
-  background-color: var(--main-color-alt);
+  background-color: #ececec;
   position: absolute;
   bottom: 0;
   border-radius: 85% 68px 0 0;
@@ -128,7 +127,7 @@
 
 .feedback .box .box-profile img {
   width: 25%;
-  border: 8px solid var(--main-color-alt2);
+  border: 8px solid #ececec;
   border-radius: 50%;
   position: absolute;
   bottom: 65px;
@@ -170,5 +169,5 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 100px;
-  color: var(--main-color-alt);
+  color: #ececec;
 }

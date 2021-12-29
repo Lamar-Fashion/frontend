@@ -7,6 +7,7 @@ function Shop() {
   return (
     <>
       <section className='shop'>
+  
         <div className='lamar-container'>
           <section className='leftSection'>
             <h2 className='shop-title'>Repair Services</h2>

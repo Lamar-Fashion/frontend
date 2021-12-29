@@ -24,6 +24,7 @@
 }
 html {
   scroll-behavior: smooth;
+ 
 }
 /* body {
   font-family: 'Berkshire Swash', cursive;
@@ -66,25 +67,36 @@ ul {
   bottom: 40px;
   width: 40px;
   height: 40px;
-  background-image: linear-gradient(to right, var(--main-color-alt2), var(--main-color-alt));
+  background-color: black;
   border-radius: 25% 50%;
   cursor: pointer;
   transition: 1s;
   border: 1px solid var(--main-color);
   z-index: 2;
   cursor: pointer;
+  animation: zz 1s linear infinite;
 }
 
 .go-up i {
   font-size: 30px;
-  color: var(--text-color);
+  color: whitesmoke;
   cursor: pointer;
 }
 .go-up:hover {
-  background-image: linear-gradient(to right, var(--text-color), var(--main-color-alt));
+  background-color: whitesmoke;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 .go-up:hover i {
-  color: var(--main-color-alt);
+  color: black;
+}
+@keyframes zz{
+  0% ,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+
 }
 /*  start main title  */
 
