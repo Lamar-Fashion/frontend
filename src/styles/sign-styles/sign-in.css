@@ -1,6 +1,6 @@
 .sign-in{ 
-    padding: 150px 0;
-    background-color: var(--main-color-alt2);
+    padding: 200px 0 150px;
+    background-color: var(--main-color-alt);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
   .sign-in .nav-info .nav-path i {
     font-size: 22px;
     margin-right: 10px;
-    color: var(--main-color-alt);
+    color: black;
   }
   .sign-in .nav-info  .nav-path span {
     font-size: 20px;
@@ -64,7 +64,7 @@
     bottom: -10px;
     left: 50%;
     transform: translate(-50%,-50%);
-    background-color: var(--main-color-alt);
+    background-color: black;
     border-radius: 20px;
   }
 
@@ -132,7 +132,7 @@
   }
   .sign-in .lamar-container i {
     font-size: 30px;
-    color: var(--main-color-alt);
+    color: black;
   }
   .sign-in .lamar-container .submit{
     width: 100%;

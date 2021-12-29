@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Link } from "react-router-dom";
 import "../../../styles/profile/profile.css";
 import FavouriteItem from "../fav-item/FavouriteItem";
-
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';

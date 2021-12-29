@@ -1,7 +1,7 @@
 .profile-lamar{
     padding: 200px 0 100px;
     width: 100%;
-    background-color: var(--main-color-alt2);
+    background-color: var(--main-color-alt);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -36,10 +36,9 @@
     font-weight: 600;
     text-transform: lowercase;
 }
-.profile-lamar .card-profile h2 span{
-    color: var(--main-color-alt);
-    font-size: 30px;
-    text-transform: capitalize;
+
+.profile-lamar  .lamar-container {
+    padding: 20px 0px;
 }
 @media(max-width:530px){
     .profile-lamar  .lamar-container{
@@ -47,13 +46,12 @@
     }
   }
 .profile-lamar  .lamar-container .path{
-    text-align: left;
     width: 100%;
 }
 .profile-lamar .lamar-container .path i {
     font-size: 22px;
     margin-right: 10px;
-    color: var(--main-color-alt);
+    color:black;
 }
 .profile-lamar  .lamar-container .path span{
     font-size: 20px;
@@ -76,8 +74,8 @@
 /* .profile-lamar button#mui-p-3547-T-2{
     color: var(--main-color-alt);
 } */
-.profile-lamar .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
-    color: var(--main-color-alt);
+/* .profile-lamar .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+    color:black;
 
 }
 .profile-lamar span.MuiTabs-indicator.css-1aquho2-MuiTabs-indicator{
@@ -85,4 +83,4 @@
 }
 .profile-lamar .TabPanel-profile{
     padding: 0;
-}
+} */

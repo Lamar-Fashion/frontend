@@ -45,7 +45,7 @@
 }
 .multi-slider .box {
   width: 250px;
-  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   overflow: hidden;
   margin: 20px;
@@ -101,8 +101,8 @@
   cursor: pointer;
 }
 .multi-slider .box .overlay .buy-btn:hover {
-  color: black;
-  background-color: var(--main-color-alt);
+  color: whitesmoke;
+  background-color: black;
   transition: all ease 0.3s;
 }
 .multi-slider .box .slide-img .overlay {

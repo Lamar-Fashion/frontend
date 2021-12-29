@@ -24,8 +24,14 @@ function Header() {
   return (
     <>
       <section className={y > 0 ? 'header header-scroll' : 'header'}>
-        {showVerticalNav && (
-          <div className='vertical-nav-container'>
+        {showVerticalNav && (<>
+          <div
+              className='close-vertical'
+              onClick={() => {
+                setshowVerticalNav(false);
+              }}
+            ></div>
+             <div className='vertical-nav-container'>
             <ul className='main-nav-phone'>
               <li>
                 <Link
@@ -105,6 +111,9 @@ function Header() {
               </li> */}
             </ul>
           </div>
+            </>
+          
+         
         )}
         <div className={y > 0 ? 'lamar-container lamar-container-scroll ' : 'lamar-container'}>
           <ul className={y > 0 ? 'main-nav main-nav-scroll ' : 'main-nav'}>
