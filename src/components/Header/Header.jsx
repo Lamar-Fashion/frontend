@@ -24,48 +24,60 @@ function Header() {
   return (
     <>
       <section className={y > 0 ? 'header header-scroll' : 'header'}>
-        {showVerticalNav && (<>
-          <div
+        {showVerticalNav && (
+          <>
+            <div
               className='close-vertical'
               onClick={() => {
                 setshowVerticalNav(false);
               }}
             ></div>
-             <div className='vertical-nav-container'>
-            <ul className='main-nav-phone'>
-              <li>
-                <Link
-                  to='/'
-                  onClick={() => {
-                    window.scrollTo({
-                      left: 0,
-                      top: 0,
-                      behavior: 'smooth',
-                    });
-                  }}
-                >
-                  <a>Home</a>
-                </Link>
-                <i
-                  className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
-                  onClick={() => {
-                    setShowDropHome(!showDropHome);
-                    setDropDown(!dropDown);
-                  }}
-                ></i>
-                <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
-                  <li>
-                    <a href='#brands'>Brands</a>
-                  </li>
-                  <li>
-                    <a href='#collection'>Collection</a>
-                  </li>
-                  <li>
-                    <a href='#feedback'>Feedback</a>
-                  </li>
-                </ul>
-              </li>
-              {/* <li>
+            <div className='vertical-nav-container'>
+              <ul className='main-nav-phone'>
+                <li>
+                  <Link
+                    to='/'
+                    onClick={() => {
+                      window.scrollTo({
+                        left: 0,
+                        top: 0,
+                        behavior: 'smooth',
+                      });
+                    }}
+                  >
+                    <a>Home</a>
+                  </Link>
+                  <i
+                    className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
+                    onClick={() => {
+                      setShowDropHome(!showDropHome);
+                      setDropDown(!dropDown);
+                    }}
+                  ></i>
+                  <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
+                    <li>
+                      <Link
+                        to='/Abaya'
+                        onClick={() => {
+                          window.scrollTo({
+                            left: 0,
+                            top: 0,
+                            behavior: 'smooth',
+                          });
+                        }}
+                      >
+                        Abaya
+                      </Link>
+                    </li>
+                    <li>
+                      <a href='#collection'>Ready to wear</a>
+                    </li>
+                    <li>
+                      <a href='#feedback'>contact us</a>
+                    </li>
+                  </ul>
+                </li>
+                {/* <li>
                 <Link to="/Abaya" onClick={() => {
                   window.scrollTo({
                     left: 0,
@@ -109,11 +121,9 @@ function Header() {
               <li>
                 <a href="#shalat">Shalat</a>
               </li> */}
-            </ul>
-          </div>
-            </>
-          
-         
+              </ul>
+            </div>
+          </>
         )}
         <div className={y > 0 ? 'lamar-container lamar-container-scroll ' : 'lamar-container'}>
           <ul className={y > 0 ? 'main-nav main-nav-scroll ' : 'main-nav'}>
