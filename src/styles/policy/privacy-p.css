@@ -13,6 +13,12 @@
   }
 }
 
+@media (min-width: 531px) and (max-width: 991px) {
+  .privacy {
+    padding: 200px 0;
+  }
+}
+
 .privacy .lamar-container {
   padding-bottom: 10px;
 }

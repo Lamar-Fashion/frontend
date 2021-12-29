@@ -43,8 +43,7 @@ function Brand() {
           </div>
           <div className='item2'>
             <div className='item-topdiv'>
-              {' '}
-              <h3 className='item-title'>On Sales</h3>
+              <h3 className='item-title'>Ready To Wear</h3>
               <span className='shop-now'>Shop Now</span>
             </div>
 
@@ -55,7 +54,7 @@ function Brand() {
           </div>
           <div className='item3'>
             <div className='item-topdiv'>
-              <h3 className='item-title'>Ready To Wear</h3>
+              <h3 className='item-title'>On Sales</h3>
               <span className='shop-now'>Shop Now</span>
             </div>
 
@@ -66,7 +65,6 @@ function Brand() {
           </div>
           <div className='item4'>
             <div className='item-topdiv'>
-              {' '}
               <h3 className='item-title'>Abayas</h3>
               <span className='shop-now'>Shop Now</span>
             </div>

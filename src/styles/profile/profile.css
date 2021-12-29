@@ -12,7 +12,11 @@
     padding: 135px 0 100px;
   }
 }
-
+@media (min-width: 531px) and (max-width: 991px) {
+  .profile-lamar {
+    padding: 200px 0;
+  }
+}
 .profile-lamar .card-profile {
   display: flex;
   justify-content: center;
@@ -36,7 +40,7 @@
   text-transform: lowercase;
 }
 
-@media (max-width: 530px) {
+@media (max-width: 768px) {
   .profile-lamar .lamar-container {
     width: 100%;
   }

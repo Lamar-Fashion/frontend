@@ -10,6 +10,12 @@
     padding: 135px 0;
   }
 }
+
+@media (min-width: 531px) and (max-width: 991px) {
+  .sign-up {
+    padding: 200px 0;
+  }
+}
 .sign-up .nav-info {
   display: flex;
   justify-content: space-between;
@@ -72,6 +78,12 @@
   align-items: center;
   flex-direction: column;
   gap: 35px;
+}
+
+@media (max-width: 530px) {
+  .sign-up .lamar-container form {
+    padding-top: 25px;
+  }
 }
 @media (max-width: 767px) {
   .sign-up .lamar-container form {

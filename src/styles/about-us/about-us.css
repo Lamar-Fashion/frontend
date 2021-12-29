@@ -12,6 +12,11 @@
     padding: 135px 0 100px;
   }
 }
+@media (min-width: 531px) and (max-width: 991px) {
+  .about-us {
+    padding: 200px 0;
+  }
+}
 .about-us .lamar-container {
   padding-bottom: 10px;
 }
