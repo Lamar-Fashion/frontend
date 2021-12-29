@@ -34,6 +34,13 @@
   grid-gap: 30px;
   height: 500px;
 }
+
+@media (max-width: 530px) {
+  .brand .lamar-container {
+    height: 800px !important;
+  }
+}
+
 @media (max-width: 767px) {
   .brand .lamar-container {
     display: flex;
@@ -65,7 +72,8 @@
   transition: transform 0.5s, box-shadow 0.5s;
   cursor: pointer;
 }
-@media (max-width: 767px) {
+
+@media (min-width: 531px) and (max-width: 767px) {
   .brand .lamar-container > div {
     padding: 5px;
     position: relative;

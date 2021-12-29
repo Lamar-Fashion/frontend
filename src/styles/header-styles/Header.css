@@ -13,6 +13,11 @@
     height: 8rem;
   }
 }
+@media (max-width: 768px) {
+  .header {
+    height: 6.25rem;
+  }
+}
 /*  phones */
 @media (min-width: 531px) and (max-width: 652px) {
 }
@@ -60,7 +65,7 @@
     background-color: #ececec;
     box-shadow: 0px 2px 12px rgb(0, 0, 0, 0.2);
     top: 2rem;
-    height: 6rem;
+    height: 6.25rem;
   }
 }
 
@@ -89,7 +94,7 @@
 @media (min-width: 531px) and (max-width: 652px) {
 }
 
-.header .close-vertical{
+.header .close-vertical {
   position: absolute;
   height: 100vh;
   width: 100%;
@@ -102,7 +107,7 @@
   .header .vertical-nav-container {
     display: none;
   }
-  .header .close-vertical{
+  .header .close-vertical {
     display: none;
   }
 }
@@ -244,10 +249,10 @@
   .header .lamar-container {
     width: 95%;
     display: grid;
-    /* height: 6rem; */
+    /* height: 6.25rem; */
     grid-template-columns: 20% 67% 10%;
     gap: 5px;
-    height: 70px;
+    height: 70px !important;
     padding: 0;
     margin: 0 auto;
   }
@@ -257,9 +262,14 @@
   .header .lamar-container {
     width: 100%;
     display: grid;
-    height: calc(6rem-2rem);
+    height: calc(6.25rem-2rem);
     grid-template-columns: 45% 40% 5%;
     gap: 25px;
+  }
+}
+@media (max-width: 768px) {
+  .header .lamar-container {
+    height: 6.25rem;
   }
 }
 /* Small */
@@ -402,11 +412,15 @@
 
 /* phones */
 @media (min-width: 531px) and (max-width: 652px) {
-  .header .lamar-container .image {
+  /* .header .lamar-container .image {
     width: 100px;
     height: 80px;
     position: relative;
     top: 10px;
+  } */
+  .header .lamar-container .image {
+    width: 110px;
+    height: 90px;
   }
 }
 /* phones */
@@ -562,7 +576,9 @@
   color: black;
 }
 /* end drop down  */
-
+/* small phones */
+@media (max-width: 530px) {
+}
 /* phones */
 @media (max-width: 768px) {
   .header .lamar-container .main-nav {
@@ -582,7 +598,12 @@
 /* small phones */
 @media (max-width: 530px) {
   .header .lamar-container .rightContainer {
-    height: 70px;
+    height: 70px !important;
+  }
+}
+@media (max-width: 768px) {
+  .header .lamar-container .rightContainer {
+    height: 6.25rem;
   }
 }
 .header .lamar-container .rightContainer .right-nav {

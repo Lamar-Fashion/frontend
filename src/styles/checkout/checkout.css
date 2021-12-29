@@ -1,185 +1,186 @@
-.checkout{
-    padding: 200px 0 100px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--main-color-alt2);
+.checkout {
+  padding: 250px 0 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-color-alt);
 }
-@media(max-width:530px){
-  .checkout{
-    padding: 150px 0 100px; 
+@media (max-width: 530px) {
+  .checkout {
+    padding: 135px 0 100px;
   }
 }
-.checkout  .nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    padding: 20px 15px 0;
+.checkout .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 15px 0;
+  width: 100%;
+}
+@media (max-width: 767px) {
+  .checkout > .lamar-container {
     width: 100%;
+  }
 }
-@media(max-width:767px){
-    .checkout > .lamar-container{
-        width: 100%;
-    }
- }
 .checkout .nav .path i {
-    font-size: 22px;
-    margin-right: 10px;
-    color: var(--main-color-alt);
+  font-size: 22px;
+  margin-right: 10px;
+  color: black;
 }
-.checkout .nav .path span{
-    font-size: 20px;
-    cursor: auto;
-    font-weight: 600;
+.checkout .nav .path span {
+  font-size: 20px;
+  cursor: auto;
+  font-weight: 600;
 }
 .checkout .nav .check-livel i {
-    font-size: 18px;
-    margin: 0 5px;
+  font-size: 18px;
+  margin: 0 5px;
 }
 .checkout .nav .check-livel a {
-    color: black;
+  color: black;
 }
-.checkout .nav .check-livel .FLivel{
-    font-weight: 600;
+.checkout .nav .check-livel .FLivel {
+  font-weight: 600;
 }
-.checkout .lamar-container{
-    padding: 0 15px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-.checkout  .lamar-container h2{
-    text-transform: capitalize;
-    font-size: 24px;
-    font-weight: 600;
-    color: black;
+.checkout .lamar-container {
+  padding: 0 15px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkout .lamar-container h2 {
+  text-transform: capitalize;
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
   position: relative;
-  }
- .checkout  .lamar-container h2::before{
-    content: "";
-    position: absolute;
-    height: 5px;
-    width: 60px;
-    bottom: -10px;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background-color: var(--main-color-alt);
-    border-radius: 20px;
-  }
+}
+.checkout .lamar-container h2::before {
+  content: '';
+  position: absolute;
+  height: 5px;
+  width: 60px;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--main-color-alt);
+  border-radius: 20px;
+}
 
-  .checkout  .lamar-container form{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    gap: 45px;
+.checkout .lamar-container form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 45px;
+}
+@media (max-width: 767px) {
+  .checkout .lamar-container form {
+    width: 90%;
   }
-  @media (max-width:767px){
-    .checkout .lamar-container form{
-        width:90%;
-    }
-  }
+}
 
-  .checkout .lamar-container form > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    width: 100%
-  }
-  .checkout .lamar-container form > div > input{
-  flex: 1
-  }
+.checkout .lamar-container form > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+.checkout .lamar-container form > div > input {
+  flex: 1;
+}
 
+.checkout .lamar-container .name,
+.checkout .lamar-container .address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+  width: 100%;
+}
+@media (max-width: 767px) {
   .checkout .lamar-container .name,
-  .checkout .lamar-container .address{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 35px;
-    width: 100%;
+  .checkout .lamar-container .address {
+    flex-wrap: wrap;
   }
-  @media(max-width:767px){
-    .checkout .lamar-container .name,
-    .checkout .lamar-container .address{
-flex-wrap: wrap;
-    }
-  }
-  .checkout .lamar-container .name > div,
-  .checkout .lamar-container .address > div{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    width:100%;
-  }
-  .checkout .lamar-container .name > div > input ,
-  .checkout .lamar-container .address > div > input{
-    flex: 1
-  }
+}
+.checkout .lamar-container .name > div,
+.checkout .lamar-container .address > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+.checkout .lamar-container .name > div > input,
+.checkout .lamar-container .address > div > input {
+  flex: 1;
+}
 
-  .checkout .lamar-container input{
-    border: none;
-        outline: none;
-        height: 30px;
-        width: 200px;
-        border-bottom: 1px solid;
-        background: transparent;
-        font-size: 16px
-  }
-    .checkout .lamar-container input:-webkit-autofill,
-    .checkout .lamar-container input:-webkit-autofill:hover, 
-    .checkout .lamar-container input:-webkit-autofill:focus, 
-    .checkout .lamar-container input:-webkit-autofill:active  {
-        -webkit-box-shadow: 0 0 0 30px var(--main-color-alt2) inset !important;
-    }
-    
-    @-webkit-keyframes autofill {
-        0%,100% {
-            color: #666;
-            background: transparent;
-        }
-    }
-    
-    .checkout .lamar-container input:-webkit-autofill {
-        -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
-        -webkit-animation-name: autofill;
-        -webkit-animation-fill-mode: both;
-    }
-  
-    .checkout .lamar-container input::placeholder{
-      transition: 0.3s;
-      background: transparent;
-      text-transform: capitalize;
-      color: black;
-    }
-    .checkout .lamar-container input:focus::placeholder{
-    opacity: 0;
-    }
-    .checkout .lamar-container i {
-      font-size: 30px;
-     color: var(--main-color-alt);
-    }
+.checkout .lamar-container input {
+  border: none;
+  outline: none;
+  height: 30px;
+  width: 200px;
+  border-bottom: 1px solid;
+  background: transparent;
+  font-size: 16px;
+}
+.checkout .lamar-container input:-webkit-autofill,
+.checkout .lamar-container input:-webkit-autofill:hover,
+.checkout .lamar-container input:-webkit-autofill:focus,
+.checkout .lamar-container input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--main-color-alt2) inset !important;
+}
 
-    .checkout .lamar-container .next{
-        width: 100%;
-         height: 50px;
-         background-color: whitesmoke;
-         border: none;
-         color: black;
-         font-size: 20px;
-         box-shadow: 0 2px 12px rgb(0,0,0,0.3);
-         cursor: pointer;
-         transition:transform 0.3s ,box-shadow 0.3s;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-     }
-     .checkout .lamar-container .next:hover{
-      background-color: var(--main-color-alt);
-           box-shadow: 0 2px 12px rgb(0,0,0,0.5);
-           font-size: 22px;
-           font-weight: 600;
-           transform: translateY(-3px);
-     }
+@-webkit-keyframes autofill {
+  0%,
+  100% {
+    color: #666;
+    background: transparent;
+  }
+}
+
+.checkout .lamar-container input:-webkit-autofill {
+  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
+.checkout .lamar-container input::placeholder {
+  transition: 0.3s;
+  background: transparent;
+  text-transform: capitalize;
+  color: black;
+}
+.checkout .lamar-container input:focus::placeholder {
+  opacity: 0;
+}
+.checkout .lamar-container i {
+  font-size: 30px;
+  color: black;
+}
+
+.checkout .lamar-container .next {
+  width: 100%;
+  height: 50px;
+  background-color: whitesmoke;
+  border: none;
+  color: black;
+  font-size: 20px;
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkout .lamar-container .next:hover {
+  background-color: var(--main-color-alt);
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
+  font-size: 22px;
+  font-weight: 600;
+  transform: translateY(-3px);
+}

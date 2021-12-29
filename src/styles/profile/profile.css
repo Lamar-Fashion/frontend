@@ -1,75 +1,70 @@
-.profile-lamar{
-    padding: 200px 0 100px;
-    width: 100%;
-    background-color: var(--main-color-alt);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.profile-lamar {
+  padding: 250px 0 100px;
+  width: 100%;
+  background-color: var(--main-color-alt);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-@media(max-width:530px){
-    .profile-lamar{
-      padding: 150px 0 100px; 
-    }
+@media (max-width: 530px) {
+  .profile-lamar {
+    padding: 135px 0 100px;
   }
-
-
-.profile-lamar .card-profile{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
 }
-.profile-lamar .card-profile .image{
-    width: 120px;
-    height:120px;
+
+.profile-lamar .card-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
 }
-.profile-lamar .card-profile .image img{
+.profile-lamar .card-profile .image {
+  width: 120px;
+  height: 120px;
+}
+.profile-lamar .card-profile .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.profile-lamar .card-profile h2 {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+@media (max-width: 530px) {
+  .profile-lamar .lamar-container {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-.profile-lamar .card-profile h2{
-    font-size:24px;
-    font-weight: 600;
-    text-transform: lowercase;
-}
-
-.profile-lamar  .lamar-container {
-    padding: 20px 0px;
-}
-@media(max-width:530px){
-    .profile-lamar  .lamar-container{
-        width: 100%;
-    }
   }
-.profile-lamar  .lamar-container .path{
-    width: 100%;
+}
+.profile-lamar .lamar-container .path {
+  width: 100%;
 }
 .profile-lamar .lamar-container .path i {
-    font-size: 22px;
-    margin-right: 10px;
-    color:black;
+  font-size: 22px;
+  margin-right: 10px;
+  color: black;
 }
-.profile-lamar  .lamar-container .path span{
-    font-size: 20px;
-    cursor: auto;
-    font-weight: 600;
+.profile-lamar .lamar-container .path span {
+  font-size: 20px;
+  cursor: auto;
+  font-weight: 600;
 }
 
-.profile-lamar .nav-info-profile{
-    width: fit-content;
-    margin: 0 auto;
-    border-color: var(--main-color-alt);
+.profile-lamar .nav-info-profile {
+  width: fit-content;
+  margin: 0 auto;
+  border-color: var(--main-color-alt);
 }
-.profile-lamar .Tab-profile{
-    color: black;
-    font-size: 17px;
-    font-weight: 600;
-    text-transform: capitalize;
-
+.profile-lamar .Tab-profile {
+  color: black;
+  font-size: 17px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 /* .profile-lamar button#mui-p-3547-T-2{
     color: var(--main-color-alt);

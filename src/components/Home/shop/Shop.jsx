@@ -3,16 +3,30 @@ import '../../../styles/home-styles/shop.css';
 import shop1 from '../../../images/shop/shop1.jpeg';
 import shop2 from '../../../images/shop/shop2.jpeg';
 import shop3 from '../../../images/shop/shop3.jpeg';
+import { Link } from 'react-router-dom';
+
 function Shop() {
   return (
     <>
       <section className='shop'>
-  
         <div className='lamar-container'>
           <section className='leftSection'>
             <h2 className='shop-title'>Repair Services</h2>
+
             <h3 className='text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat enim perferendis rerum reiciendis quos hic atque,</h3>
-            <button className='button shopBtn'>Shop Now</button>
+
+            <Link
+              to='/Abaya'
+              onClick={() => {
+                window.scrollTo({
+                  left: 0,
+                  top: 0,
+                  behavior: 'smooth',
+                });
+              }}
+            >
+              <button className='button shopBtn'>Shop Now</button>
+            </Link>
           </section>
           <section className='rightSection'>
             <div className='image1 shopImg'>
