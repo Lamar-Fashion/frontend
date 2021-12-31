@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import '../../../styles/abaya-styles/abaya-cards.css';
+import { v4 as uuidv4 } from 'uuid';
 import lamar from '../../../images/brand/abaya.jpeg';
 import neo from '../../../images/brand/test/brand13.jpg';
 import ll from '../../../images/brand/test/brand11.jpg';
@@ -11,7 +12,7 @@ import { useSelector } from 'react-redux';
 function AbayaCards() {
   const role = useSelector((state) => state.authReducer.role);
 
-  let product = [
+  let product = 
     {
       images: [lamar, neo, ll, l2],
       name: 'A25sp5',
@@ -21,24 +22,33 @@ function AbayaCards() {
       discrpition: ' Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd ',
       small_des: 'Lorem ipsum dolor',
       brand: 'lamar',
-      id: 1,
-    },
-  ];
+      id: "",
+    }
+  
 
   const arralen = 50; // array.length
   const [showItems, setShowItems] = useState(15);
-  let array = new Array(arralen).fill(0);
+  let array = new Array(arralen).fill(product);
   const [pageNumber, setPageNumber] = useState(0);
   // const [showVerticalFilter, setShowVerticalFilter] = useState(false);
   const pagesVisited = pageNumber * showItems;
   const addEntry = (product) => {
-    let FavArray = JSON.parse(window.localStorage.getItem('fav'));
+    let FavArray = JSON.parse(window.sessionStorage.getItem('fav'));
     if (FavArray == null) FavArray = [];
     FavArray.push(product);
-    window.localStorage.setItem('fav', JSON.stringify(FavArray));
+    window.sessionStorage.setItem('fav', JSON.stringify(FavArray));
   };
 
+  // useEffect(()=>{
+  //   array?.map((item,indx)=>{
+  //     item.id=uuidv4()
+  //   })
+      
+   
+  // },[])
+ 
   useEffect(() => {
+    
     window.scrollTo({
       left: 0,
       top: 100,
@@ -48,20 +58,23 @@ function AbayaCards() {
   const displayUser =
     array.length &&
     array.slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
+      console.log("item id ", item.id);
       return (
-        <div className='box'>
+        <>
+       
+         <div className='box'>
           <div className='over-view'>
             <div
               className='fav'
-              onClick={() => {
-                addEntry(product[0]);
-              }}
+              // onClick={() => {
+              //   addEntry(item);
+              // }}
             >
               <i class='fas fa-heart'></i>
             </div>
           </div>
           <div className='image'>
-            <img src={product[0].images[0]} alt='' className='img-product' />
+            <img src={item.images[0]} alt='' className='img-product' />
             <Link
               to='/ProductDetails'
               onClick={() => {
@@ -70,7 +83,8 @@ function AbayaCards() {
                   top: 0,
                   behavior: 'smooth',
                 });
-                window.localStorage.setItem('product', JSON.stringify(product[0]));
+                item.id=uuidv4();
+                window.sessionStorage.setItem('product', JSON.stringify(item))
               }}
             >
               <div className='overlay'>
@@ -81,10 +95,13 @@ function AbayaCards() {
             </Link>
           </div>
           <div className='info'>
-            <h3>{product[0].name}</h3>
+            <h3>{item.name}</h3>
             <h2>QAR 1200</h2>
           </div>
         </div>
+        </>
+        
+       
       );
     });
   const pageCount = Math.ceil(array.length / showItems);
@@ -103,6 +120,7 @@ function AbayaCards() {
             <AbayaFilter />
           </section>
         </div> */}
+        
         <div className='catagory'>
           <div className='catag-path'>
             <Link to='/'>

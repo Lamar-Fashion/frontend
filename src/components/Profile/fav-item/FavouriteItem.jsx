@@ -4,13 +4,13 @@ import "../../../styles/profile/fav-item.css"
 
 function FavouriteItem() {
     const [favArray, setFavArray] = useState([])
-    useEffect(() => {
-      setFavArray(JSON.parse(window.localStorage.getItem("fav")))
-    }, [favArray])
+    // useEffect(() => {
+    //   setFavArray(JSON.parse(window.sessionStorage.getItem("fav")))
+    // }, [favArray])
     // let array=new Array(10).fill(0)
-    const deleteItem=async(indx,item)=>{
-     await favArray.splice(Number(indx), 1);
-    await  window.localStorage.setItem("fav",JSON.stringify(favArray))
+    const deleteItem=(indx,item)=>{
+      favArray.splice(Number(indx), 1);
+      window.sessionStorage.setItem("fav",JSON.stringify(favArray))
     }
     return (
         <>
@@ -41,7 +41,7 @@ function FavouriteItem() {
                   top: 0,
                   behavior: "smooth",
                 });
-                window.localStorage.setItem(
+                window.sessionStorage.setItem(
                   "product",
                   JSON.stringify(item)
                 );
