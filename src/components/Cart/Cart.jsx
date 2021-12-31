@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/Cart/cart.css';
 function Cart() {
-  const [cartArray, setCartArray] = useState(JSON.parse(window.localStorage.getItem('cart')));
+  const [cartArray, setCartArray] = useState(JSON.parse(window.sessionStorage.getItem('cart')));
   const [quantity, setQuantity] = useState({});
   const [total, setTotal] = useState(0);
 
@@ -13,25 +13,27 @@ function Cart() {
     let summ = 0;
 
     console.log('cartArray', cartArray);
-    cartArray?.map((item) => (summ += Number(item.price)));
+    cartArray?.map((item) => (summ += (Number(item.price))*Number(item.quantity)));
     setTotal(summ);
   }, []);
 
   const deleteItem = (item, indx) => {
     console.log(indx);
     cartArray.splice(Number(indx), 1);
-    window.localStorage.setItem('cart', JSON.stringify(cartArray));
+    window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
     setTotal(total - Number(item.price));
   };
   const addItem = (item, indx) => {
     setQuantity({ ...quantity, [indx]: quantity[indx] ? quantity[indx] + 1 : 2 });
+    cartArray[indx].quantity=item.quantity + 1 
+    window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
     setTotal(total + Number(item.price));
   };
   const decresItem = (item, indx) => {
     if (quantity[indx] > 1) {
-      // setQuantity(quantity - 1);
       setQuantity({ ...quantity, [indx]: quantity[indx] ? quantity[indx] - 1 : 1 });
-
+      cartArray[indx].quantity=item.quantity - 1 
+      window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
       setTotal(total - item.price);
     }
   };
@@ -121,7 +123,8 @@ function Cart() {
                             ></i>
                           </div>
                           <div className='quantity-q'>
-                            <span>{quantity[indx] ? quantity[indx] : 1}</span>
+                            {/* <span>{quantity[indx] ? quantity[indx] : 1}</span> */}
+                            <span>{cartArray[indx].quantity}</span>
                           </div>
                           <div className='incress'>
                             <i

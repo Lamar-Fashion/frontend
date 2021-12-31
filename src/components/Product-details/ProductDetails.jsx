@@ -3,7 +3,7 @@ import '../../styles/product-details/product-details.css';
 import { Link } from 'react-router-dom';
 import Flicking from '@egjs/react-flicking';
 function ProductDetails() {
-  let obj = JSON.parse(window.localStorage.getItem('product'));
+  let obj = JSON.parse(window.sessionStorage.getItem('product'));
   let images = obj.images;
   let firstImg = obj.images[0];
   const [state, setstate] = useState(firstImg);
@@ -12,15 +12,32 @@ function ProductDetails() {
   let size = obj.size;
   let color = obj.color;
   let descrp = obj.discrpition;
-  const [selectedProduct, setSelectedProduct] = useState({ ...obj, size: false, color: false, buttons: false });
+  const [selectedProduct, setSelectedProduct] = useState({ ...obj, size: false, color: false, buttons: false ,quantity:1 });
   const [selectedStyleSize, setSelectedStyleSize] = useState({ show: false, id: '' });
   const [selectedStyleColor, setSelectedStyleColor] = useState({ show: false, id: '' });
 
   const addEntry = (obj) => {
-    let FavArray = JSON.parse(window.localStorage.getItem('cart'));
+    let FavArray = JSON.parse(window.sessionStorage.getItem('cart'));
     if (FavArray == null) FavArray = [];
-    FavArray.push(obj);
-    window.localStorage.setItem('cart', JSON.stringify(FavArray));
+    let duplecated=false
+    for (let i = 0; i < FavArray.length; i++) { 
+      if(FavArray[i].color===obj.color && FavArray[i].size===obj.size && FavArray[i].name===obj.name && FavArray[i].buttons === obj.buttons &&  FavArray[i].descrp === obj.descrp && FavArray[i].price === obj.price ){
+        FavArray[i].quantity=FavArray[i].quantity + 1
+        duplecated=true
+        break;
+      }
+    }
+    if(!duplecated && FavArray.length!==0){
+      FavArray.push(obj)
+    }
+    if(FavArray.length===0) {FavArray.push(obj);}
+    
+    window.sessionStorage.setItem('cart', JSON.stringify(FavArray));
+    alert("added to cart thank you     ")
+    setSelectedProduct({ ...obj, size: false, color: false, buttons: false ,quantity:1});
+    setSelectedStyleSize({ show: false, id: '' })
+    setSelectedStyleColor({ show: false, id: '' })
+    
   };
   return (
     <>
@@ -108,7 +125,8 @@ function ProductDetails() {
             <div className='qun-product'>
               <div className='buttuns'>
                 <label htmlFor='buttuns'>buttuns:</label>
-                <select name='buttuns' id='buttuns' onChange={(e) => setSelectedProduct({ ...selectedProduct, buttons: e.target.value })}>
+                <select name='buttuns' id='buttuns' onChange={(e) => setSelectedProduct({ ...selectedProduct, buttons: e.target.value }) 
+               }>
                   <option value='false'>-- choose buttuns --</option>
                   <option value='with-buttuns-مع طقطق'>with-buttuns-مع طقطق</option>
                   <option value='without-buttuns-بدون طقطق'>without-buttuns-بدون طقطق</option>
@@ -119,7 +137,7 @@ function ProductDetails() {
               </div>
               <div className='add-to-cart'>
                 <button
-                  onClick={() => {
+                  onClick={(e) => {
                     if (!selectedProduct.size || !selectedProduct.color || !selectedProduct.buttons || selectedProduct.buttons == 'false') {
                       alert(
                         `please select ${!selectedProduct.size ? 'size ,' : ' '} ${!selectedProduct.color ? 'color ,' : ' '} ${
@@ -129,6 +147,7 @@ function ProductDetails() {
                     } else {
                       addEntry(selectedProduct);
                       console.log('selectedProduct', selectedProduct);
+                      
                     }
                   }}
                 >
