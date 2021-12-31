@@ -78,7 +78,7 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  to='/AboutUs'
+                  to='/Contact-us'
                   onClick={() => {
                     window.scrollTo({
                       left: 0,

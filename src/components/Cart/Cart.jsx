@@ -5,16 +5,7 @@ function Cart() {
   const [cartArray, setCartArray] = useState(JSON.parse(window.localStorage.getItem('cart')));
   const [quantity, setQuantity] = useState({});
   const [total, setTotal] = useState(0);
-  let price = cartArray.map((item) => item.price);
-  let sum = 0;
 
-  // useEffect(() => {
-  //   setCartArray(JSON.parse(window.localStorage.getItem('cart')));
-
-  //   for (let i = 0; i < price.length; i++) {
-  //     sum += Number(price[i]);
-  //   }
-  // }, [cartArray, sum]);
   useEffect(() => {
     console.log('quantity', quantity);
   }, [quantity]);
@@ -22,7 +13,7 @@ function Cart() {
     let summ = 0;
 
     console.log('cartArray', cartArray);
-    cartArray.map((item) => (summ += Number(item.price)));
+    cartArray?.map((item) => (summ += Number(item.price)));
     setTotal(summ);
   }, []);
 
@@ -46,7 +37,7 @@ function Cart() {
   };
   return (
     <>
-      {cartArray.length > 0 ? (
+      {cartArray?.length > 0 ? (
         <section className='cart-lamar' id='Cart'>
           <div className='lamar-container'>
             <div className='cart-container '>
@@ -91,7 +82,7 @@ function Cart() {
                   </th>
                 </tr>
               </thead>
-              {cartArray.map((item, indx) => {
+              {cartArray?.map((item, indx) => {
                 return (
                   <tbody>
                     <tr className='cart-table-body-r'>
@@ -104,12 +95,14 @@ function Cart() {
                             <h4>{item.name}</h4>
                             <p>
                               <span>size :</span>
-                              {item.size.map((i) => (
-                                <strong className='cart-size'>{i}</strong>
-                              ))}
+
+                              <strong className='cart-size'>{item.size}</strong>
                             </p>
                             <p>
-                              <span>color :</span> {item.color.map((i) => i + ' ') + ' '}
+                              <span>color :</span> {item.color}
+                            </p>
+                            <p>
+                              <span>buttons :</span> {item.buttons}
                             </p>
                           </div>
                         </div>
@@ -163,7 +156,7 @@ function Cart() {
             <div className='path'>
               <Link to='/'>
                 <i class='fas fa-home'></i>
-              </Link>{' '}
+              </Link>
               <i class='fas fa-angle-right'></i> <span>Shoping Cart</span>
             </div>
           </div>

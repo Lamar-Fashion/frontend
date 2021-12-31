@@ -1,5 +1,5 @@
 .product-d {
-  padding: 250px 0 100px;
+  padding: 230px 0 100px;
   width: 100%;
   background-color: var(--main-color-alt);
   position: relative;
@@ -114,7 +114,7 @@
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  height: 500px;
+  height: 550px;
 }
 @media (max-width: 530px) {
   .product-d .lamar-container .product-info {
@@ -260,4 +260,14 @@
 .product-d .lamar-container .product-info .add-fav button:hover {
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
   transform: translateY(-5px);
+}
+
+.product-d .vendor {
+  font-weight: lighter;
+  font-size: 20px;
+}
+
+.product-d .selected {
+  border: 2px solid red !important;
+  transform: scale(1.2);
 }

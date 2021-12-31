@@ -10,8 +10,6 @@ function Abaya() {
         <AbayaHero />
         <div className='lamar-container'>
           <AbayaCards />
-
-          <div className='web-filter'>{/* <AbayaFilter /> */}</div>
         </div>
       </section>
     </>
