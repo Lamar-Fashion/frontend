@@ -4,14 +4,14 @@ import '../../styles/header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsFillHeartFill, BsPersonCircle } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 function Header() {
   const [showVerticalNav, setshowVerticalNav] = useState(false);
   const [showDropHome, setShowDropHome] = useState(false);
-  const [showDropAbay, setShowDropAbay] = useState(false);
   const [dropDown, setDropDown] = useState(false);
-  const [dropDownA, setDropDownA] = useState(false);
   const [showSearchTextField, setShowSearchTextField] = useState(false);
   const [y, setY] = useState(0);
+  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
 
   function scrollHandler() {
     setY(window.scrollY);
@@ -248,20 +248,38 @@ function Header() {
             </div>
             <ul className='right-nav'>
               <li>
-                <Link
-                  to='/SignIn'
-                  onClick={() => {
-                    window.scrollTo({
-                      left: 0,
-                      top: 0,
-                      behavior: 'smooth',
-                    });
-                  }}
-                >
-                  <a>
-                    <BsPersonCircle className='header-icons profile' />
-                  </a>
-                </Link>
+                {!isLoggedIn && (
+                  <Link
+                    to='/SignIn'
+                    onClick={() => {
+                      window.scrollTo({
+                        left: 0,
+                        top: 0,
+                        behavior: 'smooth',
+                      });
+                    }}
+                  >
+                    <a className='a-sign'>
+                      sign-in <i className='fas fa-sign-in-alt header-icons profile'></i>
+                    </a>
+                  </Link>
+                )}
+                {isLoggedIn && (
+                  <Link
+                    to='/SignIn'
+                    onClick={() => {
+                      window.scrollTo({
+                        left: 0,
+                        top: 0,
+                        behavior: 'smooth',
+                      });
+                    }}
+                  >
+                    <a className='a-sign'>
+                      sign-out <i className='fas fa-sign-out-alt header-icons profile'></i>
+                    </a>
+                  </Link>
+                )}
               </li>
               <li>
                 <Link

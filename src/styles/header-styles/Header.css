@@ -775,8 +775,16 @@
   cursor: pointer;
   transition: 0.3s;
 }
+.header .lamar-container .rightContainer .right-nav li .a-sign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  color: black;
+}
 .header .lamar-container .rightContainer .right-nav .profile {
   cursor: pointer;
+  font-size: 25px;
   transition: 0.3s;
 }
 .header .lamar-container .rightContainer .right-nav .profile:hover {
