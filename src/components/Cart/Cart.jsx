@@ -5,16 +5,19 @@ function Cart() {
   const [cartArray, setCartArray] = useState(JSON.parse(window.sessionStorage.getItem('cart')));
   const [quantity, setQuantity] = useState({});
   const [total, setTotal] = useState(0);
+  window.sessionStorage.setItem('total', JSON.stringify(total));
 
   useEffect(() => {
     console.log('quantity', quantity);
   }, [quantity]);
   useEffect(() => {
+
     let summ = 0;
 
     console.log('cartArray', cartArray);
     cartArray?.map((item) => (summ += (Number(item.price))*Number(item.quantity)));
     setTotal(summ);
+    
   }, []);
 
   const deleteItem = (item, indx) => {
@@ -30,7 +33,7 @@ function Cart() {
     setTotal(total + Number(item.price));
   };
   const decresItem = (item, indx) => {
-    if (quantity[indx] > 1) {
+    if (item.quantity > 1) {
       setQuantity({ ...quantity, [indx]: quantity[indx] ? quantity[indx] - 1 : 1 });
       cartArray[indx].quantity=item.quantity - 1 
       window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
