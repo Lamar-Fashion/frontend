@@ -8,7 +8,6 @@ import l2 from '../../../images/brand/test/brand2.jpg';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import { useSelector } from 'react-redux';
-// import AbayaFilter from "../abaya-filter/AbayaFilter";
 function AbayaCards() {
   const role = useSelector((state) => state.authReducer.role);
 
