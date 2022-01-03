@@ -8,22 +8,23 @@ import l2 from '../../../images/brand/test/brand2.jpg';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import { useSelector } from 'react-redux';
+import AddProductModal from './AddProductModal';
 function AbayaCards() {
   const role = useSelector((state) => state.authReducer.role);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
 
-  let product = 
-    {
-      images: [lamar, neo, ll, l2],
-      name: 'A25sp5',
-      price: '1300',
-      color: ['black', 'red', 'blue'],
-      size: ['s', 'm'],
-      discrpition: ' Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd ',
-      small_des: 'Lorem ipsum dolor',
-      brand: 'lamar',
-      id: "",
-    }
-  
+  let product = {
+    images: [lamar, neo, ll, l2],
+    name: 'A25sp5',
+    price: '1300',
+    color: ['black', 'red', 'blue'],
+    size: ['s', 'm'],
+    discrpition: ' Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd ',
+    small_des: 'Lorem ipsum dolor',
+    brand: 'lamar',
+    id: '',
+  };
 
   const arralen = 50; // array.length
   const [showItems, setShowItems] = useState(15);
@@ -42,12 +43,10 @@ function AbayaCards() {
   //   array?.map((item,indx)=>{
   //     item.id=uuidv4()
   //   })
-      
-   
+
   // },[])
- 
+
   useEffect(() => {
-    
     window.scrollTo({
       left: 0,
       top: 100,
@@ -57,50 +56,47 @@ function AbayaCards() {
   const displayUser =
     array.length &&
     array.slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
-      console.log("item id ", item.id);
+      console.log('item id ', item.id);
       return (
         <>
-       
-         <div className='box'>
-          <div className='over-view'>
-            <div
-              className='fav'
-              // onClick={() => {
-              //   addEntry(item);
-              // }}
-            >
-              <i class='fas fa-heart'></i>
+          <div className='box'>
+            <div className='over-view'>
+              <div
+                className='fav'
+                // onClick={() => {
+                //   addEntry(item);
+                // }}
+              >
+                <i class='fas fa-heart'></i>
+              </div>
+            </div>
+            <div className='image'>
+              <img src={item.images[0]} alt='' className='img-product' />
+              <Link
+                to='/ProductDetails'
+                onClick={() => {
+                  window.scrollTo({
+                    left: 0,
+                    top: 0,
+                    behavior: 'smooth',
+                  });
+                  item.id = uuidv4();
+                  window.sessionStorage.setItem('product', JSON.stringify(item));
+                }}
+              >
+                <div className='overlay'>
+                  <h3>
+                    Quick View <i class='far fa-eye'></i>
+                  </h3>
+                </div>
+              </Link>
+            </div>
+            <div className='info'>
+              <h3>{item.name}</h3>
+              <h2>QAR 1200</h2>
             </div>
           </div>
-          <div className='image'>
-            <img src={item.images[0]} alt='' className='img-product' />
-            <Link
-              to='/ProductDetails'
-              onClick={() => {
-                window.scrollTo({
-                  left: 0,
-                  top: 0,
-                  behavior: 'smooth',
-                });
-                item.id=uuidv4();
-                window.sessionStorage.setItem('product', JSON.stringify(item))
-              }}
-            >
-              <div className='overlay'>
-                <h3>
-                  Quick View <i class='far fa-eye'></i>
-                </h3>
-              </div>
-            </Link>
-          </div>
-          <div className='info'>
-            <h3>{item.name}</h3>
-            <h2>QAR 1200</h2>
-          </div>
-        </div>
         </>
-        
-       
       );
     });
   const pageCount = Math.ceil(array.length / showItems);
@@ -119,12 +115,12 @@ function AbayaCards() {
             <AbayaFilter />
           </section>
         </div> */}
-        
+
         <div className='catagory'>
           <div className='catag-path'>
             <Link to='/'>
               <i class='fas fa-home'></i>
-            </Link>{' '}
+            </Link>
             <i class='fas fa-angle-right'></i> <span>Abaya</span>
           </div>
           <div className='catag-info'>
@@ -160,7 +156,17 @@ function AbayaCards() {
               </select>
             </div>
             {console.log('role', role)}
-            {role === 'admin' && <div className='sort-item'>+ add product</div>}
+            {role === 'admin' && (
+              <div
+                className='sort-item'
+                onClick={() => {
+                  handleOpen();
+                }}
+              >
+                {/* <Link to='/addProduct'>+ add product</Link> */}+ add product
+              </div>
+            )}
+            <AddProductModal setOpen={setOpen} open={open} />
           </div>
           {/* <div
             className="phone-filters"
