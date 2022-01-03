@@ -1,114 +1,26 @@
 .container-abaya-hero .abaya-hero {
-  background-color: whitesmoke;
-  height: 300px;
   position: relative;
   width: 100%;
-  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 12rem;
 }
-@media(max-width:530px){
-  .container-abaya-hero .abaya-hero{
-    padding-top: 6rem;
-    height: 200px;
-  }
-}
+
 .container-abaya-hero .abaya-hero h4{
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
   position: relative;
 }
 .container-abaya-hero .abaya-hero h4::before{
-  content: "";
+  content: '';
   position: absolute;
-  width:30%;
   height: 5px;
-  background-color: black;
-  top:50px;
+  width: 50%;
+  bottom: -10px;
   left: 50%;
-  transform: translate(-50%,-50%);
-  border-radius: 15px;
-}
-/* Small */
-@media (min-width: 768px) {
-}
-/* Medium */
-@media (min-width: 992px) {
-}
-/* Large */
-@media (min-width: 1200px) {
-}
-
-/* .container-abaya-hero .abaya-hero .info-text {
-  position: absolute;
-  left: 100px;
-  top: 50%;
-} */
-/* very Small */
-/* @media (max-width: 530px) {
-  .container-abaya-hero .abaya-hero .info-text {
-    left: 10px;
-  }
-} */
-/* .container-abaya-hero .abaya-hero .info-text h3 {
-  color: var(--main-color-alt);
-  font-size: 20px;
-  font-weight: 600;
-  margin: 10px auto;
-} */
-/* .container-abaya-hero .abaya-hero .info-text h2 {
-  color: var(--main-color-alt2);
-  font-size: 54px;
-  font-weight: 800;
-  text-shadow: 10px 10px 10px rgb(0, 0, 0, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 8px;
-} */
-
-/* .container-abaya-hero .abaya-hero .info-text .shop-now {
-  width: 150px;
-  height: 35px;
-  background-color: var(--main-color-alt2);
-  border: none;
-  border-radius: 5px;
-  color: var(--main-color-alt);
-  font-size: 20px;
-  margin: 12px 0 0;
-  position: relative;
-  z-index: 2;
-}
-
-.container-abaya-hero .abaya-slider {
-  height: 50px;
+  transform: translate(-50%, -50%);
   background-color: black;
-  position: relative;
-  margin: auto;
-  width: auto;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 20px;
 }
-
-.container-abaya-hero .abaya-slider .slide-trick {
-  animation: scroll 40s linear infinite;
-  display: flex;
-  width: calc(200px * 12);
-  gap: 40px;
-}
-
-.container-abaya-hero .abaya-slider .slide-trick .slide {
-  height: 45px;
-}
-.container-abaya-hero .abaya-slider .slide-trick .slide img {
-  height: 45px;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-200px * 6));
-  }
-} */

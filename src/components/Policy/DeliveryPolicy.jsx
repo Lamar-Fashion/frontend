@@ -5,14 +5,14 @@ function DeliveryPolicy() {
     return (
         <>
         <section className="delivery-p" >
-        <div className="lamar-container">
-          <div className="path">
-            <Link to="/">
-              <i class="fas fa-home"></i>
-            </Link>
-            <i class="fas fa-angle-right"></i> <span>Delivery Policy</span>
+        <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >Delivery Policy </span>
           </div>
         </div>
+      </div>
         <div className="lamar-container">
             <p><span>lamar fashion</span> r sit, amet consectetur adipisicing elit. Minus laborum, aliquid corrupti reprehenderit eius ullam quo voluptas doloremque consequuntur atque tempore nesciunt consectetur sunt deserunt, perspiciatis totam deleniti hic eaque.</p>
             <p>We ship all our goods directly from the factory in Qatar.</p>

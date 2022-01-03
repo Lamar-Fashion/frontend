@@ -5,14 +5,14 @@ function PrivacyPolicy() {
     return (
         <>
          <section className="privacy" >
-        <div className="lamar-container">
-          <div className="path">
-            <Link to="/">
-              <i class="fas fa-home"></i>
-            </Link>
-            <i class="fas fa-angle-right"></i> <span>Delivery Policy</span>
+         <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >PRIVACY POLICY</span>
           </div>
         </div>
+      </div>
         <div className="lamar-container">
             <p>This privacy and policy describe how we collect the information you provide on our Website, and how we use the information, some of the security steps taken to protect the information, and the choices you must review, revise and/or restrict our usage of this information. This Policy is part of the Terms & Conditions of Use that govern the Website and is binding on all Website users. All credit/debit cards details and personally identifiable information will NOT be stored, sold, shared, rented or leased to any third parties. Security capabilities and policy for transmission of payment card details has to be mentioned on the website.</p>
             <ol>

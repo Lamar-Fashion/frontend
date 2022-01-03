@@ -5,16 +5,14 @@ function ContactUs() {
   return (
     <>
       <section className='contact-us'>
-        <div className='lamar-container'>
-          <div className='nav-info'>
-            <div className='nav-path'>
-              <Link to='/'>
-                <i class='fas fa-home'></i>
-              </Link>
-              <i class='fas fa-angle-right'></i> <span>Contact Us</span>
-            </div>
+      <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >contact us</span>
           </div>
         </div>
+      </div>
 
         <div className='lamar-container'>
           <form action='mailto:anofal719@gmail.com' method='GET'>

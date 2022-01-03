@@ -1,19 +1,19 @@
 .sign-up {
-  padding: 240px 0 100px;
-  width: 100%;
+  padding: 220px 0 100px;
   background-color: var(--main-color-alt);
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 25px;
 }
 @media (max-width: 530px) {
   .sign-up {
-    padding: 135px 0;
+    padding: 125px 0;
   }
 }
-
-@media (min-width: 531px) and (max-width: 991px) {
+@media (min-width: 530px) and (max-width:767px) {
   .sign-up {
-    padding: 200px 0;
+    padding: 145px 0;
   }
 }
 .sign-up .nav-info {
@@ -21,27 +21,30 @@
   justify-content: space-between;
   align-items: center;
   gap: 30px;
-  padding: 10px 15px 0;
   width: 100%;
 }
-.sign-up .nav-info .nav-path i {
-  font-size: 22px;
-  margin-right: 10px;
+.sign-up .nav-info i {
+  font-size: 16px;
   color: black;
-}
-.sign-up .nav-info .nav-path span {
-  font-size: 20px;
-  cursor: auto;
-  font-weight: 600;
+  font-weight: 500;
+  margin-right: 10px;
 }
 
-.sign-up .nav-info a {
-  cursor: pointer;
-  font-size: 20px;
+.sign-up .left-nav .i-home {
+  font-size: 18px;
+  color: black;
+  font-weight: 600;
+
+} 
+.sign-up .nav-info span{
+  color: black;
+  font-size: 18px;
   font-weight: 600;
   text-transform: capitalize;
-  color: black;
-  text-decoration: underline !important;
+
+}
+.sign-up .nav-info .exat-path{
+  text-decoration: underline ;
 }
 
 .sign-up .lamar-container {
@@ -49,15 +52,11 @@
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 767px) {
-  .sign-up .lamar-container {
-    width: 100%;
-  }
-}
+
 .sign-up .lamar-container h2 {
   text-transform: uppercase;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   color: black;
   position: relative;
 }
@@ -65,7 +64,7 @@
   content: '';
   position: absolute;
   height: 5px;
-  width: 60px;
+  width: 50%;
   bottom: -10px;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -80,11 +79,6 @@
   gap: 35px;
 }
 
-@media (max-width: 530px) {
-  .sign-up .lamar-container form {
-    padding-top: 25px;
-  }
-}
 @media (max-width: 767px) {
   .sign-up .lamar-container form {
     width: 90%;

@@ -12,39 +12,24 @@ function Checkout2() {
   return (
     <>
       <section className="checkout">
-        <div className="lamar-container">
-          <div className="nav">
-            <div className="path">
-              <Link to="/">
-                <i class="fas fa-home"></i>
-              </Link>
-              <i class="fas fa-angle-right">
-                <Link to="/Checkout" className="path-span">
-                  Shipping
-                </Link>
-                <i class="fas fa-angle-right"></i>
-              </i>{" "}
-              <span>Checkout </span>
-            </div>
-            <div className="check-livel">
-              <span>
-                {" "}
-                <Link to="/Checkout">Shipping</Link>{" "}
-              </span>
-              <i class="fas fa-angle-right"></i>
-              <span className="FLivel">Review & Payments</span>
-              <i class="fas fa-check-circle"></i>
-            </div>
+         <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <Link to='/Checkout' className="exat-path"> <span >Shipping</span></Link> 
+            <i class="fas fa-angle-right"></i> <span >Payment</span>
           </div>
+         
         </div>
-        <div className="lamar-container">
-          <form action="" className="form-check2">
-            <h2>Review & Payments</h2>
+      </div>
 
-            <section className="Review">
+        <div className="lamar-container">
+    
+        <h2><span >Shipping</span> <i class="fas fa-angle-right"></i> <span className='active'>Review & Payments</span></h2>
+            <div className="container-payment">
               <div className="Shipping-info">
-                <table>
                   <h4 className="Shipping-title">Shipping Info</h4>
+                <table>
                   <tbody>
                     <tr>
                       <td className="td1">contact</td>
@@ -70,9 +55,9 @@ function Checkout2() {
                 </table>
                 <button className="next">continue to payment</button>
               </div>
-
               <div className="summary">
-                <h4 className="Shipping-title">Shipping summary</h4>
+                <h3 >Order summary</h3>
+                <hr />
                 <div className="container-info">
                     {
                         cartArray?.map((item,indx)=>{
@@ -112,11 +97,12 @@ function Checkout2() {
                 <hr />
                 <div className="total">
                   <h4>Total</h4>
-                  <h2>QAR {total}</h2>
+                  <h4>QAR {total}</h4>
                 </div>
               </div>
-            </section>
-          </form>
+              </div>
+      
+
         </div>
       </section>
     </>

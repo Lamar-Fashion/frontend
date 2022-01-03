@@ -4,6 +4,7 @@ import lamar from '../../../images/brand/test/brand21.jpg';
 import mortaha from '../../../images/brand/test/img2.jpg';
 import neo from '../../../images/brand/test/img3.jpg';
 import shera from '../../../images/brand/test/img4.jpg';
+import { Link } from 'react-router-dom';
 function Brand() {
   return (
     <>
@@ -34,7 +35,9 @@ function Brand() {
           <div className='item1'>
             <div className='item-topdiv'>
               <h3 className='item-title'>New Arrivals</h3>
+              <Link to="/Abaya">
               <span className='shop-now'>Shop Now</span>
+              </Link>
             </div>
             {/* <div className='image'>
               <img src={lamar} alt='lamar' />
@@ -44,7 +47,9 @@ function Brand() {
           <div className='item2'>
             <div className='item-topdiv'>
               <h3 className='item-title'>Ready To Wear</h3>
+              <Link to="/Abaya">
               <span className='shop-now'>Shop Now</span>
+              </Link>
             </div>
 
             {/* <div className='image'>
@@ -55,7 +60,9 @@ function Brand() {
           <div className='item3'>
             <div className='item-topdiv'>
               <h3 className='item-title'>On Sales</h3>
+              <Link to="/Abaya">
               <span className='shop-now'>Shop Now</span>
+              </Link>
             </div>
 
             {/* <div className='image'>
@@ -66,7 +73,9 @@ function Brand() {
           <div className='item4'>
             <div className='item-topdiv'>
               <h3 className='item-title'>Abayas</h3>
+              <Link to="/Abaya">
               <span className='shop-now'>Shop Now</span>
+              </Link>
             </div>
 
             {/* <div className='image'>

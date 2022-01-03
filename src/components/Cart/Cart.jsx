@@ -44,33 +44,21 @@ function Cart() {
     <>
       {cartArray?.length > 0 ? (
         <section className='cart-lamar' id='Cart'>
-          <div className='lamar-container'>
-            <div className='cart-container '>
-              <div className='path'>
-                <Link to='/'>
-                  <i class='fas fa-home'></i>
-                </Link>{' '}
-                <i class='fas fa-angle-right'></i> <span>Shoping Cart</span>
-              </div>
-
-              <div className='total'>
-                <h4>
-                  Order Total :{' '}
-                  <span>
-                    QAR <span>{total}</span>{' '}
-                  </span>
-                </h4>
-                <div className='go-check'>
-                  <Link to='/Checkout'>
-                    Next <i class='fas fa-angle-right'></i>
-                  </Link>
-                </div>
-              </div>
-            </div>
+          <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >Shoping Cart</span>
           </div>
-
+          {/* <div className="right-nav">
+            <Link to="/Checkout"> <span className="exat-path">Next</span> </Link>
+          </div> */}
+        </div>
+          </div>
           <div className='lamar-container'>
-            <table className='cart-table' style={{ width: '90%', margin: '0 auto' }}>
+            <table className='cart-table'
+            //  style={{ width: '90%', margin: '0 auto' }}
+             >
               <thead className='cart-table-head'>
                 <tr className='cart-table-head-r'>
                   <th className='col1'>
@@ -99,12 +87,11 @@ function Cart() {
                           <div className='info-shop'>
                             <h4>{item.name}</h4>
                             <p>
-                              <span>size :</span>
-
+                              <span>size : </span>
                               <strong className='cart-size'>{item.size}</strong>
                             </p>
                             <p>
-                              <span>color :</span> {item.color}
+                              <span>color : </span> {item.color}
                             </p>
                             <p>
                               <span>buttons :</span> {item.buttons}
@@ -154,22 +141,41 @@ function Cart() {
                 );
               })}
             </table>
+            <div className="summary">
+              <h3>summary</h3>
+              <hr />
+              <div className="sub-total">
+                <h4>Subtotal</h4>
+                <h5>QAR {total}</h5>
+              </div>
+              <div className="sub-total">
+                <h4>Shipping (Free Shipping - Free)</h4>
+                <h5>QAR 0.00</h5>
+              </div>
+              <hr />
+              <div className="order-total">
+              <h4 className='order-total-h2'>Order Total</h4>
+              <h5 className='order-total-h2'>QAR {total}</h5>
+              </div>
+              <Link to="/Checkout" > next </Link>
+            </div>
           </div>
         </section>
       ) : (
         <section className='cart-empty'>
-          <div className='lamar-container'>
-            <div className='path'>
-              <Link to='/'>
-                <i class='fas fa-home'></i>
-              </Link>
-              <i class='fas fa-angle-right'></i> <span>Shoping Cart</span>
-            </div>
+        
+          <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >Shoping Cart</span>
           </div>
+        </div>
+      </div>
           <div className='cart-container'>
             <i class='fas fa-shopping-bag'></i>
             <p>You have no items in your shopping cart.</p>
-            <Link to='/'> Continue Shopping </Link>
+            <Link to='/Abaya'> Continue Shopping </Link>
           </div>
         </section>
       )}

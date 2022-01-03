@@ -1,42 +1,47 @@
 .about-us {
-  padding: 250px 0 100px;
+  padding: 220px 0 100px;
+  background-color: var(--main-color-alt);
   width: 100%;
-  background-color: whitesmoke;
-  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 @media (max-width: 530px) {
   .about-us {
-    padding: 135px 0 100px;
+    padding: 125px 0;
   }
 }
-@media (min-width: 531px) and (max-width: 991px) {
+@media (min-width: 530px) and (max-width:767px) {
   .about-us {
-    padding: 200px 0;
+    padding: 145px 0;
   }
 }
-.about-us .lamar-container {
-  padding-bottom: 10px;
+.about-us .nav-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
 }
-@media (max-width: 767px) {
-  .about-us .lamar-container {
-    width: 100%;
-  }
-}
-.about-us .path {
-  text-align: left;
-}
-.about-us .path i {
-  font-size: 22px;
-  margin-right: 10px;
+.about-us .nav-info i {
+  font-size: 16px;
   color: black;
+  font-weight: 500;
+  margin-right: 10px;
 }
-.about-us .path span {
-  font-size: 20px;
-  cursor: auto;
+
+.about-us .left-nav .i-home {
+  font-size: 18px;
+  color: black;
   font-weight: 600;
+
+} 
+.about-us .nav-info span{
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+
 }
 .about-us .lamar-container > ul {
   list-style: disc;
