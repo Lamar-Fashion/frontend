@@ -1,46 +1,47 @@
 .privacy {
-  padding: 250px 0 100px;
-  width: 100%;
+  padding: 220px 0 100px;
   background-color: var(--main-color-alt);
-  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 @media (max-width: 530px) {
   .privacy {
-    padding: 135px 0 100px;
+    padding: 125px 0;
   }
 }
-
-@media (min-width: 531px) and (max-width: 991px) {
+@media (min-width: 530px) and (max-width:767px) {
   .privacy {
-    padding: 200px 0;
+    padding: 145px 0;
   }
 }
-
-.privacy .lamar-container {
-  padding-bottom: 10px;
+.privacy .nav-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
 }
-
-@media (max-width: 767px) {
-  .privacy .lamar-container {
-    width: 100%;
-  }
-}
-
-.privacy .lamar-container .path {
-  text-align: left;
-}
-.privacy .lamar-container .path i {
-  font-size: 22px;
-  margin-right: 10px;
+.privacy .nav-info i {
+  font-size: 16px;
   color: black;
+  font-weight: 500;
+  margin-right: 10px;
 }
-.privacy .lamar-container .path span {
-  font-size: 20px;
-  cursor: auto;
+
+.privacy .left-nav .i-home {
+  font-size: 18px;
+  color: black;
   font-weight: 600;
+
+} 
+.privacy .nav-info span{
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+
 }
 .privacy .lamar-container ol > li {
   font-weight: 600;

@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Hero() {
   return (
     <>
+    <div className="lamar-container"></div>
       <div className='hero'>
         <Carousel className='carousel' fade controls={false} indicators={false} pause={false}>
           <Carousel.Item className='item1'>

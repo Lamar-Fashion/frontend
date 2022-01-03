@@ -4,6 +4,8 @@ import "../../styles/checkout/checkout.css"
 import { useNavigate } from 'react-router-dom';
 
 function Checkout() {
+  const cartArray= JSON.parse(window.sessionStorage.getItem("cart"))
+  const total= JSON.parse(window.sessionStorage.getItem("total"))
   const navigate = useNavigate();
   let [values, setValues] = useState(JSON.parse(window.sessionStorage.getItem('checkout_person_info'))?JSON.parse(window.sessionStorage.getItem('checkout_person_info')):{});
 
@@ -23,7 +25,7 @@ function Checkout() {
     return (
         <>
         <section className="checkout">
-        <div className="lamar-container">
+        {/* <div className="lamar-container">
             <div className="nav">
             <div className="path">
             <Link to="/">
@@ -42,10 +44,22 @@ function Checkout() {
 
             </div>
           
+        </div> */}
+
+        <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <Link to='/Cart' className="exat-path"> <span >cart</span></Link> 
+            <i class="fas fa-angle-right"></i> <span >checkout</span>
+          </div>
+         
         </div>
+      </div>
         <div className="lamar-container">
-            <form action="" onSubmit={handleSubmit}>
-                <h2>Shipping Address</h2>
+                <h2><span className='active'>Shipping</span> <i class="fas fa-angle-right"></i> <span>Review & Payments</span></h2>
+          <div className="container-shiping">
+          <form action="" onSubmit={handleSubmit}>
                 
               <div className="email">
               <i className="fas fa-mail-bulk"></i>
@@ -108,7 +122,55 @@ function Checkout() {
               next
               </button>
             </form>
+            <div className="summary">
+                <h3 >Order summary</h3>
+                <hr />
+                <div className="container-info">
+                    {
+                        cartArray?.map((item,indx)=>{
+                            return(<>
+                            
+                        <div className="info-products">
+                    <div className="info">
+                      <div className="image">
+                        <img
+                          src={item.images[0]}
+                          alt=""
+                        />
+                        <div className="qunt">
+                          <h5>{item.quantity}</h5>
+                        </div>
+                      </div>
+                      <div className="details">
+                        <h4>
+                        {item.name}
+                        </h4>
+                        <p>size: {item.size}</p>
+                        <p>color: {item.color}</p>
+                        <p>buttons:{item.buttons}</p>
+                      </div>
+                    </div>
+                    <div className="price">
+                      <h4>QAR {item.price}</h4>
+                    </div>
+                  </div>
+                            </>)
+                        })
+                    }
+                 
+                  
+                </div>
+
+                <hr />
+                <div className="total">
+                  <h4>Total</h4>
+                  <h4>QAR {total}</h4>
+                </div>
+              </div>
+          </div>
+            
         </div>
+
         </section>
             
         </>

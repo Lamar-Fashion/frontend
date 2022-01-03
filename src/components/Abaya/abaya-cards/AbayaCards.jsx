@@ -39,13 +39,6 @@ function AbayaCards() {
     window.sessionStorage.setItem('fav', JSON.stringify(FavArray));
   };
 
-  // useEffect(()=>{
-  //   array?.map((item,indx)=>{
-  //     item.id=uuidv4()
-  //   })
-
-  // },[])
-
   useEffect(() => {
     window.scrollTo({
       left: 0,
@@ -60,16 +53,35 @@ function AbayaCards() {
       return (
         <>
           <div className='box'>
-            <div className='over-view'>
+            <div className='over-view to-cart'>
               <div
                 className='fav'
                 // onClick={() => {
                 //   addEntry(item);
                 // }}
               >
-                <i class='fas fa-heart'></i>
+                 <i class='fas fa-heart'></i>
+               
               </div>
             </div>
+            <Link
+                to='/ProductDetails'
+                onClick={() => {
+                  window.scrollTo({
+                    left: 0,
+                    top: 0,
+                    behavior: 'smooth',
+                  });
+                  item.id = uuidv4();
+                  window.sessionStorage.setItem('product', JSON.stringify(item));
+                }}
+              >
+            <div className='over-view'>
+              <div className='fav'>
+                 <i class="fas fa-shopping-bag"></i>
+              </div>
+            </div>
+            </Link>
             <div className='image'>
               <img src={item.images[0]} alt='' className='img-product' />
               <Link
@@ -86,7 +98,7 @@ function AbayaCards() {
               >
                 <div className='overlay'>
                   <h3>
-                    Quick View <i class='far fa-eye'></i>
+                    Quick View
                   </h3>
                 </div>
               </Link>
@@ -106,24 +118,9 @@ function AbayaCards() {
   return (
     <>
       <section className='abaya-cards' id='Abaya'>
-        {/* <div
-          className={
-            showVerticalFilter ? "vertical-filter" : "vertical-filter-hidden"
-          }
-        >
-          <section className="filter-container">
-            <AbayaFilter />
-          </section>
-        </div> */}
-
-        <div className='catagory'>
-          <div className='catag-path'>
-            <Link to='/'>
-              <i class='fas fa-home'></i>
-            </Link>
-            <i class='fas fa-angle-right'></i> <span>Abaya</span>
-          </div>
-          <div className='catag-info'>
+        <div className="nav-container">
+        <div className="nav-info">
+        <div className='left-info'>
             <div className='show-item'>
               <label htmlFor='show-item'>show: </label>
               <select
@@ -168,17 +165,13 @@ function AbayaCards() {
             )}
             <AddProductModal setOpen={setOpen} open={open} />
           </div>
-          {/* <div
-            className="phone-filters"
-            onClick={() => setShowVerticalFilter(!showVerticalFilter)}
-          >
-            {showVerticalFilter ? (
-              <i class="fas fa-times fa-sliders-h"></i>
-            ) : (
-              <i class="fas fa-sliders-h"></i>
-            )}
-          </div> */}
+          </div>
+         
+          
+        
         </div>
+       
+        
         <div className='lamar-container' id='abaya'>
           {displayUser}
         </div>

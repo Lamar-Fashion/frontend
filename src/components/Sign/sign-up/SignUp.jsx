@@ -5,16 +5,18 @@ function SignUp() {
     return (
         <>
         <section className="sign-up">
-            <div className="lamar-container">
-            <div className="nav-info">
-          <div className="nav-path">
-            <Link to='/'><i class="fas fa-home"></i></Link>  <i class="fas fa-angle-right"></i>  <span>SignUp</span>
+        <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >SignUp</span>
           </div>
-          <div className="nav-sign-up">
-            <Link to="/SignIn"> Sign In </Link>
+          <div className="right-nav">
+            <Link to="/SignIn"> <span className="exat-path">Sign In </span> </Link>
           </div>
         </div>
-            </div>
+      </div>
+          
     
         <div className="lamar-container">
           <form action="">

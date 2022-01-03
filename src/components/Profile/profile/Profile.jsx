@@ -17,21 +17,22 @@ function Profile() {
   return (
     <>
       <section className="profile-lamar">
-        <div className="lamar-container">
-          <div className="path">
-            <Link to="/">
-              <i class="fas fa-home"></i>
-            </Link>
-            <i class="fas fa-angle-right"></i> <span>Your Profile</span>
+      <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >Your profile</span>
           </div>
         </div>
+      </div>
+
+      <div className="lamar-container">
         <div className="card-profile">
               <div className="image">
                   <img src="https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png" alt="logo-profile" />
               </div>
-
                 <h2><span>soso</span> kiker</h2>
-
+                </div>
                 </div>
                 <div className="lamar-container">
                 <Box sx={{ width: '100%'}}>

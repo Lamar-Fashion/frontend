@@ -5,14 +5,14 @@ function AboutUs() {
   return (
     <>
       <section className='about-us' id='#About'>
-        <div className='lamar-container'>
-          <div className='path'>
-            <Link to='/'>
-              <i class='fas fa-home'></i>
-            </Link>
-            <i class='fas fa-angle-right'></i> <span>About us</span>
+      <div className="nav-container">
+      <div className="nav-info">
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >About us</span>
           </div>
         </div>
+      </div>
         <div className='lamar-container'>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis sit excepturi quod similique dolorem eveniet iste autem, reiciendis, unde magni expedita voluptatem hic non! Unde dolor

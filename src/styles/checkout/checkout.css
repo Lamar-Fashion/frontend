@@ -1,95 +1,106 @@
 .checkout {
-  padding: 230px 0 100px;
+  padding: 220px 0 100px;
+  background-color: var(--main-color-alt);
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--main-color-alt);
+  gap: 25px;
 }
 @media (max-width: 530px) {
   .checkout {
-    padding: 135px 0 100px;
+    padding: 125px 0;
   }
 }
-@media (min-width: 531px) and (max-width: 991px) {
+@media (min-width: 530px) and (max-width:767px) {
   .checkout {
-    padding: 200px 0;
+    padding: 145px 0;
   }
 }
-.checkout .nav {
+.checkout .nav-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
-  padding: 20px 15px 0;
   width: 100%;
 }
-@media (max-width: 767px) {
-  .checkout > .lamar-container {
-    width: 100%;
-  }
-}
-.checkout .nav .path i {
-  font-size: 22px;
-  margin-right: 10px;
+.checkout .nav-info i {
+  font-size: 16px;
   color: black;
-}
-.checkout .nav .path span  {
-  font-size: 20px;
-  cursor: auto;
-  font-weight: 600;
-  color:  black; 
-}
-.checkout .nav .path .path-span{
-  font-size: 20px;
-  cursor: auto;
-  font-weight: 600;
-  color:  black; 
+  font-weight: 500;
   margin-right: 10px;
-  margin-left: 10px;
-  cursor: pointer;
-  text-decoration: underline !important;
 }
-.checkout .nav .check-livel i {
+
+.checkout .left-nav .i-home {
   font-size: 18px;
-  margin: 0 5px;
+  color: black;
+  font-weight: 600;
+
+} 
+.checkout .nav-info span{
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-right: 10px;
+
 }
-.checkout .nav .check-livel a {
+.checkout .nav-info .exat-path{
+  text-decoration: underline !important;
   color: black;
 }
-.checkout .nav .check-livel .FLivel {
-  font-weight: 600;
-}
+
 .checkout .lamar-container {
-  padding: 0 15px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 25px;
 }
 .checkout .lamar-container h2 {
   text-transform: capitalize;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 500;
   color: black;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
 }
-.checkout .lamar-container h2::before {
-  content: '';
-  position: absolute;
-  height: 5px;
-  width: 60px;
-  bottom: -10px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--main-color-alt);
-  border-radius: 20px;
+.checkout .lamar-container h2 i {
+  font-size: 18px;
+  color: black;
+}
+.checkout .lamar-container h2 .active{
+  border-left: 2px dashed   black;
+  border-right: 2px dashed   black;
+  padding: 5px;
+  border-radius: 10px;
+  color: black;
 }
 
+.checkout .lamar-container .container-shiping{
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+  width: 100%;
+
+}
+@media (max-width: 767px) {
+  .checkout .lamar-container .container-shiping{
+    flex-wrap: wrap-reverse;
+    gap: 40px;
+  }
+}
 .checkout .lamar-container form {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
   gap: 45px;
+  width:60%;
+  margin: 0 auto;
 }
 @media (max-width: 767px) {
   .checkout .lamar-container form {
@@ -109,16 +120,17 @@
 }
 
 .checkout .lamar-container .name,
-.checkout .lamar-container .address {
+.address {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 35px;
   width: 100%;
 }
+
 @media (max-width: 767px) {
   .checkout .lamar-container .name,
-  .checkout .lamar-container .address {
+  .address {
     flex-wrap: wrap;
   }
 }
@@ -139,7 +151,7 @@
   border: none;
   outline: none;
   height: 30px;
-  width: 200px;
+  width: 120px;
   border-bottom: 1px solid;
   background: transparent;
   font-size: 16px;
@@ -205,123 +217,130 @@
   transform: translateY(-3px);
 }
 
-.checkout .lamar-container .form-check2{
-  width: 100%;
-}
-.checkout .lamar-container .form-check2 .Review{
+.checkout .lamar-container .container-payment{
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   gap: 40px;
   width: 100%;
+
 }
-@media(max-width:768px){
-.checkout .lamar-container .form-check2 .Review{
-  flex-wrap: wrap-reverse;
-  gap: 60px;
-}
-}
-.checkout .lamar-container .form-check2 .Review .Shipping-info{
-  width:60%;
-  min-height: 500px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  
-}
-@media(max-width:768px){
-  .checkout .lamar-container .form-check2 .Review .Shipping-info{
-    width:80%;
-    min-height: auto;
-    margin: 0 auto;
+@media (max-width: 767px) {
+  .checkout .lamar-container .container-payment{
+    flex-wrap: wrap-reverse;
   }
 }
-.checkout .lamar-container .form-check2 .Review .Shipping-title{
+
+.checkout .lamar-container .container-payment .Shipping-info{
+  width:60%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+@media(max-width:768px){
+  .checkout .lamar-container .container-payment .Shipping-info{
+    width:100%;
+  }
+}
+.checkout .lamar-container  .Shipping-title{
   text-align: center;
   font-size: 20px;
   font-weight: 500;
   position: relative;
-  width: fit-content;
-  margin: 0 auto 20px;
+  padding-bottom: 10px;
 }
-.checkout .lamar-container .form-check2 .Review .Shipping-title::before{
+.checkout .lamar-container  .Shipping-title::before{
   content: "";
   background-color: black;
   position: absolute;
-  width: 50%;
-  height: 4px;
-  top: 32px;
+  width: 100%;
+  height: 3px;
+  bottom: -10px;
   left: 50%;
   transform: translate(-50%,-50%);
-  border-radius: 15px;
-
+  border-radius: 20px;
 }
 
-.checkout .lamar-container form table{
-  width: 90% !important;
+.checkout .lamar-container .container-payment table{
+  width: 100% !important;
   height: fit-content;
 }
 
-.checkout .lamar-container form table tbody tr {
+.checkout .lamar-container .container-payment table tbody tr {
   display: flex;
   align-items: center;
   padding: 10px;
 }
-.checkout .lamar-container form table tbody tr td{
+.checkout .lamar-container .container-payment table tbody tr td{
 border-bottom: 1px solid #ccc;
 font-size: 16px;
 font-weight: 600;
 padding: 10px 15px;
 text-align: center;
 }
-.checkout .lamar-container form table tbody tr .td1 ,.td3{
+.checkout .lamar-container .container-payment table tbody tr .td1 ,.td3{
   width: 25%;
+  font-size: 14px;
 }
-.checkout .lamar-container form table tbody tr .td1  {
+.checkout .lamar-container .container-payment table tbody tr .td1  {
   color: var(--text-color);
   text-transform: capitalize;
 }
-.checkout .lamar-container form table tbody tr .td2{
+.checkout .lamar-container .container-payment table tbody tr .td2{
   width: 50%;
+  font-size: 14px;
 }
 
-.checkout .lamar-container .form-check2 .Review .Shipping-info .next{
-  width: 75%;
+.checkout .lamar-container  .Shipping-info .next{
+  width: 50%;
   height: 50px;
   text-align: center;
-  margin: 10px auto;
+  margin: 0 auto;
   background-color: whitesmoke;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
   color: black;
   text-transform: capitalize;
   border: none;
-  font-size: 18px;
+  font-size: 20px;
   transition: box-shadow 0.3s , 0.3s ;
 }
-.checkout .lamar-container .form-check2 .Review .Shipping-info .next:hover{
+.checkout .lamar-container  .Shipping-info .next:hover{
 font-size: 19px;
 box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
-.checkout .lamar-container .form-check2 .Review .summary{
-  width: 40%;
+.checkout .lamar-container .summary{
   display: flex;
   flex-direction: column;
-  min-height: 500px;
- 
+  height: 300px;
+  border: 0.5px solid;
+  padding: 10px;
+  background-color: white;
+  gap: 5px;
 }
+
 @media(max-width:768px){
-.checkout .lamar-container .form-check2 .Review .summary{
-    width:80%;
+.checkout .lamar-container .summary{
+    width:90%;
     align-items: center;
     margin: 0 auto;
-    min-height: auto;
+    padding: 5px;
   }
 }
-.checkout .lamar-container .form-check2 .Review .summary .container-info{
-  max-height: 300px;
+.checkout .lamar-container .summary hr{
+  margin: 0;
+}
+.checkout .lamar-container  .summary h3{
+  font-size:20px;
+  font-weight: 500;
+  margin: 0;
+  text-transform: capitalize;
+  padding-bottom: 5px;
+}
+.checkout .lamar-container  .summary .container-info{
+  max-height: 250px;
   overflow: auto;
 }
-.checkout .lamar-container .form-check2 .Review .summary .info-products{
+.checkout .lamar-container .summary .info-products{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -330,23 +349,23 @@ box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
   padding-top: 10px;
  
 }
-.checkout .lamar-container .form-check2 .Review .summary .info{
+.checkout .lamar-container  .summary .info{
   width: 70%;
   display: flex;
   align-items: center;
   gap: 12px;
 }
-.checkout .lamar-container .form-check2 .Review .summary .info .image{
+.checkout .lamar-container  .summary .info .image{
   width: 70px;
   height: 80px;
 position: relative;
 }
-.checkout .lamar-container .form-check2 .Review .summary .info .image img{
+.checkout .lamar-container .summary .info .image img{
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.checkout .lamar-container .form-check2 .Review .summary .info .image .qunt{
+.checkout .lamar-container  .summary .info .image .qunt{
   background-color: black;
   width: 25px;
   height:25px;
@@ -356,33 +375,41 @@ position: relative;
   top: -10px;
   right: -8px;
 }
-.checkout .lamar-container .form-check2 .Review .summary .info .image .qunt h5{
+.checkout .lamar-container  .summary .info .image .qunt h5{
   display: flex;
   justify-content: center;
   align-items: center;
   height:25px;
   font-size: 16px;
+  color: white;
 }
 
-.checkout .lamar-container .form-check2 .Review  .details h4 ,p{
+.checkout .lamar-container   .details h4 ,p{
 margin: 0;
 }
-.checkout .lamar-container .form-check2 .Review  .details h4{
-  font-size: 19px;
+.checkout .lamar-container   .details h4{
+  font-size: 14px;
   font-weight: 600;
 }
-.checkout .lamar-container .form-check2 .Review  .details p {
-  font-size: 14px;
+.checkout .lamar-container  .details p {
+  font-size: 12px;
   font-weight: 400;
   color: var(--text-color);
 }
-.checkout .lamar-container .form-check2 .Review .price h4{
-  font-size:19px;
+.checkout .lamar-container .price h4{
+  font-size:14px;
   font-weight: 600;
 }
-.checkout .lamar-container .form-check2 .Review .total{
+.checkout .lamar-container  .total{
+  padding-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+}
+.checkout .lamar-container  .total h4{
+font-size: 22px;
+font-weight: 500;
+text-transform: capitalize;
+color: black;
 }

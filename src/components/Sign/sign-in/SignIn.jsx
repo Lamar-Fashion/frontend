@@ -5,13 +5,14 @@ function SignIn() {
   return (
     <>
       <scetion className="sign-in" id="sign-in">
-      <div className="lamar-container">
+      <div className="nav-container">
       <div className="nav-info">
-          <div className="nav-path">
-            <Link to='/'><i class="fas fa-home"></i></Link>  <i class="fas fa-angle-right"></i>  <span>SignIn</span>
+          <div className="left-nav">
+            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
+            <i class="fas fa-angle-right"></i> <span >SignIn</span>
           </div>
-          <div className="nav-sign-up">
-            <Link to="/SignUp"> create an account </Link>
+          <div className="right-nav">
+            <Link to="/SignUp"> <span className="exat-path">create an account</span> </Link>
           </div>
         </div>
       </div>

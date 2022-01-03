@@ -1,45 +1,50 @@
 .product-d {
-  padding: 230px 0 100px;
-  width: 100%;
+  padding: 220px 0 100px;
   background-color: var(--main-color-alt);
-  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
 }
 @media (max-width: 530px) {
   .product-d {
-    padding: 135px 0 100px;
+    padding: 125px 0;
   }
 }
-@media (min-width: 531px) and (max-width: 991px) {
+@media (min-width: 530px) and (max-width:767px) {
   .product-d {
-    padding: 200px 0;
+    padding: 145px 0;
   }
 }
-.product-d .lamar-container {
-  padding-bottom: 10px;
-}
-@media (max-width: 767px) {
-  .product-d .lamar-container {
-    width: 100%;
-  }
-}
-.product-d .path {
-  text-align: left;
+.product-d .nav-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
   width: 100%;
-  padding-top: 20px;
 }
-.product-d .path i {
-  font-size: 22px;
-  margin-right: 10px;
+.product-d .nav-info i {
+  font-size: 16px;
   color: black;
+  font-weight: 500;
+  margin-right: 10px;
 }
-.product-d .path span {
-  font-size: 20px;
-  cursor: auto;
+
+.product-d .left-nav .i-home {
+  font-size: 18px;
+  color: black;
   font-weight: 600;
+
+} 
+.product-d .nav-info span{
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+
 }
+
+
 
 .product-d .lamar-container {
   display: flex;
@@ -63,7 +68,7 @@
 }
 @media (max-width: 530px) {
   .product-d .lamar-container .image-product {
-    width: 90%;
+    width: 100%;
   }
 }
 .product-d .lamar-container .image-product .big-image {
@@ -75,6 +80,11 @@
   width: 100%;
   height: 100%;
   /* object-fit: cover; */
+}
+@media (max-width: 530px) {
+  .product-d .lamar-container .image-product .big-image {
+    height: 380px;
+  }
 }
 .product-d .lamar-container .image-product .left-images {
   width: 100%;
@@ -190,10 +200,10 @@
 .product-d .lamar-container .product-info .qun-product {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   flex-wrap: wrap;
 }
-.product-d .lamar-container .product-info .qun-product .buttuns {
+.product-d .lamar-container .product-info .size-color .buttuns {
   width: fit-content;
   height: 40px;
   background-color: var(--main-color-alt);
@@ -205,12 +215,12 @@
   padding: 0 5px;
 }
 
-.product-d .lamar-container .product-info .qun-product .buttuns label {
+.product-d .lamar-container .product-info .size-color .buttuns label {
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
 }
-.product-d .lamar-container .product-info .qun-product .buttuns select {
+.product-d .lamar-container .product-info .size-color .buttuns select {
   border: none;
   outline: none;
   background-color: transparent;
@@ -270,4 +280,9 @@
 .product-d .selected {
   border: 2px solid red !important;
   transform: scale(1.2);
+}
+
+.product-d .error-alert{
+  color: red;
+
 }
