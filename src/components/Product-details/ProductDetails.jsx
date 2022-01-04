@@ -3,7 +3,8 @@ import "../../styles/product-details/product-details.css";
 import { Link } from "react-router-dom";
 import Flicking from "@egjs/react-flicking";
 import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+// import {Spinner} from 'react-bootstrap'
+
 function ProductDetails() {
   let obj = JSON.parse(window.sessionStorage.getItem("product"));
   let images = obj.images;
@@ -134,6 +135,7 @@ function ProductDetails() {
               <div className="size">
                 <h4>size :</h4>
                 <div className="avialable">
+
                   {size.map((item, idx) => (
                     <button
                       className={
@@ -171,7 +173,11 @@ function ProductDetails() {
                       
                       }}
                       style={{ backgroundColor: item }}
-                    ></button>
+
+                    >
+                      <span className="color-detail"> <strong  style={{ backgroundColor: item }}></strong> <h5>{item}</h5></span>
+
+                    </button>
                   ))}
                 </div>
                 {selectedProduct.color===false && errorAlert && (
@@ -232,21 +238,6 @@ function ProductDetails() {
                       selectedProduct.buttons == "false"
                     ) {
                       setErrorAlert(true);
-                     
-                      // alert(
-                      //   `please select ${
-                      //     !selectedProduct.size ? "size ," : " "
-                      //   } ${!selectedProduct.color ? "color ," : " "} ${
-                      //     !selectedProduct.buttons ||
-                      //     selectedProduct.buttons == "false"
-                      //       ? "buttons (طقطق أ, بدون طقطق)"
-                      //       : " "
-                      //   }`
-                        
-                      // );
-                    <Stack sx={{ width: '100%' }} spacing={2}>
-                     
-                      </Stack>
                     } else {
                       addEntry(selectedProduct);
                       setErrorAlert(false);
