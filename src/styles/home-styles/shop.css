@@ -75,10 +75,8 @@
   }
 }
 .shop .leftSection .shop-title {
-  /* color: var(--main-color-alt); */
   font-size: 20px;
   font-weight: bold;
-  color: var(--main-color-alt);
 }
 .shop .leftSection .text {
   font-size: 26px;
@@ -87,10 +85,8 @@
 }
 @media (max-width: 529px) {
   .shop .lamar-container .leftSection .shop-title {
-    /* color: var(--main-color-alt); */
     font-size: 15px;
     font-weight: bold;
-    color: var(--main-color-alt);
   }
   .shop .lamar-container .leftSection .text {
     font-size: 19px;
@@ -101,10 +97,8 @@
 
 @media (min-width: 530px) and (max-width: 768px) {
   .shop .lamar-container .leftSection .shop-title {
-    /* color: var(--main-color-alt); */
     font-size: 17px;
     font-weight: bold;
-    color: var(--main-color-alt);
   }
   .shop .lamar-container .leftSection .text {
     font-size: 20px;
@@ -114,10 +108,8 @@
 }
 @media (min-width: 769px) and (max-width: 991px) {
   .shop .lamar-container .leftSection .shop-title {
-    /* color: var(--main-color-alt); */
     font-size: 20px;
     font-weight: bold;
-    color: var(--main-color-alt);
   }
   .shop .lamar-container .leftSection .text {
     font-size: 22px;
@@ -256,18 +248,6 @@
     transform: rotate(-5deg);
   }
 }
-
-/* .shop  .rightSection .image4 {
-  height: 300px;
-  position: absolute;
-  bottom: -42px;
-  right: 65px;
-}
-.shop  .rightSection .image4 img{
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-} */
 
 .shop .text {
   margin-bottom: 1rem;

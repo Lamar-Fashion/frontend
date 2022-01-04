@@ -15,9 +15,11 @@ function Checkout2() {
          <div className="nav-container">
       <div className="nav-info">
           <div className="left-nav">
-            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
-            <i class="fas fa-angle-right"></i> <Link to='/Checkout' className="exat-path"> <span >Shipping</span></Link> 
-            <i class="fas fa-angle-right"></i> <span >Payment</span>
+            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
+            <i className="fas fa-angle-right"></i>
+            <Link to='/Cart' className="exat-path"> <span >cart</span></Link> 
+            <i className="fas fa-angle-right"></i> <Link to='/Checkout' className="exat-path"> <span >Shipping</span></Link> 
+            <i className="fas fa-angle-right"></i> <span >Payment</span>
           </div>
          
         </div>
@@ -25,7 +27,7 @@ function Checkout2() {
 
         <div className="lamar-container">
     
-        <h2><span >Shipping</span> <i class="fas fa-angle-right"></i> <span className='active'>Review & Payments</span></h2>
+        <h2><span >Shipping <i className="far fa-check-circle"></i></span> <i className="fas fa-angle-right"></i> <span className='active'>Review & Payments<span className='steps'>2</span></span></h2>
             <div className="container-payment">
               <div className="Shipping-info">
                   <h4 className="Shipping-title">Shipping Info</h4>

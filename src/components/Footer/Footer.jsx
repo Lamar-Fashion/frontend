@@ -5,6 +5,7 @@ import '../../styles/footer-styles/footer.css';
 import master from '../../images/header/MasterCard_Logo.svg.png';
 import visa from '../../images/header/Visa_Logo.png';
 import pay_pal from '../../images/header/PayPal.svg.png';
+import cash from '../../images/header/cash-on-delivery.png';
 import { Link } from 'react-router-dom';
 function Footer() {
   return (
@@ -21,7 +22,7 @@ function Footer() {
               </li>
               <li>
                 <a href='https://www.instagram.com/lamarfashion.qa?utm_medium=copy_link' className='instagram' target='_blank'>
-                  <i class='fab fa-instagram'></i>
+                  <i className='fab fa-instagram'></i>
                 </a>
               </li>
               <li>
@@ -45,7 +46,7 @@ function Footer() {
                     });
                   }}
                 >
-                  <i class='fas fa-angle-double-right'></i> About Us
+                  <i className='fas fa-angle-double-right'></i> About Us
                 </Link>
               </li>
               <li>
@@ -59,7 +60,7 @@ function Footer() {
                     });
                   }}
                 >
-                  <i class='fas fa-angle-double-right'></i> Delivery
+                  <i className='fas fa-angle-double-right'></i> Delivery
                 </Link>
               </li>
               <li>
@@ -73,7 +74,7 @@ function Footer() {
                     });
                   }}
                 >
-                  <i class='fas fa-angle-double-right'></i> Privacy Policy
+                  <i className='fas fa-angle-double-right'></i> Privacy Policy
                 </Link>
               </li>
               <li>
@@ -87,7 +88,7 @@ function Footer() {
                     });
                   }}
                 >
-                  <i class='fas fa-angle-double-right'></i> Contact us
+                  <i className='fas fa-angle-double-right'></i> Contact us
                 </Link>
               </li>
             </ul>
@@ -101,7 +102,7 @@ function Footer() {
                 </div>
               </div>
               <div className='line'>
-                <i class='far fa-paper-plane fa-fw'></i>
+                <i className='far fa-paper-plane fa-fw'></i>
                 <div className='info'>
                   <span>
                     <a href='mailto:Info@lamarfashion.qa' target='_blank'>
@@ -111,7 +112,7 @@ function Footer() {
                 </div>
               </div>
               <div className='line'>
-                <i class='fab fa-whatsapp fa-fw'></i>
+                <i className='fab fa-whatsapp fa-fw'></i>
                 <div className='info'>
                   <span>
                     <a href='http://wa.me/+97466881109' target='_blank'>
@@ -148,6 +149,11 @@ function Footer() {
               <a href='#policy'>
                 <div className='image'>
                   <img src={master} alt='' />
+                </div>
+              </a>
+              <a href='#policy'>
+                <div className='image'>
+                  <img src={cash} alt='' />
                 </div>
               </a>
             </div>

@@ -12,6 +12,7 @@
   font-weight: 500;
   color: black;
   position: relative;
+  text-align: center;
 }
 .container-abaya-hero .abaya-hero h4::before{
   content: '';
@@ -23,4 +24,10 @@
   transform: translate(-50%, -50%);
   background-color: black;
   border-radius: 20px;
+}
+
+@media(max-width:767px){
+.container-abaya-hero .abaya-hero h4{
+  font-size: 20px;
+}
 }

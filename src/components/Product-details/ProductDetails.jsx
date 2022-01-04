@@ -2,6 +2,8 @@ import { React, useState } from "react";
 import "../../styles/product-details/product-details.css";
 import { Link } from "react-router-dom";
 import Flicking from "@egjs/react-flicking";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 function ProductDetails() {
   let obj = JSON.parse(window.sessionStorage.getItem("product"));
   let images = obj.images;
@@ -73,12 +75,23 @@ function ProductDetails() {
         <div className="nav-container">
       <div className="nav-info">
           <div className="left-nav">
-            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
-            <i class="fas fa-angle-right"></i> <span >Product Detail</span>
+            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
+            <i className="fas fa-angle-right"></i> <span >Product Detail</span>
           </div>
         </div>
       </div>
+      
+      <div className="nav-container">
+      {
+        (selectedProduct.size===false || selectedProduct.buttons===false || selectedProduct.color===false) 
+        && errorAlert && <Alert  severity="warning">
+        You need to choose options for your item.
+                        </Alert>
+      }
+      </div>
+      
         <div className="lamar-container">
+          
           <div className="image-product">
             <div className="big-image">
               <img src={state} alt="" />
@@ -100,6 +113,7 @@ function ProductDetails() {
               </Flicking>
             </div>
           </div>
+          
           <div className="product-info">
             <div className="name-p">
               <h2>
@@ -118,7 +132,7 @@ function ProductDetails() {
             <hr />
             <div className="size-color">
               <div className="size">
-                <h4>size</h4>
+                <h4>size :</h4>
                 <div className="avialable">
                   {size.map((item, idx) => (
                     <button
@@ -142,7 +156,7 @@ function ProductDetails() {
                 )}
               </div>
               <div className="colors">
-                <h4>color</h4>
+                <h4>color :</h4>
                 <div className="avialable">
                   {color.map((item, idx) => (
                     <button
@@ -164,6 +178,7 @@ function ProductDetails() {
                   <span className="error-alert" id="error-color">* this field is required </span>
                 )}
               </div>
+              <div className="container-buttons">
               <div className="avialable">
               <div className="buttuns">
                 <label htmlFor="buttuns" id="error-buttons">buttuns:</label>
@@ -193,10 +208,13 @@ function ProductDetails() {
                 
                 
               </div>
+             
+              </div>
               {selectedProduct.buttons===false &&errorAlert&& (
                   <span className="error-alert">* this field is required </span>
                 )}
               </div>
+              
              
             </div>
             <hr />
@@ -215,16 +233,20 @@ function ProductDetails() {
                     ) {
                       setErrorAlert(true);
                      
-                      alert(
-                        `please select ${
-                          !selectedProduct.size ? "size ," : " "
-                        } ${!selectedProduct.color ? "color ," : " "} ${
-                          !selectedProduct.buttons ||
-                          selectedProduct.buttons == "false"
-                            ? "buttons (طقطق أ, بدون طقطق)"
-                            : " "
-                        }`
-                      );
+                      // alert(
+                      //   `please select ${
+                      //     !selectedProduct.size ? "size ," : " "
+                      //   } ${!selectedProduct.color ? "color ," : " "} ${
+                      //     !selectedProduct.buttons ||
+                      //     selectedProduct.buttons == "false"
+                      //       ? "buttons (طقطق أ, بدون طقطق)"
+                      //       : " "
+                      //   }`
+                        
+                      // );
+                    <Stack sx={{ width: '100%' }} spacing={2}>
+                     
+                      </Stack>
                     } else {
                       addEntry(selectedProduct);
                       setErrorAlert(false);

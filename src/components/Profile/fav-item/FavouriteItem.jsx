@@ -27,7 +27,7 @@ function FavouriteItem() {
             
           }}>
 
-          <i class="fas fa-trash-alt" ></i>
+          <i className="fas fa-trash-alt" ></i>
             </div>
           </div>
           <div className="image">
@@ -49,7 +49,7 @@ function FavouriteItem() {
             >
               <div className="overlay">
                 <h3>
-                  Quick View <i class="far fa-eye"></i>
+                  Quick View <i className="far fa-eye"></i>
                 </h3>
               </div>
             </Link>

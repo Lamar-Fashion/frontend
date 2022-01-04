@@ -16,7 +16,7 @@ function Feedback() {
                 <h3 className='name-person'>ahmad nofal</h3>
                 <h4 className='info-person'>client</h4>
               </div>
-              <i class='fas fa-quote-left'></i>
+              <i className='fas fa-quote-left'></i>
               <p className='person-text'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis distinctio rem laudantium ratione, illo atque consectetur nostrum id. Ullam eaque non tempora minus quaerat cum ex et,.
               </p>
@@ -27,7 +27,7 @@ function Feedback() {
                 <h3 className='name-person'>ahmad nofal</h3>
                 <h4 className='info-person'>client</h4>
               </div>
-              <i class='fas fa-quote-left'></i>
+              <i className='fas fa-quote-left'></i>
               <p className='person-text'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis distinctio rem laudantium ratione, illo atque consectetur nostrum id. Ullam eaque non tempora minus quaerat cum ex et,
                 reiciendis quas odit.
@@ -39,7 +39,7 @@ function Feedback() {
                 <h3 className='name-person'>ahmad nofal</h3>
                 <h4 className='info-person'>client</h4>
               </div>
-              <i class='fas fa-quote-left'></i>
+              <i className='fas fa-quote-left'></i>
               <p className='person-text'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis distinctio rem laudantium ratione, illo atque consectetur nostrum id. Ullam eaque non tempora minus quaerat cum ex et,
                 reiciendis quas odit.

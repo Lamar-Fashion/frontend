@@ -8,20 +8,16 @@ function Cart() {
   window.sessionStorage.setItem('total', JSON.stringify(total));
 
   useEffect(() => {
-    console.log('quantity', quantity);
   }, [quantity]);
   useEffect(() => {
 
     let summ = 0;
-
-    console.log('cartArray', cartArray);
     cartArray?.map((item) => (summ += (Number(item.price))*Number(item.quantity)));
     setTotal(summ);
     
   }, []);
 
   const deleteItem = (item, indx) => {
-    console.log(indx);
     cartArray.splice(Number(indx), 1);
     window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
     setTotal(total - Number(item.price));
@@ -47,8 +43,8 @@ function Cart() {
           <div className="nav-container">
       <div className="nav-info">
           <div className="left-nav">
-            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
-            <i class="fas fa-angle-right"></i> <span >Shoping Cart</span>
+            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
+            <i className="fas fa-angle-right"></i> <span >Shoping Cart</span>
           </div>
           {/* <div className="right-nav">
             <Link to="/Checkout"> <span className="exat-path">Next</span> </Link>
@@ -106,7 +102,7 @@ function Cart() {
                         <div className='quantity'>
                           <div className='decrease'>
                             <i
-                              class='fas fa-minus-square'
+                              className='fas fa-minus-square'
                               onClick={() => {
                                 decresItem(item, indx);
                               }}
@@ -118,7 +114,7 @@ function Cart() {
                           </div>
                           <div className='incress'>
                             <i
-                              class='fas fa-plus-square'
+                              className='fas fa-plus-square'
                               onClick={() => {
                                 addItem(item, indx);
                               }}
@@ -129,7 +125,7 @@ function Cart() {
                       <td className='col4'>
                         <div className='actions'>
                           <i
-                            class='fas fa-trash'
+                            className='fas fa-trash'
                             onClick={() => {
                               deleteItem(item, indx);
                             }}
@@ -167,13 +163,13 @@ function Cart() {
           <div className="nav-container">
       <div className="nav-info">
           <div className="left-nav">
-            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
-            <i class="fas fa-angle-right"></i> <span >Shoping Cart</span>
+            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
+            <i className="fas fa-angle-right"></i> <span >Shoping Cart</span>
           </div>
         </div>
       </div>
           <div className='cart-container'>
-            <i class='fas fa-shopping-bag'></i>
+            <i className='fas fa-shopping-bag'></i>
             <p>You have no items in your shopping cart.</p>
             <Link to='/Abaya'> Continue Shopping </Link>
           </div>

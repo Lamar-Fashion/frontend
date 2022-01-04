@@ -169,17 +169,33 @@
 .product-d .lamar-container .product-info .size-color .colors {
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.product-d .lamar-container .product-info .size-color .container-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+@media(max-width:1199px){
+  .product-d .lamar-container .product-info .size-color .container-buttons{
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .product-d .lamar-container .product-info .size-color .avialable {
   display: flex;
   gap: 5px;
+  width: 35%;
 }
 .product-d .lamar-container .product-info .size-color h4 {
   font-size: 22px;
   color: var(--text-color);
   font-weight: 500;
-  width: 50px;
+  width: 25%;
 }
 .product-d .lamar-container .product-info .size-color button {
   width: 30px;
@@ -284,5 +300,8 @@
 
 .product-d .error-alert{
   color: red;
-
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: capitalize;
+  transition: 0.3s;
 }

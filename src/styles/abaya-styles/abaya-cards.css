@@ -16,10 +16,6 @@
   width: 100%;
 }
 
-
- 
-
-
 .abaya-cards .nav-info .left-info {
   display: flex;
   justify-content:space-between;
@@ -30,12 +26,12 @@
 @media (max-width: 530px) {
   .abaya-cards .nav-info .left-info {
     gap: 15px;
+    width: 100%;
   }
 }
 .abaya-cards .nav-info .left-info .show-item {
   width: 120px;
   height: 40px;
-  /* border-radius: 20px; */
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   display: flex;
@@ -52,7 +48,6 @@
 .abaya-cards .nav-info .left-info .sort-item {
   width: 160px;
   height: 40px;
-  /* border-radius: 20px; */
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   display: flex;
@@ -81,9 +76,13 @@
   background-color: var(--main-color-alt);
 }
 
+
 @media (max-width: 530px) {
   .abaya-cards .nav-info .left-info label {
     font-size: 14px;
+  }
+  .abaya-cards .nav-info .left-info select {
+   width: 50%;
   }
 }
 .abaya-cards .phone-filters {

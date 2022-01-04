@@ -67,6 +67,12 @@
   text-transform: lowercase;
 }
 
+@media(max-width:767px){
+  .profile-lamar .card-profile h2 {
+
+      font-size: 20px;
+    }
+    }
 
 
 .profile-lamar .nav-info-profile {
