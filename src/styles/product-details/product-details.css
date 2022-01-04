@@ -208,10 +208,44 @@
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.15);
   transition: 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.product-d .lamar-container .product-info .size-color .color-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 3px;
+  gap: 3px;
+  height:80px;
+  width:80px;
+  position: absolute;
+  top:-85px;
+  left: -65%;
+  transform: translate(-50%,-50%);
+  border: 1px solid;
+  margin: 5px;
+  font-size: 12px;
+  visibility: hidden;
+  z-index: 3;
+  background-color: var(--main-color-alt);
+}
+.product-d .lamar-container .product-info .size-color .color-detail strong{
+  width: 100%;
+  height: 100%;
+}
+.product-d .lamar-container .product-info .size-color .color-detail h5{
+  font-size: 11px;
 }
 .product-d .lamar-container .product-info .size-color button:hover {
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   transform: translateY(-5px);
+ 
+}
+.product-d .lamar-container .product-info .size-color button:hover .color-detail{
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  visibility: visible;
 }
 .product-d .lamar-container .product-info .qun-product {
   display: flex;
