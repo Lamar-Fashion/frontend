@@ -8,8 +8,8 @@ function PrivacyPolicy() {
          <div className="nav-container">
       <div className="nav-info">
           <div className="left-nav">
-            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
-            <i class="fas fa-angle-right"></i> <span >PRIVACY POLICY</span>
+            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
+            <i className="fas fa-angle-right"></i> <span >PRIVACY POLICY</span>
           </div>
         </div>
       </div>

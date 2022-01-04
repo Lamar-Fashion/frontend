@@ -36,7 +36,7 @@
 }
 .footer .box .social li a {
   background-color: #313131;
-  color: #b9b9b9;
+  color: white;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +49,18 @@
 .footer .box .social li a i {
   cursor: pointer;
 }
+@media(max-width:530px){
+  .footer .box .social .facebook {
+    background-color: #1877f2;
+  }
+  .footer .box .social .twitter {
+    background-color: #1da1f2;
+  }
+  .footer .box .social .instagram {
+    background: linear-gradient(15deg, #ffb13d, #dd277b, #4d5ed4);
+  }
+}
+
 .footer .box .social .facebook:hover {
   background-color: #1877f2;
 }
@@ -58,6 +70,7 @@
 .footer .box .social .instagram:hover {
   background: linear-gradient(15deg, #ffb13d, #dd277b, #4d5ed4);
 }
+
 .footer .box .text {
   line-height: 2;
   color: black;

@@ -74,6 +74,11 @@
   border-radius: 20px;
 }
 
+@media(max-width:767px){
+.sign-in .lamar-container h2 {
+    font-size: 20px;
+  }
+  }
 .sign-in .lamar-container form {
   display: flex;
   flex-direction: column;

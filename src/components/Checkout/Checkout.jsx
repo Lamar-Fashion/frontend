@@ -25,39 +25,20 @@ function Checkout() {
     return (
         <>
         <section className="checkout">
-        {/* <div className="lamar-container">
-            <div className="nav">
-            <div className="path">
-            <Link to="/">
-              <i class="fas fa-home"></i>
-            </Link>
-            <i class="fas fa-angle-right"></i> 
-            <Link to="/Cart" className='path-span'>
-             Cart 
-            </Link>
-            <i class="fas fa-angle-right"></i> 
-            <span>Checkout </span>
-          </div>
-          <div className="check-livel">
-          <span className='FLivel'> Shipping </span><i class="fas fa-check-circle"></i><i class="fas fa-angle-right"></i><span>Review & Payments</span>
-          </div>
-
-            </div>
-          
-        </div> */}
+    
 
         <div className="nav-container">
       <div className="nav-info">
           <div className="left-nav">
-            <Link to='/'><i class="fas fa-home i-home"></i></Link>  
-            <i class="fas fa-angle-right"></i> <Link to='/Cart' className="exat-path"> <span >cart</span></Link> 
-            <i class="fas fa-angle-right"></i> <span >checkout</span>
+            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
+            <i className="fas fa-angle-right"></i> <Link to='/Cart' className="exat-path"> <span >cart</span></Link> 
+            <i className="fas fa-angle-right"></i> <span >Shipping</span>
           </div>
          
         </div>
       </div>
         <div className="lamar-container">
-                <h2><span className='active'>Shipping</span> <i class="fas fa-angle-right"></i> <span>Review & Payments</span></h2>
+                <h2><span className='active'>Shipping <span className='steps'>1</span></span> <i className="fas fa-angle-right"></i> <span>Review & Payments <span className='steps'>2</span></span></h2>
           <div className="container-shiping">
           <form action="" onSubmit={handleSubmit}>
                 
@@ -81,39 +62,39 @@ function Checkout() {
   
               </div>
               <div className="company">
-              <i class="fas fa-warehouse"></i>
+              <i className="fas fa-warehouse"></i>
             <input type="text" name="company" id="company" placeholder="Company Name"  value={values.company? values.company : ""} onChange={handleChange}/>
               </div>
               <div className="address">
                 <div className="Faddress">
-                <i class="fas fa-map-marked-alt"></i>
+                <i className="fas fa-map-marked-alt"></i>
                 <input type="text" name="Faddress" id="Faddress" placeholder="Street Address" required onChange={handleChange} 
                 value={values?.Faddress}/ >
 
                 </div>
                 <div className="Laddress">
-                <i class="fas fa-map-marked-alt"></i>
+                <i className="fas fa-map-marked-alt"></i>
                 <input type="text" name="Laddress" id="Laddress" placeholder="Street Address 2" onChange={handleChange}
                 value={values?.Laddress?values.Laddress:"" } />
 
                 </div>
               </div>
               <div className="city">
-              <i class="fas fa-city"></i>
+              <i className="fas fa-city"></i>
             <input type="text" name="city" id="city" placeholder="City" required onChange={handleChange}
              value={values?.city}/>
               </div>
               <div className="zip-code">
-              <i class="far fa-keyboard"></i>
+              <i className="far fa-keyboard"></i>
             <input type="text" name="zip_code" id="zip_code" placeholder="Zip/Postal Code" required onChange={handleChange}
             value={values?.zip_code}/>
               </div>
               <div className="country">
-              <i class="fas fa-globe-africa"></i>
+              <i className="fas fa-globe-africa"></i>
             <input type="text" name="country" id="country" placeholder="country" value="Qatar" />
               </div>
               <div className="phone">
-              <i class="fas fa-phone"></i>
+              <i className="fas fa-phone"></i>
             <input type="tel" name="phone" id="phone" placeholder="Phone Number" required onChange={handleChange}
             value={values?.phone}/>
               </div>

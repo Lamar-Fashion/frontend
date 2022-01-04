@@ -66,6 +66,11 @@
   background-color: black;
   border-radius: 20px;
 }
+@media(max-width:767px){
+  .contact-us .lamar-container h2 {
+      font-size: 20px;
+    }
+}
 .contact-us .lamar-container form {
   display: flex;
   justify-content: space-between;

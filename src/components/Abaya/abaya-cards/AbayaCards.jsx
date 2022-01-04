@@ -49,7 +49,6 @@ function AbayaCards() {
   const displayUser =
     array.length &&
     array.slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
-      console.log('item id ', item.id);
       return (
         <>
           <div className='box'>
@@ -60,7 +59,7 @@ function AbayaCards() {
                 //   addEntry(item);
                 // }}
               >
-                 <i class='fas fa-heart'></i>
+                 <i className='fas fa-heart'></i>
                
               </div>
             </div>
@@ -78,7 +77,7 @@ function AbayaCards() {
               >
             <div className='over-view'>
               <div className='fav'>
-                 <i class="fas fa-shopping-bag"></i>
+                 <i className="fas fa-shopping-bag"></i>
               </div>
             </div>
             </Link>
@@ -152,7 +151,6 @@ function AbayaCards() {
                 <option value='s'>s</option>
               </select>
             </div>
-            {console.log('role', role)}
             {role === 'admin' && (
               <div
                 className='sort-item'

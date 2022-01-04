@@ -46,7 +46,7 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.5s, box-shadow 0.5s;
   cursor: pointer;
-  height: 320px;
+  height: 330px;
   width: 100%;
 }
 
@@ -60,7 +60,6 @@
     position: relative;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.5s, box-shadow 0.5s;
-    height: 280px;
     width: 90%;
     margin: 0 auto;
   }

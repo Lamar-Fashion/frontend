@@ -41,24 +41,5 @@
   font-size: 18px;
   font-weight: 600;
   text-transform: capitalize;
-
 }
 
-/* .abaya .lamar-container {
-  display: grid;
-  grid-template-columns: 100% 20%;
-  height: fit-content;
-} */
-/* @media (max-width: 530px) {
-  .abaya .lamar-container {
-    padding: 0 10px;
-  }
-} */
-/* @media (max-width: 767px) {
-  .abaya .lamar-container {
-    grid-template-columns: 100% 0%;
-  }
-  .abaya .lamar-container .web-filter {
-    display: none;
-  }
-} */

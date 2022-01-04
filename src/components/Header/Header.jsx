@@ -150,7 +150,7 @@ function Header() {
                 }}
               >
                 <a>
-                  Home<i class='fas fa-angle-down'></i>
+                  Home<i className='fas fa-angle-down'></i>
                 </a>
               </Link>
               <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
@@ -199,7 +199,7 @@ function Header() {
                 }}
               >
                 <a>
-                  Abaya<i class='fas fa-angle-down'></i>
+                  Abaya<i className='fas fa-angle-down'></i>
                 </a>
               </Link>
               <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
