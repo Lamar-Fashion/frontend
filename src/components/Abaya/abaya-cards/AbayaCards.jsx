@@ -8,11 +8,14 @@ import l2 from '../../../images/brand/test/brand2.jpg';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import { useSelector } from 'react-redux';
-import AddProductModal from './AddProductModal';
+import AddProductModal from '../../Admin/add-product/AddProductModal';
+import EditProductModal from '../../Admin/edit-product/EditProductModal';
 function AbayaCards() {
   const role = useSelector((state) => state.authReducer.role);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const [openAddproduct, setOpenAddProduct] = useState(false);
+  const handleOpenAddProduct = () => setOpenAddProduct(true);
+  const [openEditProduct, setOpenEditProduct] = useState(false);
+  const handleOpenEditProduct = () => setOpenEditProduct(true);
 
   let product = {
     images: [lamar, neo, ll, l2],
@@ -39,6 +42,11 @@ function AbayaCards() {
     window.sessionStorage.setItem('fav', JSON.stringify(FavArray));
   };
 
+  // delete product handler
+  function deleteHnadler(id) {
+    // delete from backend
+  }
+
   useEffect(() => {
     window.scrollTo({
       left: 0,
@@ -59,28 +67,53 @@ function AbayaCards() {
                 //   addEntry(item);
                 // }}
               >
-                 <i className='fas fa-heart'></i>
-               
+                <i className='fas fa-heart'></i>
               </div>
             </div>
             <Link
-                to='/ProductDetails'
+              to='/ProductDetails'
+              onClick={() => {
+                window.scrollTo({
+                  left: 0,
+                  top: 0,
+                  behavior: 'smooth',
+                });
+                item.id = uuidv4();
+                window.sessionStorage.setItem('product', JSON.stringify(item));
+              }}
+            >
+              <div className='over-view'>
+                <div className='fav'>
+                  <i className='fas fa-shopping-bag'></i>
+                </div>
+              </div>
+            </Link>
+            {role === 'admin' && (
+              <div
+                className='over-view edit'
                 onClick={() => {
-                  window.scrollTo({
-                    left: 0,
-                    top: 0,
-                    behavior: 'smooth',
-                  });
-                  item.id = uuidv4();
-                  window.sessionStorage.setItem('product', JSON.stringify(item));
+                  handleOpenEditProduct();
                 }}
               >
-            <div className='over-view'>
-              <div className='fav'>
-                 <i className="fas fa-shopping-bag"></i>
+                <div className='fav'>
+                  <i class='far fa-edit'></i>
+                </div>
               </div>
-            </div>
-            </Link>
+            )}
+            <EditProductModal setOpenEditProduct={setOpenEditProduct} openEditProduct={openEditProduct} />
+
+            {role === 'admin' && (
+              <div
+                className='over-view delete'
+                onClick={() => {
+                  deleteHnadler();
+                }}
+              >
+                <div className='fav'>
+                  <i class='fas fa-trash-alt'></i>
+                </div>
+              </div>
+            )}
             <div className='image'>
               <img src={item.images[0]} alt='' className='img-product' />
               <Link
@@ -96,9 +129,7 @@ function AbayaCards() {
                 }}
               >
                 <div className='overlay'>
-                  <h3>
-                    Quick View
-                  </h3>
+                  <h3>Quick View</h3>
                 </div>
               </Link>
             </div>
@@ -117,59 +148,55 @@ function AbayaCards() {
   return (
     <>
       <section className='abaya-cards' id='Abaya'>
-        <div className="nav-container">
-        <div className="nav-info">
-        <div className='left-info'>
-            <div className='show-item'>
-              <label htmlFor='show-item'>show: </label>
-              <select
-                name='show-item'
-                id='show-item'
-                onChange={(e) => {
-                  if (e.target.value === 'all' && showItems !== arralen) {
-                    setShowItems(arralen);
-                    setPageNumber(0);
-                  } else if (showItems !== e.target.value) {
-                    setPageNumber(0);
-                    setShowItems(Number(e.target.value));
-                  }
-                }}
-              >
-                <option value='15'>15</option>
-                <option value='30'>30</option>
-                <option value='45'>45</option>
-                <option value='all'>all</option>
-              </select>
-            </div>
-            <div className='sort-item'>
-              <label htmlFor='sort-item'>Brands :</label>
-              <select name='sort-item' id='sort-item'>
-                <option value='all'>all</option>
-                <option value='lamar'>lamar</option>
-                <option value='neo'>neo</option>
-                <option value='mm'>mm</option>
-                <option value='s'>s</option>
-              </select>
-            </div>
-            {role === 'admin' && (
-              <div
-                className='sort-item'
-                onClick={() => {
-                  handleOpen();
-                }}
-              >
-                {/* <Link to='/addProduct'>+ add product</Link> */}+ add product
+        <div className='nav-container'>
+          <div className='nav-info'>
+            <div className='left-info'>
+              <div className='show-item'>
+                <label htmlFor='show-item'>show: </label>
+                <select
+                  name='show-item'
+                  id='show-item'
+                  onChange={(e) => {
+                    if (e.target.value === 'all' && showItems !== arralen) {
+                      setShowItems(arralen);
+                      setPageNumber(0);
+                    } else if (showItems !== e.target.value) {
+                      setPageNumber(0);
+                      setShowItems(Number(e.target.value));
+                    }
+                  }}
+                >
+                  <option value='15'>15</option>
+                  <option value='30'>30</option>
+                  <option value='45'>45</option>
+                  <option value='all'>all</option>
+                </select>
               </div>
-            )}
-            <AddProductModal setOpen={setOpen} open={open} />
+              <div className='sort-item'>
+                <label htmlFor='sort-item'>Brands :</label>
+                <select name='sort-item' id='sort-item'>
+                  <option value='all'>all</option>
+                  <option value='lamar'>lamar</option>
+                  <option value='neo'>neo</option>
+                  <option value='mm'>mm</option>
+                  <option value='s'>s</option>
+                </select>
+              </div>
+              {role === 'admin' && (
+                <div
+                  className='sort-item'
+                  onClick={() => {
+                    handleOpenAddProduct();
+                  }}
+                >
+                  + add product
+                </div>
+              )}
+              <AddProductModal setOpenAddProduct={setOpenAddProduct} openAddproduct={openAddproduct} />
+            </div>
           </div>
-          </div>
-         
-          
-        
         </div>
-       
-        
+
         <div className='lamar-container' id='abaya'>
           {displayUser}
         </div>
