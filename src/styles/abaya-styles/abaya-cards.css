@@ -18,7 +18,7 @@
 
 .abaya-cards .nav-info .left-info {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
   gap: 40px;
   z-index: 2;
@@ -76,13 +76,12 @@
   background-color: var(--main-color-alt);
 }
 
-
 @media (max-width: 530px) {
   .abaya-cards .nav-info .left-info label {
     font-size: 14px;
   }
   .abaya-cards .nav-info .left-info select {
-   width: 50%;
+    width: 50%;
   }
 }
 .abaya-cards .phone-filters {
@@ -103,7 +102,7 @@
 }
 .abaya-cards .lamar-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   row-gap: 60px;
 }
@@ -174,18 +173,26 @@
   color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.4);
 }
-.abaya-cards .box .over-view > div  i {
+.abaya-cards .box .over-view > div i {
   cursor: pointer;
   color: black;
 }
-.abaya-cards .box .over-view > div:hover  i {
+.abaya-cards .box .over-view > div:hover i {
   color: var(--main-color-alt2);
 }
 
-.abaya-cards .box .over-view.to-cart{
+.abaya-cards .box .over-view.to-cart {
   position: absolute;
   right: 10px;
   top: 50px;
+}
+.abaya-cards .box .over-view.edit {
+  position: absolute;
+  top: 90px;
+}
+.abaya-cards .box .over-view.delete {
+  position: absolute;
+  right: 230px;
 }
 .abaya-cards .image {
   width: 100%;
@@ -204,14 +211,13 @@
   height: 100%;
   transition: transform 0.5s;
   object-fit: cover;
-
 }
 .abaya-cards .box .overlay {
   position: absolute;
   height: 50px;
   width: 100%;
   background-color: black;
-  bottom:0px;
+  bottom: 0px;
   left: 0;
   z-index: 3;
   visibility: hidden;
@@ -224,10 +230,10 @@
 .abaya-cards .box:hover .overlay {
   visibility: visible;
 }
-.abaya-cards .box .overlay:hover{
+.abaya-cards .box .overlay:hover {
   background-color: whitesmoke;
 }
-.abaya-cards .box .overlay h3{
+.abaya-cards .box .overlay h3 {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -240,7 +246,7 @@
 .abaya-cards .box .overlay h3 i {
   font-size: 18px;
 }
-.abaya-cards .box .overlay:hover h3{
+.abaya-cards .box .overlay:hover h3 {
   color: black;
 }
 .abaya-cards .box .info {
@@ -255,7 +261,6 @@
   font-weight: 500;
   margin: 5px;
   text-transform: capitalize;
-
 }
 .abaya-cards .box .info h2 {
   font-size: 20px;
@@ -263,8 +268,6 @@
   margin: 5px;
   text-transform: capitalize;
 }
-
-
 
 /* vertical filter css */
 

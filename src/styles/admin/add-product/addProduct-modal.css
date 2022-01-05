@@ -67,6 +67,11 @@
   background: transparent;
   font-size: 16px;
 }
+@media (max-width: 530px) {
+  .form-container .add-from > div > textarea {
+    width: 175%;
+  }
+}
 .form-container .add-from input:-webkit-autofill,
 .form-container .add-from input:-webkit-autofill:hover,
 .form-container .add-from input:-webkit-autofill:focus,
@@ -111,7 +116,7 @@
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
-  margin-top: 25px;
+  margin-top: 15px;
   margin-bottom: -20px;
 }
 .form-container .add-from .submit:hover {
