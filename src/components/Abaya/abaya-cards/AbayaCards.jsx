@@ -96,7 +96,7 @@ function AbayaCards() {
                 }}
               >
                 <div className='fav'>
-                  <i class='far fa-edit'></i>
+                <i class="fas fa-pen"></i>
                 </div>
               </div>
             )}

@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  position: relative;
+  z-index: 1;
 }
 @media (max-width: 530px) {
   .checkout {
@@ -104,8 +106,10 @@
 }
 @media(max-width:767px){
   .checkout .lamar-container h2 {
-      font-size: 20px;
+      font-size: 14px;
+      display: none;
     }
+
 }
 .checkout .lamar-container .container-shiping{
   display: flex;
@@ -145,7 +149,38 @@
 .checkout .lamar-container form > div > input {
   flex: 1;
 }
-
+.checkout .lamar-container form .question{
+  font-size: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 30px;
+color: var(--text-color);
+cursor: pointer;
+position: relative;
+z-index: 10;
+}
+.checkout .lamar-container form .question div{
+  background-color: black;
+  /* padding: 10px; */
+  height: 40px;
+  width:200px;
+  position: absolute;
+  right: -220px;
+  top:-7px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+}
+@media(max-width:767px){
+.checkout .lamar-container form .question div{
+  right: 0px;
+  top:-40px;
+}
+}
 .checkout .lamar-container .name,
 .checkout .lamar-container .address {
   display: flex;
@@ -216,7 +251,6 @@
 .checkout .lamar-container i {
   font-size: 30px;
   color: black;
- 
 }
 
 .checkout .lamar-container .next {
@@ -251,20 +285,32 @@
   width: 100%;
 
 }
+.checkout .lamar-container .container-complete-order{
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+}
 @media (max-width: 767px) {
   .checkout .lamar-container .container-payment{
     flex-wrap: wrap-reverse;
   }
+.checkout .lamar-container .container-complete-order{
+  flex-wrap: wrap;
+
+}
 }
 
-.checkout .lamar-container .container-payment .Shipping-info{
+.checkout .lamar-container .container-payment .Shipping-info ,
+.checkout .lamar-container .container-complete-order .complete-order{
   width:60%;
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 @media(max-width:768px){
-  .checkout .lamar-container .container-payment .Shipping-info{
+  .checkout .lamar-container .container-payment .Shipping-info ,
+  .checkout .lamar-container .container-complete-order .complete-order {
     width:100%;
   }
 }
@@ -315,6 +361,15 @@ text-align: center;
   width: 48%;
 }
 
+
+.checkout .lamar-container .container-payment table tbody tr textarea{
+  height: 100px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+.checkout .lamar-container .container-payment table tbody tr textarea:focus::placeholder{
+  opacity: 0;
+}
 .checkout .lamar-container  .Shipping-info .next{
   width: 100%;
   height: 50px;
@@ -436,4 +491,84 @@ font-size: 22px;
 font-weight: 500;
 text-transform: capitalize;
 color: black;
+}
+
+
+/*  checkout 3 */
+.checkout .lamar-container .container-complete-order .pay-method {
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #ececec;
+  padding: 10px;
+}
+
+.checkout .lamar-container .container-complete-order .pay-method form{
+display: flex;
+justify-content: space-between;
+gap: 20px;
+flex-direction: column;
+width: 100%;
+/* min-height: 250px; */
+
+} 
+.checkout .lamar-container .container-complete-order .pay-method form .image{
+  width: fit-content;
+  height: 30px;
+}
+.checkout .lamar-container .container-complete-order .pay-method form .image-pay{
+  height: 30px;
+  width: 80px;
+}
+.checkout .lamar-container .container-complete-order .pay-method form .image-pay img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.checkout .lamar-container .container-complete-order .pay-method form .pay{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.checkout .lamar-container .container-complete-order .pay-method form .cash{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+}
+
+.checkout .lamar-container .container-complete-order .pay-method form label{
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+.checkout .lamar-container .container-complete-order .pay-method form input[type=radio]{
+  /* Hide original inputs */
+  visibility: hidden;
+  position: absolute;
+}
+.checkout .lamar-container .container-complete-order .pay-method form input[type=radio] + label:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 17px;
+    height: 17px;
+    border: 1px solid ;
+    border-radius: 50%;
+    transition: .15s ease-in-out;
+}
+
+.checkout .lamar-container .container-complete-order .pay-method form input[type=radio]:checked + label:after{
+    position: absolute;
+    content: "";
+    top: 7px;
+    left: 5px;
+    height: 7px;
+    width: 7px;
+    background:black;
+    border-radius: 50%;
+    transition: .15s ease-in-out;
 }

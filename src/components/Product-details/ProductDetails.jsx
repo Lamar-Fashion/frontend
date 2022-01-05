@@ -31,8 +31,10 @@ function ProductDetails() {
     id: "",
   });
   const [errorAlert, setErrorAlert] = useState(false);
+  const [seccessAlert, setSeccessAlert] = useState(false);
 
   const addEntry = (obj) => {
+    
     let FavArray = JSON.parse(window.sessionStorage.getItem("cart"));
     if (FavArray == null) FavArray = [];
     let duplecated = false;
@@ -58,16 +60,20 @@ function ProductDetails() {
     }
 
     window.sessionStorage.setItem("cart", JSON.stringify(FavArray));
-    alert("added to cart thank you     ");
-    setSelectedProduct({
-      ...obj,
-      size: false,
+    setTimeout(()=>{
+      setSelectedProduct({
+        ...obj,
+        size: false,
       color: false,
       buttons: false,
-      quantity: 1,
-    });
-    setSelectedStyleSize({ show: false, id: "" });
+        quantity: 1,
+      });
+      setSelectedStyleSize({ show: false, id: "" });
     setSelectedStyleColor({ show: false, id: "" });
+    },2500)
+   
+    
+   
   };
   return (
     <>
@@ -85,9 +91,17 @@ function ProductDetails() {
       <div className="nav-container">
       {
         (selectedProduct.size===false || selectedProduct.buttons===false || selectedProduct.color===false) 
-        && errorAlert && <Alert  severity="warning">
+        && errorAlert &&<Alert  severity="warning" id="alert">
         You need to choose options for your item.
                         </Alert>
+                        
+      }
+       {
+        selectedProduct.size && selectedProduct.buttons && selectedProduct.color
+        && seccessAlert && <Alert  severity="success" id="alert">
+         You added <strong>{name}</strong> to your <Link to="/Cart">shopping cart</Link>
+                        </Alert>
+                        
       }
       </div>
       
@@ -230,7 +244,12 @@ function ProductDetails() {
               </div>
               <div className="add-to-cart">
                 <button
-                  onClick={(e) => {
+                  onClick={async (e) => {
+                    window.scrollTo({
+                      left: 0,
+                      top: 50,
+                      behavior: 'smooth',
+                    });
                     if (
                       !selectedProduct.size ||
                       !selectedProduct.color ||
@@ -238,8 +257,13 @@ function ProductDetails() {
                       selectedProduct.buttons == "false"
                     ) {
                       setErrorAlert(true);
+                      
                     } else {
-                      addEntry(selectedProduct);
+                      
+                      setSeccessAlert(true)
+
+                     addEntry(selectedProduct);
+                    
                       setErrorAlert(false);
                     }
                   }}

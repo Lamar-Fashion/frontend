@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Checkout() {
   const cartArray= JSON.parse(window.sessionStorage.getItem("cart"))
   const total= JSON.parse(window.sessionStorage.getItem("total"))
+  const [showAnswer, setShowAnswer] = useState({email:false,phone:false})
   const navigate = useNavigate();
   let [values, setValues] = useState(JSON.parse(window.sessionStorage.getItem('checkout_person_info'))?JSON.parse(window.sessionStorage.getItem('checkout_person_info')):{});
 
@@ -22,12 +23,13 @@ function Checkout() {
       behavior: 'smooth',
     });
   }
+
     return (
         <>
-        <section className="checkout">
-    
+        <section className="checkout" >
+          
 
-        <div className="nav-container">
+        <div className="nav-container" >
       <div className="nav-info">
           <div className="left-nav">
             <Link to='/'><i className="fas fa-home i-home"></i></Link>  
@@ -38,66 +40,94 @@ function Checkout() {
         </div>
       </div>
         <div className="lamar-container">
-                <h2><span className='active'>Shipping <span className='steps'>1</span></span> <i className="fas fa-angle-right"></i> <span>Review & Payments <span className='steps'>2</span></span></h2>
+                <h2>
+                  <span className='active'>Shipping <span className='steps'>1</span>
+                  </span> 
+                  <i className="fas fa-angle-right"></i> 
+                  <span> Payments <span className='steps'>2</span>
+                  </span>
+                  <i className="fas fa-angle-right"></i> 
+                  <span>Order Complete <span className='steps'>3</span>
+                  </span>
+                  </h2>
           <div className="container-shiping">
           <form action="" onSubmit={handleSubmit}>
+            
                 
               <div className="email">
               <i className="fas fa-mail-bulk"></i>
-            <input type="email" name="email" id="email" placeholder="Email Address" 
+            <input type="email" name="email" id="email" placeholder="Email Address *" 
             value={values?.email} required onChange={handleChange}/>
+              <i className="far fa-question-circle question" onClick={()=>{
+                setShowAnswer({email:!showAnswer.email})
+              }}>
+                {
+                  showAnswer.email&&<div className='answer-q'>We'll send your order confirmation here.</div>
+                }
+
+                </i>
+              </div>
+              <div className="phone">
+              <i className="fas fa-phone"></i>
+            <input type="tel" name="phone" id="phone" placeholder="Phone Number *" required onChange={handleChange}
+            value={values?.phone}/>
+             <i className="far fa-question-circle question" onClick={()=>{
+                setShowAnswer({phone:!showAnswer.phone})
+              }}> 
+              {
+                showAnswer.phone&&
+             <div className='answer-q'>For delivery questions.</div>
+              }
+               
+             </i>
               </div>
               <div className="name">
                 <div className="Fname">
                   <i className="fas fa-user-edit"></i>
                 <input type="text" name="Fname" id="Fname" 
-                value={values?.Fname} placeholder="First Name" required  onChange={handleChange}/ >
+                value={values?.Fname} placeholder="First Name *" required  onChange={handleChange}/ >
 
                 </div>
                 <div className="Lname">
                   <i className="fas fa-user-edit"></i>
-                <input type="text" name="Lname" id="Lname" value={values?.Lname} placeholder="Last Name" required onChange={handleChange}/>
+                <input type="text" name="Lname" id="Lname" value={values?.Lname} placeholder="Last Name *" required onChange={handleChange}/>
 
                 </div>
   
               </div>
               <div className="company">
               <i className="fas fa-warehouse"></i>
-            <input type="text" name="company" id="company" placeholder="Company Name"  value={values.company? values.company : ""} onChange={handleChange}/>
+            <input type="text" name="company" id="company" placeholder="Company Name *"  value={values.company? values.company : ""} onChange={handleChange}/>
               </div>
               <div className="address">
                 <div className="Faddress">
                 <i className="fas fa-map-marked-alt"></i>
-                <input type="text" name="Faddress" id="Faddress" placeholder="Street Address" required onChange={handleChange} 
+                <input type="text" name="Faddress" id="Faddress" placeholder="Street Address *" required onChange={handleChange} 
                 value={values?.Faddress}/ >
 
                 </div>
                 <div className="Laddress">
                 <i className="fas fa-map-marked-alt"></i>
-                <input type="text" name="Laddress" id="Laddress" placeholder="Street Address 2" onChange={handleChange}
+                <input type="text" name="Laddress" id="Laddress" placeholder="Street Address 2 *" onChange={handleChange}
                 value={values?.Laddress?values.Laddress:"" } />
 
                 </div>
               </div>
               <div className="city">
               <i className="fas fa-city"></i>
-            <input type="text" name="city" id="city" placeholder="City" required onChange={handleChange}
+            <input type="text" name="city" id="city" placeholder="City *" required onChange={handleChange}
              value={values?.city}/>
               </div>
               <div className="zip-code">
               <i className="far fa-keyboard"></i>
-            <input type="text" name="zip_code" id="zip_code" placeholder="Zip/Postal Code" required onChange={handleChange}
+            <input type="text" name="zip_code" id="zip_code" placeholder="Zip/Postal Code *" required onChange={handleChange}
             value={values?.zip_code}/>
               </div>
               <div className="country">
               <i className="fas fa-globe-africa"></i>
             <input type="text" name="country" id="country" placeholder="country" value="Qatar" />
               </div>
-              <div className="phone">
-              <i className="fas fa-phone"></i>
-            <input type="tel" name="phone" id="phone" placeholder="Phone Number" required onChange={handleChange}
-            value={values?.phone}/>
-              </div>
+              
               <button className="next" type='submit' > 
               {/* <Link to="/Checkout2" >Next</Link> */}
               next
@@ -151,7 +181,7 @@ function Checkout() {
           </div>
             
         </div>
-
+       
         </section>
             
         </>
