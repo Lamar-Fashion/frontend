@@ -6,11 +6,14 @@ function AbayaHero() {
 
   return (
     <>
-      <div className='container-abaya-hero'>
+    <div className="lamar-container">
+    <div className='container-abaya-hero'>
         <div className='abaya-hero'>
           <h4 className='hero-text'>shop Abaya & find modern deisgns</h4>
         </div>
       </div>
+    </div>
+     
     </>
   );
 }

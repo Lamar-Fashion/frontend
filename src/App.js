@@ -16,6 +16,7 @@ import PrivacyPolicy from './components/Policy/PrivacyPolicy';
 import ProductDetails from './components/Product-details/ProductDetails';
 import Profile from './components/Profile/profile/Profile';
 import ContactUs from './components/Contact-us/ContactUs';
+import Checkout3 from './components/Checkout/Checkout3';
 
 function App() {
   const [y, setY] = useState(window.scrollY);
@@ -51,6 +52,7 @@ function App() {
           <Route exact path='/Cart' element={<Cart />} />
           <Route exact path='/Checkout' element={<Checkout />} />
           <Route exact path='/Checkout2' element={<Checkout2 />} />
+          <Route exact path='/Checkout3' element={<Checkout3 />} />
           <Route exact path='/DeliveryPolicy' element={<DeliveryPolicy />} />
           <Route exact path='/PrivacyPolicy' element={<PrivacyPolicy />} />
           <Route exact path='/ProductDetails' element={<ProductDetails />} />

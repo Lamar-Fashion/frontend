@@ -188,11 +188,13 @@
 }
 .abaya-cards .box .over-view.edit {
   position: absolute;
-  top: 90px;
+  top: 50px;
+  left: 10px;
 }
 .abaya-cards .box .over-view.delete {
   position: absolute;
-  right: 230px;
+  top: 10px;
+  left: 10px;
 }
 .abaya-cards .image {
   width: 100%;

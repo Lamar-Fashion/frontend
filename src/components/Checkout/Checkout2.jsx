@@ -1,14 +1,29 @@
-import React from "react";
+import {React,useState} from "react";
 import { Link } from "react-router-dom";
 import "../../styles/checkout/checkout.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 function Checkout2() {
+  const navigate = useNavigate();
   const InformationData = JSON.parse(
     window.sessionStorage.getItem("checkout_person_info")
   );
+  let [values, setValues] = useState(JSON.parse(window.sessionStorage.getItem('checkout_person_info'))?JSON.parse(window.sessionStorage.getItem('checkout_person_info')):{});
+
   const cartArray= JSON.parse(window.sessionStorage.getItem("cart"))
   const total= JSON.parse(window.sessionStorage.getItem("total"))
-  
+  const handleChange=e=>{
+    setValues({...values,[e.target.name]:e.target.value})
+  }
+  const handleClick=()=>{
+    window.sessionStorage.setItem('checkout_person_info', JSON.stringify(values));
+    navigate("/Checkout3");
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
   return (
     <>
       <section className="checkout">
@@ -27,7 +42,10 @@ function Checkout2() {
 
         <div className="lamar-container">
     
-        <h2><span >Shipping <i className="far fa-check-circle"></i></span> <i className="fas fa-angle-right"></i> <span className='active'>Review & Payments<span className='steps'>2</span></span></h2>
+        <h2><span >Shipping <i className="far fa-check-circle"></i></span> <i className="fas fa-angle-right"></i> <span className='active'>Review & Payments<span className='steps'>2</span></span>
+        <i className="fas fa-angle-right"></i> 
+                  <span>Order Complete <span className='steps'>3</span>
+                  </span></h2>
             <div className="container-payment">
               <div className="Shipping-info">
                   <h4 className="Shipping-title">Shipping Info</h4>
@@ -54,8 +72,28 @@ function Checkout2() {
                       </td>
                     </tr>
                   </tbody>
+                  <tbody>
+                    <tr>
+                      <td className="td1">
+                       Method
+                      </td>
+                      <td className="td2">
+                      Free Shipping - Free
+                      </td>
+                      <td className="td3">
+                        <Link to="/Checkout">change</Link>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Leave A Comment" 
+                      value={values?.comment}
+                      onChange={handleChange}></textarea>
+                    </tr>
+                  </tbody>
                 </table>
-                <button className="next">continue to payment</button>
+                <button className="next" onClick={handleClick}>continue to payment</button>
               </div>
               <div className="summary">
                 <h3 >Order summary</h3>
