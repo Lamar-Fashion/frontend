@@ -26,6 +26,7 @@ function AbayaCards() {
     discrpition: ' Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd ',
     small_des: 'Lorem ipsum dolor',
     brand: 'lamar',
+    Availabilty:true,
     id: '',
   };
 

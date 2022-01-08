@@ -15,6 +15,7 @@ function ProductDetails() {
   let size = obj.size;
   let color = obj.color;
   let descrp = obj.discrpition;
+  let Availabilty=obj.Availabilty
   const [selectedProduct, setSelectedProduct] = useState({
     ...obj,
     size: false,
@@ -100,8 +101,12 @@ function ProductDetails() {
         selectedProduct.size && selectedProduct.buttons && selectedProduct.color
         && seccessAlert && <Alert  severity="success" id="alert">
          You added <strong>{name}</strong> to your <Link to="/Cart">shopping cart</Link>
-                        </Alert>
-                        
+                        </Alert>               
+      }
+      {
+        !Availabilty && <Alert  severity="error" id="alert">
+        unfortunately this item doesn't exist right know
+                        </Alert>               
       }
       </div>
       
@@ -139,7 +144,7 @@ function ProductDetails() {
                   QAR <span>{price}</span>
                 </h2>
                 <p>
-                  <span>Availabilty :</span> In Stock
+                  <span className={Availabilty?"":"not-Availabilty"}>Availabilty : <span>In Stock</span></span> 
                 </p>
               </div>
               <li>The Order Takes 1 To 2 Weeks.</li>
@@ -250,22 +255,25 @@ function ProductDetails() {
                       top: 50,
                       behavior: 'smooth',
                     });
-                    if (
-                      !selectedProduct.size ||
-                      !selectedProduct.color ||
-                      !selectedProduct.buttons ||
-                      selectedProduct.buttons == "false"
-                    ) {
-                      setErrorAlert(true);
-                      
-                    } else {
-                      
+                    if(Availabilty){
+                      if (
+                        !selectedProduct.size ||
+                        !selectedProduct.color ||
+                        !selectedProduct.buttons ||
+                        selectedProduct.buttons == "false"
+                      ) {
+                        setErrorAlert(true);
+                        
+                      } else {
+                        
                       setSeccessAlert(true)
-
-                     addEntry(selectedProduct);
-                    
-                      setErrorAlert(false);
+  
+                       addEntry(selectedProduct);
+                      
+                        setErrorAlert(false);
+                      }
                     }
+                    
                   }}
                 >
                   add to cart

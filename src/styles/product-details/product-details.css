@@ -339,3 +339,6 @@
   text-transform: capitalize;
   transition: 0.3s;
 }
+.product-d .not-Availabilty{
+  text-decoration: line-through;
+}
