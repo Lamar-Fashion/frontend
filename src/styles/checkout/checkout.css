@@ -273,7 +273,6 @@ z-index: 10;
 .checkout .lamar-container .next:hover {
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
-  font-size: 22px;
   font-weight: 600;
   transform: translateY(-3px);
 }
@@ -296,7 +295,7 @@ z-index: 10;
     flex-wrap: wrap-reverse;
   }
 .checkout .lamar-container .container-complete-order{
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
 
 }
 }
@@ -384,7 +383,6 @@ text-align: center;
   transition: box-shadow 0.3s , 0.3s ;
 }
 .checkout .lamar-container  .Shipping-info .next:hover{
-font-size: 19px;
 box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
@@ -400,7 +398,7 @@ box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 
 @media(max-width:768px){
 .checkout .lamar-container .summary{
-    width:90%;
+    width:100%;
     margin: 0 auto;
   }
 }
@@ -512,23 +510,20 @@ width: 100%;
 
 } 
 .checkout .lamar-container .container-complete-order .pay-method form .image{
-  width: fit-content;
-  height: 30px;
+  height: 35px;
+  /* width: fit-content */
 }
-.checkout .lamar-container .container-complete-order .pay-method form .image-pay{
-  height: 30px;
-  width: 80px;
-}
-.checkout .lamar-container .container-complete-order .pay-method form .image-pay img{
+.checkout .lamar-container .container-complete-order .pay-method form .image img{
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  height: 90%;
+  object-fit:cover;
 }
 .checkout .lamar-container .container-complete-order .pay-method form .pay{
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 30px;
+ 
 }
 .checkout .lamar-container .container-complete-order .pay-method form .cash{
   display: flex;
@@ -537,19 +532,22 @@ width: 100%;
   gap: 0px;
 }
 
-.checkout .lamar-container .container-complete-order .pay-method form label{
+.checkout .lamar-container .container-complete-order .pay-method form .pay label{
   position: relative;
   padding-left: 28px;
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+  text-transform: capitalize;
+  color: var(--text-color);
 }
-.checkout .lamar-container .container-complete-order .pay-method form input[type=radio]{
-  /* Hide original inputs */
-  visibility: hidden;
-  position: absolute;
+.checkout .lamar-container .container-complete-order .pay-method form .pay input{
+  -webkit-appearance: none;
+  appearance: none;
+ width: 0;
+
 }
-.checkout .lamar-container .container-complete-order .pay-method form input[type=radio] + label:before{
+.checkout .lamar-container .container-complete-order .pay-method form .pay label:before{
     content: "";
     position: absolute;
     left: 0;
@@ -559,9 +557,10 @@ width: 100%;
     border: 1px solid ;
     border-radius: 50%;
     transition: .15s ease-in-out;
+    background-color: white;
 }
 
-.checkout .lamar-container .container-complete-order .pay-method form input[type=radio]:checked + label:after{
+.checkout .lamar-container .container-complete-order .pay-method form .pay input:checked + label:after{
     position: absolute;
     content: "";
     top: 7px;
@@ -572,3 +571,86 @@ width: 100%;
     border-radius: 50%;
     transition: .15s ease-in-out;
 }
+.checkout .lamar-container .container-complete-order .pay-method form .pay input:checked + label{
+  color: black;
+}
+.checkout .lamar-container .container-complete-order .pay-method form .pay label:hover::after{
+  position: absolute;
+  content: "";
+  top: 7px;
+  left: 5px;
+  height: 7px;
+  width: 7px;
+  background:grey;
+  border-radius: 50%;
+  transition: .15s ease-in-out;
+}
+.checkout .lamar-container .container-complete-order .pay-method form .pay label:hover{
+  color: black;
+}
+
+.checkout .lamar-container .container-complete-order .pay-method form .place-order{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  align-items: center;
+}
+.checkout .lamar-container .container-complete-order .pay-method form .place-order .Conditions{
+  display: flex;
+  align-items: center;
+}
+.checkout .lamar-container .container-complete-order .pay-method form .place-order .Conditions input{
+  width: 40px;
+  height: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.checkout .lamar-container .container-complete-order .pay-method form .place-order .Conditions label{
+  position: relative;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: var(--text-color);
+}
+
+.checkout .lamar-container .container-complete-order .pay-method form .not-place{
+  width: 100%;
+  height: 50px;
+  background-color: whitesmoke;
+  border: none;
+  color: black;
+  font-size: 20px;
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  cursor: auto;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+}
+
+.checkout .lamar-container .container-complete-order .pay-method form .credit_card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.checkout .lamar-container .container-complete-order .pay-method form .credit_card i{
+  font-size: 100px;
+  color: #ccc;
+
+}
+.checkout .lamar-container .container-complete-order .pay-method form .credit_card p {
+  font-size: 16px;
+  text-align: center;
+  white-space:2px;
+}
+
