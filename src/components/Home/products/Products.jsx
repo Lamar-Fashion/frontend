@@ -5,7 +5,7 @@ import Slider from './Slider';
 function Products() {
   return (
     <>
-      <section className='products' id='collection'>
+      <section className='products' id='products'>
         <div className='custom-shape-divider-top-1638712956'>
           <svg data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
             <path

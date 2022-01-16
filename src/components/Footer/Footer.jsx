@@ -25,13 +25,14 @@ function Footer() {
                   <i className='fab fa-instagram'></i>
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href='https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/' className='twitter' target='_blank'>
                   <i className='fab fa-twitter'></i>
                 </a>
-              </li>
+              </li> */}
             </ul>
-            <p className='text'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus nulla rem, dignissimos iste aspernatur</p>
+            <p className='text'>Lamar Fashion,You Can Find Us All Time 
+            Lorem ipsum dolor sit,</p>
           </div>
           <div className='box'>
             <ul className='links'>

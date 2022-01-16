@@ -95,9 +95,18 @@ function Checkout() {
                 </div>
   
               </div>
-              <div className="company">
-              <i className="fas fa-warehouse"></i>
-            <input type="text" name="company" id="company" placeholder="Company Name *"  value={values.company? values.company : ""} onChange={handleChange}/>
+              <div className="country">
+              <i className="fas fa-globe-africa"></i>
+            <input type="text" name="country" id="country" placeholder="country" value="Qatar" />
+              </div>
+              <div className="city">
+              <i className="fas fa-city"></i>
+            <input type="text" name="city" id="city" placeholder="City *" required onChange={handleChange}
+             value={values?.city}/>
+              </div>
+              <div className="zone">
+              <i className="fas fa-city"></i>
+            <input type="text" name="Zone" id="Zone" placeholder="Zone  *"  value={values.Zone? values.Zone : ""} onChange={handleChange}/>
               </div>
               <div className="address">
                 <div className="Faddress">
@@ -107,30 +116,17 @@ function Checkout() {
 
                 </div>
                 <div className="Laddress">
-                <i className="fas fa-map-marked-alt"></i>
-                <input type="text" name="Laddress" id="Laddress" placeholder="Street Address 2 *" onChange={handleChange}
+                <i class="fas fa-building"></i>
+                <input type="text" name="Laddress" id="Laddress" placeholder="Flat / Villa Number  *" onChange={handleChange}
                 value={values?.Laddress?values.Laddress:"" } />
 
                 </div>
               </div>
-              <div className="city">
-              <i className="fas fa-city"></i>
-            <input type="text" name="city" id="city" placeholder="City *" required onChange={handleChange}
-             value={values?.city}/>
-              </div>
-              <div className="zip-code">
-              <i className="far fa-keyboard"></i>
-            <input type="text" name="zip_code" id="zip_code" placeholder="Zip/Postal Code *" required onChange={handleChange}
-            value={values?.zip_code}/>
-              </div>
-              <div className="country">
-              <i className="fas fa-globe-africa"></i>
-            <input type="text" name="country" id="country" placeholder="country" value="Qatar" />
-              </div>
+              
               
               <button className="next" type='submit' > 
               {/* <Link to="/Checkout2" >Next</Link> */}
-              next
+              Next
               </button>
             </form>
             <div className="summary">

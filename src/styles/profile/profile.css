@@ -87,3 +87,23 @@
   text-transform: capitalize;
 }
 
+.profile-lamar .sign-container{
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+.profile-lamar .sign-container p {
+  margin: auto;
+  text-transform: capitalize;
+}
+.profile-lamar .sign-container a {
+  color: black;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.profile-lamar .sign-container a:hover {
+  text-decoration: underline !important;
+}

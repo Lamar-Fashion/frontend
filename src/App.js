@@ -4,7 +4,6 @@ import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import FixedHeader from './components/Header/FixedHeader';
-import Abaya from './components/Abaya/Abaya';
 import SignIn from './components/Sign/sign-in/SignIn';
 import SignUp from './components/Sign/sign-up/SignUp';
 import AboutUs from './components/About-us/AboutUs';
@@ -17,6 +16,7 @@ import ProductDetails from './components/Product-details/ProductDetails';
 import Profile from './components/Profile/profile/Profile';
 import ContactUs from './components/Contact-us/ContactUs';
 import Checkout3 from './components/Checkout/Checkout3';
+import AbayaCards from './components/Abaya/abaya-cards/AbayaCards';
 
 function App() {
   const [y, setY] = useState(window.scrollY);
@@ -45,7 +45,7 @@ function App() {
 
         <Routes>
           <Route exact path='/' element={<Home />} />
-          <Route exact path='/Abaya' element={<Abaya />} />
+          <Route exact path='/Abaya' element={<AbayaCards />} />
           <Route exact path='/SignIn' element={<SignIn />} />
           <Route exact path='/SignUp' element={<SignUp />} />
           <Route exact path='/AboutUs' element={<AboutUs />} />
