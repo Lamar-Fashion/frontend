@@ -69,28 +69,34 @@
   align-items: center;
   gap: 10px;
   color: var(--text-color);
+  width: 90%;
+  
 }
 .checkout .lamar-container h2 i {
   font-size: 18px;
   color: black;
-}
-.checkout .lamar-container h2 .active{
-  border-left: 2px dashed   black;
-  border-right: 2px dashed   black;
-  padding: 5px;
-  border-radius: 10px;
-  color: black;
-  display: flex;
-  justify-content: space-between;
-  gap: 5px;
-  align-items: center;
-  position: relative;
 }
 .checkout .lamar-container h2 span{
   display: flex;
   justify-content: space-between;
   gap: 5px;
   align-items: center;
+  background-color: var(--main-color-alt2);
+  height:60px;
+  width: 100%;
+  padding: 15px;
+color: var(--text-color);
+
+}
+.checkout .lamar-container h2 .active{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    align-items: center;
+    position: relative;
+    background-color: #1976d2;
+
 }
 
 .checkout .lamar-container h2 .steps {
