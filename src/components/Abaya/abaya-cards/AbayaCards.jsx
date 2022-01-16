@@ -10,6 +10,7 @@ import Pagination from '@mui/material/Pagination';
 import { useSelector } from 'react-redux';
 import AddProductModal from '../../Admin/add-product/AddProductModal';
 import EditProductModal from '../../Admin/edit-product/EditProductModal';
+import { storage } from '../../../firebase';
 function AbayaCards() {
   const role = useSelector((state) => state.authReducer.role);
   const [openAddproduct, setOpenAddProduct] = useState(false);
@@ -26,7 +27,7 @@ function AbayaCards() {
     discrpition: ' Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd ',
     small_des: 'Lorem ipsum dolor',
     brand: 'lamar',
-    Availabilty:true,
+    Availabilty: true,
     id: '',
   };
 
@@ -46,6 +47,14 @@ function AbayaCards() {
   // delete product handler
   function deleteHnadler(id) {
     // delete from backend
+
+    // delete the images from the firebase
+    let pictureRef = storage.refFromURL(
+      'https://firebasestorage.googleapis.com/v0/b/lamar-fashion.appspot.com/o/products%2F3-1-2022%404%3A23%20-%20AW2eSkwg.jpeg?alt=media&token=2d2040d6-de5d-4f4b-b1fb-aebd0d0bfc1c'
+    );
+    pictureRef.delete().then(function () {
+      console.log('image deleted from firebas');
+    });
   }
 
   useEffect(() => {
@@ -97,7 +106,7 @@ function AbayaCards() {
                 }}
               >
                 <div className='fav'>
-                <i class="fas fa-pen"></i>
+                  <i class='fas fa-pen'></i>
                 </div>
               </div>
             )}
