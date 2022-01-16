@@ -139,8 +139,9 @@
   margin: 5px 0;
   font-weight: 700;
   letter-spacing: 0.5px;
-  font-size: 1.1rem;
   text-transform: capitalize;
+  font-size: 1.1rem;
+
 }
 .multi-slider .details .type span {
   color: rgb(26, 26, 26, 0.5);
@@ -149,7 +150,16 @@
   color: var(--text-color);
   font-weight: 600;
   letter-spacing: 0.5px;
-  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+}
+.multi-slider .details .price .first-price{
+  text-decoration: line-through red 1px ;
+  opacity: 0.65;
+
 }
 
 /* End Slider styling */

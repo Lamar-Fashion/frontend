@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function Brand() {
   return (
     <>
-      <section className='brand' id='brands'>
+      <section className='brand' id='collection'>
         <div className='custom-shape-divider-top-1638712956'>
           <svg data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'>
             <path
@@ -28,7 +28,7 @@ function Brand() {
           </svg>
         </div>
         <div className='title-section'>
-          <h2 className='main-title'>collections</h2>
+          <h2 className='main-title'>collection</h2>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus illum vel cupiditate dolorum laborum!</p>
         </div>
         <div className='lamar-container'>
@@ -44,7 +44,7 @@ function Brand() {
             </div>
             <h3>lamar</h3> */}
           </div>
-          <div className='item2'>
+          {/* <div className='item2'>
             <div className='item-topdiv'>
               <h3 className='item-title'>Ready To Wear</h3>
               <Link to="/Abaya">
@@ -52,11 +52,8 @@ function Brand() {
               </Link>
             </div>
 
-            {/* <div className='image'>
-              <img src={mortaha} alt='mortaha' />
-            </div>
-            <h3>shera</h3> */}
-          </div>
+           
+          </div> */}
           <div className='item3'>
             <div className='item-topdiv'>
               <h3 className='item-title'>On Sales</h3>

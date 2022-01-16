@@ -27,7 +27,7 @@
 
 .brand .lamar-container {
   display: grid;
-  grid-template-columns: 48% 48%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 30px;
 }
 

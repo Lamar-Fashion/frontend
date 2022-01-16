@@ -50,6 +50,7 @@
   display: flex;
   align-items: center;
   gap: 60px;
+  padding-bottom: 100px;
 }
 @media (max-width: 530px) {
   .product-d .lamar-container {
@@ -59,7 +60,7 @@
 }
 
 .product-d .lamar-container .image-product {
-  width: 50%;
+  width: 37%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,13 +74,13 @@
 }
 .product-d .lamar-container .image-product .big-image {
   width: 100%;
-  height: 500px;
+  height: 470px;
   transition: width 0.5s;
 }
 .product-d .lamar-container .image-product img {
   width: 100%;
   height: 100%;
-  /* object-fit: cover; */
+  /* object-fit: fill ; */
 }
 @media (max-width: 530px) {
   .product-d .lamar-container .image-product .big-image {
@@ -88,43 +89,46 @@
 }
 .product-d .lamar-container .image-product .left-images {
   width: 100%;
-  height: 130px;
+  height: 75px;
   display: flex;
   align-items: center;
 }
 .product-d .lamar-container .image-product .left-images .flicking-camera {
   width: 100%;
   display: flex;
-  gap: 5px;
-  justify-content: space-between;
+  gap:10px;
+  /* justify-content: space-between; */
   align-items: center;
-  margin-left: -218px;
+  margin-left: -167px;
 }
 @media (max-width: 530px) {
   .product-d .lamar-container .image-product .left-images .flicking-camera {
-    margin-left: -120px;
-    gap: 5px;
+    margin-left: -110px;
+    gap: 10px;
+  }
+}
+@media (min-width: 531px) and (max-width:991px) {
+  .product-d .lamar-container .image-product .left-images .flicking-camera {
+    margin-left: -105px;
+    gap: 10px;
   }
 }
 
 .product-d .lamar-container .image-product .left-images .image {
-  width: 23%;
+  width: 20%;
   height: 100%;
   cursor: pointer;
   transition: 0.3s;
+  padding: 1px;
+  background-color: black;
 }
 
-@media (max-width: 530px) {
-  .product-d .lamar-container .image-product .left-images .image {
-    width: 35%;
-  }
-}
 .product-d .lamar-container .product-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   flex: 1;
-  height: 550px;
+  height: 545px;
 }
 @media (max-width: 530px) {
   .product-d .lamar-container .product-info {
@@ -137,6 +141,8 @@
   flex-direction: column;
   gap: 15px;
 }
+
+ 
 .product-d .lamar-container .product-info .name-p h2 {
   font-size: 24px;
   font-weight: 500;
@@ -155,6 +161,9 @@
 }
 .product-d .lamar-container .product-info .name-p .price p {
   font-size: 18px;
+  display: flex;
+  flex-direction: column;
+
 }
 .product-d .lamar-container .product-info .name-p .price p span {
   font-weight: 500;
@@ -189,13 +198,20 @@
 .product-d .lamar-container .product-info .size-color .avialable {
   display: flex;
   gap: 5px;
-  width: 35%;
+  min-width: 150px;
+  flex: 1;
+  flex-wrap: wrap;
+
+}
+.product-d .lamar-container .product-info .size-color .avialable.av-colors button{
+  width: fit-content;
+  padding: 0 10px;
 }
 .product-d .lamar-container .product-info .size-color h4 {
   font-size: 22px;
   color: var(--text-color);
   font-weight: 500;
-  width: 25%;
+  width: 20%;
 }
 .product-d .lamar-container .product-info .size-color button {
   width: 30px;
@@ -329,7 +345,8 @@
 
 .product-d .selected {
   border: 2px solid red !important;
-  transform: scale(1.2);
+  transform: scale(1.15);
+  z-index: 3;
 }
 
 .product-d .error-alert{
@@ -341,4 +358,8 @@
 }
 .product-d .not-Availabilty{
   text-decoration: line-through;
+}
+.product-d .hr{
+  border-bottom: 1px solid rgba(180, 177, 177, 0.568);
+  margin: 15px 0;
 }
