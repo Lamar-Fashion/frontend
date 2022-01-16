@@ -57,23 +57,6 @@ function Header() {
                   <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
                     <li>
                       <Link
-                        to='/Abaya'
-                        onClick={() => {
-                          window.scrollTo({
-                            left: 0,
-                            top: 0,
-                            behavior: 'smooth',
-                          });
-                        }}
-                      >
-                        Abaya
-                      </Link>
-                    </li>
-                    <li>
-                      <a href='#collection'>Ready to wear</a>
-                    </li>
-                    <li>
-                      <Link
                         to='/Contact-us'
                         onClick={() => {
                           window.scrollTo({
@@ -86,8 +69,47 @@ function Header() {
                         contact us
                       </Link>
                     </li>
+                    {/* <li>
+                      <a href='#brands'>
+                        collection
+                      </a>
+                    </li>
+                    <li>
+                      <a href='#collection'>products</a>
+                    </li>
+                    <li>
+                      <a href='#feedback'>feedback</a>
+                    </li> */}
                   </ul>
                 </li>
+                <li>
+                  <Link
+                    to='/Abaya'
+                    onClick={() => {
+                      window.scrollTo({
+                        left: 0,
+                        top: 0,
+                        behavior: 'smooth',
+                      });
+                    }}
+                  >
+                    <a>
+                      Abayas
+                      {/* <i className='fas fa-angle-down'></i> */}
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/Shalat'>
+                    <a>New Arrivals</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link to='/Shalat'>
+                    <a>on Sales</a>
+                  </Link>
+                </li>
+
                 {/* <li>
                 <Link to="/Abaya" onClick={() => {
                   window.scrollTo({
@@ -150,27 +172,20 @@ function Header() {
                 }}
               >
                 <a>
-                  Home<i className='fas fa-angle-down'></i>
+                  Home
+                  <i className='fas fa-angle-down'></i>
                 </a>
               </Link>
               <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
-                <li>
-                  <Link
-                    to='/Abaya'
-                    onClick={() => {
-                      window.scrollTo({
-                        left: 0,
-                        top: 0,
-                        behavior: 'smooth',
-                      });
-                    }}
-                  >
-                    Abaya
-                  </Link>
+                {/* <li>
+                  <a href='#brands'>collection</a>
                 </li>
                 <li>
-                  <a href='#collection'>Ready to wear</a>
+                  <a href='#collection'>products</a>
                 </li>
+                <li>
+                  <a href='#feedback'>feedback</a>
+                </li> */}
                 <li>
                   <Link
                     to='/Contact-us'
@@ -187,7 +202,7 @@ function Header() {
                 </li>
               </ul>
             </li>
-            {/* <li>
+            <li>
               <Link
                 to='/Abaya'
                 onClick={() => {
@@ -199,10 +214,11 @@ function Header() {
                 }}
               >
                 <a>
-                  Abaya<i className='fas fa-angle-down'></i>
+                  Abayas
+                  {/* <i className='fas fa-angle-down'></i> */}
                 </a>
               </Link>
-              <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
+              {/* <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
                 <li>
                   <a href='#lamar'>lamar</a>
                 </li>
@@ -215,13 +231,18 @@ function Header() {
                 <li>
                   <a href='#shera'>shera</a>
                 </li>
-              </ul>
+              </ul> */}
             </li>
             <li>
               <Link to='/Shalat'>
-                <a href='#shalat'>Shalat</a>
+                <a href='#shalat'>New Arrivals</a>
               </Link>
-            </li> */}
+            </li>
+            <li>
+              <Link to='/Shalat'>
+                <a href='#shalat'>on Sales</a>
+              </Link>
+            </li>
           </ul>
 
           <div className={y > 0 ? 'image image-scroll ' : 'image'}>
@@ -240,7 +261,7 @@ function Header() {
           </div>
           <section className={y > 0 ? 'rightContainer rightContainer-scroll ' : 'rightContainer'}>
             <div className='searchContainer'>
-              {showSearchTextField && <input type='text' name='search' placeholder='Search...' className='input' />}
+              <input type='text' name='search' placeholder='Search...' className={showSearchTextField ? 'input' : 'hidden-input'} />
 
               <a href='#' className='btn' onClick={() => setShowSearchTextField(!showSearchTextField)}>
                 <i className='fas fa-search'></i>

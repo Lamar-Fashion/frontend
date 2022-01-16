@@ -146,7 +146,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
           },
           () => {
             //   Upload completed successfully, now we can get the download URL
-            storageRef.getDownloadURL().then(async (downloadURL) => {
+            storageRef.getDownloadURL().then((downloadURL) => {
               console.log('File available at', downloadURL);
               productData.productIamges.push(downloadURL);
             });

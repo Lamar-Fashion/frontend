@@ -35,10 +35,6 @@ function FixedHeader() {
             <a className='icons' href='https://www.instagram.com/lamarfashion.qa?utm_medium=copy_link' target='_blank'>
               <i className='fab fa-instagram'></i>
             </a>
-
-            <a className='icons' href='https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/' target='_blank'>
-              <i className='fab fa-twitter'></i>
-            </a>
           </section>
         </div>
       </div>
