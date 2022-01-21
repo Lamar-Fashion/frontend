@@ -140,6 +140,7 @@ function Checkout() {
                             <h4>{item.name}</h4>
                             <p>size: {item.size}</p>
                             <p>color: {item.color}</p>
+                            <p>tall:{item.tall}</p>
                             <p>buttons:{item.buttons}</p>
                           </div>
                         </div>

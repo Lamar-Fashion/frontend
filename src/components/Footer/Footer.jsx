@@ -4,7 +4,7 @@ import React from 'react';
 import '../../styles/footer-styles/footer.css';
 import master from '../../images/header/MasterCard_Logo.svg.png';
 import visa from '../../images/header/Visa_Logo.png';
-import pay_pal from '../../images/header/PayPal.svg.png';
+import apple_pay from '../../images/header/apple-pay.png';
 import cash from '../../images/header/cash-on-delivery.png';
 import { Link } from 'react-router-dom';
 function Footer() {
@@ -144,7 +144,7 @@ function Footer() {
               </a>
               <a href='#policy'>
                 <div className='image pay-pal'>
-                  <img src={pay_pal} alt='' />
+                  <img src={apple_pay} alt='' />
                 </div>
               </a>
               <a href='#policy'>

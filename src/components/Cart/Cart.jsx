@@ -90,8 +90,12 @@ function Cart() {
                               <span>color : </span> {item.color}
                             </p>
                             <p>
+                              <span>tall :</span> {item.tall}
+                            </p>
+                            <p>
                               <span>buttons :</span> {item.buttons}
                             </p>
+                           
                           </div>
                         </div>
                       </td>
