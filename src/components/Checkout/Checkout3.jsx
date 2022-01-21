@@ -2,7 +2,7 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/checkout/checkout.css";
-import pay_pal from "../../images/header/PayPal.svg.png";
+import apple_pay from "../../images/header/apple-pay.png";
 import cash from "../../images/shop/cash.png";
 
 function Checkout3() {
@@ -134,10 +134,10 @@ function Checkout3() {
                         id="Pay-Pal"
                         onChange={handleCahnge}
                       />
-                      <label htmlFor="Pay-Pal">Pay-Pal Payment</label>
+                      <label htmlFor="Pay-Pal">Apple-Pay Payment</label>
                     </div>
                     <div className="image">
-                      <img src={pay_pal} alt="" />
+                      <img src={apple_pay} alt="" />
                     </div>
                   </div>
                     {
@@ -215,6 +215,7 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
                             <h4>{item.name}</h4>
                             <p>size: {item.size}</p>
                             <p>color: {item.color}</p>
+                            <p>tall: {item.tall}</p>
                             <p>buttons:{item.buttons}</p>
                           </div>
                         </div>

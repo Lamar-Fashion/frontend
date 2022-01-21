@@ -198,8 +198,8 @@
 .cart-lamar .cart-table-body-r .info .image {
   width: 160px;
   height: 130px;
-  padding: 3px;
-  background-color: black;
+  padding: 4px;
+  background-color: white;
 }
 
 @media (max-width: 530px) {

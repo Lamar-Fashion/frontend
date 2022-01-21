@@ -82,6 +82,11 @@ function ProductDetails() {
   const tall = [
     47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,
   ];
+
+
+
+
+
   return (
     <>
       <section className="product-d">
@@ -124,11 +129,16 @@ function ProductDetails() {
         <div className="lamar-container">
           <div className="image-product">
             <div className="big-image">
-              <img src={state} alt="" />
+          
+              
+               <img src={state} alt="" />
+            
+             
             </div>
+           
             <div className="left-images">
               <Flicking circular={true}>
-                {images.map((item) => {
+                {images.map((item,indx) => {
                   return (
                     <div
                       className="image"
@@ -136,7 +146,7 @@ function ProductDetails() {
                         setstate(item);
                       }}
                     >
-                      <img src={item} alt="" />
+                      <img  src={item} alt={indx} />
                     </div>
                   );
                 })}

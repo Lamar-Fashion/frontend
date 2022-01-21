@@ -92,7 +92,7 @@ function Checkout2() {
                   </tr>
                 </tbody>
                 <tbody>
-                  <tr>
+                  <tr className='tr-text'>
                     <textarea name='comment' id='comment' cols='30' rows='10' placeholder='Leave A Comment' value={values?.comment} onChange={handleChange}></textarea>
                   </tr>
                 </tbody>
@@ -120,6 +120,7 @@ function Checkout2() {
                             <h4>{item.name}</h4>
                             <p>size: {item.size}</p>
                             <p>color: {item.color}</p>
+                            <p>tall: {item.tall}</p>
                             <p>buttons:{item.buttons}</p>
                           </div>
                         </div>

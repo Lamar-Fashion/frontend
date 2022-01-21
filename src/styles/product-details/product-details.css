@@ -72,7 +72,21 @@
   width: 100%;
   height: 470px;
   transition: width 0.5s;
+  overflow: hidden;
 }
+@media(min-width:531px){
+  .product-d .lamar-container .image-product .big-image img:hover {
+    transform:scale(1.4);
+    -ms-transform:scale(1.4); /* IE 9 */
+    -moz-transform:scale(1.4); /* Firefox */
+    -webkit-transform:scale(1.4); /* Safari and Chrome */
+    -o-transform:scale(1.4); /* Opera */
+    transition: all .2s ease;
+    vertical-align: middle;
+  
+  }
+}
+
 .product-d .lamar-container .image-product img {
   width: 100%;
   height: 100%;
@@ -355,3 +369,8 @@
   border-bottom: 1px solid rgba(180, 177, 177, 0.568);
   margin: 15px 0;
 }
+
+/* .product-d .active{
+  border: 2px solid black;
+  background-color: red;
+} */
