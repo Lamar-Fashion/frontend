@@ -12,6 +12,7 @@ function Header() {
   const [showSearchTextField, setShowSearchTextField] = useState(false);
   const [y, setY] = useState(0);
   const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+  const role = useSelector((state) => state.authReducer.role);
 
   function scrollHandler() {
     setY(window.scrollY);
@@ -34,42 +35,85 @@ function Header() {
             ></div>
             <div className='vertical-nav-container'>
               <ul className='main-nav-phone'>
-                <li>
-                  <Link
-                    to='/'
-                    onClick={() => {
-                      window.scrollTo({
-                        left: 0,
-                        top: 0,
-                        behavior: 'smooth',
-                      });
-                    }}
-                  >
-                    <a>Home</a>
-                  </Link>
-                  <i
-                    className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
-                    onClick={() => {
-                      setShowDropHome(!showDropHome);
-                      setDropDown(!dropDown);
-                    }}
-                  ></i>
-                  <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
-                    <li>
-                      <Link
-                        to='/Contact-us'
-                        onClick={() => {
-                          window.scrollTo({
-                            left: 0,
-                            top: 0,
-                            behavior: 'smooth',
-                          });
-                        }}
-                      >
-                        contact us
-                      </Link>
-                    </li>
-                    {/* <li>
+                {role === 'admin' ? (
+                  <li>
+                    <Link
+                      to='/PendingOrders'
+                      onClick={() => {
+                        window.scrollTo({
+                          left: 0,
+                          top: 0,
+                          behavior: 'smooth',
+                        });
+                      }}
+                    >
+                      <a>Admin</a>
+                    </Link>
+                    <i
+                      className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
+                      onClick={() => {
+                        setShowDropHome(!showDropHome);
+                        setDropDown(!dropDown);
+                      }}
+                    ></i>
+                    <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
+                      <li>
+                        <Link
+                          to='/PendingOrders'
+                          onClick={() => {
+                            window.scrollTo({
+                              left: 0,
+                              top: 0,
+                              behavior: 'smooth',
+                            });
+                          }}
+                        >
+                          Pending Orders
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to='/DoneOrders'
+                          onClick={() => {
+                            window.scrollTo({
+                              left: 0,
+                              top: 0,
+                              behavior: 'smooth',
+                            });
+                          }}
+                        >
+                          Done Orders
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to='/RejectedOrders'
+                          onClick={() => {
+                            window.scrollTo({
+                              left: 0,
+                              top: 0,
+                              behavior: 'smooth',
+                            });
+                          }}
+                        >
+                          Rejected Orders
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to='/AllUsers'
+                          onClick={() => {
+                            window.scrollTo({
+                              left: 0,
+                              top: 0,
+                              behavior: 'smooth',
+                            });
+                          }}
+                        >
+                          All Users
+                        </Link>
+                      </li>
+                      {/* <li>
                       <a href='#brands'>
                         collection
                       </a>
@@ -80,8 +124,58 @@ function Header() {
                     <li>
                       <a href='#feedback'>feedback</a>
                     </li> */}
-                  </ul>
-                </li>
+                    </ul>
+                  </li>
+                ) : (
+                  <li>
+                    <Link
+                      to='/'
+                      onClick={() => {
+                        window.scrollTo({
+                          left: 0,
+                          top: 0,
+                          behavior: 'smooth',
+                        });
+                      }}
+                    >
+                      <a>Home</a>
+                    </Link>
+                    <i
+                      className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
+                      onClick={() => {
+                        setShowDropHome(!showDropHome);
+                        setDropDown(!dropDown);
+                      }}
+                    ></i>
+                    <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
+                      <li>
+                        <Link
+                          to='/Contact-us'
+                          onClick={() => {
+                            window.scrollTo({
+                              left: 0,
+                              top: 0,
+                              behavior: 'smooth',
+                            });
+                          }}
+                        >
+                          contact us
+                        </Link>
+                      </li>
+                      {/* <li>
+                    <a href='#brands'>
+                      collection
+                    </a>
+                  </li>
+                  <li>
+                    <a href='#collection'>products</a>
+                  </li>
+                  <li>
+                    <a href='#feedback'>feedback</a>
+                  </li> */}
+                    </ul>
+                  </li>
+                )}
                 <li>
                   <Link
                     to='/Abaya'
@@ -160,24 +254,25 @@ function Header() {
         )}
         <div className={y > 0 ? 'lamar-container lamar-container-scroll ' : 'lamar-container'}>
           <ul className={y > 0 ? 'main-nav main-nav-scroll ' : 'main-nav'}>
-            <li>
-              <Link
-                to='/'
-                onClick={() => {
-                  window.scrollTo({
-                    left: 0,
-                    top: 0,
-                    behavior: 'smooth',
-                  });
-                }}
-              >
-                <a>
-                  Home
-                  <i className='fas fa-angle-down'></i>
-                </a>
-              </Link>
-              <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
-                {/* <li>
+            {role === 'admin' ? (
+              <li>
+                <Link
+                  to='/PendingOrders'
+                  onClick={() => {
+                    window.scrollTo({
+                      left: 0,
+                      top: 0,
+                      behavior: 'smooth',
+                    });
+                  }}
+                >
+                  <a>
+                    Admin
+                    <i className='fas fa-angle-down'></i>
+                  </a>
+                </Link>
+                <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
+                  {/* <li>
                   <a href='#brands'>collection</a>
                 </li>
                 <li>
@@ -186,22 +281,108 @@ function Header() {
                 <li>
                   <a href='#feedback'>feedback</a>
                 </li> */}
-                <li>
-                  <Link
-                    to='/Contact-us'
-                    onClick={() => {
-                      window.scrollTo({
-                        left: 0,
-                        top: 0,
-                        behavior: 'smooth',
-                      });
-                    }}
-                  >
-                    contact us
-                  </Link>
-                </li>
-              </ul>
-            </li>
+                  <li>
+                    <Link
+                      to='/PendingOrders'
+                      onClick={() => {
+                        window.scrollTo({
+                          left: 0,
+                          top: 0,
+                          behavior: 'smooth',
+                        });
+                      }}
+                    >
+                      Pending Orders
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to='/DoneOrders'
+                      onClick={() => {
+                        window.scrollTo({
+                          left: 0,
+                          top: 0,
+                          behavior: 'smooth',
+                        });
+                      }}
+                    >
+                      Done Orders
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to='/RejectedOrders'
+                      onClick={() => {
+                        window.scrollTo({
+                          left: 0,
+                          top: 0,
+                          behavior: 'smooth',
+                        });
+                      }}
+                    >
+                      Rejected Orders
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to='/AllUsers'
+                      onClick={() => {
+                        window.scrollTo({
+                          left: 0,
+                          top: 0,
+                          behavior: 'smooth',
+                        });
+                      }}
+                    >
+                      All Users
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <li>
+                <Link
+                  to='/'
+                  onClick={() => {
+                    window.scrollTo({
+                      left: 0,
+                      top: 0,
+                      behavior: 'smooth',
+                    });
+                  }}
+                >
+                  <a>
+                    Home
+                    <i className='fas fa-angle-down'></i>
+                  </a>
+                </Link>
+                <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
+                  {/* <li>
+    <a href='#brands'>collection</a>
+  </li>
+  <li>
+    <a href='#collection'>products</a>
+  </li>
+  <li>
+    <a href='#feedback'>feedback</a>
+  </li> */}
+                  <li>
+                    <Link
+                      to='/Contact-us'
+                      onClick={() => {
+                        window.scrollTo({
+                          left: 0,
+                          top: 0,
+                          behavior: 'smooth',
+                        });
+                      }}
+                    >
+                      contact us
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+            )}
             <li>
               <Link
                 to='/Abaya'
