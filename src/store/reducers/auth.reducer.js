@@ -1,6 +1,6 @@
 // initial State
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   user: null,
   role: 'admin',
 };

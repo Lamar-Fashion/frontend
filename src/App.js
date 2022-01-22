@@ -17,6 +17,10 @@ import Profile from './components/Profile/profile/Profile';
 import ContactUs from './components/Contact-us/ContactUs';
 import Checkout3 from './components/Checkout/Checkout3';
 import AbayaCards from './components/Abaya/abaya-cards/AbayaCards';
+import AllUsers from './components/Admin/all-users/AllUsers';
+import PendingOrders from './components/Admin/pending-orders/PendingOrders';
+import DoneOrders from './components/Admin/done-orders/DoneOrders';
+import RejectedOrders from './components/Admin/rejected-orders/RejectedOrders';
 
 function App() {
   const [y, setY] = useState(window.scrollY);
@@ -58,6 +62,10 @@ function App() {
           <Route exact path='/ProductDetails' element={<ProductDetails />} />
           <Route exact path='/Profile' element={<Profile />} />
           <Route exact path='/Contact-us' element={<ContactUs />} />
+          <Route exact path='/AllUsers' element={<AllUsers />} />
+          <Route exact path='/PendingOrders' element={<PendingOrders />} />
+          <Route exact path='/DoneOrders' element={<DoneOrders />} />
+          <Route exact path='/RejectedOrders' element={<RejectedOrders />} />
         </Routes>
         <Footer />
       </Router>
