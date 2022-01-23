@@ -27,8 +27,8 @@
 
 .brand .lamar-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  grid-gap: 35px;
 }
 
 
@@ -94,25 +94,26 @@
   transition: 0.3s;
   cursor: grab;
   color: var(--main-color-alt);
+  gap: 5px;
 }
 .brand .lamar-container .item-topdiv:hover {
-  background-color: rgba(12, 12, 12, 0.6);
+  background-color: rgba(12, 12, 12, 0.3);
 }
 .brand .shop-now {
   background-color: black;
   width: 10rem;
   text-align: center;
-  border-radius: 30px;
+  border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
   color: var(--main-color-alt);
-  height: 40px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .brand .shop-now:hover {
-  background-color:#282828;
+  background-color:#282828e5;
   font-weight: bold;
 }
 
