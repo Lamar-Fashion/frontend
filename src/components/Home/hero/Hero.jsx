@@ -16,7 +16,7 @@ function Hero() {
         </div>
         <div class="bottom-info">
           <h6> QAR 300 </h6>
-       <button>buy now</button>
+          <Link to="/Abaya">Shop Now</Link>
         </div>
       </div>
       <div class="imag-detail">
@@ -26,8 +26,8 @@ function Hero() {
         </div>
         <div class="add-cart">
             <Link to="/Abaya">
-            <div className="plus-container"> <i class="fas fa-plus"></i> </div>
-            <h6>Add To Cart</h6>
+            <div className="plus-container"><i class="fas fa-arrow-right"></i> </div>
+            <h6>Discover</h6>
             </Link>
         </div>
       </div>
