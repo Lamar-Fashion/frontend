@@ -106,7 +106,7 @@
   font-size: 18px;
   font-weight: 500;
 }
-.hero .info .bottom-info button {
+.hero .info .bottom-info a {
   width: 150px;
   height: 50px;
   display: flex;
@@ -128,7 +128,7 @@
   transition: 0.3s;
   cursor: pointer;
 }
-.hero .info .bottom-info button:hover {
+.hero .info .bottom-info a:hover {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
   transform: translateY(-10px);
 }
@@ -221,4 +221,22 @@
 }
 .hero .imag-detail .add-cart a h6{
   font-size: 15px;
+}
+.hero .imag-detail .add-cart a i {
+  transition: 0.3s;
+  animation: forwad linear infinite 1.5s;
+  position: absolute
+}
+@keyframes forwad {
+  0%{
+    left: 0;
+
+  }
+  50% {
+    left: 25px;
+
+  }
+  100%{
+    left: 0;
+  }
 }
