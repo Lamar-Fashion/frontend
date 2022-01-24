@@ -1,57 +1,37 @@
 import React from 'react';
 import '../../../styles/home-styles/hero.css';
-import { Carousel } from 'react-bootstrap';
-import hero4 from '../../../images/hero/hero4.jpg';
-import hero5 from '../../../images/hero/hero5.jpg';
 import hero6 from '../../../images/hero/hero6.jpg';
-import h1 from '../../../images/hero/h1.jpeg';
-import h2 from '../../../images/hero/h2.jpeg';
-import h3 from '../../../images/hero/h3.jpeg';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 function Hero() {
   return (
     <>
-      <div className='lamar-container'></div>
-      <div className='hero'>
-        <Carousel className='carousel' fade controls={false} indicators={false} pause={false}>
-          <Carousel.Item className='item1'>
-            <img src={h1} alt='' />
-            {/* <div className='lamar-container'>
-              <div className='image'>
-                <img className='d-block w-100' src={h1} alt='First slide' />
-              </div>
-              <div className='text first-text'>
-                <h2 className='h1'>new arrivals</h2>
-                <h4 className='h2'>Style & Comfort</h4>
-              </div>
-            </div> */}
-          </Carousel.Item>
-
-          <Carousel.Item className='item2'>
-            <img src={h2} alt='' />
-            {/* <div className='lamar-container'>
-              <div className='image'>
-                <img className='d-block w-100' src={h2} alt='First slide' />
-              </div>
-              <div className='text second-text'>
-                <h2 className='h1'>Define fashion</h2>
-                <h4 className='h2'>with Lamar</h4>
-              </div>
-            </div> */}
-          </Carousel.Item>
-          <Carousel.Item className='item3'>
-            <img src={h3} alt='' />
-            {/* <div className='lamar-container'>
-              <div className='image'>
-                <img className='d-block w-100' src={h3} alt='First slide' />
-              </div>
-              <div className='text third-text'>
-                <h2 className='h1 '>stand out</h2>
-                <h4 className='h2 '>from the crowd</h4>
-              </div>
-            </div> */}
-          </Carousel.Item>
-        </Carousel>
+      <div class='hero'>
+        <div class='lamar-container'>
+          <div class='info'>
+            <div class='top-info'>
+              <h3>A325s</h3>
+              <h3>New Arrivals</h3>
+              <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique ipsa fuga ad quidem, labore in! Cupiditate voluptate nobis </h5>
+            </div>
+            <div class='bottom-info'>
+              <h6> QAR 300 </h6>
+              <Link to='/Abaya'>Shop Now</Link>
+            </div>
+          </div>
+          <div class='imag-detail'>
+            <div class='image'>
+              <img src={hero6} alt='' />
+            </div>
+            <div class='add-cart'>
+              <Link to='/Abaya'>
+                <div className='plus-container'>
+                  <i class='fas fa-arrow-right'></i>{' '}
+                </div>
+                <h6>Discover</h6>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

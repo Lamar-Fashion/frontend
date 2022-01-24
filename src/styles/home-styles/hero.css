@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
-
+/* start hero */
 .hero {
   width: 100%;
   position: relative;
@@ -12,7 +11,6 @@
 @media (max-width: 530px) {
   .hero {
     padding-top: 6rem;
-    height: 75vh;
   }
 }
 @media (min-width: 531px) and (max-width: 768px) {
@@ -21,236 +19,224 @@
     height: 100vh;
   }
 }
-
-.hero .carousel {
-  width: 100%;
-  height: 100%;
-}
-.hero .carousel .carousel-inner {
-  height: 100%;
-  width: 100%;
-}
-.hero .carousel .item1 {
-  width: 100%;
-  height: 100%;
-}
-.hero .carousel img {
-  width: 100%;
-  height: 100%;
-  /* object-fit: fill; */
-}
-.hero .carousel .item2 {
-  width: 100%;
-  height: 100%;
-}
-.hero .carousel .item3 {
-  width: 100%;
-  height: 100%;
-}
-/* @media(max-width:530px){
-  .hero .carousel img{
-    height: 50%;
-  }
-} */
-.hero .carousel .lamar-container {
-  height: 100%;
-  background-color: transparent;
+.hero .lamar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 5px;
-  position: relative;
+  height: 100%;
+  /* background-color: #ccc */
 }
-.hero .carousel .lamar-container .text .h1 {
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  font-size: 75px;
-  transform: translateY(-100px);
-  font-weight: 450;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
+@media (max-width: 768px) {
+  .hero .lamar-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column-reverse;
+    align-items: unset;
+    padding-bottom: 10px;
+    gap: 10px;
+  }
 }
-.hero .carousel .lamar-container .text .h2 {
-  position: absolute;
-  top: 50%;
-  left: 10%;
-  font-size: 40px;
-  transform: translateY(-10px);
-  font-weight: lighter;
+.hero .info {
+  display: flex;
+  gap: 25px;
+  flex-direction: column;
+  width: 50%;
+  padding-left: 10px;
+}
+@media (max-width: 768px) {
+  .hero .info {
+    height: 50%;
+    width: 100%;
+  }
 }
 
-.hero .carousel .lamar-container .image {
-  width: 35%;
-  height: 96%;
-  transform: translateY(10%);
-}
-.hero .carousel .lamar-container .image img {
-  width: 100%;
-  height: 100%;
-}
-.hero .carousel .lamar-container .text {
-  flex: 1;
+.hero .info .top-info {
   position: relative;
   display: flex;
+  gap: 3px;
   flex-direction: column;
-  gap: 5px;
 }
-@media (min-width: 600) and (max-width: 767px) {
-  .hero .carousel .lamar-container .image {
-    width: 50%;
-    height: 50%;
-    transform: translateY(0%);
-  }
-  .hero .carousel .lamar-container .image img {
+.hero .info .top-info::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    black,
+    rgba(255, 255, 255, 0.456)
+  );
+}
+.hero .info .top-info h3 {
+  font-size: 40px;
+  text-transform: capitalize;
+  font-weight: bold;
+  margin: 0;
+}
+.hero .info .top-info h5 {
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+@media (max-width: 768px) {
+  .hero .info .top-info h3 {
+    font-size: 24px;
+    text-transform: capitalize;
+    font-weight: bolder;
+    margin: 0;
     width: 100%;
+  }
+  .hero .info .top-info h5 {
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: capitalize;
+    width: 100%;
+  }
+}
+.hero .info .bottom-info {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.hero .info .bottom-info h6 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.hero .info .bottom-info a {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  background-image: linear-gradient(
+    to right,
+    black,
+    rgba(0, 0, 0, 0.805),
+    rgba(255, 255, 255, 0.456)
+  );
+  text-transform: capitalize;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.hero .info .bottom-info a:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  transform: translateY(-10px);
+}
+.hero .imag-detail {
+  height: 100%;
+  position: relative;
+  width: 50%;
+}
+@media (max-width: 768px) {
+  .hero .imag-detail {
+    width: 100%;
+    height: 50%;
+  }
+}
+.hero .imag-detail .image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.hero .imag-detail .image img {
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+@media (max-width: 530px) {
+  .hero .imag-detail .image img {
     height: 100%;
     object-fit: cover;
+    object-position: 50% 45%;
   }
 }
 
-@media (max-width: 355px) {
-  .hero .carousel .lamar-container .text {
-    position: relative;
-    right: 20% !important;
-  }
-}
-@media (max-width: 599px) {
-  .hero .carousel .lamar-container .text {
-    position: relative;
-    right: 17%;
-  }
-  .hero .carousel .lamar-container .text .h1 {
-    position: absolute;
-    top: 22%;
-    left: 5%;
-    font-size: 34px;
-    transform: translateY(-49px);
-    font-weight: 700;
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-  }
-  .hero .carousel .lamar-container .text .h2 {
-    position: absolute;
-    left: 5%;
-    font-size: 20px;
-    transform: translateY(0px);
-    font-weight: 500;
-  }
-  .hero .carousel .lamar-container .image {
-    width: 70%;
-    height: 450px;
-    transform: translateY(0%);
-    position: relative;
-    top: 50px;
-    right: 12%;
-  }
-
-  .hero .carousel .lamar-container .image img {
-    height: 600px;
+@media (min-width:531px) and (max-width: 768px) {
+  .hero .imag-detail .image img {
+    height: 100%;
+    width: 40%;
+    object-fit: cover;
+    object-position: 50% 45%;
   }
 }
 
-/* Small */
-@media (max-width: 767px) {
-  .hero .carousel .lamar-container .text .h1 {
-    position: absolute;
-    top: 22%;
-    left: 5%;
-    font-size: 32px;
-    transform: translateY(-49px);
-    font-weight: 700;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-  }
-  .hero .carousel .lamar-container .text .h2 {
-    position: absolute;
-    left: 5%;
-    font-size: 20px;
-    transform: translateY(20px);
-    font-weight: 500;
-  }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .hero .carousel .lamar-container {
-    width: 750px;
-  }
-  .hero .carousel .lamar-container .text .h1 {
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    font-size: 50px;
-    transform: translateY(-45px);
-    font-weight: 700;
-    letter-spacing: 1.6px;
-    text-transform: uppercase;
-  }
-  .hero .carousel .lamar-container .text .h2 {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    font-size: 30px;
-    transform: translateY(10px);
-    font-weight: lighter;
-  }
-}
-/* Medium */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .hero .carousel .lamar-container {
-    width: 970px;
-  }
-  .hero .carousel .lamar-container .text {
-    left: 5%;
-    top: 20%;
-  }
-  .hero .carousel .lamar-container .text .h1 {
-    font-size: 65px;
-    font-weight: 700;
-  }
-  .hero .carousel .lamar-container .text .h2 {
-    position: absolute;
-    left: 5%;
-    font-size: 30px;
-    transform: translateY(20px);
-    font-weight: lighter;
-  }
-}
-/* Large */
-@media (min-width: 1200px) {
-  .hero .carousel .lamar-container {
-    width: 1170px;
-  }
-  .hero .carousel .lamar-container .text {
-    left: 5%;
-    top: 20%;
-  }
-}
-
-.hero .first-text {
-  color: whitesmoke;
-  text-shadow: 2px 5px 20px black;
-  /* text-shadow: 2px 5px 50px black; */
-}
-.hero .second-text {
-  text-shadow: 2px 5px 15px black;
-  /* font-weight: lighter; */
-}
-.hero .third-text {
-  text-shadow: 2px 5px 15px black;
-  /* font-weight: lighter !important; */
-}
-
-/* lamar logo */
-.hero .lamar-logo {
+.hero .imag-detail .add-cart {
   position: absolute;
-  bottom: 1px;
-  right: 5px;
-  z-index: 5;
+  width: 100%;
+  height: 300px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.85),
+    black
+  );
+  top: 60px;
+  left: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+@media (max-width: 768px) {
+  .hero .imag-detail .add-cart {
+    height: 180px;
+    left: 100px;
+  }
+}
+.hero .imag-detail .add-cart a {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+.hero .imag-detail .add-cart a .plus-container {
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+.hero .imag-detail .add-cart a h6{
+  font-size: 15px;
+}
+.hero .imag-detail .add-cart a i {
+  transition: 0.3s;
+  animation: forwad linear infinite 1.5s;
+  position: absolute
+}
+@keyframes forwad {
+  0%{
+    left: 0;
 
-/* Large */
-@media (max-width: 339px) {
-  .hero .lamar-logo {
-    font-size: 14px;
+  }
+  50% {
+    left: 25px;
+
+  }
+  100%{
+    left: 0;
   }
 }
