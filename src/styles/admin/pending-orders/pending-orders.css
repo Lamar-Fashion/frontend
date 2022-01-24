@@ -1,4 +1,45 @@
-.pending-orders-container {
+.pending-orders {
   min-height: 100vh;
   background-color: var(--main-color-alt);
+  padding: 220px 0 100px;
+}
+
+@media (max-width: 991px) {
+  .pending-orders {
+    padding-top: 190px;
+  }
+}
+@media (max-width: 768px) {
+  .pending-orders {
+    padding-top: 160px;
+  }
+}
+@media (max-width: 530px) {
+  .pending-orders {
+    padding-top: 130px;
+  }
+}
+
+.pending-orders .pageIntro {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 1px solid;
+}
+.pending-orders .pageIntro .total-number span {
+  color: rgb(255, 123, 105);
+  font-size: 22px;
+}
+@media (max-width: 530px) {
+  .pending-orders .pageIntro .intro {
+    display: none;
+  }
+}
+.pending-orders .bigContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 15px;
 }

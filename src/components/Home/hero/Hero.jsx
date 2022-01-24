@@ -4,18 +4,18 @@ import { Carousel } from 'react-bootstrap';
 import hero4 from '../../../images/hero/hero4.jpg';
 import hero5 from '../../../images/hero/hero5.jpg';
 import hero6 from '../../../images/hero/hero6.jpg';
-import h1 from "../../../images/hero/h1.jpeg"
-import h2 from "../../../images/hero/h2.jpeg"
-import h3 from "../../../images/hero/h3.jpeg"
+import h1 from '../../../images/hero/h1.jpeg';
+import h2 from '../../../images/hero/h2.jpeg';
+import h3 from '../../../images/hero/h3.jpeg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function Hero() {
   return (
     <>
-    <div className="lamar-container"></div>
+      <div className='lamar-container'></div>
       <div className='hero'>
         <Carousel className='carousel' fade controls={false} indicators={false} pause={false}>
           <Carousel.Item className='item1'>
-            <img src={h1} alt="" />
+            <img src={h1} alt='' />
             {/* <div className='lamar-container'>
               <div className='image'>
                 <img className='d-block w-100' src={h1} alt='First slide' />
@@ -28,7 +28,7 @@ function Hero() {
           </Carousel.Item>
 
           <Carousel.Item className='item2'>
-          <img src={h2} alt="" />
+            <img src={h2} alt='' />
             {/* <div className='lamar-container'>
               <div className='image'>
                 <img className='d-block w-100' src={h2} alt='First slide' />
@@ -40,7 +40,7 @@ function Hero() {
             </div> */}
           </Carousel.Item>
           <Carousel.Item className='item3'>
-          <img src={h3} alt="" />
+            <img src={h3} alt='' />
             {/* <div className='lamar-container'>
               <div className='image'>
                 <img className='d-block w-100' src={h3} alt='First slide' />
