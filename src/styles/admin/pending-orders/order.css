@@ -1,0 +1,189 @@
+.orderContainer {
+  border: gray 2px solid;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.orderContainer .detailsBox {
+}
+
+@media (max-width: 1199px) {
+  .orderContainer .detailsBox {
+    padding: 5px;
+  }
+}
+.orderContainer .order-table {
+  /* border-top: turquoise 1px solid;
+    border-bottom: turquoise 1px solid; */
+  /* border-top: rgb(212, 44, 44) 1px solid;
+    border-bottom: rgb(212, 44, 44) 1px solid; */
+}
+@media (max-width: 385px) {
+  .orderContainer .order-table {
+    width: 75%;
+  }
+}
+.orderContainer .order-row th,
+.order-row td {
+  width: 10%;
+  padding: 1px;
+  border: rgb(255, 123, 105) 1px solid;
+}
+.orderContainer .order-column th,
+.order-column td {
+  width: 10%;
+  padding: 1px;
+  border: rgb(255, 123, 105) 1px solid;
+}
+
+@media (max-width: 768px) {
+  .orderContainer .order-row {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .orderContainer .order-column {
+    display: none;
+  }
+}
+.orderContainer .client-table {
+  /* border: turquoise 1px solid; */
+}
+@media (max-width: 385px) {
+  .orderContainer .client-table {
+    font-size: smaller;
+    word-break: break-all;
+  }
+}
+
+.orderContainer .client-row th,
+.client-row td {
+  width: 15%;
+  padding: 3px;
+  border: rgb(255, 123, 105) 1px solid;
+}
+.orderContainer .client-column th,
+.client-column td {
+  width: 15%;
+  padding: 3px;
+  border: rgb(255, 123, 105) 1px solid;
+}
+@media (max-width: 385px) {
+  .orderContainer .client-column th {
+    width: 10%;
+  }
+  .orderContainer .client-column td {
+    width: 20%;
+  }
+}
+@media (max-width: 768px) {
+  .orderContainer .client-row {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .orderContainer .client-column {
+    display: none;
+  }
+}
+.productsContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.orderContainer .product {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: white;
+  color: rgb(255, 123, 105);
+  border-radius: 10px;
+  padding: 5px;
+  align-items: center;
+}
+.product-table {
+  width: 80%;
+}
+@media (max-width: 768px) {
+  .orderContainer .product-row {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .orderContainer .product-column {
+    display: none;
+  }
+}
+.product-table,
+.product-table th,
+.product-table td {
+  border: rgb(79, 77, 105) 1px solid;
+}
+.product-table th,
+.product-table td {
+  width: 15%;
+  padding: 2px;
+  align-items: center;
+  text-align: center;
+}
+.product-table .product-column th,
+.product-table .product-column td {
+  width: 15%;
+  padding: 2px;
+  align-items: center;
+  text-align: left;
+}
+.product-table .product-column th {
+  color: black;
+}
+.orderContainer .productsContainer .product img {
+  width: 90px;
+  height: 95px;
+  border: 3px solid whitesmoke;
+}
+
+.orderContainer .smallBox {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.orderContainer .smallBox .orderId span {
+  color: rgb(255, 123, 105);
+}
+.orderContainer .smallBox .total-price span {
+  color: rgb(255, 123, 105);
+}
+.orderContainer .smallBox .status span {
+  color: rgb(255, 123, 105);
+}
+
+.orderContainer .fas {
+  cursor: pointer;
+}
+.orderContainer .control {
+  float: right;
+}
+@media (max-width: 768px) {
+  .orderContainer .control {
+    float: none;
+    text-align: center;
+  }
+}
+.orderContainer button {
+  border: rgb(255, 123, 105) 1px solid;
+  margin: 5px;
+}
+
+.orderContainer button:hover {
+  border: white 1px solid;
+  box-shadow: black 5px 5px 5px;
+  margin: 5px;
+}

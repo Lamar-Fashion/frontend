@@ -33,9 +33,8 @@ function Checkout() {
               <Link to='/'>
                 <i className='fas fa-home i-home'></i>
               </Link>
-              <i className='fas fa-angle-right'></i>{' '}
+              <i className='fas fa-angle-right'></i>
               <Link to='/Cart' className='exat-path'>
-                {' '}
                 <span>cart</span>
               </Link>
               <i className='fas fa-angle-right'></i> <span>Shipping</span>
@@ -49,7 +48,6 @@ function Checkout() {
             </span>
             <i className='fas fa-angle-right'></i>
             <span>
-              {' '}
               Payments <span className='steps'>2</span>
             </span>
             <i className='fas fa-angle-right'></i>
@@ -108,11 +106,11 @@ function Checkout() {
               <div className='address'>
                 <div className='Faddress'>
                   <i className='fas fa-map-marked-alt'></i>
-                  <input type='text' name='Faddress' id='Faddress' placeholder='Street Address *' required onChange={handleChange} value={values?.Faddress} />
+                  <input type='text' name='StreetAddress' id='Faddress' placeholder='Street Address *' required onChange={handleChange} value={values?.StreetAddress} />
                 </div>
                 <div className='Laddress'>
                   <i class='fas fa-building'></i>
-                  <input type='text' name='Laddress' id='Laddress' placeholder='Flat / Villa Number  *' required onChange={handleChange} value={values?.Laddress ? values.Laddress : ''} />
+                  <input type='text' name='FlatNumber' id='Laddress' placeholder='Flat / Villa Number  *' required onChange={handleChange} value={values?.FlatNumber ? values.FlatNumber : ''} />
                 </div>
               </div>
 
