@@ -34,13 +34,15 @@ const style = {
   [theme.breakpoints.down(531)]: {
     width: '95%',
   },
-  height: '90vh',
+  height: '88vh',
   bgcolor: 'background.paper',
   border: '2px solid #000',
+
   boxShadow: 24,
   p: 4,
   overflow: 'scroll',
-  paddingBottom: '5px',
+  // paddingBottom: '5px',
+  paddingTop: '40px',
 };
 
 // color options
@@ -234,23 +236,19 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
             <div className='form-container'>
               <form className='add-from' action='' onSubmit={submitHandler}>
                 <div className='product-brand'>
-                  <label htmlFor='brand'>Brand :</label>
-                  <select name='brand' required id='brand' onChange={handleChange}>
+                  <label htmlFor='category'>Category :</label>
+                  <select name='category' required id='category' onChange={handleChange}>
                     <option value=''>--choose option--</option>
-                    <option value='lamar'>lamar</option>
-                    <option value='neo'>neo</option>
-                    <option value='montaha'>montaha</option>
-                    <option value='shaira'>shaira</option>
+                    <option value='newArrivals'>New Arrivals</option>
+                    <option value='onSales'>On Sales</option>
                   </select>
                 </div>
                 <div className='collection'>
-                  <label htmlFor='collection'>Collection :</label>
-                  <select name='collection' required id='collection' onChange={handleChange}>
+                  <label htmlFor='status'>Status :</label>
+                  <select name='status' required id='status' onChange={handleChange}>
                     <option value=''>--choose option--</option>
-                    <option value='newArrivals'>new Arrivals</option>
+                    <option value='notReadyToWear'>يحتاج الى تفصيل</option>
                     <option value='readyToWear'>Ready To Wear</option>
-                    <option value='onSales'>on Sales</option>
-                    <option value='abaya'>Abaya</option>
                   </select>
                 </div>
                 <div className='code'>
@@ -292,23 +290,22 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
                     allowSelectAll={true}
                     value={colorsSelected}
                   />
+                  {/* <div className='code'>
+                  <input type='text' name='code' required id='code' placeholder='Product Code' onChange={handleChange} />
+                </div> */}
                 </div>
                 <div className='availability'>
-                  <label htmlFor='availability'>Availability :</label>
-                  <select name='availability' required id='availability' onChange={handleChange}>
-                    <option value=''>--choose option--</option>
-                    <option value='inStock'>in Stock</option>
-                    <option value='needPreparing'>يحتاج الى تفصيل</option>
-                  </select>
+                  {/* <label htmlFor='totalInStock'>Total in Stock :</label> */}
+                  <input type='number' name='totalInStock' required id='totalInStock' placeholder='Total in Stock' onChange={handleChange} />
                 </div>
-                <div className='deliveryTime'>
+                {/* <div className='deliveryTime'>
                   <label htmlFor='deliveryTime'>Delivery Time :</label>
                   <select name='deliveryTime' required id='deliveryTime' onChange={handleChange}>
                     <option value=''>--choose option--</option>
                     <option value='1To2Weeks'>1 - 2 weeks</option>
                     <option value='24To48Hours'>24 - 48 hours</option>
                   </select>
-                </div>
+                </div> */}
                 <div className='images'>
                   <input type='file' multiple name='images' required id='images' placeholder='Product images' onChange={handleChange} accept='image/png,image/jpeg' />
                 </div>

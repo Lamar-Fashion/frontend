@@ -1,27 +1,26 @@
 // initial State
 const initialState = {
-  cartProducts: JSON.parse(window.localStorage.getItem('cart')),
+  cartProductsNumber: 0,
 };
 
-//auth Reducer
+//cart Reducer
 const cartReducer = (state = initialState, action) => {
   const { type, payload } = action;
+  switch (type) {
+    case 'ADD_TO_CART':
+      return {
+        cartProductsNumber: state.cartProductsNumber + 1,
+      };
+    case 'REMOVE_FROM_CART':
+      if (state.cartProductsNumber > 0) {
+        return {
+          cartProductsNumber: payload ? state.cartProductsNumber - payload : state.cartProductsNumber - 1,
+        };
+      }
 
-  // switch (type) {
-  //   case 'SIGN_UP_IN':
-  //     return {
-  //       isLoggedIn: true,
-  //       user: payload,
-  //     };
-  //   case 'LOG_OUT':
-  //     console.log('hello from log out action');
-  //     return {
-  //       isLoggedIn: false,
-  //       user: null,
-  //     };
-  //   default:
-  //     return state;
-  // }
+    default:
+      return state;
+  }
 };
 
 export default cartReducer;

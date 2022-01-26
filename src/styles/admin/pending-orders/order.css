@@ -1,18 +1,49 @@
 .orderContainer {
-  border: gray 2px solid;
+  border: rgba(128, 128, 128, 0.212) 2px solid;
+  background-color: rgba(238, 162, 20, 0.082);
   padding: 10px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+.orderContainer table {
+  /* border-collapse: collapse; */
+}
+.orderContainer table th {
+  color: black;
+  font-weight: 400;
+  text-align: center;
+}
+.orderContainer table td {
+  color: rgb(238, 161, 20);
+  font-weight: 400;
+  text-align: center;
+}
+
+.orderContainer .orderInfo table td,
+.orderContainer .clientInfo table td {
+  color: rgb(238, 161, 20);
+}
 
 .orderContainer .detailsBox {
 }
-
+@media (min-width: 769px) and (max-width: 991px) {
+  .orderContainer .detailsBox {
+    width: 98%;
+  }
+}
 @media (max-width: 1199px) {
   .orderContainer .detailsBox {
     padding: 5px;
+  }
+}
+
+.orderContainer .orderInfo {
+}
+@media (min-width: 769px) and (max-width: 991px) {
+  .orderContainer .orderInfo {
+    /* width: 80%; */
   }
 }
 .orderContainer .order-table {
@@ -30,13 +61,19 @@
 .order-row td {
   width: 10%;
   padding: 1px;
-  border: rgb(255, 123, 105) 1px solid;
+  border: rgb(79, 77, 105, 0.1) 1px solid;
+}
+@media (min-width: 769px) and (max-width: 991px) {
+  .orderContainer .order-row th,
+  .order-row td {
+    width: auto;
+  }
 }
 .orderContainer .order-column th,
 .order-column td {
   width: 10%;
   padding: 1px;
-  border: rgb(255, 123, 105) 1px solid;
+  border: rgb(79, 77, 105, 0.1) 1px solid;
 }
 
 @media (max-width: 768px) {
@@ -48,6 +85,20 @@
   .orderContainer .order-column {
     display: none;
   }
+}
+.orderContainer .clientInfo {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+@media (min-width: 769px) and (max-width: 991px) {
+  .orderContainer .clientInfo {
+    word-break: break-all;
+    /* word-wrap: break-word; */
+  }
+}
+
+.orderContainer .title-info {
+  margin-left: 0.8rem;
 }
 .orderContainer .client-table {
   /* border: turquoise 1px solid; */
@@ -63,13 +114,13 @@
 .client-row td {
   width: 15%;
   padding: 3px;
-  border: rgb(255, 123, 105) 1px solid;
+  border: rgb(79, 77, 105, 0.1) 1px solid;
 }
 .orderContainer .client-column th,
 .client-column td {
   width: 15%;
   padding: 3px;
-  border: rgb(255, 123, 105) 1px solid;
+  border: rgb(79, 77, 105, 0.1) 1px solid;
 }
 @media (max-width: 385px) {
   .orderContainer .client-column th {
@@ -77,6 +128,12 @@
   }
   .orderContainer .client-column td {
     width: 20%;
+  }
+}
+@media (min-width: 769px) and (max-width: 991px) {
+  .orderContainer .client-row th,
+  .client-row td {
+    width: auto;
   }
 }
 @media (max-width: 768px) {
@@ -94,6 +151,14 @@
   flex-direction: column;
   flex-wrap: wrap;
   gap: 10px;
+  padding-bottom: 1rem;
+}
+@media (min-width: 769px) and (max-width: 991px) {
+  .productsContainer {
+    /* width: 102%; */
+    position: relative;
+    right: 14px;
+  }
 }
 .orderContainer .product {
   display: flex;
@@ -101,10 +166,16 @@
   flex-wrap: wrap;
   justify-content: space-around;
   background-color: white;
-  color: rgb(255, 123, 105);
+  color: rgb(238, 161, 20);
   border-radius: 10px;
   padding: 5px;
   align-items: center;
+}
+@media (min-width: 769px) and (max-width: 991px) {
+  .product {
+    /* width: 100%; */
+    padding: 5px 0;
+  }
 }
 .product-table {
   width: 80%;
@@ -122,7 +193,7 @@
 .product-table,
 .product-table th,
 .product-table td {
-  border: rgb(79, 77, 105) 1px solid;
+  border: rgb(79, 77, 105, 0.1) 1px solid;
 }
 .product-table th,
 .product-table td {
@@ -156,13 +227,13 @@
 }
 
 .orderContainer .smallBox .orderId span {
-  color: rgb(255, 123, 105);
+  color: rgb(238, 161, 20);
 }
 .orderContainer .smallBox .total-price span {
-  color: rgb(255, 123, 105);
+  color: rgb(238, 161, 20);
 }
 .orderContainer .smallBox .status span {
-  color: rgb(255, 123, 105);
+  color: rgb(238, 161, 20);
 }
 
 .orderContainer .fas {
@@ -178,7 +249,7 @@
   }
 }
 .orderContainer button {
-  border: rgb(255, 123, 105) 1px solid;
+  border: rgb(238, 161, 20) 1px solid;
   margin: 5px;
 }
 
