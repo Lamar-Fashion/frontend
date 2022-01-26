@@ -1,0 +1,145 @@
+.admin {
+  min-height: 100vh;
+  background-color: var(--main-color-alt);
+  padding: 220px 0 100px;
+}
+@media (max-width: 991px) {
+  .admin {
+    padding-top: 190px;
+  }
+}
+@media (max-width: 768px) {
+  .admin {
+    padding-top: 160px;
+  }
+}
+@media (max-width: 530px) {
+  .admin {
+    padding-top: 130px;
+  }
+}
+
+/* nav styling */
+
+.admin .nav-container {
+  /* padding-bottom: 1rem; */
+}
+.admin .left-nav .i-home {
+  font-size: 18px;
+  color: black;
+  font-weight: 600;
+}
+.admin .nav-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+.admin .nav-info i {
+  font-size: 16px;
+  color: black;
+  font-weight: 500;
+  margin-right: 10px;
+}
+.admin .nav-info span {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  /* text-transform: capitalize; */
+  margin-right: 10px;
+}
+
+/* finish nav styling */
+
+/* hero styling */
+
+.container-admin-hero .admin-hero {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-admin-hero .admin-hero h4 {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
+  position: relative;
+  text-align: center;
+}
+.container-admin-hero .admin-hero h4::before {
+  content: '';
+  position: absolute;
+  height: 5px;
+  width: 50%;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border-radius: 20px;
+}
+
+@media (max-width: 767px) {
+  .container-admin-hero .admin-hero h4 {
+    font-size: 20px;
+  }
+}
+
+/* finish hero styling */
+
+.admin .features-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding-top: 1.5rem;
+}
+.admin .features {
+  cursor: pointer;
+  width: 200px;
+  height: 300px;
+  background-color: rgba(238, 162, 20);
+  text-align: center;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 4px 15px 14px rgb(0 0 0 / 30%);
+  transition: 0.4s ease-in-out;
+}
+@media (max-width: 530px) {
+  .admin .features {
+    width: 100px;
+    height: 200px;
+  }
+}
+.admin .features:hover {
+  /* transform: translateY(-10px); */
+  box-shadow: 4px 15px 14px rgb(0 0 0 / 50%);
+}
+.admin .features .above-div {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  width: 98%;
+  height: 98%;
+  background-color: rgba(0, 0, 0, 0.26);
+  transform: rotate3d(5, 4, 1, 45deg);
+  border-radius: 10px;
+  transition: 0.4s ease-in-out;
+}
+.admin .features .above-div:hover {
+  transform: rotate3d(5, 4, 1, 0deg);
+  background-color: rgba(0, 0, 0, 0.15);
+
+  color: whitesmoke;
+  font-weight: 800;
+}
+
+.admin .above-div span {
+  font-size: 20px;
+  position: relative;
+  top: 40%;
+}

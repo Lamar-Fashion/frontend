@@ -45,7 +45,7 @@ function Header() {
                 {role === 'admin' ? (
                   <li>
                     <Link
-                      to='/PendingOrders'
+                      to='/Admin'
                       onClick={() => {
                         window.scrollTo({
                           left: 0,
@@ -264,7 +264,7 @@ function Header() {
             {role === 'admin' ? (
               <li>
                 <Link
-                  to='/PendingOrders'
+                  to='/Admin'
                   onClick={() => {
                     window.scrollTo({
                       left: 0,

@@ -20,6 +20,42 @@
   }
 }
 
+/* nav styling */
+
+.pending-orders .nav-container {
+  padding-bottom: 1rem;
+}
+.pending-orders .left-nav .i-home {
+  font-size: 18px;
+  color: black;
+  font-weight: 600;
+}
+.pending-orders .nav-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+.pending-orders .nav-info i {
+  font-size: 16px;
+  color: black;
+  font-weight: 500;
+  margin-right: 10px;
+}
+.pending-orders .i-admin {
+  text-decoration: underline;
+}
+.pending-orders .nav-info span {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  /* text-transform: capitalize; */
+  margin-right: 10px;
+}
+
+/* finish nav styling */
+
 .pending-orders .pageIntro {
   display: flex;
   flex-direction: row;

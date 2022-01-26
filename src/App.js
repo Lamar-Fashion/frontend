@@ -21,6 +21,8 @@ import AllUsers from './components/Admin/all-users/AllUsers';
 import PendingOrders from './components/Admin/pending-orders/PendingOrders';
 import DoneOrders from './components/Admin/done-orders/DoneOrders';
 import RejectedOrders from './components/Admin/rejected-orders/RejectedOrders';
+import Admin from './components/Admin/Admin';
+import AddProductModal from './components/Admin/add-product/AddProductModal';
 
 function App() {
   const [y, setY] = useState(window.scrollY);
@@ -66,6 +68,7 @@ function App() {
           <Route exact path='/PendingOrders' element={<PendingOrders />} />
           <Route exact path='/DoneOrders' element={<DoneOrders />} />
           <Route exact path='/RejectedOrders' element={<RejectedOrders />} />
+          <Route exact path='/Admin' element={<Admin />} />
         </Routes>
         <Footer />
       </Router>

@@ -518,7 +518,7 @@
   overflow: hidden;
   font-size: 16.5px;
   /* transition: var(--main-transition) linear; */
-  transition: 0.3s;
+  transition: 0.3s ease-in-out 0.1s color ease-in-out;
   cursor: pointer;
   text-transform: uppercase;
 }
@@ -528,11 +528,13 @@
   }
 }
 .header .lamar-container .main-nav > li > a > a:hover {
-  font-weight: bold;
-  padding-top: 5px;
-  font-size: 18px;
+  font-weight: 650;
+  /* padding-top: 5px; */
+  font-size: 19px;
   /* color: white; */
-  text-shadow: black;
+  /* text-shadow: 0.2px 1px 1px black; */
+  /* transform: rotateX(50deg); */
+  color: rgba(83, 83, 83, 0.603);
 }
 
 .header .lamar-container .main-nav > li > a > a > i {
