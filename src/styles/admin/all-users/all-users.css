@@ -3,7 +3,56 @@
   background-color: var(--main-color-alt);
   padding: 220px 0 100px;
 }
+@media (max-width: 991px) {
+  .all-users {
+    padding-top: 190px;
+  }
+}
+@media (max-width: 768px) {
+  .all-users {
+    padding-top: 160px;
+  }
+}
+@media (max-width: 530px) {
+  .all-users {
+    padding-top: 130px;
+  }
+}
+/* nav styling */
 
+.all-users .nav-container {
+  padding-bottom: 1rem;
+}
+.all-users .left-nav .i-home {
+  font-size: 18px;
+  color: black;
+  font-weight: 600;
+}
+.all-users .nav-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+.all-users .nav-info i {
+  font-size: 16px;
+  color: black;
+  font-weight: 500;
+  margin-right: 10px;
+}
+.all-users .i-admin {
+  text-decoration: underline;
+}
+.all-users .nav-info span {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  /* text-transform: capitalize; */
+  margin-right: 10px;
+}
+
+/* finish nav styling */
 .all-users .pageIntro {
   display: flex;
   flex-direction: row;
@@ -28,6 +77,7 @@
   width: 325px;
   height: 60px;
   border: solid 1px rgba(128, 128, 128, 0.548);
+  padding: 0.1rem;
 }
 
 .all-users .userContainer img {
