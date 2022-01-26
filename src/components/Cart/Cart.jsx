@@ -1,38 +1,46 @@
 import { React, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/Cart/cart.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCartAction, removeFromCartAction } from '../../store/actions';
 function Cart() {
+  const dispatch = useDispatch();
+
   const [cartArray, setCartArray] = useState(JSON.parse(window.sessionStorage.getItem('cart')));
   const [quantity, setQuantity] = useState({});
   const [total, setTotal] = useState(0);
   window.sessionStorage.setItem('total', JSON.stringify(total));
 
+  useEffect(() => {}, [quantity]);
   useEffect(() => {
-  }, [quantity]);
-  useEffect(() => {
-
     let summ = 0;
-    cartArray?.map((item) => (summ += (Number(item.price))*Number(item.quantity)));
+    cartArray?.map((item) => (summ += Number(item.price) * Number(item.quantity)));
     setTotal(summ);
-    
   }, []);
 
   const deleteItem = (item, indx) => {
     cartArray.splice(Number(indx), 1);
     window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
+    console.log('item', item);
+    // update redux with cart number
+    dispatch(removeFromCartAction(item.quantity));
     setTotal(total - Number(item.price));
   };
   const addItem = (item, indx) => {
     setQuantity({ ...quantity, [indx]: quantity[indx] ? quantity[indx] + 1 : 2 });
-    cartArray[indx].quantity=item.quantity + 1 
+    cartArray[indx].quantity = item.quantity + 1;
     window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
+    // update redux with cart number
+    dispatch(addToCartAction());
     setTotal(total + Number(item.price));
   };
   const decresItem = (item, indx) => {
     if (item.quantity > 1) {
       setQuantity({ ...quantity, [indx]: quantity[indx] ? quantity[indx] - 1 : 1 });
-      cartArray[indx].quantity=item.quantity - 1 
+      cartArray[indx].quantity = item.quantity - 1;
       window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
+      // update redux with cart number
+      dispatch(removeFromCartAction());
       setTotal(total - item.price);
     }
   };
@@ -40,21 +48,24 @@ function Cart() {
     <>
       {cartArray?.length > 0 ? (
         <section className='cart-lamar' id='Cart'>
-          <div className="nav-container">
-      <div className="nav-info">
-          <div className="left-nav">
-            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
-            <i className="fas fa-angle-right"></i> <span >Shoping Cart</span>
-          </div>
-          {/* <div className="right-nav">
+          <div className='nav-container'>
+            <div className='nav-info'>
+              <div className='left-nav'>
+                <Link to='/'>
+                  <i className='fas fa-home i-home'></i>
+                </Link>
+                <i className='fas fa-angle-right'></i> <span>Shoping Cart</span>
+              </div>
+              {/* <div className="right-nav">
             <Link to="/Checkout"> <span className="exat-path">Next</span> </Link>
           </div> */}
-        </div>
+            </div>
           </div>
           <div className='lamar-container'>
-            <table className='cart-table'
-            //  style={{ width: '90%', margin: '0 auto' }}
-             >
+            <table
+              className='cart-table'
+              //  style={{ width: '90%', margin: '0 auto' }}
+            >
               <thead className='cart-table-head'>
                 <tr className='cart-table-head-r'>
                   <th className='col1'>
@@ -95,7 +106,6 @@ function Cart() {
                             <p>
                               <span>buttons :</span> {item.buttons}
                             </p>
-                           
                           </div>
                         </div>
                       </td>
@@ -141,37 +151,38 @@ function Cart() {
                 );
               })}
             </table>
-            <div className="summary">
+            <div className='summary'>
               <h3>summary</h3>
               <hr />
-              <div className="sub-total">
+              <div className='sub-total'>
                 <h4>Subtotal</h4>
                 <h5>QAR {total}</h5>
               </div>
-              <div className="sub-total">
+              <div className='sub-total'>
                 <h4>Shipping (Free Shipping - Free)</h4>
                 <h5>QAR 0.00</h5>
               </div>
               <hr />
-              <div className="order-total">
-              <h4 className='order-total-h2'>Order Total</h4>
-              <h5 className='order-total-h2'>QAR {total}</h5>
+              <div className='order-total'>
+                <h4 className='order-total-h2'>Order Total</h4>
+                <h5 className='order-total-h2'>QAR {total}</h5>
               </div>
-              <Link to="/Checkout" > next </Link>
+              <Link to='/Checkout'> next </Link>
             </div>
           </div>
         </section>
       ) : (
         <section className='cart-empty'>
-        
-          <div className="nav-container">
-      <div className="nav-info">
-          <div className="left-nav">
-            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
-            <i className="fas fa-angle-right"></i> <span >Shoping Cart</span>
+          <div className='nav-container'>
+            <div className='nav-info'>
+              <div className='left-nav'>
+                <Link to='/'>
+                  <i className='fas fa-home i-home'></i>
+                </Link>
+                <i className='fas fa-angle-right'></i> <span>Shoping Cart</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
           <div className='cart-container'>
             <i className='fas fa-shopping-bag'></i>
             <p>You have no items in your shopping cart.</p>

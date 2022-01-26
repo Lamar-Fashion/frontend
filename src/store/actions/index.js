@@ -12,3 +12,18 @@ export const logOutAction = () => {
     type: 'LOG_OUT',
   };
 };
+
+// Add to Cart
+export const addToCartAction = () => {
+  return {
+    type: 'ADD_TO_CART',
+  };
+};
+
+// Remove from CArt
+export const removeFromCartAction = (quantity) => {
+  return {
+    type: 'REMOVE_FROM_CART',
+    payload: quantity ? quantity : null,
+  };
+};

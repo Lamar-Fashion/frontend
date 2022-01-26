@@ -34,13 +34,14 @@ const style = {
   [theme.breakpoints.down(531)]: {
     width: '95%',
   },
-  height: '90vh',
+  height: '92.5vh',
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
   overflow: 'scroll',
-  paddingBottom: '5px',
+  // paddingBottom: '5px',
+  paddingTop: '45px',
 };
 
 // color options
@@ -76,35 +77,32 @@ const Option = (props) => {
     </div>
   );
 };
-
+// dumy data from backend
+let dumyObj = {
+  addToHomePage: 'no',
+  category: 'onSales',
+  code: 'aderwq',
+  status: 'notReadyToWear',
+  colors: [
+    { value: 'XS', label: 'XS' },
+    { value: 'S', label: 'S' },
+    { value: 'M', label: 'M' },
+  ],
+  totalInStock: 15,
+  description: 'some description here',
+  price: '100',
+  sizes: [
+    { value: 'ocean1', label: 'Ocean' },
+    { value: 'blue', label: 'Blue' },
+    { value: 'purple', label: 'Purple' },
+  ],
+};
 function EditProductModal({ setOpenEditProduct, openEditProduct }) {
   const [colorsSelected, setColorsSelected] = useState(null);
   const [sizesSelected, setSizesSelected] = useState(null);
   const [productData, setProductData] = useState({ productIamges: [] });
   const [images, setImages] = useState({});
   const [isValid, setIsValid] = useState(false);
-
-  // dumy data from backend
-  let dumyObj = {
-    addToHomePage: 'no',
-    availability: 'inStock',
-    brand: 'lamar',
-    code: 'aderwq',
-    collection: 'newArrivals',
-    colors: [
-      { value: 'XS', label: 'XS' },
-      { value: 'S', label: 'S' },
-      { value: 'M', label: 'M' },
-    ],
-    deliveryTime: '1To2Weeks',
-    description: 'some description here',
-    price: '100',
-    sizes: [
-      { value: 'ocean1', label: 'Ocean' },
-      { value: 'blue', label: 'Blue' },
-      { value: 'purple', label: 'Purple' },
-    ],
-  };
   // dumy data
   const [dumyData, setdumyData] = useState(dumyObj);
 
@@ -118,14 +116,13 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
     setProductData({
       ...productData,
       addToHomePage: dumyData.addToHomePage,
-      availability: dumyData.availability,
-      brand: dumyData.brand,
+      totalInStock: dumyData.totalInStock,
+      category: dumyData.category,
       price: dumyData.price,
       code: dumyData.code,
-      collection: dumyData.collection,
+      status: dumyData.status,
       sizes: dumyData.sizes,
       colors: dumyData.colors,
-      deliveryTime: dumyData.deliveryTime,
       description: dumyData.description,
     });
   }, []);
@@ -269,32 +266,31 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
             <div className='form-container'>
               <form className='add-from' action='' onSubmit={submitHandler}>
                 <div className='product-brand'>
-                  <label htmlFor='brand'>Brand :</label>
-                  <select name='brand' required id='brand' onChange={handleChange} value={productData?.brand}>
+                  <label>Category :</label>
+                  <select name='category' required id='category' onChange={handleChange} value={productData?.category}>
                     <option value=''>--choose option--</option>
-                    <option value='lamar'>lamar</option>
-                    <option value='neo'>neo</option>
-                    <option value='montaha'>montaha</option>
-                    <option value='shaira'>shaira</option>
+                    <option value='newArrivals'>New Arrivals</option>
+                    <option value='onSales'>On Sales</option>
                   </select>
                 </div>
                 <div className='collection'>
-                  <label htmlFor='collection'>Collection :</label>
-                  <select name='collection' required id='collection' onChange={handleChange} value={productData?.collection}>
+                  <label>Status :</label>
+                  <select name='status' required id='status' onChange={handleChange} value={productData?.status}>
                     <option value=''>--choose option--</option>
-                    <option value='newArrivals'>new Arrivals</option>
+                    <option value='notReadyToWear'>يحتاج الى تفصيل</option>
                     <option value='readyToWear'>Ready To Wear</option>
-                    <option value='onSales'>on Sales</option>
-                    <option value='abaya'>Abaya</option>
                   </select>
                 </div>
                 <div className='code'>
+                  <label>Code :</label>
                   <input type='text' name='code' required id='code' placeholder='Product Code' onChange={handleChange} value={productData?.code} />
                 </div>
                 <div className='description'>
+                  <label>Description :</label>
                   <textarea type='text' name='description' required id='description' placeholder='Product Description' onChange={handleChange} value={productData?.description} />
                 </div>
                 <div className='price'>
+                  <label>Price :</label>
                   <input type='number' name='price' required id='price' placeholder='Product Price' onChange={handleChange} value={productData?.price} />
                 </div>
                 <div className='sizes'>
@@ -314,7 +310,7 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
                   />
                 </div>
                 <div className='colors'>
-                  <label htmlFor='colors'>Colors :</label>
+                  <label>Colors :</label>
                   <ReactSelect
                     options={colourOptions}
                     isMulti
@@ -329,20 +325,8 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
                   />
                 </div>
                 <div className='availability'>
-                  <label htmlFor='availability'>Availability :</label>
-                  <select name='availability' required id='availability' onChange={handleChange} value={productData?.availability}>
-                    <option value=''>--choose option--</option>
-                    <option value='inStock'>in Stock</option>
-                    <option value='needPreparing'>يحتاج الى تفصيل</option>
-                  </select>
-                </div>
-                <div className='deliveryTime'>
-                  <label htmlFor='deliveryTime'>Delivery Time :</label>
-                  <select name='deliveryTime' required id='deliveryTime' onChange={handleChange} value={productData?.deliveryTime}>
-                    <option value=''>--choose option--</option>
-                    <option value='1To2Weeks'>1 - 2 weeks</option>
-                    <option value='24To48Hours'>24 - 48 hours</option>
-                  </select>
+                  <label>Total in Stock :</label>
+                  <input type='number' name='totalInStock' required id='totalInStock' placeholder='Total in Stock' value={productData?.totalInStock} onChange={handleChange} />
                 </div>
                 <div className='images'>
                   {/* <input type='file' multiple name='images' required id='images' placeholder='Product images' onChange={handleChange} accept='image/png,image/jpeg' /> */}

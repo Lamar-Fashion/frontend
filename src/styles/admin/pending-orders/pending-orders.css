@@ -27,7 +27,7 @@
   border-bottom: 1px solid;
 }
 .pending-orders .pageIntro .total-number span {
-  color: rgb(255, 123, 105);
+  color: rgb(238, 161, 20);
   font-size: 22px;
 }
 @media (max-width: 530px) {

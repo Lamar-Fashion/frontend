@@ -10,10 +10,11 @@ function Header() {
   const [showDropHome, setShowDropHome] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [showSearchTextField, setShowSearchTextField] = useState(false);
+  const [cartNumber, setCartNumber] = useState(JSON.parse(window.sessionStorage.getItem('cartNumber')) ? JSON.parse(window.sessionStorage.getItem('cartNumber')) : 0);
   const [y, setY] = useState(0);
   const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
   const role = useSelector((state) => state.authReducer.role);
-
+  const cartProductsNumber = useSelector((state) => state.cartReducer.cartProductsNumber);
   function scrollHandler() {
     setY(window.scrollY);
   }
@@ -21,6 +22,12 @@ function Header() {
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler, true);
   }, []);
+
+  // trigger redux, save to storage, and render it
+  useEffect(() => {
+    window.sessionStorage.setItem('cartNumber', cartProductsNumber);
+    setCartNumber(cartProductsNumber);
+  }, [cartProductsNumber]);
 
   return (
     <>
@@ -515,7 +522,7 @@ function Header() {
                   <a>
                     <BsCartFill className='header-icons cart' />
 
-                    <strong className='number'>5</strong>
+                    <strong className='number'>{cartNumber}</strong>
                   </a>
                 </Link>
               </li>

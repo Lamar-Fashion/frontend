@@ -11,7 +11,7 @@ function Order({ order, idx }) {
         {openDetails && (
           <div className='detailsBox'>
             <section className='orderInfo'>
-              <h5>Order Info:</h5>
+              <h5 className='title-info'>Order Info:</h5>
               <table className='order-table'>
                 <tr>
                   <th>order Status:</th>
@@ -51,9 +51,8 @@ function Order({ order, idx }) {
                 </tr>
               </table>
             </section>
-            <hr />
             <section className='clientInfo'>
-              <h5>Client Info:</h5>
+              <h5 className='title-info'>Client Info:</h5>
               <table className='client-table'>
                 <tr className='client-row'>
                   <th>Name</th>
@@ -110,7 +109,6 @@ function Order({ order, idx }) {
                 </tr>
               </table>
             </section>
-            <hr />
 
             <section className='productsContainer'>
               {order.orderedProducts.map((product, idx) => {
@@ -201,7 +199,6 @@ function Order({ order, idx }) {
                 );
               })}
             </section>
-            <hr />
 
             <section className='control'>
               <button className='button'>Done</button>
