@@ -1,12 +1,12 @@
-import { React, useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import '../../../styles/admin/add-product/addProduct-modal.css';
-import { default as ReactSelect } from 'react-select';
-import { components } from 'react-select';
-import { storage } from '../../../firebase';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { React, useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import "../../../styles/admin/add-product/addProduct-modal.css";
+import { default as ReactSelect } from "react-select";
+import { components } from "react-select";
+import { storage } from "../../../firebase";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
   breakpoints: {
@@ -22,49 +22,49 @@ const theme = createTheme({
 });
 // material-ui styling
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
 
-  width: '60%',
+  width: "60%",
   [theme.breakpoints.down(992)]: {
-    width: '80%',
+    width: "80%",
   },
   [theme.breakpoints.down(531)]: {
-    width: '95%',
+    width: "95%",
   },
-  height: '92.5vh',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  height: "92.5vh",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  overflow: 'scroll',
+  overflow: "scroll",
   // paddingBottom: '5px',
-  paddingTop: '45px',
+  paddingTop: "45px",
 };
 
 // color options
 const colourOptions = [
-  { value: 'ocean1', label: 'Ocean' },
-  { value: 'blue', label: 'Blue' },
-  { value: 'purple', label: 'Purple' },
-  { value: 'red', label: 'Red' },
-  { value: 'orange', label: 'Orange' },
-  { value: 'yellow', label: 'Yellow' },
-  { value: 'green', label: 'Green' },
-  { value: 'forest', label: 'Forest' },
-  { value: 'slate', label: 'Slate' },
-  { value: 'silver', label: 'Silver' },
+  { value: "ocean1", label: "Ocean" },
+  { value: "blue", label: "Blue" },
+  { value: "purple", label: "Purple" },
+  { value: "red", label: "Red" },
+  { value: "orange", label: "Orange" },
+  { value: "yellow", label: "Yellow" },
+  { value: "green", label: "Green" },
+  { value: "forest", label: "Forest" },
+  { value: "slate", label: "Slate" },
+  { value: "silver", label: "Silver" },
 ];
 
 // size options
 const sizeOptions = [
-  { value: 'XS', label: 'XS' },
-  { value: 'S', label: 'S' },
-  { value: 'M', label: 'M' },
-  { value: 'L', label: 'L' },
-  { value: 'XL', label: 'XL' },
+  { value: "XS", label: "XS" },
+  { value: "S", label: "S" },
+  { value: "M", label: "M" },
+  { value: "L", label: "L" },
+  { value: "XL", label: "XL" },
 ];
 
 // for react-select library (for multiple selection)
@@ -72,29 +72,34 @@ const Option = (props) => {
   return (
     <div>
       <components.Option {...props}>
-        <input type='checkbox' checked={props.isSelected} onChange={() => null} /> <label>{props.label}</label>
+        <input
+          type="checkbox"
+          checked={props.isSelected}
+          onChange={() => null}
+        />{" "}
+        <label>{props.label}</label>
       </components.Option>
     </div>
   );
 };
 // dumy data from backend
 let dumyObj = {
-  addToHomePage: 'no',
-  category: 'onSales',
-  code: 'aderwq',
-  status: 'notReadyToWear',
-  colors: [
-    { value: 'XS', label: 'XS' },
-    { value: 'S', label: 'S' },
-    { value: 'M', label: 'M' },
+  addToHomePage: "no",
+  category: "onSales",
+  code: "aderwq",
+  status: "notReadyToWear",
+  sizes: [
+    { value: "XS", label: "XS" },
+    { value: "S", label: "S" },
+    { value: "M", label: "M" },
   ],
   totalInStock: 15,
-  description: 'some description here',
-  price: '100',
-  sizes: [
-    { value: 'ocean1', label: 'Ocean' },
-    { value: 'blue', label: 'Blue' },
-    { value: 'purple', label: 'Purple' },
+  description: "some description here",
+  price: "100",
+  colors: [
+    { value: "ocean1", label: "Ocean" },
+    { value: "blue", label: "Blue" },
+    { value: "purple", label: "Purple" },
   ],
 };
 function EditProductModal({ setOpenEditProduct, openEditProduct }) {
@@ -202,7 +207,10 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
       // }
 
       setOpenEditProduct(false);
-      console.log('edited obj ready to go to the backend: productData', productData);
+      console.log(
+        "edited obj ready to go to the backend: productData",
+        productData
+      );
       // reset all states
       // setProductData({ productIamges: [] });
       // setImages({});
@@ -210,7 +218,7 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
       // setColorsSelected(null);
       // setSizesSelected(null);
     } catch (e) {
-      console.log('Edit Product Error', e.message);
+      console.log("Edit Product Error", e.message);
     }
   };
 
@@ -254,47 +262,88 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
   }
   return (
     <>
-      <Modal open={openEditProduct} onClose={handleClose} aria-labelledby='modal-modal-title' aria-describedby='modal-modal-description'>
+      <Modal
+        open={openEditProduct}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
         <ThemeProvider theme={theme}>
           <Box sx={style}>
-            <div className='modal-header'>
-              <Typography id='modal-modal-title' variant='h6' component='h2'>
+            <div className="modal-header">
+              <Typography id="modal-modal-title" variant="h6" component="h2">
                 Edit Product Form:
               </Typography>
-              <i class='fas fa-times' onClick={handleClose}></i>
+              <i class="fas fa-times" onClick={handleClose}></i>
             </div>
-            <div className='form-container'>
-              <form className='add-from' action='' onSubmit={submitHandler}>
-                <div className='product-brand'>
+            <div className="form-container">
+              <form className="add-from" action="" onSubmit={submitHandler}>
+                <div className="product-brand">
                   <label>Category :</label>
-                  <select name='category' required id='category' onChange={handleChange} value={productData?.category}>
-                    <option value=''>--choose option--</option>
-                    <option value='newArrivals'>New Arrivals</option>
-                    <option value='onSales'>On Sales</option>
+                  <select
+                    name="category"
+                    required
+                    id="category"
+                    onChange={handleChange}
+                    value={productData?.category}
+                  >
+                    <option value="">--choose option--</option>
+                    <option value="newArrivals">New Arrivals</option>
+                    <option value="onSales">On Sales</option>
                   </select>
                 </div>
-                <div className='collection'>
+                <div className="collection">
                   <label>Status :</label>
-                  <select name='status' required id='status' onChange={handleChange} value={productData?.status}>
-                    <option value=''>--choose option--</option>
-                    <option value='notReadyToWear'>يحتاج الى تفصيل</option>
-                    <option value='readyToWear'>Ready To Wear</option>
+                  <select
+                    name="status"
+                    required
+                    id="status"
+                    onChange={handleChange}
+                    value={productData?.status}
+                  >
+                    <option value="">--choose option--</option>
+                    <option value="notReadyToWear">يحتاج الى تفصيل</option>
+                    <option value="readyToWear">Ready To Wear</option>
                   </select>
                 </div>
-                <div className='code'>
+                <div className="code">
                   <label>Code :</label>
-                  <input type='text' name='code' required id='code' placeholder='Product Code' onChange={handleChange} value={productData?.code} />
+                  <input
+                    type="text"
+                    name="code"
+                    required
+                    id="code"
+                    placeholder="Product Code"
+                    onChange={handleChange}
+                    value={productData?.code}
+                  />
                 </div>
-                <div className='description'>
+                <div className="description">
                   <label>Description :</label>
-                  <textarea type='text' name='description' required id='description' placeholder='Product Description' onChange={handleChange} value={productData?.description} />
+                  <textarea
+                    type="text"
+                    name="description"
+                    required
+                    id="description"
+                    placeholder="Product Description"
+                    onChange={handleChange}
+                    value={productData?.description}
+                  />
                 </div>
-                <div className='price'>
+                <div className="price">
                   <label>Price :</label>
-                  <input type='number' name='price' required id='price' placeholder='Product Price' onChange={handleChange} value={productData?.price} />
+                  <input
+                    type="number"
+                    name="price"
+                    required
+                    id="price"
+                    placeholder="Product Price"
+                    onChange={handleChange}
+                    value={productData?.price}
+                  />
                 </div>
-                <div className='sizes'>
-                  <label htmlFor='sizes'>Sizes :</label>
+                <div className="sizes">
+                  <label htmlFor="sizes">Sizes :</label>
                   <ReactSelect
                     options={sizeOptions}
                     isMulti
@@ -309,7 +358,7 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
                     value={sizesSelected}
                   />
                 </div>
-                <div className='colors'>
+                <div className="colors">
                   <label>Colors :</label>
                   <ReactSelect
                     options={colourOptions}
@@ -324,25 +373,59 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
                     value={colorsSelected}
                   />
                 </div>
-                <div className='availability'>
+                <div className="availability">
                   <label>Total in Stock :</label>
-                  <input type='number' name='totalInStock' required id='totalInStock' placeholder='Total in Stock' value={productData?.totalInStock} onChange={handleChange} />
+                  <input
+                    type="number"
+                    name="totalInStock"
+                    required
+                    id="totalInStock"
+                    placeholder="Total in Stock"
+                    value={productData?.totalInStock}
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className='images'>
+                <div className="images">
                   {/* <input type='file' multiple name='images' required id='images' placeholder='Product images' onChange={handleChange} accept='image/png,image/jpeg' /> */}
                 </div>
-                <div className='addToHomePage'>
-                  <label htmlFor='addToHomePage'>Add this product to the Home page? </label>
+                <div className="addToHomePage">
+                  <label htmlFor="addToHomePage">
+                    Add this product to the Home page?{" "}
+                  </label>
                   <br />
                   <section>
-                    <input type='radio' id='addToHomePage' name='addToHomePage' value='yes' onChange={handleChange} checked={productData?.addToHomePage == 'yes' ? true : false} /> 
-                    <label for='yes'>yes</label>
-                      <input type='radio' id='addToHomePage' name='addToHomePage' value='no' onChange={handleChange} checked={productData?.addToHomePage == 'no' ? true : false} /> 
-                    <label for='no'>no</label>
+                    <input
+                      type="radio"
+                      id="addToHomePage"
+                      name="addToHomePage"
+                      value="yes"
+                      onChange={handleChange}
+                      checked={
+                        productData?.addToHomePage == "yes" ? true : false
+                      }
+                    />
+                     <label for="yes">yes</label>
+                     {" "}
+                    <input
+                      type="radio"
+                      id="addToHomePage"
+                      name="addToHomePage"
+                      value="no"
+                      onChange={handleChange}
+                      checked={
+                        productData?.addToHomePage == "no" ? true : false
+                      }
+                    />
+                     <label for="no">no</label>
                   </section>
                 </div>
 
-                <button type='submit' value='create an account' className='submit' disabled={!isValid}>
+                <button
+                  type="submit"
+                  value="create an account"
+                  className="submit"
+                  disabled={!isValid}
+                >
                   edit product
                 </button>
               </form>

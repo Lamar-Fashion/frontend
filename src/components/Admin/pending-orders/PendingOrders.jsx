@@ -50,20 +50,29 @@ function PendingOrders() {
   return (
     <>
       <div className='pending-orders'>
-        <div className='nav-container'>
+      <div className='nav-container'>
           <div className='nav-info'>
             <div className='left-nav'>
               <Link to='/'>
                 <i className='fas fa-home i-home'></i>
               </Link>
-              <Link to='/Admin'>
-                <i className='fas fa-angle-right '></i> <span className='i-admin'>Admin </span>
+              <i className='fas fa-angle-right'></i>
+              <Link to='/Admin' className='exat-path'>
+                {' '}
+                <span>Admin</span>
               </Link>
-              <i className='fas fa-angle-right'></i> <span>Pending Orders</span>
+              <i className='fas fa-angle-right'></i>
+                <span>Pending Orders</span>
             </div>
           </div>
         </div>
+       
         <div className='lamar-container'>
+        <div className='container-admin-hero'>
+            <div className='admin-hero'>
+              <h4 className='hero-text'>Pending Orders </h4>
+            </div>
+          </div>
           <div className='pageIntro'>
             <div className='total-number'>
               All Pending Orders: <span>{allPendingOrders.length}</span>

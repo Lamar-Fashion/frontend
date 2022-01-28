@@ -4,8 +4,11 @@ import '../../styles/header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsFillHeartFill, BsPersonCircle } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector ,useDispatch} from 'react-redux';
+import { navigateReducer } from '../../store/actions';
+
 function Header() {
+  const dispatch = useDispatch();
   const [showVerticalNav, setshowVerticalNav] = useState(false);
   const [showDropHome, setShowDropHome] = useState(false);
   const [dropDown, setDropDown] = useState(false);
@@ -192,6 +195,7 @@ function Header() {
                         top: 0,
                         behavior: 'smooth',
                       });
+                      dispatch(navigateReducer("all"));
                     }}
                   >
                     <a>
@@ -201,12 +205,28 @@ function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link to='/Shalat'>
+                  <Link to='/Abaya' 
+                   onClick={() => {
+                    window.scrollTo({
+                      left: 0,
+                      top: 0,
+                      behavior: 'smooth',
+                    });
+                    dispatch(navigateReducer("New Arrival"));
+                  }}>
                     <a>New Arrivals</a>
                   </Link>
                 </li>
                 <li>
-                  <Link to='/Shalat'>
+                  <Link to='/Abaya' 
+                  onClick={() => {
+                    window.scrollTo({
+                      left: 0,
+                      top: 0,
+                      behavior: 'smooth',
+                    });
+                    dispatch(navigateReducer("On Sales"));
+                  }}>
                     <a>on Sales</a>
                   </Link>
                 </li>
@@ -399,7 +419,10 @@ function Header() {
                     top: 0,
                     behavior: 'smooth',
                   });
+                  dispatch(navigateReducer("all"));
+
                 }}
+                
               >
                 <a>
                   Abayas
@@ -422,13 +445,31 @@ function Header() {
               </ul> */}
             </li>
             <li>
-              <Link to='/Shalat'>
-                <a href='#shalat'>New Arrivals</a>
+              <Link  to='/Abaya'
+                onClick={() => {
+                  window.scrollTo({
+                    left: 0,
+                    top: 0,
+                    behavior: 'smooth',
+                  });
+                  dispatch(navigateReducer("New Arrival"));
+
+                }}>
+                <a >New Arrivals</a>
               </Link>
             </li>
             <li>
-              <Link to='/Shalat'>
-                <a href='#shalat'>on Sales</a>
+              <Link  to='/Abaya'
+                onClick={() => {
+                  window.scrollTo({
+                    left: 0,
+                    top: 0,
+                    behavior: 'smooth',
+                  });
+                  dispatch(navigateReducer("On Sales"));
+
+                }}>
+                <a >On Sales</a>
               </Link>
             </li>
           </ul>

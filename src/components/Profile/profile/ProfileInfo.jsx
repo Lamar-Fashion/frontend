@@ -39,15 +39,18 @@ function ProfileInfo() {
               </div>
 
               <div className='input-pass'>
-                <i className='fas fa-mail-bulk'></i>
+              <i className="fas fa-unlock"></i>
+
                 <input type='password' name='password' id='password' placeholder='Old password' />
               </div>
               <div className='input-pass'>
-                <i className='fas fa-mail-bulk'></i>
+              <i className="fas fa-unlock"></i>
+
                 <input type='password' name='password' id='password' placeholder='New password' />
               </div>
               <div className='input-pass'>
-                <i className='fas fa-mail-bulk'></i>
+              <i className="fas fa-unlock"></i>
+
                 <input type='password' name='password' id='password' placeholder='Confirm password' />
               </div>
 

@@ -1,9 +1,11 @@
 .all-users {
-  min-height: 100vh;
-  background-color: var(--main-color-alt);
   padding: 220px 0 100px;
+  background-color: var(--main-color-alt);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
   .all-users {
     padding-top: 190px;
   }
@@ -17,12 +19,21 @@
   .all-users {
     padding-top: 130px;
   }
+} */
+
+
+@media (max-width: 530px) {
+  .all-users{
+    padding: 125px 0;
+  }
+}
+@media (min-width: 530px) and (max-width:767px) {
+  .all-users{
+    padding: 145px 0;
+  }
 }
 /* nav styling */
 
-.all-users .nav-container {
-  padding-bottom: 1rem;
-}
 .all-users .left-nav .i-home {
   font-size: 18px;
   color: black;
@@ -41,9 +52,6 @@
   font-weight: 500;
   margin-right: 10px;
 }
-.all-users .i-admin {
-  text-decoration: underline;
-}
 .all-users .nav-info span {
   color: black;
   font-size: 18px;
@@ -52,7 +60,48 @@
   margin-right: 10px;
 }
 
+.all-users .nav-info .exat-path{
+  text-decoration: underline !important;
+  color: black;
+}
+
 /* finish nav styling */
+
+
+.all-users .container-admin-hero .admin-hero {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.all-users .container-admin-hero .admin-hero h4 {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
+  position: relative;
+  text-align: center;
+}
+.all-users .container-admin-hero .admin-hero h4::before {
+  content: '';
+  position: absolute;
+  height: 5px;
+  width: 50%;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border-radius: 20px;
+}
+
+
+.all-users  .lamar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
 .all-users .pageIntro {
   display: flex;
   flex-direction: row;

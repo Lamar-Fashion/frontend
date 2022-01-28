@@ -18,6 +18,8 @@ function AbayaCards() {
   const [openEditProduct, setOpenEditProduct] = useState(false);
   const handleOpenEditProduct = () => setOpenEditProduct(true);
 
+
+
   let product = {
     images: [lamar, neo, ll, l2],
     name: 'A25sp5',
@@ -33,15 +35,36 @@ function AbayaCards() {
     // status:"needs elaboration"
   };
 
-  const arralen = 50;
+  
+  let product2 = {
+    images: [lamar, neo, ll, l2],
+    name: 'A25sp5',
+    price: '1300',
+    color: ['black', 'red', 'blue'],
+    size: ['s', 'm'],
+    discrpition: ' Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd ',
+    // catagory: 'New Arrival',
+    catagory: 'On Sales',
+    id: '',
+    total_quantity: 5,
+    // status: 'ready to wear',
+    status:"needs elaboration"
+  };
+  const arralen = 10;
   const [showItems, setShowItems] = useState(15);
   let array = new Array(arralen).fill(product);
+  let array2=[]
+  for (let i = 0; i < 10; i++) {
+    array2.push(product2)
+  }
+  array.push(...array2)
   const [pageNumber, setPageNumber] = useState(0);
   const pagesVisited = pageNumber * showItems;
-  const [catagory, setCatagory] = useState('all');
+  const [catagory, setCatagory] = useState("all");
+  let catagoryReducer=useSelector((state) => state.navigationReducer.catagory);
   useEffect(() => {
-    setCatagory('On Sales');
-  }, []);
+    setCatagory(catagoryReducer);
+  }, [catagoryReducer]);
 
   const addEntry = (product) => {
     let FavArray = JSON.parse(window.sessionStorage.getItem('fav'));
@@ -77,7 +100,15 @@ function AbayaCards() {
   }, [pageNumber]);
   const displayUser =
     array.length &&
-    array.slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
+    array.filter(item=> {
+      if(catagory==="all"){
+      return item
+    }
+    else{
+      return item.catagory===catagory
+    }
+  
+  }).slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
       return (
         <>
           <div className='box'>
@@ -168,8 +199,16 @@ function AbayaCards() {
           </div>
         </>
       );
-    });
-  const pageCount = Math.ceil(array.length / showItems);
+    })
+  const pageCount = Math.ceil(array.filter(item=> {
+    if(catagory==="all"){
+    return item
+  }
+  else{
+    return item.catagory===catagory
+  }
+
+}).length / showItems);
   const changePage = (event, value) => {
     setPageNumber(value - 1);
   };
@@ -205,7 +244,7 @@ function AbayaCards() {
                     id='show-item'
                     onChange={(e) => {
                       if (e.target.value === 'all' && showItems !== arralen) {
-                        setShowItems(arralen);
+                        setShowItems(arralen+10);
                         setPageNumber(0);
                       } else if (showItems !== e.target.value) {
                         setPageNumber(0);

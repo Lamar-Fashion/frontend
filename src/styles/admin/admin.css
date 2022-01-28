@@ -1,29 +1,24 @@
 .admin {
-  min-height: 100vh;
-  background-color: var(--main-color-alt);
   padding: 220px 0 100px;
-}
-@media (max-width: 991px) {
-  .admin {
-    padding-top: 190px;
-  }
-}
-@media (max-width: 768px) {
-  .admin {
-    padding-top: 160px;
-  }
-}
-@media (max-width: 530px) {
-  .admin {
-    padding-top: 130px;
-  }
+  background-color: var(--main-color-alt);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
+@media (max-width: 530px) {
+  .admin{
+    padding: 125px 0;
+  }
+}
+@media (min-width: 530px) and (max-width:767px) {
+  .admin {
+    padding: 145px 0;
+  }
+}
 /* nav styling */
 
-.admin .nav-container {
-  /* padding-bottom: 1rem; */
-}
+
 .admin .left-nav .i-home {
   font-size: 18px;
   color: black;
@@ -50,11 +45,15 @@
   margin-right: 10px;
 }
 
+.admin .nav-info .exat-path{
+  text-decoration: underline !important;
+  color: black;
+}
 /* finish nav styling */
 
 /* hero styling */
 
-.container-admin-hero .admin-hero {
+.admin .container-admin-hero .admin-hero {
   position: relative;
   width: 100%;
   display: flex;
@@ -62,7 +61,7 @@
   justify-content: center;
 }
 
-.container-admin-hero .admin-hero h4 {
+.admin .container-admin-hero .admin-hero h4 {
   text-transform: uppercase;
   font-size: 24px;
   font-weight: 500;
@@ -70,7 +69,7 @@
   position: relative;
   text-align: center;
 }
-.container-admin-hero .admin-hero h4::before {
+.admin .container-admin-hero .admin-hero h4::before {
   content: '';
   position: absolute;
   height: 5px;
@@ -82,6 +81,12 @@
   border-radius: 20px;
 }
 
+
+.admin .lamar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
 @media (max-width: 767px) {
   .container-admin-hero .admin-hero h4 {
     font-size: 20px;
@@ -94,13 +99,12 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
   justify-content: center;
-  padding-top: 1.5rem;
 }
 .admin .features {
   cursor: pointer;
-  width: 200px;
+  width: 220px;
   height: 300px;
   background-color: rgba(238, 162, 20);
   text-align: center;
@@ -111,7 +115,7 @@
 }
 @media (max-width: 530px) {
   .admin .features {
-    width: 100px;
+    width: 130px;
     height: 200px;
   }
 }
