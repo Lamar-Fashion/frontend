@@ -1,10 +1,12 @@
 .pending-orders {
-  min-height: 100vh;
-  background-color: var(--main-color-alt);
   padding: 220px 0 100px;
+  background-color: var(--main-color-alt);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
   .pending-orders {
     padding-top: 190px;
   }
@@ -18,8 +20,20 @@
   .pending-orders {
     padding-top: 130px;
   }
-}
+} */
 
+
+
+@media (max-width: 530px) {
+  .pending-orders{
+    padding: 125px 0;
+  }
+}
+@media (min-width: 530px) and (max-width:767px) {
+  .pending-orders {
+    padding: 145px 0;
+  }
+}
 /* nav styling */
 
 .pending-orders .nav-container {
@@ -43,18 +57,55 @@
   font-weight: 500;
   margin-right: 10px;
 }
-.pending-orders .i-admin {
-  text-decoration: underline;
-}
+
 .pending-orders .nav-info span {
   color: black;
   font-size: 18px;
   font-weight: 600;
-  /* text-transform: capitalize; */
   margin-right: 10px;
 }
 
+.pending-orders .nav-info .exat-path{
+  text-decoration: underline !important;
+  color: black;
+}
+
 /* finish nav styling */
+
+.pending-orders .container-admin-hero .admin-hero {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pending-orders .container-admin-hero .admin-hero h4 {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
+  position: relative;
+  text-align: center;
+}
+.pending-orders .container-admin-hero .admin-hero h4::before {
+  content: '';
+  position: absolute;
+  height: 5px;
+  width: 50%;
+  bottom: -10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border-radius: 20px;
+}
+
+
+.pending-orders .lamar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
 
 .pending-orders .pageIntro {
   display: flex;

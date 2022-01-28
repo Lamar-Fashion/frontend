@@ -27,3 +27,10 @@ export const removeFromCartAction = (quantity) => {
     payload: quantity ? quantity : null,
   };
 };
+// navigate to abaya 
+export const navigateReducer = (item) => {
+  return {
+    type: 'NAVIGATE',
+    payload: item ? item : null,
+  };
+};
