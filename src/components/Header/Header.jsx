@@ -3,21 +3,25 @@ import { React, useState, useEffect } from 'react';
 import '../../styles/header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsFillHeartFill, BsPersonCircle } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSelector ,useDispatch} from 'react-redux';
-import { navigateReducer } from '../../store/actions';
+import { navigateAction,logOutAction } from '../../store/actions';
+import cookies from 'react-cookies';
+import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 
 function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+  const role = useSelector((state) => state.authReducer.role);
+  const cartProductsNumber = useSelector((state) => state.cartReducer.cartProductsNumber);
+
   const [showVerticalNav, setshowVerticalNav] = useState(false);
   const [showDropHome, setShowDropHome] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [showSearchTextField, setShowSearchTextField] = useState(false);
-  const [cartNumber, setCartNumber] = useState(JSON.parse(window.sessionStorage.getItem('cartNumber')) ? JSON.parse(window.sessionStorage.getItem('cartNumber')) : 0);
+  const [cartNumber, setCartNumber] = useState(decryptAndGetFromStorage('cartNumber') ? decryptAndGetFromStorage('cartNumber') : 0);
   const [y, setY] = useState(0);
-  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
-  const role = useSelector((state) => state.authReducer.role);
-  const cartProductsNumber = useSelector((state) => state.cartReducer.cartProductsNumber);
   function scrollHandler() {
     setY(window.scrollY);
   }
@@ -28,10 +32,19 @@ function Header() {
 
   // trigger redux, save to storage, and render it
   useEffect(() => {
-    window.sessionStorage.setItem('cartNumber', cartProductsNumber);
+  encryptAndSaveToStorage('cartNumber',cartProductsNumber);
+
     setCartNumber(cartProductsNumber);
   }, [cartProductsNumber]);
 
+  //log out handler
+  const logoutHandler = ()=>{
+    console.log('from sign out');
+    cookies.remove('token');
+    dispatch(logOutAction());
+    navigate('/');
+    window.location.reload();
+  }
   return (
     <>
       <section className={y > 0 ? 'header header-scroll' : 'header'}>
@@ -195,7 +208,7 @@ function Header() {
                         top: 0,
                         behavior: 'smooth',
                       });
-                      dispatch(navigateReducer("all"));
+                      dispatch(navigateAction("all"));
                     }}
                   >
                     <a>
@@ -212,7 +225,7 @@ function Header() {
                       top: 0,
                       behavior: 'smooth',
                     });
-                    dispatch(navigateReducer("New Arrival"));
+                    dispatch(navigateAction("New Arrival"));
                   }}>
                     <a>New Arrivals</a>
                   </Link>
@@ -225,7 +238,7 @@ function Header() {
                       top: 0,
                       behavior: 'smooth',
                     });
-                    dispatch(navigateReducer("On Sales"));
+                    dispatch(navigateAction("On Sales"));
                   }}>
                     <a>on Sales</a>
                   </Link>
@@ -419,7 +432,7 @@ function Header() {
                     top: 0,
                     behavior: 'smooth',
                   });
-                  dispatch(navigateReducer("all"));
+                  dispatch(navigateAction("all"));
 
                 }}
                 
@@ -452,7 +465,7 @@ function Header() {
                     top: 0,
                     behavior: 'smooth',
                   });
-                  dispatch(navigateReducer("New Arrival"));
+                  dispatch(navigateAction("New Arrival"));
 
                 }}>
                 <a >New Arrivals</a>
@@ -466,7 +479,7 @@ function Header() {
                     top: 0,
                     behavior: 'smooth',
                   });
-                  dispatch(navigateReducer("On Sales"));
+                  dispatch(navigateAction("On Sales"));
 
                 }}>
                 <a >On Sales</a>
@@ -509,26 +522,26 @@ function Header() {
                       });
                     }}
                   >
-                    <a className='a-sign'>
+                    <a className='a-sign' >
                       sign-in <i className='fas fa-sign-in-alt header-icons profile'></i>
                     </a>
-                  </Link>
+                   </Link>
                 )}
                 {isLoggedIn && (
-                  <Link
-                    to='/SignIn'
-                    onClick={() => {
-                      window.scrollTo({
-                        left: 0,
-                        top: 0,
-                        behavior: 'smooth',
-                      });
-                    }}
-                  >
-                    <a className='a-sign'>
+                  // <Link
+                  //   to='/SignIn'
+                  //   onClick={() => {
+                  //     window.scrollTo({
+                  //       left: 0,
+                  //       top: 0,
+                  //       behavior: 'smooth',
+                  //     });
+                  //   }}
+                  // >
+                    <a className='a-sign' onClick={logoutHandler}>
                       sign-out <i className='fas fa-sign-out-alt header-icons profile'></i>
                     </a>
-                  </Link>
+                  // </Link>
                 )}
               </li>
               <li>

@@ -2,20 +2,23 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/checkout/checkout.css';
 import { useNavigate } from 'react-router-dom';
+import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 
 function Checkout() {
-  const cartArray = JSON.parse(window.sessionStorage.getItem('cart'));
-  const total = JSON.parse(window.sessionStorage.getItem('total'));
+  const cartArray = decryptAndGetFromStorage('cart');
+  const total = decryptAndGetFromStorage('total');
   const [showAnswer, setShowAnswer] = useState({ email: false, phone: false });
   const navigate = useNavigate();
-  let [values, setValues] = useState(JSON.parse(window.sessionStorage.getItem('checkout_person_info')) ? JSON.parse(window.sessionStorage.getItem('checkout_person_info')) : {});
+  let [values, setValues] = useState(decryptAndGetFromStorage('checkout_person_info') ? decryptAndGetFromStorage('checkout_person_info') : {});
 
   const handleChange = (e) => {
     setValues((values) => ({ ...values, [e.target.name]: e.target.value }));
   };
   function handleSubmit(e) {
     e.preventDefault();
-    window.sessionStorage.setItem('checkout_person_info', JSON.stringify(values));
+
+  encryptAndSaveToStorage('checkout_person_info',values);
+
     navigate('/Checkout2');
     window.scrollTo({
       left: 0,
@@ -109,7 +112,7 @@ function Checkout() {
                   <input type='text' name='StreetAddress' id='Faddress' placeholder='Street Address *' required onChange={handleChange} value={values?.StreetAddress} />
                 </div>
                 <div className='Laddress'>
-                  <i class='fas fa-building'></i>
+                  <i className='fas fa-building'></i>
                   <input type='text' name='FlatNumber' id='Laddress' placeholder='Flat / Villa Number  *' required onChange={handleChange} value={values?.FlatNumber ? values.FlatNumber : ''} />
                 </div>
               </div>

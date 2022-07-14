@@ -1,6 +1,8 @@
 import '../../../styles/admin/all-users/all-users.css';
 import { React, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import {instance,url} from '../../../API/axios';
+import {useSelector} from 'react-redux';
 
 let user = {
   email: 'ahmadahmadahmad@gmail.com',
@@ -9,11 +11,27 @@ let user = {
 };
 
 const allUsers = new Array(40).fill(user);
+
+
 function AllUsers() {
-  // did mount
+  const user = useSelector((state)=> state.authReducer.user);
+  const [allUsers, setAllUsers] = useState([]);
+
+    // fetch all users handler
+const fetchAllUsersHandler = async()=>{
+  console.log('user',user);
+  const response = await instance.get(url+'/users',{
+    headers: {
+      authorization: `Bearer ${user?.token}`
+    }
+  });
+console.log('response.data',response.data);
+  setAllUsers(response.data);
+}
   useEffect(() => {
     // get all users
-  }, []);
+  if(user)  fetchAllUsersHandler();
+  }, [user]);
 
   return (
     <>
@@ -26,7 +44,6 @@ function AllUsers() {
               </Link>
               <i className='fas fa-angle-right'></i>
               <Link to='/Admin' className='exat-path'>
-                {' '}
                 <span>Admin</span>
               </Link>
               <i className='fas fa-angle-right'></i>
@@ -48,8 +65,7 @@ function AllUsers() {
           <section className='bigContainer'>
             {allUsers.map((user, idx) => {
               return (
-                <>
-                  <div className='userContainer'>
+                  <div className='userContainer' key={user.id}>
                     <span>{idx + 1}</span>
                     <img src='https://www.kindpng.com/picc/m/207-2074624_white-gray-circle-avatar-png-transparent-png.png' alt='avator' />
                     <div className='data'>
@@ -57,7 +73,6 @@ function AllUsers() {
                       <h5>{user.email}</h5>
                     </div>
                   </div>
-                </>
               );
             })}
           </section>

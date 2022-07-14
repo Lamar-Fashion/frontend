@@ -4,8 +4,11 @@ import shop1 from '../../../images/shop/shop1.jpeg';
 import shop2 from '../../../images/shop/shop2.jpeg';
 import shop3 from '../../../images/shop/shop3.jpeg';
 import { Link } from 'react-router-dom';
+import {navigateAction} from '../../../store/actions/index';
+import {useDispatch} from 'react-redux';
 
 function Shop() {
+  const dispatch = useDispatch();
   return (
     <>
       <section className='shop'>
@@ -25,7 +28,9 @@ function Shop() {
                 });
               }}
             >
-              <button className='button shopBtn'>Shop Now</button>
+              <button className='button shopBtn' onClick={()=>{
+dispatch(navigateAction('all'));
+}}>Shop Now</button>
             </Link>
           </section>
           <section className='rightSection'>

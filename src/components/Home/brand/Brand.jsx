@@ -5,7 +5,12 @@ import mortaha from '../../../images/brand/test/img2.jpg';
 import neo from '../../../images/brand/test/img3.jpg';
 import shera from '../../../images/brand/test/img4.jpg';
 import { Link } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {navigateAction} from '../../../store/actions/index';
+
 function Brand() {
+  const dispatch = useDispatch();
+
   return (
     <>
       <section className='brand' id='collection'>
@@ -36,7 +41,9 @@ function Brand() {
             <div className='item-topdiv'>
               <h3 className='item-title'>New Arrivals</h3>
               <Link to="/Abaya">
-              <span className='shop-now'>Shop Now</span>
+              <span className='shop-now' onClick={()=>{
+dispatch(navigateAction('New Arrival'));
+}}>Shop Now</span>
               </Link>
             </div>
             {/* <div className='image'>
@@ -58,7 +65,9 @@ function Brand() {
             <div className='item-topdiv'>
               <h3 className='item-title'>On Sales</h3>
               <Link to="/Abaya">
-              <span className='shop-now'>Shop Now</span>
+              <span className='shop-now' onClick={()=>{
+dispatch(navigateAction('On Sales'));
+}}>Shop Now</span>
               </Link>
             </div>
 
@@ -71,7 +80,9 @@ function Brand() {
             <div className='item-topdiv'>
               <h3 className='item-title'>Abayas</h3>
               <Link to="/Abaya">
-              <span className='shop-now'>Shop Now</span>
+              <span className='shop-now' onClick={()=>{
+dispatch(navigateAction('all'));
+}}>Shop Now</span>
               </Link>
             </div>
 

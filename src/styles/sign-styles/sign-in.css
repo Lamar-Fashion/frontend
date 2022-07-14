@@ -150,6 +150,17 @@
   width: 100%;
   background-color: whitesmoke;
   border: none;
+  color: rgba(128, 128, 128, 0.308);
+  font-size: 20px;
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  cursor: not-allowed;
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 40px;
+}
+.sign-in .lamar-container .submit.active {
+  width: 100%;
+  background-color: whitesmoke;
+  border: none;
   color: black;
   font-size: 20px;
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
@@ -157,7 +168,7 @@
   transition: transform 0.3s, box-shadow 0.3s;
   height: 40px;
 }
-.sign-in .lamar-container .submit:hover {
+.sign-in .lamar-container .submit.active:hover {
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
   font-size: 22px;

@@ -12,7 +12,9 @@ import { useSelector } from "react-redux";
 
 function Profile() {
   const [value, setValue] = React.useState("1");
-  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
+  const {isLoggedIn,user,role} = useSelector((state) => state.authReducer);
+
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -42,13 +44,13 @@ function Profile() {
                 />
               </div>
               <h2>
-                <span>soso</span> kiker
+                <span>{user.firstName}</span> {user.lastName}
               </h2>
             </div>
           </div>
           <div className="lamar-container">
             <Box sx={{ width: "100%" }}>
-              <TabContext value={value}>
+              <TabContext value={value} >
                 <Box sx={{ borderBottom: 1 }} className="nav-info-profile">
                   <TabList
                     onChange={handleChange}
@@ -58,6 +60,7 @@ function Profile() {
                       label="Personal Info"
                       value="1"
                       className="Tab-profile"
+                      
                     />
                     <Tab
                       label="Your Wishlist."
@@ -70,8 +73,8 @@ function Profile() {
                   <ProfileInfo />
                 </TabPanel>
                 <TabPanel value="2" className="TabPanel-profile">
-                  {" "}
-                  <FavouriteItem />{" "}
+                  
+                  <FavouriteItem />
                 </TabPanel>
               </TabContext>
             </Box>
@@ -79,7 +82,7 @@ function Profile() {
         </div>
         : <div className="lamar-container">
           <div className='sign-container'>
-          <i class="fas fa-sign-in-alt"></i>
+          <i className="fas fa-sign-in-alt"></i>
             <p>You need to be signd in </p>
             <Link to='/SignIn'> Sign In  </Link>
           </div>

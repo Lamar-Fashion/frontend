@@ -1,12 +1,20 @@
 /* eslint-disable no-mixed-operators */
 import { React, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "../../styles/checkout/checkout.css";
 import apple_pay from "../../images/header/apple-pay.png";
 import cash from "../../images/shop/cash.png";
+import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
+import { instance, url } from "../../API/axios";
+import {useSelector} from 'react-redux';
 
 function Checkout3() {
-  const total = JSON.parse(window.sessionStorage.getItem("total"));
+  const user = useSelector((state) => state.authReducer.user);
+  const navigate = useNavigate();
+  
+  const total =  decryptAndGetFromStorage('total');
+  const cartArray =decryptAndGetFromStorage('cart');
+  const checkout_person_info =decryptAndGetFromStorage('checkout_person_info');
 
   const [state, setstate] = useState("");
   const [policy, setPolicy] = useState(false);
@@ -17,11 +25,30 @@ function Checkout3() {
   const handlePolicy = () => {
     setPolicy(!policy);
   };
+const makeOrderHandler = async (e)=>{
 
-  console.log(policy);
-  console.log(state);
+  try {
+    e.preventDefault();
+  console.log('checkout_person_info',checkout_person_info);
+  console.log('total',total);
+  console.log('cartArray',cartArray);
+  
+  let bookedData = {
+    productInfo: cartArray,
+    personalInfo: checkout_person_info,
+    totalPrice : total
+  }
+  const bookedOrder = await instance.post(url+'/addToCart',bookedData);
+  
+  console.log('bookedOrder',bookedOrder);
+    navigate('/Abaya');
+  } catch (error) {
+    console.error('book order error',error.message)
+  }
+}
+  // console.log(policy);
+  // console.log(state);
 
-  const cartArray = JSON.parse(window.sessionStorage.getItem("cart"));
   return (
     <>
       <section className="checkout">
@@ -71,7 +98,7 @@ function Checkout3() {
               <h4 className="Shipping-title">Payment Method</h4>
 
               <div className="pay-method">
-                <form action="" >
+                <form action="" onSubmit={makeOrderHandler} >
                   <div className="pay">
                     <div className="cash">
                       <input type="radio" name="pay" value="cash" id="cash" onChange={handleCahnge}/>
@@ -84,7 +111,7 @@ function Checkout3() {
                       />
                     </div>
                   </div>
-                  <div className="pay">
+                  {/* <div className="pay">
                     <div className="cash">
                       <input
                         type="radio"
@@ -139,11 +166,11 @@ function Checkout3() {
                     <div className="image">
                       <img src={apple_pay} alt="" />
                     </div>
-                  </div>
+                  </div> */}
                     {
                       state==="credit_card"&& 
                       <div className="credit_card">
-                          <i class="fas fa-money-check"></i>
+                          <i className="fas fa-money-check"></i>
                           <p>
                             
 After clicking “Complete order”, you will be redirected to Mastercard - Visacard - Payment Gateway Services - Simplify to complete your purchase securely.
@@ -153,7 +180,7 @@ After clicking “Complete order”, you will be redirected to Mastercard - Visa
                      {
                       state==="Pay-Pal"&& 
                       <div className="credit_card">
-                          <i class="fas fa-money-check"></i>
+                          <i className="fas fa-money-check"></i>
                           <p>
                             
 After clicking “Complete order”, you will be redirected to Pay-Pal Payment Gateway Services - Simplify to complete your purchase securely.
@@ -188,7 +215,6 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
 
                     {(state && policy && (
                       <button className="next" type="submit">
-                        {" "}
                         complete order
                       </button>
                     )) || <div className="not-place"> complete order</div>}

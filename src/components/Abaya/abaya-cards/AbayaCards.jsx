@@ -7,88 +7,106 @@ import ll from '../../../images/brand/test/brand11.jpg';
 import l2 from '../../../images/brand/IMGL4545.jpg';
 import { Link } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
-import { useSelector } from 'react-redux';
+import { useSelector ,useDispatch} from 'react-redux';
 import AddProductModal from '../../Admin/add-product/AddProductModal';
 import EditProductModal from '../../Admin/edit-product/EditProductModal';
 import { storage } from '../../../firebase';
+import {instance, url} from '../../../API/axios';
+import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../../helpers/CryptoJS';
+import {navigateAction} from '../../../store/actions/index';
+
+const arralen =10;
 function AbayaCards() {
-  const role = useSelector((state) => state.authReducer.role);
+  const dispatch = useDispatch();
+  const {role, user} = useSelector((state) => state.authReducer);
+  const category=useSelector((state) => state.navigationReducer.category);
+
   const [openAddproduct, setOpenAddProduct] = useState(false);
-  const handleOpenAddProduct = () => setOpenAddProduct(true);
   const [openEditProduct, setOpenEditProduct] = useState(false);
-  const handleOpenEditProduct = () => setOpenEditProduct(true);
-
-
-
-  let product = {
-    images: [lamar, neo, ll, l2],
-    name: 'A25sp5',
-    price: '1300',
-    color: ['black', 'red', 'blue'],
-    size: ['s', 'm'],
-    discrpition: ' Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd ',
-    catagory: 'New Arrival',
-    // catagory: 'On Sales',
-    id: '',
-    total_quantity: 5,
-    status: 'ready to wear',
-    // status:"needs elaboration"
-  };
-
-  
-  let product2 = {
-    images: [lamar, neo, ll, l2],
-    name: 'A25sp5',
-    price: '1300',
-    color: ['black', 'red', 'blue'],
-    size: ['s', 'm'],
-    discrpition: ' Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd Lormam amad k,amm a ka asdkkk askd; asd..kamsd la asd ',
-    // catagory: 'New Arrival',
-    catagory: 'On Sales',
-    id: '',
-    total_quantity: 5,
-    // status: 'ready to wear',
-    status:"needs elaboration"
-  };
-  const arralen = 10;
+  const [openModalById, setOpenModalById] = useState(null);
   const [showItems, setShowItems] = useState(15);
-  let array = new Array(arralen).fill(product);
-  let array2=[]
-  for (let i = 0; i < 10; i++) {
-    array2.push(product2)
-  }
-  array.push(...array2)
   const [pageNumber, setPageNumber] = useState(0);
   const pagesVisited = pageNumber * showItems;
-  const [catagory, setCatagory] = useState("all");
-  let catagoryReducer=useSelector((state) => state.navigationReducer.catagory);
-  useEffect(() => {
-    setCatagory(catagoryReducer);
-  }, [catagoryReducer]);
+  // const [category, setCatagory] = useState("all");
+
+  const [allAbayas, setAllAbayas] = useState([]);
+  const [displayedAbayas, setDisplayedAbayas] = useState([]);
+  
+  const handleOpenAddProduct = () => setOpenAddProduct(true);
+  const handleOpenEditProduct = (id) =>{
+    setOpenModalById(id);
+     setOpenEditProduct(true);
+    }
+
+//get all abayas
+const getAllAbayas = async ()=>{
+const abayas = await instance.get(url+'/allProducts');
+console.log('abayas',abayas);
+setAllAbayas(abayas.data);
+};
+  // did mount
+  useEffect(()=>{
+    getAllAbayas();
+  },[]);
+
+
+ 
+  // useEffect(() => {
+  //   setCatagory(catagoryReducer);
+  // }, [catagoryReducer]);
 
   const addEntry = (product) => {
-    let FavArray = JSON.parse(window.sessionStorage.getItem('fav'));
+    
+    let FavArray = decryptAndGetFromStorage('fav');
     if (FavArray == null) FavArray = [];
     FavArray.push(product);
-    window.sessionStorage.setItem('fav', JSON.stringify(FavArray));
+    encryptAndSaveToStorage('fav',FavArray);
   };
 
-  //handle sort by catagory
+  //handle sort by category
   function handleSort(e) {
-    setCatagory(e.target.value);
+    console.log('e.target.value',e.target.value);
+    // setCatagory(e.target.value);
+    dispatch(navigateAction(e.target.value))
   }
 
   // delete product handler
-  function deleteHnadler(id) {
-    // delete from backend
+ async function deleteHnadler(item) {
+
+  try {
+        // delete from backend
+const deletedProduct = await instance.delete(url+`/product${item.id}`,{
+  headers:{
+    authorization: `Bearer ${user.token}`
+  }
+});
+
+console.log('deleted product',deletedProduct.data);
 
     // delete the images from the firebase
-    let pictureRef = storage.refFromURL(
-      'https://firebasestorage.googleapis.com/v0/b/lamar-fashion.appspot.com/o/products%2F3-1-2022%404%3A23%20-%20AW2eSkwg.jpeg?alt=media&token=2d2040d6-de5d-4f4b-b1fb-aebd0d0bfc1c'
-    );
-    pictureRef.delete().then(function () {
-      console.log('image deleted from firebas');
-    });
+    for (let i = 0; i < item.images.length; i++) {
+      let pictureRef = storage.refFromURL(item.images[i]);
+      const deletedImg= await pictureRef.delete();
+       console.log(`image #${i+1} deleted from firebas`);
+      
+    }
+
+console.log('all deleted');
+window.location.reload();
+// item.images.forEach((img,idx)=>{
+//   let pictureRef = storage.refFromURL(img);
+//   pictureRef.delete().then(function () {
+//     console.log(`image #${idx+1} deleted from firebas`);
+//     if (idx == item.images.length-1) {
+//      window.location.reload();
+//     }
+//   });
+// });
+    
+  } catch (error) {
+    console.error('delete product error',error.message)
+  }
+
   }
 
   useEffect(() => {
@@ -98,30 +116,83 @@ function AbayaCards() {
       behavior: 'smooth',
     });
   }, [pageNumber]);
-  const displayUser =
-    array.length &&
-    array.filter(item=> {
-      if(catagory==="all"){
-      return item
-    }
-    else{
-      return item.catagory===catagory
-    }
-  
-  }).slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
-      return (
-        <>
-          <div className='box'>
-            <div className='over-view to-cart'>
-              <div
-                className='fav'
-                // onClick={() => {
-                //   addEntry(item);
-                // }}
-              >
-                <i className='fas fa-heart'></i>
+
+
+
+ useEffect(()=>{
+  console.log('category',category);
+  const displayedAbayas =
+  allAbayas.length &&
+  allAbayas.filter(item=> {
+    if(category==="all"){
+    return item
+  }else if(category=='New Arrival'){
+    return item.category=='newArrivals'
+  }else if(category=='On Sales'){
+    return item.category=='onSales'
+  }
+
+}).slice(pagesVisited, pagesVisited + showItems).map((item, indx) => {
+    return (
+        <div key={item.id} className='box'>
+          <div className='over-view to-cart'>
+            <div
+              className='fav'
+              // onClick={() => {
+              //   addEntry(item);
+              // }}
+            >
+              <i className='fas fa-heart'></i>
+            </div>
+          </div>
+          <Link
+            to='/ProductDetails'
+            onClick={() => {
+              window.scrollTo({
+                left: 0,
+                top: 0,
+                behavior: 'smooth',
+              });
+
+             
+              encryptAndSaveToStorage('product',item);
+
+            }}
+          >
+            <div className='over-view'>
+              <div className='fav'>
+                <i className='fas fa-shopping-bag'></i>
               </div>
             </div>
+          </Link>
+          {role === 'admin' && (
+            <div
+              className='over-view edit'
+              onClick={() => {
+                handleOpenEditProduct(item.id);
+              }}
+            >
+              <div className='fav'>
+                <i className='fas fa-pen'></i>
+              </div>
+            </div>
+          )}
+          {openEditProduct && item.id ==openModalById && <EditProductModal key={item}  abaya={item} setOpenEditProduct={setOpenEditProduct} openEditProduct={openEditProduct} />}
+
+          {role === 'admin' && (
+            <div
+              className='over-view delete'
+              onClick={() => {
+                deleteHnadler(item);
+              }}
+            >
+              <div className='fav'>
+                <i className='fas fa-trash-alt'></i>
+              </div>
+            </div>
+          )}
+          <div className='image'>
+            <img src={item.images[0]} alt='' className='img-product' />
             <Link
               to='/ProductDetails'
               onClick={() => {
@@ -130,88 +201,54 @@ function AbayaCards() {
                   top: 0,
                   behavior: 'smooth',
                 });
-                item.id = uuidv4();
-                window.sessionStorage.setItem('product', JSON.stringify(item));
+                encryptAndSaveToStorage('product',item);
               }}
             >
-              <div className='over-view'>
-                <div className='fav'>
-                  <i className='fas fa-shopping-bag'></i>
-                </div>
+              <div className='overlay'>
+                <h3>Quick View</h3>
               </div>
             </Link>
-            {role === 'admin' && (
-              <div
-                className='over-view edit'
-                onClick={() => {
-                  handleOpenEditProduct();
-                }}
-              >
-                <div className='fav'>
-                  <i class='fas fa-pen'></i>
-                </div>
-              </div>
-            )}
-            <EditProductModal setOpenEditProduct={setOpenEditProduct} openEditProduct={openEditProduct} />
-
-            {role === 'admin' && (
-              <div
-                className='over-view delete'
-                onClick={() => {
-                  deleteHnadler();
-                }}
-              >
-                <div className='fav'>
-                  <i class='fas fa-trash-alt'></i>
-                </div>
-              </div>
-            )}
-            <div className='image'>
-              <img src={item.images[0]} alt='' className='img-product' />
-              <Link
-                to='/ProductDetails'
-                onClick={() => {
-                  window.scrollTo({
-                    left: 0,
-                    top: 0,
-                    behavior: 'smooth',
-                  });
-                  item.id = uuidv4();
-                  window.sessionStorage.setItem('product', JSON.stringify(item));
-                }}
-              >
-                <div className='overlay'>
-                  <h3>Quick View</h3>
-                </div>
-              </Link>
-            </div>
-            <div className='info'>
-              <h3>{item.name}</h3>
-              {item.catagory === 'New Arrival' ? (
-                <h2>QAR {item.price}</h2>
-              ) : (
-                <h2 className='on-sale'>
-                  <span className='first-price'> QAR {Math.floor((Number(item.price) * (Math.random() * (1.3 - 1.1) + 1.1)) / 10) * 10}</span>
-                  QAR {item.price}
-                </h2>
-              )}
-            </div>
           </div>
-        </>
-      );
-    })
-  const pageCount = Math.ceil(array.filter(item=> {
-    if(catagory==="all"){
+          <div className='info'>
+            <h3>{item.code}</h3>
+            {item.category == 'newArrivals' ? (
+              <h2>QAR {item.price}</h2>
+            ) : (
+              <h2 className='on-sale'>
+                <span className='first-price'> QAR {Math.floor((Number(item.price) * (Math.random() * (1.3 - 1.1) + 1.1)) / 10) * 10}</span>
+                QAR {item.price}
+              </h2>
+            )}
+          </div>
+        </div>
+    );
+  });
+
+  setDisplayedAbayas(displayedAbayas);
+ },[allAbayas,openEditProduct,category]);
+
+
+
+  const pageCount = Math.ceil(allAbayas?.filter(item=> {
+    if(category==="all"){
     return item
   }
-  else{
-    return item.catagory===catagory
+  else if(category=='New Arrival'){
+    return item.category==='newArrivals'
+  }
+  else if(category=='On Sales'){
+    return item.category==='onSales'
   }
 
 }).length / showItems);
+
+
+
   const changePage = (event, value) => {
     setPageNumber(value - 1);
   };
+
+
   return (
     <>
       <section className='abaya'>
@@ -222,7 +259,7 @@ function AbayaCards() {
                 <i className='fas fa-home i-home'></i>
               </Link>
               <i className='fas fa-angle-right'></i> <span>Abayas </span>
-              <i className='fas fa-angle-right'></i> <span>{catagory}</span>
+              <i className='fas fa-angle-right'></i> <span>{category}</span>
             </div>
           </div>
         </div>
@@ -259,8 +296,8 @@ function AbayaCards() {
                   </select>
                 </div>
                 <div className='sort-item'>
-                  <label htmlFor='sort-item'>Catagory : </label>
-                  <select name='sort-item' id='sort-item' value={catagory} onChange={handleSort}>
+                  <label htmlFor='sort-item'>Category : </label>
+                  <select name='sort-item' id='sort-item' value={category} onChange={handleSort}>
                     <option value='all'>All</option>
                     <option value='New Arrival'>New Arrival</option>
                     <option value='On Sales'>On Sales</option>
@@ -282,7 +319,7 @@ function AbayaCards() {
           </div>
 
           <div className='lamar-container' id='abaya'>
-            {displayUser}
+            {displayedAbayas.length > 0? displayedAbayas : 'You have no products yet!'}
           </div>
 
           <div className='pagaination'>

@@ -32,7 +32,7 @@
   width: 100%;
 }
 
-.profile-info-section .lamar-container input {
+.profile-info-section .lamar-container input  {
   border: none;
   outline: none;
   height: 30px;
@@ -41,6 +41,17 @@
   background: transparent;
   font-size: 16px;
   flex: 1;
+}
+.profile-info-section .lamar-container #edit-pass {
+  border: none;
+  outline: none;
+  height: 30px;
+  width: 200px;
+  background: #ececec;
+    font-size: 16px;
+    flex: 1 1;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .profile-info-section .lamar-container input:-webkit-autofill,
@@ -82,6 +93,19 @@
 .profile-info-section .lamar-container .submit {
   width: 100%;
   border: none;
+  color: lightgray;
+  font-size: 20px;
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  cursor: not-allowed;
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 40px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.profile-info-section .lamar-container .submit.active {
+  width: 100%;
+  border: none;
   color: black;
   font-size: 20px;
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
@@ -89,10 +113,10 @@
   transition: transform 0.3s, box-shadow 0.3s;
   height: 40px;
   position: relative;
-  z-index: 3;
+  z-index: 2;
   overflow: hidden;
 }
-.profile-info-section .lamar-container .submit::before {
+.profile-info-section .lamar-container .submit.active::before {
   content: '';
   position: absolute;
   background-color: var(--main-color-alt);
@@ -104,17 +128,17 @@
   transition: 0.3s, width 0.5s;
   transform: rotate(-20deg);
 }
-.profile-info-section .lamar-container .submit:hover::before {
+.profile-info-section .lamar-container .submit.active:hover::before {
   width: 100%;
   left: 0;
 }
-.profile-info-section .lamar-container .submit:hover {
+.profile-info-section .lamar-container .submit.active:hover {
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
   font-size: 22px;
   font-weight: 600;
   transform: translateY(-3px);
 }
 
-.profile-info-section .lamar-container .submit.show-submit {
+.profile-info-section .lamar-container .submit.show.active-submit {
   visibility: visible;
 }

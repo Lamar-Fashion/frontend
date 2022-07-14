@@ -1,8 +1,8 @@
 // initial State
 const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   user: null,
-  role: 'admin',
+  role: 'user',
 };
 
 //auth Reducer
@@ -14,12 +14,14 @@ const authReducer = (state = initialState, action) => {
       return {
         isLoggedIn: true,
         user: payload,
+        role:payload.role
       };
     case 'LOG_OUT':
       console.log('hello from log out action');
       return {
         isLoggedIn: false,
         user: null,
+        role:'user'
       };
     default:
       return state;

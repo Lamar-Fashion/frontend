@@ -7,6 +7,8 @@ import { default as ReactSelect } from 'react-select';
 import { components } from 'react-select';
 import { storage } from '../../../firebase';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {instance,url} from '../../../API/axios';
+import { useSelector } from 'react-redux';
 
 const theme = createTheme({
   breakpoints: {
@@ -39,10 +41,8 @@ const style = {
   border: '2px solid #000',
 
   boxShadow: 24,
-  p: 4,
-  overflow: 'scroll',
+  overflow: 'auto',
   // paddingBottom: '5px',
-  paddingTop: '40px',
 };
 
 // color options
@@ -80,6 +80,7 @@ const Option = (props) => {
 };
 
 function AddProductModal({ openAddproduct, setOpenAddProduct }) {
+  const user = useSelector((state)=> state.authReducer.user);
   const [colorsSelected, setColorsSelected] = useState(null);
   const [sizesSelected, setSizesSelected] = useState(null);
   const [productData, setProductData] = useState({ productIamges: [] });
@@ -87,21 +88,23 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
   const [isValid, setIsValid] = useState(false);
 
   // handle change for colors selection
-  const colorsHandleChange = (selected) => {
+  const colorsHandleChange = (selected) => {    
+    let colorValues = selected.map(color=> color.value);
     setColorsSelected(selected);
-    setProductData({ ...productData, sizes: selected });
+    setProductData({ ...productData, colors: colorValues });
   };
   // handle change for sizes selection
   const sizesHandleChange = (selected) => {
+    let sizeValues = selected.map(size=> size.value);
     setSizesSelected(selected);
-    setProductData({ ...productData, colors: selected });
+    setProductData({ ...productData, sizes: sizeValues });
   };
 
   // onSubmit function
-  const submitHandler = (e) => {
+  const submitHandler =  (e) => {
     try {
       e.preventDefault();
-
+         let counter = 0;
       // this part to upload the images into Firebase
       for (const [key, value] of Object.entries(images)) {
         // to handle 'unknown error', its uploading two extra images: undefined & item'
@@ -148,22 +151,41 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
           },
           () => {
             //   Upload completed successfully, now we can get the download URL
-            storageRef.getDownloadURL().then((downloadURL) => {
+            storageRef.getDownloadURL().then(async(downloadURL) => {
+              counter++;
               console.log('File available at', downloadURL);
               productData.productIamges.push(downloadURL);
+
+              if (counter == Object.keys(images).length) {
+                // console.log('key',key);
+
+                setOpenAddProduct(false);
+                console.log('this obj ready to go to the backend: productData', productData);
+          
+                // send req to backend
+          const addedProduct = await instance.post(url+'/product',productData, {
+            headers: {
+              authorization: `Bearer ${user.token}`,
+            },
+          });
+          
+                console.log('added product',addedProduct);
+          
+                // reset all states
+                setProductData({ productIamges: [] });
+                setImages({});
+                setIsValid(false);
+                setColorsSelected([]);
+                setSizesSelected([]);
+                console.log('all uploaded');
+                window.location.reload();
+              }
             });
           }
         );
       }
 
-      setOpenAddProduct(false);
-      console.log('this obj ready to go to the backend: productData', productData);
-      // reset all states
-      setProductData({ productIamges: [] });
-      setImages({});
-      setIsValid(false);
-      setColorsSelected(null);
-      setSizesSelected(null);
+   
     } catch (e) {
       console.log('ADD Product Error', e.message);
     }
@@ -193,22 +215,26 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
       setProductData({ ...productData, [e.target.name]: e.target.value });
     }
   };
+
+  // productIamges, category, status, code, description, price, colors, sizes, totalInStock, addToHomePage
   useEffect(() => {
     // verify the user to enter the whole data before submission
     if (
       Object.values(images)?.length >= 1 &&
       productData?.colors?.length >= 1 &&
       productData?.sizes?.length >= 1 &&
-      productData.brand &&
+      productData.category &&
       productData.code &&
-      productData.collection &&
+      productData.totalInStock &&
       productData.description &&
-      productData.availability &&
+      productData.status &&
       productData.price &&
-      productData.deliveryTime &&
       productData.addToHomePage
     ) {
       setIsValid(true);
+    }else{
+      setIsValid(false);
+
     }
   }, [productData]);
 
@@ -219,22 +245,22 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
     setProductData({ productIamges: [] });
     setImages({});
     setIsValid(false);
-    setColorsSelected(null);
-    setSizesSelected(null);
+    setColorsSelected([]);
+    setSizesSelected([]);
   }
   return (
     <>
-      <Modal open={openAddproduct} onClose={handleClose} aria-labelledby='modal-modal-title' aria-describedby='modal-modal-description'>
+      <Modal open={openAddproduct} onClose={handleClose} aria-labelledby='modal-modal-title' aria-describedby='modal-modal-description' >
         <ThemeProvider theme={theme}>
-          <Box sx={style}>
+          <Box sx={style} className='box-container'>
             <div className='modal-header'>
               <Typography id='modal-modal-title' variant='h6' component='h2'>
                 Add Product Form:
               </Typography>
-              <i class='fas fa-times' onClick={handleClose}></i>
+              <i className='fas fa-times' onClick={handleClose}></i>
             </div>
             <div className='form-container'>
-              <form className='add-from' action='' onSubmit={submitHandler}>
+              <form className='add-from'  onSubmit={submitHandler}>
                 <div className='product-brand'>
                   <label htmlFor='category'>Category :</label>
                   <select name='category' required id='category' onChange={handleChange}>
@@ -307,14 +333,15 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
                   </select>
                 </div> */}
                 <div className='images'>
+                <label htmlFor='images'>upload images</label>
                   <input type='file' multiple name='images' required id='images' placeholder='Product images' onChange={handleChange} accept='image/png,image/jpeg' />
                 </div>
                 <div className='addToHomePage'>
                   <label htmlFor='addToHomePage'>Add this product to the Home page? </label>
                   <br />
                   <section>
-                    <input type='radio' id='addToHomePage' name='addToHomePage' value='yes' onChange={handleChange} />  <label for='yes'>yes</label>
-                      <input type='radio' id='addToHomePage' name='addToHomePage' value='no' onChange={handleChange} />  <label for='no'>no</label>
+                    <input type='radio' id='addToHomePage' name='addToHomePage' value='yes' onChange={handleChange} />  <label htmlFor='yes'>yes</label>
+                      <input type='radio' id='addToHomePage' name='addToHomePage' value='no' onChange={handleChange} />  <label htmlFor='no'>no</label>
                   </section>
                 </div>
 

@@ -1,10 +1,64 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import {React, useState} from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import "../../../styles/sign-styles/sign-in.css"
+import validateToken from "../../../helpers/validateToken";
+import {useDispatch} from 'react-redux';
+import {instance,url} from '../../../API/axios';
+import {logInAction,logOutAction} from '../../../store/actions/index';
+
 function SignIn() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email,setEmail] = useState('');
+  const [password,setPassword] = useState('');
+const [validEmail,setValidEmail] = useState(false);
+
+const onChangeHandler =  (e)=>{
+  if (e.target.name == 'email'){
+    setEmail(e.target.value);
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)) {
+      setValidEmail(true);
+  
+    } else {
+      
+      setValidEmail(false);
+    }
+  }  
+  if (e.target.name == 'password') setPassword(e.target.value);
+};
+  const signInHandler = async(e)=>{
+    try {
+      e.preventDefault();
+  const loggedInUser = await instance.post(url+'/signin',{},{
+    auth: {
+      username:email,
+      password
+    }
+  });
+  console.log('loggedInUser',loggedInUser.data);
+ const user= validateToken(loggedInUser.data.token);
+ if (user) {
+   dispatch(logInAction(user));
+navigate('/Profile');
+window.scrollTo({
+  top: 0,
+  left: 0,
+  behavior: 'smooth',
+});
+
+ } 
+
+  e.target.reset();
+      
+    } catch (error) {
+      console.error('error while signin user', error);
+    }
+
+  };
+
   return (
     <>
-      <scetion className="sign-in" id="sign-in">
+      <div className="sign-in" id="sign-in">
       <div className="nav-container">
       <div className="nav-info">
           <div className="left-nav">
@@ -20,16 +74,18 @@ function SignIn() {
         
        
         <div className="lamar-container">
-          <form action="">
+          <form onSubmit={signInHandler}>
             <h2>sign in</h2>
 
             <div className="input-user">
-              <i className="fas fa-user"></i>
+              <i className="fas fa-mail-bulk"></i>
               <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="username"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                value={email}
+                onChange={onChangeHandler}
               />
             </div>
 
@@ -40,12 +96,14 @@ function SignIn() {
                 name="password"
                 id="password"
                 placeholder="password"
+                value={password}
+                onChange={onChangeHandler}
               />
             </div>
-            <button type="submit"  className="submit">submit </button>
+            <button type="submit"  className={email && validEmail && password ? "submit active" : "submit"}>submit </button>
           </form>
         </div>
-      </scetion>
+      </div>
     </>
   );
 }

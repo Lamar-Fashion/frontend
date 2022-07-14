@@ -137,7 +137,7 @@ function Footer() {
           <div className='lamar-container'>
             <p className='copyright'>Powerd By A.A 💻</p>
             <div className='info-pay'>
-              <a href='#policy'>
+              {/* <a href='#policy'>
                 <div className='image'>
                   <img src={visa} alt='' />
                 </div>
@@ -151,7 +151,7 @@ function Footer() {
                 <div className='image'>
                   <img src={master} alt='' />
                 </div>
-              </a>
+              </a> */}
               <a href='#policy'>
                 <div className='image'>
                   <img src={cash} alt='' />

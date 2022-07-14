@@ -1,6 +1,6 @@
 // initial State
 const initialState = {
-    catagory: "all",
+    category: "all",
   };
   
   //cart Reducer
@@ -10,7 +10,7 @@ const initialState = {
       case 'NAVIGATE':
         console.log(payload);
         return {
-          catagory: payload ? payload : state.catagory
+          category: payload ? payload : state.category
           
         };
   

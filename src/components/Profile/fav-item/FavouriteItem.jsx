@@ -1,16 +1,14 @@
 import {React,useEffect,useState} from 'react'
 import { Link } from 'react-router-dom';
-import "../../../styles/profile/fav-item.css"
-
+import "../../../styles/profile/fav-item.css";
+import {encryptAndSaveToStorage} from '../../../helpers/CryptoJS'
 function FavouriteItem() {
     const [favArray, setFavArray] = useState([])
-    // useEffect(() => {
-    //   setFavArray(JSON.parse(window.sessionStorage.getItem("fav")))
-    // }, [favArray])
-    // let array=new Array(10).fill(0)
+    
     const deleteItem=(indx,item)=>{
       favArray.splice(Number(indx), 1);
-      window.sessionStorage.setItem("fav",JSON.stringify(favArray))
+      encryptAndSaveToStorage('fav',favArray);
+
     }
     return (
         <>
@@ -41,10 +39,9 @@ function FavouriteItem() {
                   top: 0,
                   behavior: "smooth",
                 });
-                window.sessionStorage.setItem(
-                  "product",
-                  JSON.stringify(item)
-                );
+             
+                encryptAndSaveToStorage('product',item);
+
               }}
             >
               <div className="overlay">

@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import '../../styles/Cart/cart.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartAction, removeFromCartAction } from '../../store/actions';
+import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
+
 function Cart() {
   const dispatch = useDispatch();
 
-  const [cartArray, setCartArray] = useState(JSON.parse(window.sessionStorage.getItem('cart')));
+  const [cartArray, setCartArray] = useState(decryptAndGetFromStorage('cart'));
   const [quantity, setQuantity] = useState({});
   const [total, setTotal] = useState(0);
-  window.sessionStorage.setItem('total', JSON.stringify(total));
+  encryptAndSaveToStorage('total',total);
+
 
   useEffect(() => {}, [quantity]);
   useEffect(() => {
@@ -20,7 +23,8 @@ function Cart() {
 
   const deleteItem = (item, indx) => {
     cartArray.splice(Number(indx), 1);
-    window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
+  encryptAndSaveToStorage('cart',cartArray);
+
     console.log('item', item);
     // update redux with cart number
     dispatch(removeFromCartAction(item.quantity));
@@ -29,7 +33,8 @@ function Cart() {
   const addItem = (item, indx) => {
     setQuantity({ ...quantity, [indx]: quantity[indx] ? quantity[indx] + 1 : 2 });
     cartArray[indx].quantity = item.quantity + 1;
-    window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
+  encryptAndSaveToStorage('cart',cartArray);
+
     // update redux with cart number
     dispatch(addToCartAction());
     setTotal(total + Number(item.price));
@@ -38,7 +43,7 @@ function Cart() {
     if (item.quantity > 1) {
       setQuantity({ ...quantity, [indx]: quantity[indx] ? quantity[indx] - 1 : 1 });
       cartArray[indx].quantity = item.quantity - 1;
-      window.sessionStorage.setItem('cart', JSON.stringify(cartArray));
+      encryptAndSaveToStorage('cart',cartArray);
       // update redux with cart number
       dispatch(removeFromCartAction());
       setTotal(total - item.price);

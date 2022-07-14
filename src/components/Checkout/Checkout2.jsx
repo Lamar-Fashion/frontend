@@ -2,19 +2,22 @@ import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/checkout/checkout.css';
 import { useNavigate } from 'react-router-dom';
+import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 
 function Checkout2() {
   const navigate = useNavigate();
-  const InformationData = JSON.parse(window.sessionStorage.getItem('checkout_person_info'));
-  let [values, setValues] = useState(JSON.parse(window.sessionStorage.getItem('checkout_person_info')) ? JSON.parse(window.sessionStorage.getItem('checkout_person_info')) : {});
+  const InformationData = decryptAndGetFromStorage('checkout_person_info');
+  let [values, setValues] = useState( decryptAndGetFromStorage('checkout_person_info') ?  decryptAndGetFromStorage('checkout_person_info') : {});
 
-  const cartArray = JSON.parse(window.sessionStorage.getItem('cart'));
-  const total = JSON.parse(window.sessionStorage.getItem('total'));
+  const cartArray =  decryptAndGetFromStorage('cart');
+  const total =  decryptAndGetFromStorage('total');
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   const handleClick = () => {
-    window.sessionStorage.setItem('checkout_person_info', JSON.stringify(values));
+
+  encryptAndSaveToStorage('checkout_person_info',values);
+
     navigate('/Checkout3');
     window.scrollTo({
       left: 0,

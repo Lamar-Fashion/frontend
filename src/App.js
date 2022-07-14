@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState,useEffect } from 'react';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
@@ -23,11 +23,30 @@ import DoneOrders from './components/Admin/done-orders/DoneOrders';
 import RejectedOrders from './components/Admin/rejected-orders/RejectedOrders';
 import Admin from './components/Admin/Admin';
 import AddProductModal from './components/Admin/add-product/AddProductModal';
+import validateToken from './helpers/validateToken';
+import { useDispatch } from 'react-redux';
+import {logOutAction,logInAction} from './store/actions/index';
 
 function App() {
+  const dispatch = useDispatch();
   const [y, setY] = useState(window.scrollY);
   window.onscroll = function () {
     setY(window.scrollY);
+  };
+
+  useEffect(()=>{
+// check if the token exists in the cookies, so keep the user loggedin
+const user = validateToken();
+if(user) dispatch(logInAction(user));
+else dispatch(logOutAction());
+  },[]);
+ 
+  window.onbeforeunload = function () {
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth',
+    });
   };
   return (
     <>

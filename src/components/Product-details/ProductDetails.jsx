@@ -6,19 +6,24 @@ import Alert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartAction } from '../../store/actions';
 // import {Spinner} from 'react-bootstrap'
+import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
+
 
 function ProductDetails() {
   const dispatch = useDispatch();
-  let obj = JSON.parse(window.sessionStorage.getItem('product'));
+ 
+let obj =  decryptAndGetFromStorage('product');
+  console.log('objjjj from storage',obj);
   let images = obj.images;
   let firstImg = obj.images[0];
   const [state, setstate] = useState(firstImg);
-  let name = obj.name;
+  let code = obj.code;
   let price = obj.price;
-  let size = obj.size;
-  let color = obj.color;
-  let descrp = obj.discrpition;
-  let total_quantity = obj.total_quantity;
+  let size = obj.sizes;
+  let color = obj.colors;
+  let description = obj.description;
+  let inStock = obj.inStock;
+  let category = obj.category;
   const [selectedProduct, setSelectedProduct] = useState({
     ...obj,
     size: false,
@@ -43,16 +48,16 @@ function ProductDetails() {
   const [seccessAlert, setSeccessAlert] = useState(false);
 
   const addEntry = (obj) => {
-    let FavArray = JSON.parse(window.sessionStorage.getItem('cart'));
+    let FavArray = decryptAndGetFromStorage('cart');
     if (FavArray == null) FavArray = [];
     let duplecated = false;
     for (let i = 0; i < FavArray.length; i++) {
       if (
-        FavArray[i].color === obj.color &&
-        FavArray[i].size === obj.size &&
-        FavArray[i].name === obj.name &&
+        FavArray[i].colors === obj.colors &&
+        FavArray[i].sizes === obj.sizes &&
+        FavArray[i].code === obj.code &&
         FavArray[i].buttons === obj.buttons &&
-        FavArray[i].descrp === obj.descrp &&
+        FavArray[i].description === obj.description &&
         FavArray[i].price === obj.price
       ) {
         FavArray[i].quantity = FavArray[i].quantity + 1;
@@ -67,7 +72,8 @@ function ProductDetails() {
       FavArray.push(obj);
     }
 
-    window.sessionStorage.setItem('cart', JSON.stringify(FavArray));
+  encryptAndSaveToStorage('cart',FavArray);
+
     // update redux with cart number
     dispatch(addToCartAction());
     setTimeout(() => {
@@ -108,10 +114,10 @@ function ProductDetails() {
           )}
           {selectedProduct.size && selectedProduct.buttons && selectedProduct.color && seccessAlert && (
             <Alert severity='success' id='alert'>
-              You added <strong>{name}</strong> to your <Link to='/Cart'>shopping cart</Link>
+              You added <strong>{code}</strong> to your <Link to='/Cart'>shopping cart</Link>
             </Alert>
           )}
-          {total_quantity === 0 && (
+          {inStock === 0 && (
             <Alert severity='error' id='alert'>
               unfortunately this item doesn't exist right know
             </Alert>
@@ -130,6 +136,7 @@ function ProductDetails() {
                   return (
                     <div
                       className='image'
+                      key={item}
                       onClick={() => {
                         setstate(item);
                       }}
@@ -145,7 +152,7 @@ function ProductDetails() {
           <div className='product-info'>
             <div className='name-p'>
               <h2>
-                product Num : <span>{name}</span>
+                product Num : <span>{code}</span>
               </h2>
 
               <div className='price'>
@@ -153,19 +160,18 @@ function ProductDetails() {
                   QAR <span>{price}</span>
                 </h2>
                 <p>
-                  <span>* {obj.status}</span>
-                  {obj.total_quantity > 0 ? (
+                  <span>* {obj.status == 'readyToWear' ? 'Ready To Wear' : 'يحتاج إلى تفصيل'}</span>
+                  {obj.inStock > 0 ? (
                     <span>
-                      {' '}
-                      *Availabilty : (<strong>{obj.total_quantity}</strong>) Items In Stock
+                      *Availabilty : (<strong>{obj.inStock}</strong>) Items In Stock
                     </span>
                   ) : (
                     <span className='not-Availabilty'> *Availabilty : Out Of Stock</span>
                   )}
                 </p>
               </div>
-              {obj.status === 'ready to wear' && <li>The Order Takes ( 1 - 5 ) days.</li>}
-              {obj.status === 'needs elaboration' && <li>The Order Takes ( 1 - 2 ) Weeks.</li>}
+              {obj.status === 'readyToWear' && <li>The Order Takes ( 1 - 5 ) days.</li>}
+              {obj.status === 'notReadyToWear' && <li>The Order Takes ( 1 - 2 ) Weeks.</li>}
             </div>
 
             <div className='hr'></div>
@@ -176,6 +182,7 @@ function ProductDetails() {
                   {size.map((item, idx) => (
                     <button
                       className={selectedStyleSize.show && selectedStyleSize.id === idx ? 'selected' : ''}
+                      key={item}
                       onClick={() => {
                         setSelectedProduct({ ...selectedProduct, size: item });
                         setSelectedStyleSize({ show: true, id: idx });
@@ -197,6 +204,7 @@ function ProductDetails() {
                   {tall.map((item, idx) => (
                     <button
                       className={selectedStyleTall.show && selectedStyleTall.id === idx ? 'selected' : ''}
+                      key={item}
                       onClick={() => {
                         setSelectedProduct({ ...selectedProduct, tall: item });
                         setSelectedStyleTall({ show: true, id: idx });
@@ -218,6 +226,7 @@ function ProductDetails() {
                   {color.map((item, idx) => (
                     <button
                       className={selectedStyleColor.show && selectedStyleColor.id === idx ? 'selected' : ''}
+                      key={item}
                       onClick={() => {
                         setSelectedProduct({ ...selectedProduct, color: item });
                         setSelectedStyleColor({ show: true, id: idx });
@@ -274,7 +283,7 @@ function ProductDetails() {
                       top: 50,
                       behavior: 'smooth',
                     });
-                    if (total_quantity > 0) {
+                    if (inStock > 0) {
                       if (!selectedProduct.size || !selectedProduct.color || !selectedProduct.buttons || selectedProduct.buttons == 'false') {
                         setErrorAlert(true);
                       } else {
@@ -295,11 +304,11 @@ function ProductDetails() {
 
             <div className='about-p'>
               <h4>
-                catagory : <span className='vendor'> {obj.catagory}</span>
+                catagory : <span className='vendor'> {category == 'newArrivals' ? 'New Arrivals':'On Sales'}</span>
               </h4>
               <h4>About This Item :</h4>
 
-              <p>{descrp}</p>
+              <p>{description}</p>
             </div>
           </div>
         </div>

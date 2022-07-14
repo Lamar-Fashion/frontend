@@ -5,8 +5,10 @@ import Modal from "@mui/material/Modal";
 import "../../../styles/admin/add-product/addProduct-modal.css";
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
-import { storage } from "../../../firebase";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useSelector } from 'react-redux';
+import { instance,url } from "../../../API/axios";
+import { Link,useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   breakpoints: {
@@ -38,10 +40,8 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
-  overflow: "scroll",
-  // paddingBottom: '5px',
-  paddingTop: "45px",
+  overflow: "auto",
+
 };
 
 // color options
@@ -76,175 +76,85 @@ const Option = (props) => {
           type="checkbox"
           checked={props.isSelected}
           onChange={() => null}
-        />{" "}
+        />
         <label>{props.label}</label>
       </components.Option>
     </div>
   );
 };
-// dumy data from backend
-let dumyObj = {
-  addToHomePage: "no",
-  category: "onSales",
-  code: "aderwq",
-  status: "notReadyToWear",
-  sizes: [
-    { value: "XS", label: "XS" },
-    { value: "S", label: "S" },
-    { value: "M", label: "M" },
-  ],
-  totalInStock: 15,
-  description: "some description here",
-  price: "100",
-  colors: [
-    { value: "ocean1", label: "Ocean" },
-    { value: "blue", label: "Blue" },
-    { value: "purple", label: "Purple" },
-  ],
-};
-function EditProductModal({ setOpenEditProduct, openEditProduct }) {
+
+
+function EditProductModal({abaya, setOpenEditProduct, openEditProduct }) {
+  const user = useSelector((state) => state.authReducer.user);
+  const navigate = useNavigate();
+
   const [colorsSelected, setColorsSelected] = useState(null);
   const [sizesSelected, setSizesSelected] = useState(null);
-  const [productData, setProductData] = useState({ productIamges: [] });
-  const [images, setImages] = useState({});
+  const [productData, setProductData] = useState(abaya);
   const [isValid, setIsValid] = useState(false);
-  // dumy data
-  const [dumyData, setdumyData] = useState(dumyObj);
 
   // did mount
   useEffect(() => {
-    // get product data from backend
-    // dumy data
-
-    setSizesSelected(dumyData.sizes);
-    setColorsSelected(dumyData.colors);
+    console.log('item',abaya);
+    // add label & value for react-selector
+    const colors = abaya.colors.map(color=> { return {value: color, label:color}});
+    const sizes = abaya.sizes.map(size=> { return {value: size, label:size}});
+    setSizesSelected(sizes);
+    setColorsSelected(colors);
     setProductData({
       ...productData,
-      addToHomePage: dumyData.addToHomePage,
-      totalInStock: dumyData.totalInStock,
-      category: dumyData.category,
-      price: dumyData.price,
-      code: dumyData.code,
-      status: dumyData.status,
-      sizes: dumyData.sizes,
-      colors: dumyData.colors,
-      description: dumyData.description,
+      addToHomePage: abaya.addToHomePage,
+      inStock: abaya.inStock,
+      category: abaya.category,
+      price: abaya.price,
+      code: abaya.code,
+      status: abaya.status,
+      sizes: abaya.sizes,
+      colors: abaya.colors,
+      description: abaya.description,
     });
   }, []);
 
   // handle change for colors selection
   const colorsHandleChange = (selected) => {
+    let colorValues = selected.map(color=> color.value);
     setColorsSelected(selected);
-    setProductData({ ...productData, sizes: selected });
+    setProductData({ ...productData, colors: colorValues });
     // if the user edit anything allow him to submit
     setIsValid(true);
   };
   // handle change for sizes selection
   const sizesHandleChange = (selected) => {
+    let sizeValues = selected.map(size=> size.value);
     setSizesSelected(selected);
-    setProductData({ ...productData, colors: selected });
+    setProductData({ ...productData, sizes: sizeValues });
     // if the user edit anything allow him to submit
     setIsValid(true);
   };
 
   // onSubmit function
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     try {
       e.preventDefault();
-
-      // this part to upload the images into Firebase
-      // for (const [key, value] of Object.entries(images)) {
-      //   // to handle 'unknown error', its uploading two extra images: undefined & item'
-      //   // if (value.name == undefined) {
-      //   //   break;
-      //   // }
-      //   const file = value;
-      //   const directory = 'products';
-      //   const currentdate = new Date();
-      //   const datetime = currentdate.getDate() + '-' + (currentdate.getMonth() + 1) + '-' + currentdate.getFullYear() + '@' + currentdate.getHours() + ':' + currentdate.getMinutes();
-      //   const name = datetime + ' - ' + file.name;
-      //   console.log('file.name', file.name);
-      //   const storageRef = storage.ref(`${directory}/${name}`);
-
-      //   storageRef.put(file).on(
-      //     'state_changed',
-      //     (snapshot) => {
-      //       //   Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-      //       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      //       console.log('Upload is ' + progress + '% done');
-      //       switch (snapshot.state) {
-      //         case 'paused':
-      //           console.log('Upload is paused');
-      //           break;
-      //         case 'running':
-      //           console.log('Upload is running');
-      //           break;
-      //         default:
-      //       }
-      //     },
-      //     (error) => {
-      //       switch (error.code) {
-      //         case 'storage/unauthorized':
-      //           //   User doesn't have permission to access the object
-      //           break;
-      //         case 'storage/canceled':
-      //           //   User canceled the upload
-      //           break;
-      //         case 'storage/unknown':
-      //           //   Unknown error occurred, inspect error.serverResponse
-      //           break;
-      //         default:
-      //       }
-      //     },
-      //     () => {
-      //       //   Upload completed successfully, now we can get the download URL
-      //       storageRef.getDownloadURL().then(async (downloadURL) => {
-      //         console.log('File available at', downloadURL);
-      //         productData.productIamges.push(downloadURL);
-      //       });
-      //     }
-      //   );
-      // }
+const editedAbaya = await instance.put(url+`/product${productData.id}`,productData,{
+  headers: {
+    authorization: `Bearer ${user.token}`
+  }
+});
 
       setOpenEditProduct(false);
-      console.log(
-        "edited obj ready to go to the backend: productData",
-        productData
-      );
-      // reset all states
-      // setProductData({ productIamges: [] });
-      // setImages({});
-      // setIsValid(false);
-      // setColorsSelected(null);
-      // setSizesSelected(null);
-    } catch (e) {
+      navigate(0);
+      } catch (e) {
       console.log("Edit Product Error", e.message);
     }
   };
 
-  // validate file type, accept only images (jpg, jpeg, png)
-  // let obj = {};
-  // function validateFileType(key, file) {
-  //   let fileName = file.name;
-  //   let idxDot = fileName.lastIndexOf('.') + 1;
-  //   let extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-  //   if (extFile == 'jpg' || extFile == 'jpeg' || extFile == 'png') {
-  //     obj[key] = file;
-  //   } else {
-  //     alert('Only jpg/jpeg and png files are allowed!');
-  //   }
-  //   return obj;
-  // }
+
 
   // on change handler
   const handleChange = (e) => {
-    // if (e.target.name == 'images') {
-    //   for (const [key, value] of Object.entries(e.target.files)) {
-    //     setImages(validateFileType(key, value));
-    //   }
-    // } else {
+   
     setProductData({ ...productData, [e.target.name]: e.target.value });
-    // }
 
     // if the user edit anything allow him to submit
     setIsValid(true);
@@ -253,12 +163,6 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
   // Close modal handler
   function handleClose() {
     setOpenEditProduct(false);
-    // reset all states
-    // setProductData({ productIamges: [] });
-    // setImages({});
-    // setIsValid(false);
-    // setColorsSelected(null);
-    // setSizesSelected(null);
   }
   return (
     <>
@@ -267,14 +171,15 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        className='modal'
       >
         <ThemeProvider theme={theme}>
-          <Box sx={style}>
+          <Box sx={style} className='box-container'>
             <div className="modal-header">
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Edit Product Form:
               </Typography>
-              <i class="fas fa-times" onClick={handleClose}></i>
+              <i className="fas fa-times" onClick={handleClose}></i>
             </div>
             <div className="form-container">
               <form className="add-from" action="" onSubmit={submitHandler}>
@@ -301,7 +206,7 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
                     onChange={handleChange}
                     value={productData?.status}
                   >
-                    <option value="">--choose option--</option>
+                    <option value="" >--choose option--</option>
                     <option value="notReadyToWear">يحتاج الى تفصيل</option>
                     <option value="readyToWear">Ready To Wear</option>
                   </select>
@@ -377,11 +282,11 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
                   <label>Total in Stock :</label>
                   <input
                     type="number"
-                    name="totalInStock"
+                    name="inStock"
                     required
-                    id="totalInStock"
+                    id="inStock"
                     placeholder="Total in Stock"
-                    value={productData?.totalInStock}
+                    value={productData?.inStock}
                     onChange={handleChange}
                   />
                 </div>
@@ -400,23 +305,19 @@ function EditProductModal({ setOpenEditProduct, openEditProduct }) {
                       name="addToHomePage"
                       value="yes"
                       onChange={handleChange}
-                      checked={
-                        productData?.addToHomePage == "yes" ? true : false
-                      }
+                      checked={productData?.addToHomePage}
                     />
-                     <label for="yes">yes</label>
-                     {" "}
+                     <label htmlFor="yes">yes</label>
+                     
                     <input
                       type="radio"
-                      id="addToHomePage"
+                      id="addToHomePage" 
                       name="addToHomePage"
                       value="no"
                       onChange={handleChange}
-                      checked={
-                        productData?.addToHomePage == "no" ? true : false
-                      }
+                      checked={!productData?.addToHomePage}
                     />
-                     <label for="no">no</label>
+                     <label htmlFor="no" > no</label>
                   </section>
                 </div>
 

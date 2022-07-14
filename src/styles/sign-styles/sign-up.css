@@ -176,10 +176,24 @@
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
 }
+.sign-up .lamar-container .submit.disabled {
+
+  color: rgba(128, 128, 128, 0.308);
+
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  cursor:not-allowed;
+}
 .sign-up .lamar-container .submit:hover {
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);
   font-size: 22px;
   font-weight: 600;
   transform: translateY(-3px);
+}
+.sign-up .lamar-container .submit.disabled:hover {
+  background-color: var(--main-color-alt);
+  box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
+  font-size: 20px;
+  font-weight: normal;
+  transform: translateY(0);
 }
