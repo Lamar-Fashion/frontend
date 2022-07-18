@@ -27,7 +27,7 @@ const getHomePageProducts = async ()=>{
         <div className='lamar-container'>
         <Flicking circular={true} >
        {
-         homePageProducts.map((item,indx)=>
+         homePageProducts?.map((item,indx)=>
          <div className='box' key={item.id} >
                 <div className='slide-img'>
                   <img src={item.images[0]} alt='' />
