@@ -10,7 +10,6 @@ import cookies from 'react-cookies';
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 import {instance,url} from '../../API/axios';
 
-
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
