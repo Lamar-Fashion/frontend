@@ -1,17 +1,22 @@
 import { React, useState } from 'react';
 import '../../styles/product-details/product-details.css';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Flicking from '@egjs/react-flicking';
 import Alert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartAction } from '../../store/actions';
 // import {Spinner} from 'react-bootstrap'
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
+import {instance, url} from '../../API/axios';
+import {assignFavourite} from '../../store/actions/index';
+
 
 
 function ProductDetails() {
   const dispatch = useDispatch();
- 
+  const navigate = useNavigate();
+
+ const {user, isLoggedIn} = useSelector((state)=> state.authReducer);
 let obj =  decryptAndGetFromStorage('product');
   console.log('objjjj from storage',obj);
   let images = obj.images;
@@ -92,6 +97,31 @@ let obj =  decryptAndGetFromStorage('product');
   };
   const tall = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63];
 
+  // add to favourite handler
+const addToFavourite = async (item) => {
+    
+  try {
+
+    //check if the user loggedn in or not 
+
+    if (isLoggedIn) {
+      // send to backend
+      const addeddToFavourite = await instance.post(url+`/favourite`,{abayaId:item.id,userId:user.id},{
+        headers:{
+          authorization: `Bearer ${user.token}`
+        }
+      });
+      console.log('addeddToFavourite',addeddToFavourite);
+      dispatch(assignFavourite(addeddToFavourite.data.abayaId.length));
+    } else {
+      // ask him to log-in or signup
+      navigate('/SignIn')
+    }
+
+  } catch (error) {
+    console.error('Error while adding to favourite')
+  }
+};
   return (
     <>
       <section className='product-d'>
@@ -273,7 +303,7 @@ let obj =  decryptAndGetFromStorage('product');
 
             <div className='qun-product '>
               <div className='add-fav'>
-                <button>🖤</button>
+                <button onClick={()=>addToFavourite(selectedProduct)}>🖤</button>
               </div>
               <div className='add-to-cart'>
                 <button

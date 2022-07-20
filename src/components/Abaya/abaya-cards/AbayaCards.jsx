@@ -5,7 +5,7 @@ import lamar from '../../../images/brand/abaya.jpeg';
 import neo from '../../../images/brand/test/brand13.jpg';
 import ll from '../../../images/brand/test/brand11.jpg';
 import l2 from '../../../images/brand/IMGL4545.jpg';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import { useSelector ,useDispatch} from 'react-redux';
 import AddProductModal from '../../Admin/add-product/AddProductModal';
@@ -13,12 +13,13 @@ import EditProductModal from '../../Admin/edit-product/EditProductModal';
 import { storage } from '../../../firebase';
 import {instance, url} from '../../../API/axios';
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../../helpers/CryptoJS';
-import {navigateAction} from '../../../store/actions/index';
+import {navigateAction,assignFavourite} from '../../../store/actions/index';
 
 const arralen =10;
 function AbayaCards() {
   const dispatch = useDispatch();
-  const {role, user} = useSelector((state) => state.authReducer);
+  const navigate = useNavigate();
+  const {role, user,isLoggedIn} = useSelector((state) => state.authReducer);
   const category=useSelector((state) => state.navigationReducer.category);
 
   const [openAddproduct, setOpenAddProduct] = useState(false);
@@ -51,16 +52,31 @@ setAllAbayas(abayas.data);
 
 
  
-  // useEffect(() => {
-  //   setCatagory(catagoryReducer);
-  // }, [catagoryReducer]);
-
-  const addEntry = (product) => {
+ 
+// add to favourite handler
+  const addToFavourite = async (item) => {
     
-    let FavArray = decryptAndGetFromStorage('fav');
-    if (FavArray == null) FavArray = [];
-    FavArray.push(product);
-    encryptAndSaveToStorage('fav',FavArray);
+    try {
+
+      //check if the user loggedn in or not 
+
+      if (isLoggedIn) {
+        // send to backend
+        const addeddToFavourite = await instance.post(url+`/favourite`,{abayaId:item.id,userId:user.id},{
+          headers:{
+            authorization: `Bearer ${user.token}`
+          }
+        });
+        console.log('addeddToFavourite',addeddToFavourite);
+        dispatch(assignFavourite(addeddToFavourite.data.abayaId.length));
+      } else {
+        // ask him to log-in or signup
+        navigate('/SignIn')
+      }
+
+    } catch (error) {
+      console.error('Error while adding to favourite')
+    }
   };
 
   //handle sort by category
@@ -138,9 +154,9 @@ window.location.reload();
           <div className='over-view to-cart'>
             <div
               className='fav'
-              // onClick={() => {
-              //   addEntry(item);
-              // }}
+              onClick={() => {
+                addToFavourite(item);
+              }}
             >
               <i className='fas fa-heart'></i>
             </div>

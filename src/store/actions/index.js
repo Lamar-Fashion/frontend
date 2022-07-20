@@ -34,3 +34,11 @@ export const navigateAction = (item) => {
     payload: item ? item : null,
   };
 };
+
+// assign favourites number
+export const assignFavourite = (favNumber) => {
+  return {
+    type: 'ASSIGN_FAV',
+    payload: favNumber,
+  };
+};

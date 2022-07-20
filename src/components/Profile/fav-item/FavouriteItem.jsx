@@ -2,28 +2,76 @@ import {React,useEffect,useState} from 'react'
 import { Link } from 'react-router-dom';
 import "../../../styles/profile/fav-item.css";
 import {encryptAndSaveToStorage} from '../../../helpers/CryptoJS'
+import {instance, url} from '../../../API/axios';
+import {useDispatch,useSelector} from 'react-redux';
+import {assignFavourite} from '../../../store/actions/index';
+
 function FavouriteItem() {
-    const [favArray, setFavArray] = useState([])
+  const dispatch = useDispatch();
+  const {user} = useSelector((state)=>state.authReducer);
+
+    const [favArray, setFavArray] = useState([]);
+
+     // delete favourite handler
+     const deleteItem = async(item)=>{
+      const response = await instance.delete(url+`/favourite/${user.id}/${item.id}`,{
+        headers:{
+          authorization:`Bearer ${user.token}`
     
-    const deleteItem=(indx,item)=>{
-      favArray.splice(Number(indx), 1);
-      encryptAndSaveToStorage('fav',favArray);
+        }
+      });
+const deletedId = item.id;
+if (response) {
+  favArray.map((item,idx)=>{
+    if (item.id == deletedId) {
+      favArray.splice(idx,1);
+      return;
+    }
+  });
+let updateFav = favArray;
+  setFavArray([]);
+  setFavArray(updateFav);
+  dispatch(assignFavourite(favArray.length));
+
+  
+}
+    }
+   
+
+    // get favourite handler
+    const getFavouriteHandler = async(userId)=>{
+      const response = await instance.get(url+`/favourite/${userId}`,{
+        headers:{
+          authorization:`Bearer ${user.token}`
+    
+        }
+      });
+console.log('response.data',response.data);
+      setFavArray(response.data);
+      dispatch(assignFavourite(response.data.length));
 
     }
+
+    //did mount
+    useEffect(()=>{
+      getFavouriteHandler(user.id);
+    },[]);
+    // useEffect(()=>{
+    //   dispatch(assignFavourite(favArray.length));
+
+    // },[favArray]);
+
+
     return (
         <>
         <section className="fav-item">
         <div className="lamar-container">
             {favArray&&
             favArray.map((item,indx)=>
-            <>
           
-        <div className="box">
+        <div className="box" key={item.id}>
           <div className="over-view">
-           <div className='fav' onClick={()=>{
-            deleteItem(indx,item)
-            
-          }}>
+           <div className='fav' onClick={()=>deleteItem(item)}>
 
           <i className="fas fa-trash-alt" ></i>
             </div>
@@ -56,7 +104,6 @@ function FavouriteItem() {
             <h2>QAR {item.price}</h2>
           </div>
         </div>
-            </>
             
         
         

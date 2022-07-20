@@ -4,11 +4,12 @@ import "../../../styles/sign-styles/sign-in.css"
 import validateToken from "../../../helpers/validateToken";
 import {useDispatch} from 'react-redux';
 import {instance,url} from '../../../API/axios';
-import {logInAction,logOutAction} from '../../../store/actions/index';
+import {logInAction,logOutAction,assignFavourite} from '../../../store/actions/index';
 
 function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
 const [validEmail,setValidEmail] = useState(false);
@@ -26,6 +27,24 @@ const onChangeHandler =  (e)=>{
   }  
   if (e.target.name == 'password') setPassword(e.target.value);
 };
+
+
+ // get favourite handler >> to get fav number for first time and before the user goes to his wishlist.
+ const getFavouriteHandler = async(user,callback)=>{
+  const response = await instance.get(url+`/favourite/${user.id}`,{
+    headers:{
+      authorization:`Bearer ${user?.token}`
+
+    }
+  });
+  console.log('response.data.length',response.data.length);
+  dispatch(assignFavourite(response.data.length));
+
+  if(callback) callback();
+
+}
+
+
   const signInHandler = async(e)=>{
     try {
       e.preventDefault();
@@ -39,16 +58,23 @@ const onChangeHandler =  (e)=>{
  const user= validateToken(loggedInUser.data.token);
  if (user) {
    dispatch(logInAction(user));
-navigate('/Profile');
+  getFavouriteHandler(user,()=>{
+
+    navigate('/Profile');
 window.scrollTo({
   top: 0,
   left: 0,
   behavior: 'smooth',
 });
 
+
+  })
+
+
+
  } 
 
-  e.target.reset();
+e.target.reset();
       
     } catch (error) {
       console.error('error while signin user', error);

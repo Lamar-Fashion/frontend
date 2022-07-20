@@ -5,22 +5,26 @@ import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsFillHeartFill, BsPersonCircle } from 'react-icons/bs';
 import { useNavigate, Link } from 'react-router-dom';
 import { useSelector ,useDispatch} from 'react-redux';
-import { navigateAction,logOutAction } from '../../store/actions';
+import { navigateAction,logOutAction,assignFavourite } from '../../store/actions';
 import cookies from 'react-cookies';
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
+import {instance,url} from '../../API/axios';
+
 
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
-  const role = useSelector((state) => state.authReducer.role);
+  const {user,role,isLoggedIn} = useSelector((state) => state.authReducer);
   const cartProductsNumber = useSelector((state) => state.cartReducer.cartProductsNumber);
+  const favouritesNumber = useSelector((state) => state.favouriteReducer.favouritesNumber);
+  console.log('favouritesNumber top',favouritesNumber);
 
   const [showVerticalNav, setshowVerticalNav] = useState(false);
   const [showDropHome, setShowDropHome] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [showSearchTextField, setShowSearchTextField] = useState(false);
   const [cartNumber, setCartNumber] = useState(decryptAndGetFromStorage('cartNumber') ? decryptAndGetFromStorage('cartNumber') : 0);
+  const [favNumber, setFavNumber] = useState(decryptAndGetFromStorage('favNumber') ? decryptAndGetFromStorage('favNumber') : 0);
   const [y, setY] = useState(0);
   function scrollHandler() {
     setY(window.scrollY);
@@ -28,6 +32,7 @@ function Header() {
 
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler, true);
+    dispatch(assignFavourite(decryptAndGetFromStorage('favNumber') ? decryptAndGetFromStorage('favNumber') : 0));
   }, []);
 
   // trigger redux, save to storage, and render it
@@ -37,11 +42,19 @@ function Header() {
     setCartNumber(cartProductsNumber);
   }, [cartProductsNumber]);
 
+  useEffect(() => {
+    console.log('favouritesNumber',favouritesNumber);
+  encryptAndSaveToStorage('favNumber',favouritesNumber);
+// console.log('favouritesNumber',favouritesNumber);
+  setFavNumber(favouritesNumber);
+  }, [favouritesNumber]);
+
   //log out handler
   const logoutHandler = ()=>{
     console.log('from sign out');
     cookies.remove('token');
     dispatch(logOutAction());
+    dispatch(assignFavourite(0));
     navigate('/');
     window.location.reload();
   }
@@ -558,7 +571,7 @@ function Header() {
                   <a>
                     <BsFillHeartFill className='header-icons fav' />
 
-                    <strong className='number'>5</strong>
+                    <strong className='number'>{favNumber}</strong>
                   </a>
                 </Link>
               </li>
