@@ -6,11 +6,13 @@ import apple_pay from "../../images/header/apple-pay.png";
 import cash from "../../images/shop/cash.png";
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 import { instance, url } from "../../API/axios";
-import {useSelector} from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
+import {resetCartAction} from '../../store/actions/index';
 
 function Checkout3() {
   const user = useSelector((state) => state.authReducer.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   
   const total =  decryptAndGetFromStorage('total');
   const cartArray =decryptAndGetFromStorage('cart');
@@ -41,6 +43,13 @@ const makeOrderHandler = async (e)=>{
   const bookedOrder = await instance.post(url+'/addToCart',bookedData);
   
   console.log('bookedOrder',bookedOrder);
+  // sessionStorage.removeItem('checkout_person_info');
+  sessionStorage.removeItem('cart');
+  dispatch(resetCartAction());
+  // sessionStorage.removeItem('cartNumber');
+  encryptAndSaveToStorage('total',0);
+
+  // sessionStorage.removeItem('total');
     navigate('/Abaya');
   } catch (error) {
     console.error('book order error',error.message)
@@ -207,7 +216,6 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
                             });
                           }}
                         >
-                          {" "}
                           Terms & Conditions
                         </Link>
                       </label>

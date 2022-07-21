@@ -16,7 +16,12 @@ const cartReducer = (state = initialState, action) => {
         return {
           cartProductsNumber: payload ? state.cartProductsNumber - payload : state.cartProductsNumber - 1,
         };
-      }
+      };
+
+      case 'RESET_CART':
+        return {
+          cartProductsNumber: 0,
+        };
 
     default:
       return state;

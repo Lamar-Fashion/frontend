@@ -135,7 +135,7 @@ function Footer() {
         </div>
         <div className='footer-pay'>
           <div className='lamar-container'>
-            <p className='copyright' > <a href='http://wa.me/+96288846082' target='_blank'>Powerd By A.A 💻
+            <p className='copyright' > <a className='copyright' href='http://wa.me/+96288846082' target='_blank'>Powered By A.A 💻
               </a></p>
             <div className='info-pay'>
               {/* <a href='#policy'>

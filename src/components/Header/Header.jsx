@@ -16,7 +16,6 @@ function Header() {
   const {user,role,isLoggedIn} = useSelector((state) => state.authReducer);
   const cartProductsNumber = useSelector((state) => state.cartReducer.cartProductsNumber);
   const favouritesNumber = useSelector((state) => state.favouriteReducer.favouritesNumber);
-  console.log('favouritesNumber top',favouritesNumber);
 
   const [showVerticalNav, setshowVerticalNav] = useState(false);
   const [showDropHome, setShowDropHome] = useState(false);

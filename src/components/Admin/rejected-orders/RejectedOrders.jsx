@@ -60,7 +60,7 @@ if (user) fetchAllRejectedOrders();
           <section className='bigContainer'>
             {allRejectedOrders.map((order, idx) => {
               return (
-                  <Order order={order} idx={idx} key={order.orderId} />
+                  <Order order={order} from={'rejected'} idx={idx} key={order.orderId} />
               );
             })}
           </section>

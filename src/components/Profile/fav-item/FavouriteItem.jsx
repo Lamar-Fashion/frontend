@@ -108,8 +108,8 @@ console.log('response.data',response.data);
         
         
         )}
-            
             </div>
+            {!favArray.length && <div className='empty-state-wishlist'>Your wishlist is empty!</div>}
         </section>
            
             

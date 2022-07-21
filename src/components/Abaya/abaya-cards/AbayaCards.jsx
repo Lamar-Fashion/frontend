@@ -275,7 +275,7 @@ window.location.reload();
                 <i className='fas fa-home i-home'></i>
               </Link>
               <i className='fas fa-angle-right'></i> <span>Abayas </span>
-              <i className='fas fa-angle-right'></i> <span>{category}</span>
+              <i className='fas fa-angle-right'></i> <span>{category == 'New Arrival' ? 'New Arrivals' : category}</span>
             </div>
           </div>
         </div>
@@ -315,7 +315,7 @@ window.location.reload();
                   <label htmlFor='sort-item'>Category : </label>
                   <select name='sort-item' id='sort-item' value={category} onChange={handleSort}>
                     <option value='all'>All</option>
-                    <option value='New Arrival'>New Arrival</option>
+                    <option value='New Arrival'>New Arrivals</option>
                     <option value='On Sales'>On Sales</option>
                   </select>
                 </div>

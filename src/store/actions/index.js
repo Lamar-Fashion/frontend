@@ -27,6 +27,12 @@ export const removeFromCartAction = (quantity) => {
     payload: quantity ? quantity : null,
   };
 };
+// reset the CArt
+export const resetCartAction = () => {
+  return {
+    type: 'RESET_CART',
+  };
+};
 // navigate to abaya 
 export const navigateAction = (item) => {
   return {

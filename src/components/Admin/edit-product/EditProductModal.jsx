@@ -92,7 +92,8 @@ function EditProductModal({abaya, setOpenEditProduct, openEditProduct }) {
   const [sizesSelected, setSizesSelected] = useState(null);
   const [productData, setProductData] = useState(abaya);
   const [isValid, setIsValid] = useState(false);
-
+  const [addToHomePage, setAddToHomePage] = useState(abaya.addToHomePage);
+console.log('addToHomePage',addToHomePage);
   // did mount
   useEffect(() => {
     console.log('item',abaya);
@@ -153,7 +154,18 @@ const editedAbaya = await instance.put(url+`/product${productData.id}`,productDa
 
   // on change handler
   const handleChange = (e) => {
-   
+   console.log('e.target.value',e.target.value);
+   if(e.target.name=='addToHomePage') {
+if (e.target.value === 'true') {
+  setAddToHomePage(true);
+  
+}
+if (e.target.value === 'false') {
+  setAddToHomePage(false);
+  
+}
+   }
+
     setProductData({ ...productData, [e.target.name]: e.target.value });
 
     // if the user edit anything allow him to submit
@@ -303,21 +315,21 @@ const editedAbaya = await instance.put(url+`/product${productData.id}`,productDa
                       type="radio"
                       id="addToHomePage"
                       name="addToHomePage"
-                      value="yes"
+                      value={true}
                       onChange={handleChange}
-                      checked={productData?.addToHomePage}
+                      checked={addToHomePage == true}
                     />
-                     <label htmlFor="yes">yes</label>
+                     <label htmlFor={true}>yes</label>
                      
                     <input
                       type="radio"
                       id="addToHomePage" 
                       name="addToHomePage"
-                      value="no"
+                      value={false}
                       onChange={handleChange}
-                      checked={!productData?.addToHomePage}
+                      checked={addToHomePage == false}
                     />
-                     <label htmlFor="no" > no</label>
+                     <label htmlFor={false} > no</label>
                   </section>
                 </div>
 

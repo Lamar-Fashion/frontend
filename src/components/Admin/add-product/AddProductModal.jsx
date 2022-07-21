@@ -86,6 +86,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
   const [productData, setProductData] = useState({ productIamges: [] });
   const [images, setImages] = useState({});
   const [isValid, setIsValid] = useState(false);
+  const [addToHomePage, setAddToHomePage] = useState(null);
 
   // handle change for colors selection
   const colorsHandleChange = (selected) => {    
@@ -212,6 +213,18 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
         setImages(validateFileType(key, value));
       }
     } else {
+      console.log('e.target.value',e.target.value);
+      if(e.target.name=='addToHomePage') {
+        if (e.target.value === 'true') {
+          setAddToHomePage(true);
+          
+        }
+        if (e.target.value === 'false') {
+          setAddToHomePage(false);
+          
+        }
+           }
+
       setProductData({ ...productData, [e.target.name]: e.target.value });
     }
   };
@@ -229,7 +242,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
       productData.description &&
       productData.status &&
       productData.price &&
-      productData.addToHomePage
+      (productData.addToHomePage == 'false' || productData.addToHomePage == 'true')
     ) {
       setIsValid(true);
     }else{
@@ -245,6 +258,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
     setProductData({ productIamges: [] });
     setImages({});
     setIsValid(false);
+    setAddToHomePage(null)
     setColorsSelected([]);
     setSizesSelected([]);
   }
@@ -340,8 +354,8 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
                   <label htmlFor='addToHomePage'>Add this product to the Home page? </label>
                   <br />
                   <section>
-                    <input type='radio' id='addToHomePage' name='addToHomePage' value='yes' onChange={handleChange} />  <label htmlFor='yes'>yes</label>
-                      <input type='radio' id='addToHomePage' name='addToHomePage' value='no' onChange={handleChange} />  <label htmlFor='no'>no</label>
+                    <input type='radio' id='addToHomePage' name='addToHomePage' value={true} checked={addToHomePage == true} onChange={handleChange} />  <label htmlFor={true}>yes</label>
+                      <input type='radio' id='addToHomePage' name='addToHomePage' value={false} checked={addToHomePage == false} onChange={handleChange} />  <label htmlFor={false}>no</label>
                   </section>
                 </div>
 

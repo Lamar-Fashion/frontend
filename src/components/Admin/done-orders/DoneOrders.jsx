@@ -60,7 +60,7 @@ if (user) fetchAllDoneOrders();
           <section className='bigContainer'>
             {allDoneOrders.map((order, idx) => {
               return (
-                  <Order order={order} idx={idx} key={order.orderId} />
+                  <Order order={order} from={'done'} idx={idx} key={order.orderId} />
               );
             })}
           </section>

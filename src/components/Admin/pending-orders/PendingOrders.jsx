@@ -59,7 +59,7 @@ if (user) fetchAllPendingOrders();
           <section className='bigContainer'>
             {allPendingOrders.map((order, idx) => {
               return (
-                  <Order order={order} idx={idx} key={order.orderId} />
+                  <Order order={order} from={'pending'} idx={idx} key={order.orderId} />
               );
             })}
           </section>

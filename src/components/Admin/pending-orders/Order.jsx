@@ -3,7 +3,7 @@ import '../../../styles/admin/pending-orders/order.css';
 import { instance,url } from '../../../API/axios';
 import {useSelector} from 'react-redux';
 
-function Order({ order, idx }) {
+function Order({ order, idx,from }) {
   const user = useSelector((state)=> state.authReducer.user);
   const [openDetails, setOpenDetails] = useState(false);
 
@@ -50,7 +50,7 @@ const updatePendingOrder = async(order,newStatus)=>{
                   <td>{order.orderId}</td>
                   <td>QAR {order.totalPrice}</td>
                   <td>{order.paymentMethod}</td>
-                  <td>flase</td>
+                  <td>{from == 'done' ? "true" : "false"}</td>
                 </tr>
                 <tr className='order-column'>
                   <th>Order ID</th>
@@ -66,7 +66,7 @@ const updatePendingOrder = async(order,newStatus)=>{
                 </tr>
                 <tr className='order-column'>
                   <th>Is Paid Successfully?</th>
-                  <td>flase</td>
+                  <td>{from == 'done' ? "true" : "false"}</td>
                 </tr>
                 <tr>
                   <th>client Comments:</th>
