@@ -83,7 +83,7 @@ function Profile() {
         : <div className="lamar-container">
           <div className='sign-container'>
           <i className="fas fa-sign-in-alt"></i>
-            <p>You need to be signd in </p>
+            <p>You need to be signed in </p>
             <Link to='/SignIn'> Sign In  </Link>
           </div>
         </div>

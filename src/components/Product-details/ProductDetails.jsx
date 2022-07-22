@@ -131,7 +131,7 @@ const addToFavourite = async (item) => {
               <Link to='/'>
                 <i className='fas fa-home i-home'></i>
               </Link>
-              <i className='fas fa-angle-right'></i> <span>Product Detail</span>
+              <i className='fas fa-angle-right'></i> <span>Product Details</span>
             </div>
           </div>
         </div>

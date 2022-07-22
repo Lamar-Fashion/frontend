@@ -46,11 +46,13 @@ function AbayaCards() {
 const getAllAbayas = async ()=>{
   setIsLoading(true);
 
-  
+  setTimeout(async() => {
     const abayas = await instance.get(url+'/allProducts');
     console.log('abayas',abayas);
     setAllAbayas(abayas.data);
     setIsLoading(false);
+    
+  }, 500);
     
 
 };

@@ -8,6 +8,8 @@ import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/Cr
 import { instance, url } from "../../API/axios";
 import {useSelector,useDispatch} from 'react-redux';
 import {resetCartAction} from '../../store/actions/index';
+import LoadingState from "../Shared/LoadingState";
+import DualModal from "../Shared/DualModal";
 
 function Checkout3() {
   const user = useSelector((state) => state.authReducer.user);
@@ -20,6 +22,9 @@ function Checkout3() {
 
   const [state, setstate] = useState("");
   const [policy, setPolicy] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [orderDone, setOrderDone] = useState(false);
+
   const handleCahnge = (e) => {
     setstate(e.target.value);
   };
@@ -28,9 +33,9 @@ function Checkout3() {
     setPolicy(!policy);
   };
 const makeOrderHandler = async (e)=>{
-
+  e.preventDefault();
+if(isLoading || orderDone) return;
   try {
-    e.preventDefault();
   console.log('checkout_person_info',checkout_person_info);
   console.log('total',total);
   console.log('cartArray',cartArray);
@@ -40,6 +45,8 @@ const makeOrderHandler = async (e)=>{
     personalInfo: checkout_person_info,
     totalPrice : total
   }
+  setIsLoading(true);
+setTimeout(async() => {
   const bookedOrder = await instance.post(url+'/addToCart',bookedData);
   
   console.log('bookedOrder',bookedOrder);
@@ -48,9 +55,13 @@ const makeOrderHandler = async (e)=>{
   dispatch(resetCartAction());
   // sessionStorage.removeItem('cartNumber');
   encryptAndSaveToStorage('total',0);
+  setOrderDone(true);
+  setIsLoading(false);
 
   // sessionStorage.removeItem('total');
-    navigate('/Abaya');
+    // navigate('/Abaya');
+  
+}, 1000);
   } catch (error) {
     console.error('book order error',error.message)
   }
@@ -222,8 +233,10 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
                     </div>
 
                     {(state && policy && (
-                      <button className="next" type="submit">
-                        complete order
+                      <button  className={isLoading || orderDone ? "next not-place" : "next"} type="submit">
+                        {!isLoading && !orderDone && 'complete order'}
+                        {!isLoading && orderDone && 'Done'}
+                      {isLoading && <div className='loading-state-container'> <LoadingState/></div> }
                       </button>
                     )) || <div className="not-place"> complete order</div>}
                   </div>
@@ -270,6 +283,8 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
             </div>
           </div>
         </div>
+
+        {orderDone && <DualModal type='success' navigateTo = '/Abaya'/>}
       </section>
     </>
   );
