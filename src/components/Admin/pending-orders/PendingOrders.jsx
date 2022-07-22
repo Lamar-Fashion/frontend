@@ -4,22 +4,32 @@ import Order from './Order';
 import { useNavigate, Link } from 'react-router-dom';
 import {instance,url} from '../../../API/axios';
 import {useSelector} from 'react-redux';
+import LoadingState from '../../Shared/LoadingState';
+
 
 function PendingOrders() {
   const user = useSelector((state) => state.authReducer.user);
 
   const [allPendingOrders, setAllPendingOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // fetch all pending orders handler
 const fetchAllPendingOrders = async()=>{
-  console.log('user',user);
-  const response = await instance.get(url+'/pendingOrders',{
-    headers: {
-      authorization: `Bearer ${user?.token}`
-    }
-  });
-console.log('response.data',response.data);
-  setAllPendingOrders(response.data);
+try {
+  setIsLoading(true);
+    const response = await instance.get(url+'/pendingOrders',{
+      headers: {
+        authorization: `Bearer ${user?.token}`
+      }
+    });
+    setIsLoading(false);
+    setAllPendingOrders(response.data);
+} catch (error) {
+  console.error('Error while getting pending orders',error.message);
+  
+}
+
+  
 }
   useEffect(()=>{
 if (user) fetchAllPendingOrders();
@@ -57,11 +67,14 @@ if (user) fetchAllPendingOrders();
             <div className='intro'>All Pending Orders</div>
           </div>
           <section className='bigContainer'>
-            {allPendingOrders.map((order, idx) => {
+            {!isLoading && allPendingOrders.map((order, idx) => {
               return (
                   <Order order={order} from={'pending'} idx={idx} key={order.orderId} />
               );
             })}
+
+{isLoading && <div className='loading-state-container'><LoadingState/></div> }
+
           </section>
         </div>
       </div>

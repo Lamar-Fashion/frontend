@@ -159,3 +159,8 @@
   text-align: center;
 
 }
+
+.loading-state-container{
+  position: relative;
+  top: 25px;
+}

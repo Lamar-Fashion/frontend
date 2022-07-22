@@ -3,30 +3,31 @@ import { React, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {instance,url} from '../../../API/axios';
 import {useSelector} from 'react-redux';
-
-let user = {
-  email: 'ahmadahmadahmad@gmail.com',
-  firstName: 'Ahmad',
-  lastName: 'Falah',
-};
-
-const allUsers = new Array(40).fill(user);
+import LoadingState from '../../Shared/LoadingState';
 
 
 function AllUsers() {
   const user = useSelector((state)=> state.authReducer.user);
   const [allUsers, setAllUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
     // fetch all users handler
 const fetchAllUsersHandler = async()=>{
-  console.log('user',user);
-  const response = await instance.get(url+'/users',{
-    headers: {
-      authorization: `Bearer ${user?.token}`
-    }
-  });
-console.log('response.data',response.data);
-  setAllUsers(response.data);
+  try {
+    setIsLoading(true);
+
+      const response = await instance.get(url+'/users',{
+        headers: {
+          authorization: `Bearer ${user?.token}`
+        }
+      });
+      setIsLoading(false);
+      setAllUsers(response.data);
+      
+  } catch (error) {
+    console.error('Error while getting all users',error.message);
+  }
+  
 }
   useEffect(() => {
     // get all users
@@ -63,7 +64,7 @@ console.log('response.data',response.data);
             <div className='intro'>All Regestered Users</div>
           </div>
           <section className='bigContainer'>
-            {allUsers.map((user, idx) => {
+            {!isLoading && allUsers.map((user, idx) => {
               return (
                   <div className='userContainer' key={user.id}>
                     <span>{idx + 1}</span>
@@ -75,6 +76,8 @@ console.log('response.data',response.data);
                   </div>
               );
             })}
+
+            {isLoading && <div className='loading-state-container'><LoadingState/></div> }
           </section>
         </div>
       </div>

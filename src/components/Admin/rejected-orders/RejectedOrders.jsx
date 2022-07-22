@@ -4,22 +4,32 @@ import '../../../styles/admin/admin.css';
 import { useNavigate, Link } from 'react-router-dom';
 import {instance,url} from '../../../API/axios';
 import {useSelector} from 'react-redux';
+import LoadingState from '../../Shared/LoadingState';
+
 
 function RejectedOrders() {
   const user = useSelector((state) => state.authReducer.user);
 
   const [allRejectedOrders, setAllRejectedOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // fetch all rejected orders handler
 const fetchAllRejectedOrders = async()=>{
-  console.log('user',user);
-  const response = await instance.get(url+'/rejectedOrders',{
-    headers: {
-      authorization: `Bearer ${user?.token}`
-    }
-  });
-console.log('response.data',response.data);
-setAllRejectedOrders(response.data);
+
+  try {
+    setIsLoading(true);
+      const response = await instance.get(url+'/rejectedOrders',{
+        headers: {
+          authorization: `Bearer ${user?.token}`
+        }
+      });
+      setIsLoading(false);
+    setAllRejectedOrders(response.data);
+      
+  } catch (error) {
+    console.error('Error while getting rejected orders',error.message);
+
+  }
 }
   useEffect(()=>{
 if (user) fetchAllRejectedOrders();
@@ -58,11 +68,13 @@ if (user) fetchAllRejectedOrders();
             <div className='intro'>All Rejected Orders</div>
           </div>
           <section className='bigContainer'>
-            {allRejectedOrders.map((order, idx) => {
+            {!isLoading && allRejectedOrders.map((order, idx) => {
               return (
                   <Order order={order} from={'rejected'} idx={idx} key={order.orderId} />
               );
             })}
+            {isLoading && <div className='loading-state-container'><LoadingState/></div> }
+
           </section>
         </div>
       </div>

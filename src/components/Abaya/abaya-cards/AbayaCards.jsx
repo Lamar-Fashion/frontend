@@ -14,6 +14,8 @@ import { storage } from '../../../firebase';
 import {instance, url} from '../../../API/axios';
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../../helpers/CryptoJS';
 import {navigateAction,assignFavourite} from '../../../store/actions/index';
+import LoadingState from '../../Shared/LoadingState';
+
 
 const arralen =10;
 function AbayaCards() {
@@ -28,7 +30,8 @@ function AbayaCards() {
   const [showItems, setShowItems] = useState(15);
   const [pageNumber, setPageNumber] = useState(0);
   const pagesVisited = pageNumber * showItems;
-  // const [category, setCatagory] = useState("all");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [allAbayas, setAllAbayas] = useState([]);
   const [displayedAbayas, setDisplayedAbayas] = useState([]);
@@ -41,9 +44,15 @@ function AbayaCards() {
 
 //get all abayas
 const getAllAbayas = async ()=>{
-const abayas = await instance.get(url+'/allProducts');
-console.log('abayas',abayas);
-setAllAbayas(abayas.data);
+  setIsLoading(true);
+
+  
+    const abayas = await instance.get(url+'/allProducts');
+    console.log('abayas',abayas);
+    setAllAbayas(abayas.data);
+    setIsLoading(false);
+    
+
 };
   // did mount
   useEffect(()=>{
@@ -335,7 +344,9 @@ window.location.reload();
           </div>
 
           <div className='lamar-container' id='abaya'>
-            {displayedAbayas.length > 0? displayedAbayas : 'You have no products yet!'}
+            {!isLoading && displayedAbayas.length > 0 && displayedAbayas}
+            {!isLoading && displayedAbayas.length == 0 && 'You have no products yet!'}
+            {isLoading && <LoadingState/>}
           </div>
 
           <div className='pagaination'>

@@ -20,7 +20,7 @@
   flex-direction: column;
   align-items: center;
   gap: 35px;
-  padding-top: 30px;
+  /* padding-top: 30px; */
 }
 
 .profile-info-section .lamar-container .input-user,

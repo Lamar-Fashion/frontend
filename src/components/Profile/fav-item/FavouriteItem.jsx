@@ -1,54 +1,76 @@
-import {React,useEffect,useState} from 'react'
+import {React,useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 import "../../../styles/profile/fav-item.css";
 import {encryptAndSaveToStorage} from '../../../helpers/CryptoJS'
 import {instance, url} from '../../../API/axios';
 import {useDispatch,useSelector} from 'react-redux';
 import {assignFavourite} from '../../../store/actions/index';
+import LoadingState from '../../Shared/LoadingState';
 
 function FavouriteItem() {
   const dispatch = useDispatch();
   const {user} = useSelector((state)=>state.authReducer);
 
     const [favArray, setFavArray] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
      // delete favourite handler
      const deleteItem = async(item)=>{
-      const response = await instance.delete(url+`/favourite/${user.id}/${item.id}`,{
-        headers:{
-          authorization:`Bearer ${user.token}`
-    
-        }
-      });
-const deletedId = item.id;
-if (response) {
-  favArray.map((item,idx)=>{
-    if (item.id == deletedId) {
-      favArray.splice(idx,1);
-      return;
-    }
-  });
-let updateFav = favArray;
-  setFavArray([]);
-  setFavArray(updateFav);
-  dispatch(assignFavourite(favArray.length));
+      try {
+
+        setIsLoading(true);
+        const response = await instance.delete(url+`/favourite/${user.id}/${item.id}`,{
+          headers:{
+            authorization:`Bearer ${user.token}`
+      
+          }
+        });
+setIsLoading(false);
+        getFavouriteHandler(user.id);
+
+      } catch (error) {
+        console.error('Error while delete favourite',error.message);
+      }
+// const deletedId = item.id;
+// if (response) {
+//   favArray.map((item,idx)=>{
+//     if (item.id == deletedId) {
+//       favArray.splice(idx,1);
+//       return;
+//     }
+//   });
+// let updateFav = favArray;
+//   setFavArray([]);
+//   setFavArray(updateFav);
+//   dispatch(assignFavourite(favArray.length));
 
   
-}
+// }
     }
    
 
     // get favourite handler
     const getFavouriteHandler = async(userId)=>{
-      const response = await instance.get(url+`/favourite/${userId}`,{
-        headers:{
-          authorization:`Bearer ${user.token}`
-    
-        }
-      });
+try {
+  setIsLoading(true);
+
+    const response = await instance.get(url+`/favourite/${userId}`,{
+      headers:{
+        authorization:`Bearer ${user.token}`
+  
+      }
+    });
 console.log('response.data',response.data);
-      setFavArray(response.data);
-      dispatch(assignFavourite(response.data.length));
+    setFavArray(response.data);
+    dispatch(assignFavourite(response.data.length));
+  setIsLoading(false);
+    
+} catch (error) {
+  console.error('Error while getting favourites',error.message);
+  
+}
+
+     
 
     }
 
@@ -66,7 +88,7 @@ console.log('response.data',response.data);
         <>
         <section className="fav-item">
         <div className="lamar-container">
-            {favArray&&
+            {!isLoading && favArray&&
             favArray.map((item,indx)=>
           
         <div className="box" key={item.id}>
@@ -109,7 +131,9 @@ console.log('response.data',response.data);
         
         )}
             </div>
-            {!favArray.length && <div className='empty-state-wishlist'>Your wishlist is empty!</div>}
+            {!isLoading && !favArray.length && <div className='empty-state-wishlist'>Your wishlist is empty!</div>}
+           
+            {isLoading && <div className='loading-state-container'><LoadingState/></div> }
         </section>
            
             

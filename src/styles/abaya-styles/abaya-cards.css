@@ -389,3 +389,7 @@
   height: 450px;
   overflow: hidden;
 }
+
+#abaya{
+  min-height: 250px;
+}

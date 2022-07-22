@@ -21,7 +21,7 @@ function Admin() {
         <div className='lamar-container'>
           <div className='container-admin-hero'>
             <div className='admin-hero'>
-              <h4 className='hero-text'>Admin page..</h4>
+              <h4 className='hero-text'>Admin panel</h4>
             </div>
           </div>
           <section className='features-container'>

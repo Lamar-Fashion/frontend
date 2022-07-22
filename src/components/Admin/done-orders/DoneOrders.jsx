@@ -4,22 +4,31 @@ import '../../../styles/admin/admin.css';
 import { useNavigate, Link } from 'react-router-dom';
 import {instance,url} from '../../../API/axios';
 import {useSelector} from 'react-redux';
+import LoadingState from '../../Shared/LoadingState';
 
 function DoneOrders() {
   const user = useSelector((state) => state.authReducer.user);
 
   const [allDoneOrders, setAllDoneOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // fetch all done orders handler
 const fetchAllDoneOrders = async()=>{
-  console.log('user',user);
-  const response = await instance.get(url+'/doneOrders',{
-    headers: {
-      authorization: `Bearer ${user?.token}`
-    }
-  });
-console.log('response.data',response.data);
-setAllDoneOrders(response.data);
+
+  try {
+    setIsLoading(true);
+    const response = await instance.get(url+'/doneOrders',{
+      headers: {
+        authorization: `Bearer ${user?.token}`
+      }
+    });
+    setIsLoading(false);
+  setAllDoneOrders(response.data);
+    
+  } catch (error) {
+    console.error('Error while getting done orders',error.message);
+
+  }
 }
   useEffect(()=>{
 if (user) fetchAllDoneOrders();
@@ -58,11 +67,14 @@ if (user) fetchAllDoneOrders();
             <div className='intro'>All Done Orders</div>
           </div>
           <section className='bigContainer'>
-            {allDoneOrders.map((order, idx) => {
+            {!isLoading && allDoneOrders.map((order, idx) => {
               return (
                   <Order order={order} from={'done'} idx={idx} key={order.orderId} />
               );
             })}
+
+{isLoading && <div className='loading-state-container'><LoadingState/></div> }
+
           </section>
         </div>
       </div>
