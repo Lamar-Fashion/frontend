@@ -50,11 +50,11 @@ setIsLoading(false);
    
 
     // get favourite handler
-    const getFavouriteHandler = async(userId)=>{
-try {
-  setIsLoading(true);
-  
-  setTimeout(async() => {
+    const getFavouriteHandler = (userId)=>{
+      setIsLoading(true);
+      
+      setTimeout(async() => {
+    try {
 
     const response = await instance.get(url+`/favourite/${userId}`,{
       headers:{
@@ -66,13 +66,13 @@ console.log('response.data',response.data);
     setFavArray(response.data);
     dispatch(assignFavourite(response.data.length));
   setIsLoading(false);
-  }, 500);
-    
+  
 } catch (error) {
   console.error('Error while getting favourites',error.message);
   
 }
 
+}, 500);
      
 
     }

@@ -5,51 +5,66 @@ import {instance,url} from '../../../API/axios';
 import validateToken from '../../../helpers/validateToken';
 import { useDispatch } from 'react-redux';
 import {logOutAction,logInAction} from '../../../store/actions/index';
+import LoadingState from "../../Shared/LoadingState";
+import DualModal from "../../Shared/DualModal";
 
 function SignUp() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [firstName,setFirstName] = useState('');
   const [lastName,setLastName] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const [confirmedPass,setConfirmedPass] = useState('');
   const [validEmail,setValidEmail] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const signUpHandlerOnSubmit = async(e)=>{
-    try {
-      e.preventDefault();
-      console.log('from on submit');
-  const newUser = await instance.post(url+'/signup',{firstName,lastName,email,password});
-  console.log('newUser',newUser.data);
- const user= validateToken(newUser.data.token);
- if (user) {
-   dispatch(logInAction(user));
-navigate('/Profile');
-window.scrollTo({
-  top: 0,
-  left: 0,
-  behavior: 'smooth',
-});
+  
 
- } else{
+  const signUpHandlerOnSubmit = (e)=>{
+    e.preventDefault();
+    setIsLoading(true);
 
-   dispatch(logOutAction());
-   navigate('/');
-   window.scrollTo({
+    setTimeout(async() => {
+      try {
+        console.log('from on submit');
+    const newUser = await instance.post(url+'/signup',{firstName,lastName,email,password});
+    setIsLoading(false);
+    console.log('newUser',newUser.data);
+   const user= validateToken(newUser.data.token);
+   if (user) {
+     dispatch(logInAction(user));
+  navigate('/Profile');
+  window.scrollTo({
     top: 0,
     left: 0,
     behavior: 'smooth',
   });
+  
+   } else{
+  
+     dispatch(logOutAction());
+     navigate('/');
+     window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  
+   }
+  
+    e.target.reset();
+        
+      } catch (error) {
 
- }
-
-  e.target.reset();
-      
-    } catch (error) {
-      console.error('error while signup new user', error);
-    }
+        error?.response?.data?.error ?  setError(error.response.data.error) : setError('error while sign up new user');
+        console.error('error while sign up new user', error);
+      }
+    }, 1000);
+   
   };
   const onChangeHandler = (e)=>{
 
@@ -117,9 +132,13 @@ if (e.target.name == 'confirmedpassword') setConfirmedPass(e.target.value);
               </div>
               <button type="submit" value="create an account" className={!firstName || !lastName || !email || !validEmail || !password || !confirmedPass || password !==  confirmedPass ? "submit disabled" :"submit"} > create an account</button>
           </form>
+      
+      {isLoading && !error && <div className='loading-state-container-signin'> <LoadingState/></div> }
+
         </div>
 
   </section>
+          {error && <DualModal type={'error'} navigateTo={'/SignUp'} text={error}/>}
             
         </>
     )

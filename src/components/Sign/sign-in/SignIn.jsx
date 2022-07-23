@@ -5,6 +5,8 @@ import validateToken from "../../../helpers/validateToken";
 import {useDispatch} from 'react-redux';
 import {instance,url} from '../../../API/axios';
 import {logInAction,logOutAction,assignFavourite} from '../../../store/actions/index';
+import LoadingState from "../../Shared/LoadingState";
+import DualModal from "../../Shared/DualModal";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -12,7 +14,9 @@ function SignIn() {
 
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
-const [validEmail,setValidEmail] = useState(false);
+  const [validEmail,setValidEmail] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
 const onChangeHandler =  (e)=>{
   if (e.target.name == 'email'){
@@ -31,23 +35,36 @@ const onChangeHandler =  (e)=>{
 
  // get favourite handler >> to get fav number for first time and before the user goes to his wishlist.
  const getFavouriteHandler = async(user,callback)=>{
-  const response = await instance.get(url+`/favourite/${user.id}`,{
-    headers:{
-      authorization:`Bearer ${user?.token}`
 
-    }
-  });
-  console.log('response.data.length',response.data.length);
-  dispatch(assignFavourite(response.data.length));
-
-  if(callback) callback();
+  try {
+    
+    setIsLoading(true);
+    const response = await instance.get(url+`/favourite/${user.id}`,{
+      headers:{
+        authorization:`Bearer ${user?.token}`
+  
+      }
+    });
+    setIsLoading(false);
+    dispatch(assignFavourite(response.data.length));
+  
+    if(callback) callback();
+  } catch (error) {
+    error?.response?.data?.error ?  setError(error.response.data.error) : setError('error while getting favourites');
+    console.error('error while getting favourites', error.message);
+    
+  }
 
 }
 
 
-  const signInHandler = async(e)=>{
+  const signInHandler = (e)=>{
+    e.preventDefault();
+    setIsLoading(true);
+
+    setTimeout(async() => {
+      
     try {
-      e.preventDefault();
   const loggedInUser = await instance.post(url+'/signin',{},{
     auth: {
       username:email,
@@ -57,6 +74,8 @@ const onChangeHandler =  (e)=>{
   console.log('loggedInUser',loggedInUser.data);
  const user= validateToken(loggedInUser.data.token);
  if (user) {
+  setIsLoading(false);
+
    dispatch(logInAction(user));
   getFavouriteHandler(user,()=>{
 
@@ -77,8 +96,10 @@ window.scrollTo({
 e.target.reset();
       
     } catch (error) {
-      console.error('error while signin user', error);
+      error?.response?.data?.error ?  setError(error.response.data.error) : setError('error while signing in');
+      console.error('error while signing in', error.message);
     }
+  }, 1000);
 
   };
 
@@ -126,10 +147,17 @@ e.target.reset();
                 onChange={onChangeHandler}
               />
             </div>
-            <button type="submit"  className={email && validEmail && password ? "submit active" : "submit"}>submit </button>
+            <button type="submit"  className={email && validEmail && password && !error && !isLoading? "submit active" : "submit"}>
+               submit
+             
+            </button>
           </form>
+      
+      
+          {isLoading && !error && <div className='loading-state-container-signin'> <LoadingState/></div> }
         </div>
       </div>
+      {error && <DualModal type={'error'} navigateTo={'/SignIn'} text={error}/>}
     </>
   );
 }

@@ -6,18 +6,18 @@ function LoadingState() {
     
 
     return(
-        <div class="loading-circular">
-        <div class="circular-group">
-          <div class="circular_1"></div>
-          <div class="circular_2"></div>
-          <div class="circular_3"></div>
-          <div class="circular_4"></div>
-          <div class="circular_5"></div>
-          <div class="circular_6"></div>
-          <div class="circular_7"></div>
-          <div class="circular_8"></div>
+        <div className="loading-circular">
+        <div className="circular-group">
+          <div className="circular_1"></div>
+          <div className="circular_2"></div>
+          <div className="circular_3"></div>
+          <div className="circular_4"></div>
+          <div className="circular_5"></div>
+          <div className="circular_6"></div>
+          <div className="circular_7"></div>
+          <div className="circular_8"></div>
         </div>
-        {/* <div class="text-loading">Loading Text</div> */}
+        {/* <div className="text-loading">Loading Text</div> */}
         </div>
     )
 }

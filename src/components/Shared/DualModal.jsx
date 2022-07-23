@@ -1,45 +1,55 @@
 import '../../styles/shared/dual-modal.css';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 
-function DualModal({type,navigateTo}) {
+function DualModal({type,navigateTo,text, showHeader}) {
     const navigate = useNavigate();
+    const location = useLocation();
 
 const closeSuccessModal = ()=>{
-navigate(navigateTo)
+    if (location.pathname == navigateTo) window.location.reload();
+    else navigate(navigateTo);
+
+}
+const closeErrorModal = ()=>{
+    console.log(location.pathname)  
+if (location.pathname == navigateTo) window.location.reload();
+else navigate(navigateTo);
 }
     return(
         <>
-        <div class="background">
-<div class="container">
-	{type == 'success' && <div class="row">
-		<div class="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
-			<div class="icon">
-				<span class="fa fa-check"></span>
-				{/* <span class="glyphicon glyphicon-ok"></span> */}
-                {/* <i class="fa-solid fa-check"></i> */}
+        <div className="background">
+<div className="container-dual-modal">
+	{type == 'success' && <div className="row">
+		<div className="modalbox success col-sm-8 col-md-6 col-lg-5 center animate">
+			<div className="icon">
+				<span className="fa fa-check"></span>
+				{/* <span className="glyphicon glyphicon-ok"></span> */}
+                {/* <i className="fa-solid fa-check"></i> */}
 			</div>
 			{/* <!--/.icon--> */}
 			<h1>Success!</h1>
 			<p>We've received your order
 				<br/>we will get in touch soon.</p>
-			<button type="button" onClick={closeSuccessModal} class="redo btn">Ok</button>
-			<span class="change"></span>
-			{/* <span class="change">-- Click to see opposite state --</span> */}
+			<button type="button" onClick={closeSuccessModal} className="redo btn">Ok</button>
+			<span className="change"></span>
+			{/* <span className="change">-- Click to see opposite state --</span> */}
 		</div>
 		{/* <!--/.success--> */}
 	</div>}
 	{/* <!--/.row--> */}
-	{ type == 'error' && <div class="row">
-		<div class="modalbox error col-sm-8 col-md-6 col-lg-5 center animate" >
-			<div class="icon">
-				<span class="glyphicon glyphicon-thumbs-down"></span>
+	{ type == 'error' && <div className="row">
+		<div className="modalbox error col-sm-8 col-md-6 col-lg-5 center animate" >
+			<div className="icon">
+				<span className="fas fa-times"></span>
 			</div>
 			{/* <!--/.icon--> */}
-			<h1>Oh no!</h1>
-			<p>Oops! Something went wrong,
-				<br/> you should try again.</p>
-			<button type="button" class="redo btn">Try again</button>
-			<span class="change">-- Click to see opposite state --</span>
+			{showHeader && <h1>Oops!</h1>}
+            
+			<p>{text.split('<br/>')[0]}
+				<br/>{text.split('<br/>')[1]}</p>
+			<button type="button" className="redo btn" onClick={closeErrorModal}>Try again</button>
+			<span className="change"></span>
+			{/* <span className="change">-- Click to see opposite state --</span> */}
 		</div>
 		{/* <!--/.success--> */}
 	</div>}

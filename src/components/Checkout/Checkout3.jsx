@@ -24,6 +24,7 @@ function Checkout3() {
   const [policy, setPolicy] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [orderDone, setOrderDone] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleCahnge = (e) => {
     setstate(e.target.value);
@@ -35,7 +36,6 @@ function Checkout3() {
 const makeOrderHandler = async (e)=>{
   e.preventDefault();
 if(isLoading || orderDone) return;
-  try {
   console.log('checkout_person_info',checkout_person_info);
   console.log('total',total);
   console.log('cartArray',cartArray);
@@ -47,24 +47,31 @@ if(isLoading || orderDone) return;
   }
   setIsLoading(true);
 setTimeout(async() => {
+  try {
+
   const bookedOrder = await instance.post(url+'/addToCart',bookedData);
   
   console.log('bookedOrder',bookedOrder);
   // sessionStorage.removeItem('checkout_person_info');
+  // sessionStorage.removeItem('cartNumber');
   sessionStorage.removeItem('cart');
   dispatch(resetCartAction());
-  // sessionStorage.removeItem('cartNumber');
   encryptAndSaveToStorage('total',0);
-  setOrderDone(true);
   setIsLoading(false);
+  setOrderDone(true);
 
   // sessionStorage.removeItem('total');
     // navigate('/Abaya');
-  
-}, 1000);
+    
   } catch (error) {
+    sessionStorage.removeItem('cart');
+    dispatch(resetCartAction());
+    encryptAndSaveToStorage('total',0);
+    // error.message ?  setError(error.message) : setError('book order error');
+    error?.response?.data?.error ?  setError(error.response.data.error) : setError('book order error');
     console.error('book order error',error.message)
   }
+}, 1000);
 }
   // console.log(policy);
   // console.log(state);
@@ -233,10 +240,11 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
                     </div>
 
                     {(state && policy && (
-                      <button  className={isLoading || orderDone ? "next not-place" : "next"} type="submit">
+                      <button  className={isLoading || orderDone || error ? "next not-place" : "next"} type="submit">
                         {!isLoading && !orderDone && 'complete order'}
                         {!isLoading && orderDone && 'Done'}
-                      {isLoading && <div className='loading-state-container'> <LoadingState/></div> }
+                        { error && 'Failed'}
+                      {isLoading && !error && <div className='loading-state-container'> <LoadingState/></div> }
                       </button>
                     )) || <div className="not-place"> complete order</div>}
                   </div>
@@ -284,8 +292,9 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
           </div>
         </div>
 
-        {orderDone && <DualModal type='success' navigateTo = '/Abaya'/>}
       </section>
+        {orderDone && <DualModal type='success' navigateTo = '/Abaya'/>}
+        {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

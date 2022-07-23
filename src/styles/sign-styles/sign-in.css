@@ -175,3 +175,12 @@
   font-weight: 600;
   transform: translateY(-3px);
 }
+
+.loading-state-container-signin{
+  position: absolute;
+  width: 100%;
+  transform: translateX(50%);
+  right: 50%;
+  top: 64%;
+
+}
