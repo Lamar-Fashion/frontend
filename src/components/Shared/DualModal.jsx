@@ -1,7 +1,7 @@
 import '../../styles/shared/dual-modal.css';
 import {useNavigate, useLocation} from 'react-router-dom';
 
-function DualModal({type,navigateTo,text, showHeader}) {
+function DualModal({type,navigateTo,text, showHeader,deleteHandler,setOpenDeletModal,setDeletedItem}) {
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -11,6 +11,12 @@ const closeSuccessModal = ()=>{
 
 }
 const closeErrorModal = ()=>{
+    if(setOpenDeletModal && setDeletedItem) {
+        setDeletedItem(null);
+         setOpenDeletModal(false);
+         return;
+    
+    };
     console.log(location.pathname)  
 if (location.pathname == navigateTo) window.location.reload();
 else navigate(navigateTo);
@@ -28,8 +34,8 @@ else navigate(navigateTo);
 			</div>
 			{/* <!--/.icon--> */}
 			<h1>Success!</h1>
-			<p>We've received your order
-				<br/>we will get in touch soon.</p>
+			<p>{text.split('<br/>')[0]}
+				<br/>{text.split('<br/>')[1]}</p>
 			<button type="button" onClick={closeSuccessModal} className="redo btn">Ok</button>
 			<span className="change"></span>
 			{/* <span className="change">-- Click to see opposite state --</span> */}
@@ -47,7 +53,9 @@ else navigate(navigateTo);
             
 			<p>{text.split('<br/>')[0]}
 				<br/>{text.split('<br/>')[1]}</p>
-			<button type="button" className="redo btn" onClick={closeErrorModal}>Try again</button>
+			{ !deleteHandler && <button type="button" className="redo btn" onClick={closeErrorModal}>Try again</button>}
+			{ deleteHandler && <button type="button" className="redo btn left-button" onClick={deleteHandler}>Delete</button>}
+			{ deleteHandler && <button type="button" className="redo btn" onClick={closeErrorModal}>Cancel</button>}
 			<span className="change"></span>
 			{/* <span className="change">-- Click to see opposite state --</span> */}
 		</div>

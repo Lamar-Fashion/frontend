@@ -4,17 +4,21 @@ import { useNavigate, Link } from 'react-router-dom';
 import {instance,url} from '../../../API/axios';
 import {useSelector} from 'react-redux';
 import LoadingState from '../../Shared/LoadingState';
+import DualModal from '../../Shared/DualModal';
 
 
 function AllUsers() {
   const user = useSelector((state)=> state.authReducer.user);
   const [allUsers, setAllUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
     // fetch all users handler
-const fetchAllUsersHandler = async()=>{
+const fetchAllUsersHandler = ()=>{
+  setIsLoading(true);
+  setTimeout(async() => {
+    
   try {
-    setIsLoading(true);
 
       const response = await instance.get(url+'/users',{
         headers: {
@@ -25,8 +29,10 @@ const fetchAllUsersHandler = async()=>{
       setAllUsers(response.data);
       
   } catch (error) {
+    error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while getting all users');
     console.error('Error while getting all users',error.message);
   }
+}, 500);
   
 }
   useEffect(() => {
@@ -59,10 +65,10 @@ const fetchAllUsersHandler = async()=>{
               <h4 className='hero-text'>All Users</h4>
             </div>
           </div>
-          <div className='pageIntro'>
+        { !isLoading &&  <div className='pageIntro'>
             <div className='total-number'>All Users: {allUsers.length}</div>
             <div className='intro'>All Regestered Users</div>
-          </div>
+          </div>}
           <section className='bigContainer'>
             {!isLoading && allUsers.map((user, idx) => {
               return (
@@ -81,6 +87,8 @@ const fetchAllUsersHandler = async()=>{
           </section>
         </div>
       </div>
+      
+        {error && <DualModal type='error' navigateTo = '/AllUsers' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

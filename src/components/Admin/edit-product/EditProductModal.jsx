@@ -9,6 +9,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useSelector } from 'react-redux';
 import { instance,url } from "../../../API/axios";
 import { Link,useNavigate } from 'react-router-dom';
+import LoadingState from "../../Shared/LoadingState";
+import DualModal from "../../Shared/DualModal";
 
 const theme = createTheme({
   breakpoints: {
@@ -93,6 +95,10 @@ function EditProductModal({abaya, setOpenEditProduct, openEditProduct }) {
   const [productData, setProductData] = useState(abaya);
   const [isValid, setIsValid] = useState(false);
   const [addToHomePage, setAddToHomePage] = useState(abaya.addToHomePage);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [orderDone, setOrderDone] = useState(false);
+
 console.log('addToHomePage',addToHomePage);
   // did mount
   useEffect(() => {
@@ -134,20 +140,28 @@ console.log('addToHomePage',addToHomePage);
   };
 
   // onSubmit function
-  const submitHandler = async (e) => {
+  const submitHandler =  (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    setTimeout(async() => {
+      
     try {
-      e.preventDefault();
 const editedAbaya = await instance.put(url+`/product${productData.id}`,productData,{
   headers: {
     authorization: `Bearer ${user.token}`
   }
 });
-
-      setOpenEditProduct(false);
-      navigate(0);
-      } catch (e) {
-      console.log("Edit Product Error", e.message);
+setIsLoading(true);
+setOrderDone(true);
+      // setOpenEditProduct(false);
+      // navigate(0);
+      } catch (error) {
+        error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while editing product');
+      console.log("Edit Product Error", error.message);
     }
+  }, 1000);
+
   };
 
 
@@ -346,6 +360,12 @@ if (e.target.value === 'false') {
               {!isValid && <p>you didn't edit anything yet!</p>}
             </div>
           </Box>
+          {isLoading &&  !error && <section className='progress-container'>
+     <LoadingState/>
+          </section>}
+
+          {orderDone  && <DualModal type='success' navigateTo = '/Abaya' showHeader={true} text={"your product has been updated successfully"}/>}
+        {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
         </ThemeProvider>
       </Modal>
     </>

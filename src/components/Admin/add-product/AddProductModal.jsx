@@ -9,6 +9,8 @@ import { storage } from '../../../firebase';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {instance,url} from '../../../API/axios';
 import { useSelector } from 'react-redux';
+import ProgressState from '../../Shared/ProgressState';
+import DualModal from '../../Shared/DualModal';
 
 const theme = createTheme({
   breakpoints: {
@@ -87,6 +89,11 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
   const [images, setImages] = useState({});
   const [isValid, setIsValid] = useState(false);
   const [addToHomePage, setAddToHomePage] = useState(null);
+  const [imgUploadPerecentage, setImgUploadPerecentage] = useState(0);
+  const [indexOfUploadedIMG, setIndexOfUploadedIMG] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [orderDone, setOrderDone] = useState(false);
 
   // handle change for colors selection
   const colorsHandleChange = (selected) => {    
@@ -103,15 +110,17 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
 
   // onSubmit function
   const submitHandler =  (e) => {
-    try {
-      e.preventDefault();
+    e.preventDefault();
+      setIsLoading(true);
+
          let counter = 0;
+         let indexImgCounter = 0;
+         let maxPrgressValue = 0;
       // this part to upload the images into Firebase
       for (const [key, value] of Object.entries(images)) {
-        // to handle 'unknown error', its uploading two extra images: undefined & item'
-        // if (value.name == undefined) {
-        //   break;
-        // }
+        indexImgCounter++;
+
+
         const file = value;
         const directory = 'products';
         const currentdate = new Date();
@@ -125,6 +134,8 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
           (snapshot) => {
             //   Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+           if(maxPrgressValue < Number(progress).toFixed(0)) maxPrgressValue = Number(progress).toFixed(0);
+           if (maxPrgressValue > imgUploadPerecentage ) setImgUploadPerecentage(maxPrgressValue);
             console.log('Upload is ' + progress + '% done');
             switch (snapshot.state) {
               case 'paused':
@@ -137,30 +148,37 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
             }
           },
           (error) => {
-            switch (error.code) {
-              case 'storage/unauthorized':
-                //   User doesn't have permission to access the object
-                break;
-              case 'storage/canceled':
-                //   User canceled the upload
-                break;
-              case 'storage/unknown':
-                //   Unknown error occurred, inspect error.serverResponse
-                break;
-              default:
-            }
+            console.log('errorr firebase',error);
+            error?.code ?  setError(error.code) : setError('Uploading images Firebase Error!');
+            return;
+            // switch (error.code) {
+            //   case 'storage/unauthorized':
+            //     //   User doesn't have permission to access the object
+            //     break;
+            //   case 'storage/canceled':
+            //     //   User canceled the upload
+            //     break;
+            //   case 'storage/unknown':
+            //     //   Unknown error occurred, inspect error.serverResponse
+            //     break;
+            //   default:
+            // }
           },
           () => {
+        setIndexOfUploadedIMG(indexImgCounter);
+
             //   Upload completed successfully, now we can get the download URL
             storageRef.getDownloadURL().then(async(downloadURL) => {
+              try {
+              
               counter++;
               console.log('File available at', downloadURL);
               productData.productIamges.push(downloadURL);
-
+              
               if (counter == Object.keys(images).length) {
                 // console.log('key',key);
 
-                setOpenAddProduct(false);
+                // setOpenAddProduct(false);
                 console.log('this obj ready to go to the backend: productData', productData);
           
                 // send req to backend
@@ -169,27 +187,31 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
               authorization: `Bearer ${user.token}`,
             },
           });
-          
+          setOrderDone(true);
+          setIsLoading(false);
                 console.log('added product',addedProduct);
           
-                // reset all states
-                setProductData({ productIamges: [] });
-                setImages({});
-                setIsValid(false);
-                setColorsSelected([]);
-                setSizesSelected([]);
-                console.log('all uploaded');
-                window.location.reload();
+                 //success Modal will reset all states, by reloading the page.
+                
+                // setProductData({ productIamges: [] });
+                // setImages({});
+                // setIsValid(false);
+                // setColorsSelected([]);
+                // setSizesSelected([]);
+                // console.log('all uploaded');
+                // window.location.reload();
               }
+            } catch (error) {
+              error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while adding product');
+              console.log('Error while adding product', error.message);
+            } 
             });
           }
         );
       }
 
    
-    } catch (e) {
-      console.log('ADD Product Error', e.message);
-    }
+  
   };
 
   // validate file type, accept only images (jpg, jpeg, png)
@@ -261,6 +283,10 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
     setAddToHomePage(null)
     setColorsSelected([]);
     setSizesSelected([]);
+    setOrderDone(false);
+    setIsLoading(false);
+    setImgUploadPerecentage(0);
+    setIndexOfUploadedIMG(1);
   }
   return (
     <>
@@ -367,6 +393,20 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
               {!isValid && <p>You must fill the form..</p>}
             </div>
           </Box>
+          {isLoading &&  !error && <section className='progress-container'>
+<span>uploading images</span>
+<div className='flex-row'>
+
+      <ProgressState count={imgUploadPerecentage} style={
+         { opacity: 1,
+          width: `${imgUploadPerecentage}%`}
+        }/>
+        <span>{indexOfUploadedIMG}/{Object.keys(images).length}</span>
+</div>
+          </section>}
+
+          {orderDone  && <DualModal type='success' navigateTo = '/Abaya' showHeader={true} text={"your product has been added successfully"}/>}
+        {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
         </ThemeProvider>
       </Modal>
     </>

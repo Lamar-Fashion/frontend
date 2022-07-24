@@ -23,8 +23,8 @@ function Checkout3() {
   const [state, setstate] = useState("");
   const [policy, setPolicy] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [orderDone, setOrderDone] = useState(false);
   const [error, setError] = useState(null);
+  const [orderDone, setOrderDone] = useState(false);
 
   const handleCahnge = (e) => {
     setstate(e.target.value);
@@ -67,7 +67,7 @@ setTimeout(async() => {
     sessionStorage.removeItem('cart');
     dispatch(resetCartAction());
     encryptAndSaveToStorage('total',0);
-    // error.message ?  setError(error.message) : setError('book order error');
+    
     error?.response?.data?.error ?  setError(error.response.data.error) : setError('book order error');
     console.error('book order error',error.message)
   }
@@ -293,7 +293,7 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
         </div>
 
       </section>
-        {orderDone && <DualModal type='success' navigateTo = '/Abaya'/>}
+        {orderDone && <DualModal type='success' navigateTo = '/Abaya' text={"We've received your order<br/>we will get in touch soon."}/>}
         {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );

@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import {instance,url} from '../../../API/axios';
 import {useSelector} from 'react-redux';
 import LoadingState from '../../Shared/LoadingState';
+import DualModal from '../../Shared/DualModal';
 
 
 function RejectedOrders() {
@@ -12,12 +13,14 @@ function RejectedOrders() {
 
   const [allRejectedOrders, setAllRejectedOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // fetch all rejected orders handler
-const fetchAllRejectedOrders = async()=>{
-
+const fetchAllRejectedOrders = ()=>{
+  setIsLoading(true);
+setTimeout(async() => {
+  
   try {
-    setIsLoading(true);
       const response = await instance.get(url+'/rejectedOrders',{
         headers: {
           authorization: `Bearer ${user?.token}`
@@ -27,9 +30,12 @@ const fetchAllRejectedOrders = async()=>{
     setAllRejectedOrders(response.data);
       
   } catch (error) {
+    error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while getting rejected orders');
     console.error('Error while getting rejected orders',error.message);
 
   }
+}, 500);
+
 }
   useEffect(()=>{
 if (user) fetchAllRejectedOrders();
@@ -61,12 +67,12 @@ if (user) fetchAllRejectedOrders();
               <h4 className='hero-text'>Rejected Orders </h4>
             </div>
           </div>
-          <div className='pageIntro'>
+        {!isLoading &&  <div className='pageIntro'>
             <div className='total-number'>
-              All Rejected Orders: <span>{allRejectedOrders.length}</span>
+            Total: <span>{allRejectedOrders.length}</span>
             </div>
             <div className='intro'>All Rejected Orders</div>
-          </div>
+          </div>}
           <section className='bigContainer'>
             {!isLoading && allRejectedOrders.map((order, idx) => {
               return (
@@ -78,6 +84,7 @@ if (user) fetchAllRejectedOrders();
           </section>
         </div>
       </div>
+      {error && <DualModal type='error' navigateTo = '/RejectedOrders' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

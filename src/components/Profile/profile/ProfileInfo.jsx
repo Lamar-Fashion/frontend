@@ -8,6 +8,8 @@ import {instance,url} from '../../../API/axios';
 import validateToken from '../../../helpers/validateToken';
 import {logInAction,logOutAction} from '../../../store/actions/index';
 import {useNavigate} from 'react-router-dom';
+import LoadingState from '../../Shared/LoadingState';
+import DualModal from '../../Shared/DualModal';
 
 function ProfileInfo() {
   const dispatch = useDispatch();
@@ -25,6 +27,9 @@ function ProfileInfo() {
   const [validEmail,setValidEmail] = useState(true);
   const [newPassword,setNewPassword] = useState('');
   const [confirmedNewPass,setConfirmedNewPass] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [orderDone, setOrderDone] = useState(false);
 
   //validate submit
   const validateSubmit=()=>{
@@ -74,8 +79,9 @@ if (e.target.name == 'confirmedNewPass') setConfirmedNewPass(e.target.value);
   }
 
   // on submit handler
-  const editProfileInfoOnSubmit = async (e)=>{
+  const editProfileInfoOnSubmit =  (e)=>{
     e.preventDefault();
+    setIsLoading(true);
 
     let updatedUser = {};
 
@@ -84,7 +90,8 @@ if (e.target.name == 'confirmedNewPass') setConfirmedNewPass(e.target.value);
         firstName,
         lastName,
         email,
-        password:newPassword
+        password:newPassword,
+        oldPassword
       }
     } else {
       updatedUser ={
@@ -93,41 +100,48 @@ if (e.target.name == 'confirmedNewPass') setConfirmedNewPass(e.target.value);
         email,
       }
     }
-try {
-  //send req to DB and uodate user
-  const response = await instance.put(url+'/user'+user.id, updatedUser,{
-    headers: {
-      Authorization: `Bearer ${user.token}`
-    }
-  });
-  console.log('response.data',response);
-  const validatedUser = validateToken(response?.data?.user?.token);
-  if(validatedUser){
-    dispatch(logInAction(validatedUser));
-    navigate('/Profile');
-    window.location.reload();
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-  } 
-  else{
-    
-    dispatch(logOutAction());
-    navigate('/');
-    window.location.reload();
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
+console.log('updatedUser',updatedUser);
+    setTimeout(async() => {
+      try {
+        //send req to DB and uodate user
+        const response = await instance.put(url+'/user'+user.id, updatedUser,{
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          }
+        });
+        setOrderDone(true);
+        setIsLoading(false);
 
-  } 
+        const validatedUser = validateToken(response?.data?.user?.token);
+        if(validatedUser){
+          dispatch(logInAction(validatedUser));
+          // navigate('/Profile');
+          // window.location.reload();
+          // window.scrollTo({
+          //   top: 0,
+          //   left: 0,
+          //   behavior: 'smooth',
+          // });
+        } 
+        else{
+          
+          dispatch(logOutAction());
+          // navigate('/');
+          // window.location.reload();
+          // window.scrollTo({
+          //   top: 0,
+          //   left: 0,
+          //   behavior: 'smooth',
+          // });
+      
+        } 
+      
+      } catch (error) {
+        error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while updating user');
+        console.error('Error while updating user',error)
+      }
+    }, 1000);
 
-} catch (error) {
-  console.error('Error while updating user',error)
-}
   }
   return (
     <>
@@ -194,16 +208,19 @@ try {
 
                 <input type='password' name='oldPassword' id='oldPassword' placeholder='Old password'  onChange={onChangeHandler}  />
               </div>
+                {isCorrectPassword &&
+                  <>
               <div className='input-pass'>
               <i className="fas fa-unlock"></i>
 
-                <input type='password' name='newPassword' id='newPassword' placeholder='New password'  onChange={onChangeHandler}  />
+                  <input type='password' name='newPassword' id='newPassword' placeholder='New password'  onChange={onChangeHandler}  />
               </div>
               <div className='input-pass'>
               <i className="fas fa-unlock"></i>
 
-                <input type='password' name='confirmedNewPass' id='confirmedNewPass' placeholder='Confirm password'  onChange={onChangeHandler}  />
+                <input type='password' name='confirmedNewPass' id='confirmedNewPass' placeholder='Confirm New Password'  onChange={onChangeHandler}  />
               </div>
+                  </> }
              </>
               }
 
@@ -214,8 +231,11 @@ try {
             </>
 
           )}
+          {isLoading && !error && <div className='loading-state-container-profile'> <LoadingState/></div> }
         </div>
       </section>
+        {orderDone && <DualModal type='success' navigateTo = '/Profile' text={'your data has been updated!'}/>}
+        {error && <DualModal type='error' navigateTo = '/Profile' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

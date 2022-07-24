@@ -15,6 +15,8 @@ import {instance, url} from '../../../API/axios';
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../../helpers/CryptoJS';
 import {navigateAction,assignFavourite} from '../../../store/actions/index';
 import LoadingState from '../../Shared/LoadingState';
+import Alert from '@mui/material/Alert';
+import DualModal from '../../Shared/DualModal';
 
 
 const arralen =10;
@@ -32,9 +34,16 @@ function AbayaCards() {
   const pagesVisited = pageNumber * showItems;
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [orderDone, setOrderDone] = useState(false);
+  const [addedToFavItem, setAddedToFavItem] = useState(null);
+  const [deletedItem, setDeletedItem] = useState(null);
 
   const [allAbayas, setAllAbayas] = useState([]);
   const [displayedAbayas, setDisplayedAbayas] = useState([]);
+
+  const [openDeletModal, setOpenDeletModal] = useState(false);
+  const [message, setMessage] = useState(null);
   
   const handleOpenAddProduct = () => setOpenAddProduct(true);
   const handleOpenEditProduct = (id) =>{
@@ -43,14 +52,21 @@ function AbayaCards() {
     }
 
 //get all abayas
-const getAllAbayas = async ()=>{
+const getAllAbayas =  ()=>{
   setIsLoading(true);
 
   setTimeout(async() => {
-    const abayas = await instance.get(url+'/allProducts');
-    console.log('abayas',abayas);
-    setAllAbayas(abayas.data);
-    setIsLoading(false);
+    try {
+      const abayas = await instance.get(url+'/allProducts');
+      console.log('abayas',abayas);
+      setAllAbayas(abayas.data);
+      setIsLoading(false);
+      
+    } catch (error) {
+      error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while getting products');
+    console.error('Error while getting products',error.message);
+
+    }
     
   }, 500);
     
@@ -66,7 +82,7 @@ const getAllAbayas = async ()=>{
  
 // add to favourite handler
   const addToFavourite = async (item) => {
-    
+    setAddedToFavItem(item);
     try {
 
       //check if the user loggedn in or not 
@@ -78,15 +94,31 @@ const getAllAbayas = async ()=>{
             authorization: `Bearer ${user.token}`
           }
         });
-        console.log('addeddToFavourite',addeddToFavourite);
+        console.log('addeddToFavourite.data',addeddToFavourite.data);
+      if (addeddToFavourite?.data?.msg === 'already in your wishlist') {
+        setMessage('already in your wishlist');
+      }else{
+        setMessage(null);
         dispatch(assignFavourite(addeddToFavourite.data.abayaId.length));
+      }
+        setOrderDone(true);
+        window.scrollTo({
+          left: 0,
+          top: 0,
+          behavior: 'smooth',
+        });
+        setTimeout(() => {
+        setOrderDone(false);
+          
+        }, 3000);
       } else {
         // ask him to log-in or signup
         navigate('/SignIn')
       }
 
     } catch (error) {
-      console.error('Error while adding to favourite')
+      error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while adding to favourite');
+      console.error('Error while adding to favourite',error.message);
     }
   };
 
@@ -99,7 +131,7 @@ const getAllAbayas = async ()=>{
 
   // delete product handler
  async function deleteHnadler(item) {
-
+setIsLoading(true);
   try {
         // delete from backend
 const deletedProduct = await instance.delete(url+`/product${item.id}`,{
@@ -107,7 +139,6 @@ const deletedProduct = await instance.delete(url+`/product${item.id}`,{
     authorization: `Bearer ${user.token}`
   }
 });
-
 console.log('deleted product',deletedProduct.data);
 
     // delete the images from the firebase
@@ -117,6 +148,9 @@ console.log('deleted product',deletedProduct.data);
        console.log(`image #${i+1} deleted from firebas`);
       
     }
+setIsLoading(false);
+setDeletedItem(null);
+    setOpenDeletModal(false);
 
 console.log('all deleted');
 window.location.reload();
@@ -131,7 +165,8 @@ window.location.reload();
 // });
     
   } catch (error) {
-    console.error('delete product error',error.message)
+    error?.response?.data?.error ?  setError(error.response.data.error) : setError('delete product error');
+    console.error('delete product error',error.message);
   }
 
   }
@@ -192,7 +227,7 @@ window.location.reload();
               </div>
             </div>
           </Link>
-          {role === 'admin' && (
+          {role == 'admin' && (
             <div
               className='over-view edit'
               onClick={() => {
@@ -209,8 +244,10 @@ window.location.reload();
           {role === 'admin' && (
             <div
               className='over-view delete'
-              onClick={() => {
-                deleteHnadler(item);
+              onClick={() =>{
+                setDeletedItem(item);
+                setOpenDeletModal(true);
+
               }}
             >
               <div className='fav'>
@@ -344,7 +381,9 @@ window.location.reload();
               </div>
             </div>
           </div>
-
+          {addedToFavItem && orderDone && <Alert severity='success' id='alert'>
+              {message ? message : <> You added <strong>{addedToFavItem.code}</strong> to your <Link to='/Profile'>wishlist</Link></>}
+            </Alert>}
           <div className='lamar-container' id='abaya'>
             {!isLoading && displayedAbayas.length > 0 && displayedAbayas}
             {!isLoading && displayedAbayas.length == 0 && 'You have no products yet!'}
@@ -358,6 +397,8 @@ window.location.reload();
           </div>
         </section>
       </section>
+      {deletedItem && openDeletModal && <DualModal type='error' navigateTo = '/Abaya' text={`are you sure to delete this product: ${deletedItem.code} ?`} deleteHandler={()=>deleteHnadler(deletedItem)} setOpenDeletModal={setOpenDeletModal} setDeletedItem={setDeletedItem}/>}
+      {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

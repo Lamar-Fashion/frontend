@@ -5,18 +5,20 @@ import { useNavigate, Link } from 'react-router-dom';
 import {instance,url} from '../../../API/axios';
 import {useSelector} from 'react-redux';
 import LoadingState from '../../Shared/LoadingState';
+import DualModal from '../../Shared/DualModal';
 
 function DoneOrders() {
   const user = useSelector((state) => state.authReducer.user);
 
   const [allDoneOrders, setAllDoneOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // fetch all done orders handler
-const fetchAllDoneOrders = async()=>{
-
+const fetchAllDoneOrders = ()=>{
+  setIsLoading(true);
+setTimeout(async() => {
   try {
-    setIsLoading(true);
     const response = await instance.get(url+'/doneOrders',{
       headers: {
         authorization: `Bearer ${user?.token}`
@@ -26,9 +28,12 @@ const fetchAllDoneOrders = async()=>{
   setAllDoneOrders(response.data);
     
   } catch (error) {
+    error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while getting done orders');
     console.error('Error while getting done orders',error.message);
 
   }
+}, 500);
+
 }
   useEffect(()=>{
 if (user) fetchAllDoneOrders();
@@ -60,12 +65,12 @@ if (user) fetchAllDoneOrders();
               <h4 className='hero-text'>Done Orders </h4>
             </div>
           </div>
-          <div className='pageIntro'>
+         {!isLoading && <div className='pageIntro'>
             <div className='total-number'>
-              All Done Orders: <span>{allDoneOrders.length}</span>
+            Total: <span>{allDoneOrders.length}</span>
             </div>
             <div className='intro'>All Done Orders</div>
-          </div>
+          </div>}
           <section className='bigContainer'>
             {!isLoading && allDoneOrders.map((order, idx) => {
               return (
@@ -78,6 +83,7 @@ if (user) fetchAllDoneOrders();
           </section>
         </div>
       </div>
+      {error && <DualModal type='error' navigateTo = '/DoneOrders' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

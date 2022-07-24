@@ -9,7 +9,7 @@ import { addToCartAction } from '../../store/actions';
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 import {instance, url} from '../../API/axios';
 import {assignFavourite} from '../../store/actions/index';
-
+import DualModal from '../Shared/DualModal';
 
 
 function ProductDetails() {
@@ -17,11 +17,16 @@ function ProductDetails() {
   const navigate = useNavigate();
 
  const {user, isLoggedIn} = useSelector((state)=> state.authReducer);
-let obj =  decryptAndGetFromStorage('product');
-  console.log('objjjj from storage',obj);
-  let images = obj.images;
-  let firstImg = obj.images[0];
-  const [state, setstate] = useState(firstImg);
+ const [message, setMessage] = useState(null);
+ const [orderDone, setOrderDone] = useState(false);
+ const [addedToFavItem, setAddedToFavItem] = useState(null);
+ const [error, setError] = useState(null);
+ 
+ let obj =  decryptAndGetFromStorage('product');
+ 
+ let images = obj.images;
+ let firstImg = obj.images[0];
+ const [state, setstate] = useState(firstImg);
   let code = obj.code;
   let price = obj.price;
   let size = obj.sizes;
@@ -97,31 +102,48 @@ let obj =  decryptAndGetFromStorage('product');
   };
   const tall = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63];
 
-  // add to favourite handler
+// add to favourite handler
 const addToFavourite = async (item) => {
-    
+  setAddedToFavItem(item);
   try {
 
     //check if the user loggedn in or not 
-
     if (isLoggedIn) {
+
       // send to backend
       const addeddToFavourite = await instance.post(url+`/favourite`,{abayaId:item.id,userId:user.id},{
         headers:{
           authorization: `Bearer ${user.token}`
         }
       });
-      console.log('addeddToFavourite',addeddToFavourite);
+      console.log('addeddToFavourite.data',addeddToFavourite.data);
+    if (addeddToFavourite?.data?.msg === 'already in your wishlist') {
+      setMessage('already in your wishlist');
+    }else{
+      setMessage(null);
       dispatch(assignFavourite(addeddToFavourite.data.abayaId.length));
+    }
+      setOrderDone(true);
+      window.scrollTo({
+        left: 0,
+        top: 0,
+        behavior: 'smooth',
+      });
+      setTimeout(() => {
+      setOrderDone(false);
+        
+      }, 3000);
     } else {
       // ask him to log-in or signup
       navigate('/SignIn')
     }
 
   } catch (error) {
-    console.error('Error while adding to favourite')
+    error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while adding to favourite');
+    console.error('Error while adding to favourite',error.message);
   }
 };
+
   return (
     <>
       <section className='product-d'>
@@ -137,6 +159,7 @@ const addToFavourite = async (item) => {
         </div>
 
         <div className='nav-container'>
+          
           {(selectedProduct.size === false || selectedProduct.buttons === false || selectedProduct.color === false) && errorAlert && (
             <Alert severity='warning' id='alert'>
               You need to choose options for your item.
@@ -152,6 +175,9 @@ const addToFavourite = async (item) => {
               unfortunately this item doesn't exist right know
             </Alert>
           )}
+{addedToFavItem && orderDone && <Alert severity='success' id='alert'>
+              {message ? message : <> You added <strong>{addedToFavItem.code}</strong> to your <Link to='/Profile'>wishlist</Link></>}</Alert>}
+
         </div>
 
         <div className='lamar-container'>
@@ -343,6 +369,7 @@ const addToFavourite = async (item) => {
           </div>
         </div>
       </section>
+      {error && <DualModal type='error' navigateTo = '/ProductDetails' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

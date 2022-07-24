@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import {instance,url} from '../../../API/axios';
 import {useSelector} from 'react-redux';
 import LoadingState from '../../Shared/LoadingState';
+import DualModal from '../../Shared/DualModal';
 
 
 function PendingOrders() {
@@ -12,11 +13,15 @@ function PendingOrders() {
 
   const [allPendingOrders, setAllPendingOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // fetch all pending orders handler
-const fetchAllPendingOrders = async()=>{
-try {
+const fetchAllPendingOrders = ()=>{
   setIsLoading(true);
+
+  setTimeout(async() => {
+    
+try {
     const response = await instance.get(url+'/pendingOrders',{
       headers: {
         authorization: `Bearer ${user?.token}`
@@ -25,9 +30,11 @@ try {
     setIsLoading(false);
     setAllPendingOrders(response.data);
 } catch (error) {
+  error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while getting pending orders');
   console.error('Error while getting pending orders',error.message);
   
 }
+}, 500);
 
   
 }
@@ -60,12 +67,12 @@ if (user) fetchAllPendingOrders();
               <h4 className='hero-text'>Pending Orders </h4>
             </div>
           </div>
-          <div className='pageIntro'>
+         {!isLoading && <div className='pageIntro'>
             <div className='total-number'>
-              All Pending Orders: <span>{allPendingOrders.length}</span>
+              Total: <span>{allPendingOrders.length}</span>
             </div>
             <div className='intro'>All Pending Orders</div>
-          </div>
+          </div>}
           <section className='bigContainer'>
             {!isLoading && allPendingOrders.map((order, idx) => {
               return (
@@ -78,6 +85,7 @@ if (user) fetchAllPendingOrders();
           </section>
         </div>
       </div>
+      {error && <DualModal type='error' navigateTo = '/PendingOrders' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

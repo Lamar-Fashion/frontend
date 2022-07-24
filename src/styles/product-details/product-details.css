@@ -306,6 +306,7 @@
     font-size: 14px;
   }
 }
+
 .product-d .lamar-container .product-info .add-to-cart button {
   width: 140px;
   height: 40px;
@@ -319,6 +320,7 @@
   font-weight: 400;
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   transition: 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 .product-d .lamar-container .product-info .add-to-cart button:hover {
   background-color: var(--main-color-alt2);
@@ -338,6 +340,7 @@
   font-size: 24px;
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   transition: 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
 }
 .product-d .lamar-container .product-info .add-fav button:hover {
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.5);

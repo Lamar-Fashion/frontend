@@ -6,6 +6,7 @@ import {instance, url} from '../../../API/axios';
 import {useDispatch,useSelector} from 'react-redux';
 import {assignFavourite} from '../../../store/actions/index';
 import LoadingState from '../../Shared/LoadingState';
+import DualModal from '../../Shared/DualModal';
 
 function FavouriteItem() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function FavouriteItem() {
 
     const [favArray, setFavArray] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
      // delete favourite handler
      const deleteItem = async(item)=>{
@@ -26,9 +28,11 @@ function FavouriteItem() {
           }
         });
 setIsLoading(false);
+
         getFavouriteHandler(user.id);
 
       } catch (error) {
+        error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while delete favourite');
         console.error('Error while delete favourite',error.message);
       }
 // const deletedId = item.id;
@@ -62,12 +66,12 @@ setIsLoading(false);
   
       }
     });
-console.log('response.data',response.data);
     setFavArray(response.data);
     dispatch(assignFavourite(response.data.length));
   setIsLoading(false);
   
 } catch (error) {
+  error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while getting favourites');
   console.error('Error while getting favourites',error.message);
   
 }
@@ -139,7 +143,7 @@ console.log('response.data',response.data);
             {isLoading && <div className='loading-state-container'><LoadingState/></div> }
         </section>
            
-            
+        {error && <DualModal type='error' navigateTo = '/Profile' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
         </>
     )
 }

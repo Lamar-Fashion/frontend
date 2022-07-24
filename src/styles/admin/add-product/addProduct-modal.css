@@ -164,3 +164,26 @@
  .form-container label{
   color: gray;
  }
+
+ .progress-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  justify-content: center;
+  left: 0;
+  background-color: #0000007d;
+  align-items: center;
+  font-size: x-large;
+  font-weight: 700;
+  gap: 20px;
+ }
+
+ .flex-row{
+display: flex;
+flex-direction: row;
+align-items: center;
+gap: 10px;
+ }
