@@ -153,7 +153,7 @@
 }
 
 .product-d .lamar-container .product-info .name-p h2 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   text-transform: capitalize;
   color: var(--text-color);
@@ -175,6 +175,8 @@
 }
 .product-d .lamar-container .product-info .name-p .price p span {
   font-weight: 500;
+  font-size: 16px;
+
 }
 .product-d .lamar-container .product-info .size-color {
   display: flex;
@@ -232,6 +234,7 @@
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.15);
   transition: 0.3s, transform 0.3s, box-shadow 0.3s;
   position: relative;
+  cursor: pointer;
 }
 .product-d .lamar-container .product-info .size-color .color-detail {
   display: flex;
@@ -361,7 +364,7 @@
 .product-d .error-alert {
   color: red;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 14px;
   text-transform: capitalize;
   transition: 0.3s;
 }

@@ -393,3 +393,12 @@
 #abaya{
   min-height: 250px;
 }
+
+.loading-state-abaya{
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateY(50px);
+}

@@ -260,6 +260,9 @@
   color: black;
   cursor: pointer;
 }
+.cart-lamar .cart-table-body-r .actions i:hover{
+  color: red;
+}
 
 .cart-lamar .lamar-container .summary{
   flex: 1;

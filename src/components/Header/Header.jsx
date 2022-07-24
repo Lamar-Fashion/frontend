@@ -534,8 +534,11 @@ function Header() {
                     }}
                   >
                     <a className='a-sign' >
-                      sign-in <i className='fas fa-sign-in-alt header-icons profile'></i>
+                       <i className='fas fa-sign-in-alt header-icons profile'></i>
                     </a>
+                    {/* <a className='a-sign' >
+                      sign-in <i className='fas fa-sign-in-alt header-icons profile'></i>
+                    </a> */}
                    </Link>
                 )}
                 {isLoggedIn && (
@@ -550,8 +553,11 @@ function Header() {
                   //   }}
                   // >
                     <a className='a-sign' onClick={logoutHandler}>
-                      sign-out <i className='fas fa-sign-out-alt header-icons profile'></i>
+                       <i className='fas fa-sign-out-alt header-icons profile'></i>
                     </a>
+                    // <a className='a-sign' onClick={logoutHandler}>
+                    //   sign-out <i className='fas fa-sign-out-alt header-icons profile'></i>
+                    // </a>
                   // </Link>
                 )}
               </li>

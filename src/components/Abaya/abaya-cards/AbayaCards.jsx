@@ -334,7 +334,7 @@ window.location.reload();
             </div>
           </div>
         </div>
-        <section className='abaya-cards' id='Abaya'>
+     { !isLoading &&   <section className='abaya-cards' id='Abaya'>
           <div className='nav-container'>
             <div className='nav-info'>
               <div className='left-info'>
@@ -387,7 +387,6 @@ window.location.reload();
           <div className='lamar-container' id='abaya'>
             {!isLoading && displayedAbayas.length > 0 && displayedAbayas}
             {!isLoading && displayedAbayas.length == 0 && 'You have no products yet!'}
-            {isLoading && <LoadingState/>}
           </div>
 
           <div className='pagaination'>
@@ -395,10 +394,12 @@ window.location.reload();
               <Pagination count={pageCount} color='secondary' onChange={changePage} />
             )}
           </div>
-        </section>
+        </section>}
       </section>
       {deletedItem && openDeletModal && <DualModal type='error' navigateTo = '/Abaya' text={`are you sure to delete this product: ${deletedItem.code} ?`} deleteHandler={()=>deleteHnadler(deletedItem)} setOpenDeletModal={setOpenDeletModal} setDeletedItem={setDeletedItem}/>}
       {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
+      {isLoading && <div className='loading-state-abaya'><LoadingState/></div> }
+
     </>
   );
 }

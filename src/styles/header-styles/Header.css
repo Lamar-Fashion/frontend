@@ -153,7 +153,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: width 1s linear;
+  animation: width 0.5s linear;
   /* transition-delay: width 0.25s; */
   padding-top: 75px;
 }
@@ -516,7 +516,7 @@
   color: black;
   width: 100%;
   overflow: hidden;
-  font-size: 16.5px;
+  font-size: 14px;
   /* transition: var(--main-transition) linear; */
   transition: 0.3s ease-in-out 0.1s color ease-in-out;
   cursor: pointer;
@@ -524,17 +524,17 @@
 }
 @media (min-width: 769px) and (max-width: 991px) {
   .header .lamar-container .main-nav > li > a > a {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 .header .lamar-container .main-nav > li > a > a:hover {
-  font-weight: 650;
+  font-weight: 450;
   /* padding-top: 5px; */
-  font-size: 19px;
+  font-size: 16px;
   /* color: white; */
   /* text-shadow: 0.2px 1px 1px black; */
   /* transform: rotateX(50deg); */
-  color: rgba(83, 83, 83, 0.603);
+  /* color: rgba(83, 83, 83, 0.603); */
 }
 
 .header .lamar-container .main-nav > li > a > a > i {
@@ -647,6 +647,8 @@
 @media (max-width: 530px) {
   .header .lamar-container .rightContainer {
     height: 70px !important;
+    position: relative;
+    top: 3.5px;
   }
 }
 @media (max-width: 768px) {
@@ -711,8 +713,8 @@
   background-color: transparent;
   border: none;
   outline: none;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 300;
+  font-size: 13px;
   /* transition: 0.8s; */
   border-bottom: 1px solid;
   cursor: auto;
@@ -799,7 +801,7 @@
   color: var(--main-transition);
   position: absolute;
   right: 0px;
-  top: 26px;
+  top: 25px;
   font-size: 14px;
   margin: 0;
   font-weight: bold;
@@ -813,7 +815,12 @@
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.582);
 }
-
+@media (max-width: 530px) {
+  .header .lamar-container .rightContainer .right-nav a .number {
+    position: absolute; 
+    right: -4px;
+  }
+}
 .header .lamar-container .rightContainer .right-nav .cart {
   border: black 1px solid;
   border-radius: 5px;
@@ -857,7 +864,7 @@
   align-items: center;
   gap: 2px;
   color: black;
-  width: 95px;
+  margin-left: 15px;
 }
 .header .lamar-container .rightContainer .right-nav .profile {
   cursor: pointer;

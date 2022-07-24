@@ -21,6 +21,7 @@ function ProductDetails() {
  const [orderDone, setOrderDone] = useState(false);
  const [addedToFavItem, setAddedToFavItem] = useState(null);
  const [error, setError] = useState(null);
+//  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
  
  let obj =  decryptAndGetFromStorage('product');
  
@@ -86,18 +87,22 @@ function ProductDetails() {
 
     // update redux with cart number
     dispatch(addToCartAction());
+    setSelectedProduct({
+      ...obj,
+      size: false,
+      color: false,
+      buttons: false,
+      tall: false,
+      quantity: 1,
+    });
+    setSelectedStyleSize({ show: false, id: '' });
+    setSelectedStyleTall({ show: false, id: '' });
+    setSelectedStyleColor({ show: false, id: '' });
+
+
     setTimeout(() => {
-      setSelectedProduct({
-        ...obj,
-        size: false,
-        color: false,
-        buttons: false,
-        tall: false,
-        quantity: 1,
-      });
-      setSelectedStyleSize({ show: false, id: '' });
-      setSelectedStyleTall({ show: false, id: '' });
-      setSelectedStyleColor({ show: false, id: '' });
+    setSeccessAlert(false);
+
     }, 2000);
   };
   const tall = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63];
@@ -165,7 +170,7 @@ const addToFavourite = async (item) => {
               You need to choose options for your item.
             </Alert>
           )}
-          {selectedProduct.size && selectedProduct.buttons && selectedProduct.color && seccessAlert && (
+          {seccessAlert && (
             <Alert severity='success' id='alert'>
               You added <strong>{code}</strong> to your <Link to='/Cart'>shopping cart</Link>
             </Alert>
@@ -208,7 +213,7 @@ const addToFavourite = async (item) => {
           <div className='product-info'>
             <div className='name-p'>
               <h2>
-                product Num : <span>{code}</span>
+                product code : <span>{code}</span>
               </h2>
 
               <div className='price'>

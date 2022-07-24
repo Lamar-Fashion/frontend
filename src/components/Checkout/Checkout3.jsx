@@ -67,7 +67,7 @@ setTimeout(async() => {
     sessionStorage.removeItem('cart');
     dispatch(resetCartAction());
     encryptAndSaveToStorage('total',0);
-    
+
     error?.response?.data?.error ?  setError(error.response.data.error) : setError('book order error');
     console.error('book order error',error.message)
   }
@@ -223,7 +223,7 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
                         onClick={handlePolicy}
                       />
                       <label htmlFor="place-order">
-                        I agree to the
+                        <span>I agree to the </span>
                         <Link
                           to="/DeliveryPolicy"
                           onClick={() => {
@@ -234,7 +234,7 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
                             });
                           }}
                         >
-                          Terms & Conditions
+                           Terms & Conditions
                         </Link>
                       </label>
                     </div>
