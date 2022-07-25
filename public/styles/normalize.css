@@ -7,8 +7,10 @@
   font-family: 'Alegreya', serif;
   margin: 0;
   padding: 0;
-/* this to remove highlight blue color when clicking any button on phone */
+/* this to remove highlight blue color when clicking buttons */
   -webkit-tap-highlight-color: transparent; 
+  /* this for Safari */
+  outline: none;
 }
 :root {
   /* --main-color-alt: #5fd4da; */
