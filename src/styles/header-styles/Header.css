@@ -480,6 +480,8 @@
   top: 5px;
   transform: translateX(-50%);
   cursor: pointer;
+  z-index: 6;
+
 }
 
 /* left side*/
@@ -731,7 +733,6 @@
 }
 .header .lamar-container .rightContainer .searchContainer .hidden-input {
   visibility: hidden;
-
   animation: search-input-back 0.5s linear;
 }
 
@@ -746,7 +747,6 @@
   }
   100% {
     visibility: hidden;
-
     width: 0px;
   }
 }
