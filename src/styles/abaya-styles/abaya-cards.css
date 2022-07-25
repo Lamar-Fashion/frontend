@@ -111,7 +111,7 @@
 }
 @media (max-width: 530px) {
   .abaya-cards .nav-info .left-info {
-    gap: 15px;
+    gap: 5px;
     width: 100%;
   }
 }

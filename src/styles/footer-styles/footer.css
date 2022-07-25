@@ -45,13 +45,16 @@
   font-size: 20px;
   transition: 0.5s;
   cursor: pointer;
+  border-radius: 7px;
+
 }
 .footer .box .social li a i {
   cursor: pointer;
 }
 @media(max-width:530px){
   .footer .box .social .facebook {
-    background-color: #1877f2;
+    /* background-color: #1877f2; */
+    background: linear-gradient(to right,#3949ab 0%,#2196f3 100%);
   }
   .footer .box .social .twitter {
     background-color: #1da1f2;
@@ -60,15 +63,36 @@
     background: linear-gradient(15deg, #ffb13d, #dd277b, #4d5ed4);
   }
 }
-
-.footer .box .social .facebook:hover {
-  background-color: #1877f2;
+@keyframes Gradient {
+  0% {
+      background-position: 50%;
+  }
+  50% {
+     background-position: 100% 50%;
+ }
+ 100% {
+     background-position: 0 50%;
+ }
 }
+.footer .box .social .facebook:hover {
+  /* background: linear-gradient(to right,#3949ab 0%,#2196f3 100%); */
+  box-shadow: 0 5px 8px rgba(26,35,126,0.50);
+     background: #3949ab;
+     background: linear-gradient(to right,#3949ab 0%,#2196f3 100%);
+     background-size: 400%;
+     animation: Gradient 1s ease infinite;
+}
+
 .footer .box .social .twitter:hover {
   background-color: #1da1f2;
 }
 .footer .box .social .instagram:hover {
-  background: linear-gradient(15deg, #ffb13d, #dd277b, #4d5ed4);
+  /* background: linear-gradient(15deg, #ffb13d, #dd277b, #4d5ed4); */
+  box-shadow: 0 5px 8px rgba(63,81,181,0.50);
+  background: #ffc107;
+  background: linear-gradient(to right,#ffc107 0%,#f50057 50%,#3f51b5 100%);
+  background-size: 400%;
+  animation: Gradient 1s ease infinite;
 }
 
 .footer .box .text {
