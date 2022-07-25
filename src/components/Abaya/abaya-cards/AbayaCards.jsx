@@ -55,7 +55,7 @@ const getAllAbayas =  ()=>{
       const abayas = await instance.get(url+'/allProducts');
       console.log('abayas',abayas);
       setAllAbayas(abayas.data);
-      // setIsLoading(false);
+      setIsLoading(false);
       
     } catch (error) {
       error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while getting products');
