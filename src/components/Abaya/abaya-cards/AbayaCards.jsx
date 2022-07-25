@@ -1,10 +1,5 @@
 import { React, useState, useEffect } from 'react';
 import '../../../styles/abaya-styles/abaya-cards.css';
-import { v4 as uuidv4 } from 'uuid';
-import lamar from '../../../images/brand/abaya.jpeg';
-import neo from '../../../images/brand/test/brand13.jpg';
-import ll from '../../../images/brand/test/brand11.jpg';
-import l2 from '../../../images/brand/IMGL4545.jpg';
 import { Link,useNavigate } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';
 import { useSelector ,useDispatch} from 'react-redux';
@@ -60,7 +55,7 @@ const getAllAbayas =  ()=>{
       const abayas = await instance.get(url+'/allProducts');
       console.log('abayas',abayas);
       setAllAbayas(abayas.data);
-      setIsLoading(false);
+      // setIsLoading(false);
       
     } catch (error) {
       error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while getting products');
@@ -395,10 +390,11 @@ window.location.reload();
             )}
           </div>
         </section>}
+        {isLoading && <div className='loading-state-abaya'><LoadingState/></div> }
       </section>
       {deletedItem && openDeletModal && <DualModal type='error' navigateTo = '/Abaya' text={`are you sure to delete this product: ${deletedItem.code} ?`} deleteHandler={()=>deleteHnadler(deletedItem)} setOpenDeletModal={setOpenDeletModal} setDeletedItem={setDeletedItem}/>}
       {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
-      {isLoading && <div className='loading-state-abaya'><LoadingState/></div> }
+    
 
     </>
   );

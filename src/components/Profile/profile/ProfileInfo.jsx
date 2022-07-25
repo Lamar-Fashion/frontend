@@ -176,7 +176,7 @@ console.log('updatedUser',updatedUser);
            <br/>
       
            {/* danger alert for incorrect inputs */}
-            <Stack sx={{ width: '290px',margin:"auto",position: "relative", top:"-25px" }} spacing={2}>
+            <Stack sx={{ width: '290px',margin:"auto",position: "relative", top:"-10px" }} spacing={2}>
       <Alert severity="error">{ !firstName ? 'Enter First name': !lastName ? 'Enter Last Name' : !email || !validEmail? 'invalid email' : (editPassword ? !isCorrectPassword ? "incorrect password" : false : false) }</Alert>
     
     </Stack>

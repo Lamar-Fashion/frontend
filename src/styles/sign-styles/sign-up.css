@@ -197,3 +197,12 @@
   font-weight: normal;
   transform: translateY(0);
 }
+
+.loading-state-container-signup{
+  position: absolute;
+  width: 100%;
+  transform: translateX(50%);
+  right: 50%;
+  top: 64%;
+
+}

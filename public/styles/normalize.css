@@ -77,7 +77,7 @@ ul {
   cursor: pointer;
   transition: 1s;
   border: 1px solid var(--main-color);
-  z-index: 2;
+  z-index: 3;
   cursor: pointer;
   animation: zz 1s linear infinite;
 }

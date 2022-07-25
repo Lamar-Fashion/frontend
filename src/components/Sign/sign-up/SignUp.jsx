@@ -133,7 +133,7 @@ if (e.target.name == 'confirmedpassword') setConfirmedPass(e.target.value);
               <button type="submit" value="create an account" className={!firstName || !lastName || !email || !validEmail || !password || !confirmedPass || password !==  confirmedPass ? "submit disabled" :"submit"} > create an account</button>
           </form>
       
-      {isLoading && !error && <div className='loading-state-container-signin'> <LoadingState/></div> }
+      {isLoading && !error && <div className='loading-state-container-signup'> <LoadingState/></div> }
 
         </div>
 
