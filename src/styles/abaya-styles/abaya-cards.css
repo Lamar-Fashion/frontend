@@ -117,7 +117,9 @@
 }
 .abaya-cards .nav-info .left-info .show-item {
   width: 120px;
-  height: 40px;
+  /* height: 40px; */
+  min-height: 40px;
+  max-height: max-content;
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   display: flex;
@@ -125,6 +127,7 @@
   justify-content: center;
   cursor: pointer;
   padding: 0 5px;
+  flex-wrap: wrap;
 }
 @media (max-width: 530px) {
   .abaya-cards .nav-info .left-info .show-item {
@@ -133,7 +136,9 @@
 }
 .abaya-cards .nav-info .left-info .sort-item {
   width: fit-content;
-  height: 40px;
+  /* height: 40px; */
+  min-height: 40px;
+  max-height: max-content;
   background-color: var(--main-color-alt);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   display: flex;
@@ -141,6 +146,7 @@
   justify-content: center;
   cursor: pointer;
   padding: 0 5px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 530px) {
@@ -152,6 +158,8 @@
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
+  margin: auto;
+
 }
 .abaya-cards .nav-info .left-info select {
   border: none;
@@ -160,6 +168,9 @@
   width: fit-content;
   cursor: pointer;
   background-color: var(--main-color-alt);
+  text-align: center;
+  margin: auto;
+
 }
 
 @media (max-width: 530px) {
@@ -167,7 +178,7 @@
     font-size: 14px;
   }
   .abaya-cards .nav-info .left-info select {
-    width: 50%;
+    /* width: 50%; */
   }
 }
 .abaya-cards .phone-filters {

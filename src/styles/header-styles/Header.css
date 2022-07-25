@@ -144,7 +144,7 @@
 }
 .header .vertical-nav-container {
   position: absolute;
-  background-color: rgba(245, 245, 245, 0.86);
+  background-color: rgba(245, 245, 245, 0.96);
   height: 100vh;
   width: 50%;
   /* transform: translateY(10vh); */
