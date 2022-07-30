@@ -181,7 +181,7 @@ const addToFavourite = async (item) => {
             </Alert>
           )}
 {addedToFavItem && orderDone && <Alert severity='success' id='alert'>
-              {message ? message : <> You added <strong>{addedToFavItem.code}</strong> to your <Link to='/Profile'>wishlist</Link></>}</Alert>}
+              {message ? message : <> You added <strong>{addedToFavItem.code}</strong> to your <Link to='/Profile/2'>wishlist</Link></>}</Alert>}
 
         </div>
 

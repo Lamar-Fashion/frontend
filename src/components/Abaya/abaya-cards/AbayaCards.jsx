@@ -71,9 +71,6 @@ const getAllAbayas =  ()=>{
   useEffect(()=>{
     getAllAbayas();
   },[]);
-
-
- 
  
 // add to favourite handler
   const addToFavourite = async (item) => {
@@ -284,7 +281,7 @@ window.location.reload();
   });
 
   setDisplayedAbayas(displayedAbayas);
- },[allAbayas,openEditProduct,category]);
+ },[allAbayas,openEditProduct,category,pageNumber]);
 
 
 
@@ -377,7 +374,7 @@ window.location.reload();
             </div>
           </div>
           {addedToFavItem && orderDone && <Alert severity='success' id='alert'>
-              {message ? message : <> You added <strong>{addedToFavItem.code}</strong> to your <Link to='/Profile'>wishlist</Link></>}
+              {message ? message : <> You added <strong>{addedToFavItem.code}</strong> to your <Link to='/Profile/2'>wishlist</Link></>}
             </Alert>}
           <div className='lamar-container' id='abaya'>
             {!isLoading && displayedAbayas.length > 0 && displayedAbayas}

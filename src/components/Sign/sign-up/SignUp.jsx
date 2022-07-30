@@ -37,7 +37,7 @@ function SignUp() {
    const user= validateToken(newUser.data.token);
    if (user) {
      dispatch(logInAction(user));
-  navigate('/Profile');
+  navigate('/Profile/1');
   window.scrollTo({
     top: 0,
     left: 0,

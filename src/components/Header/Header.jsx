@@ -563,7 +563,7 @@ function Header() {
               </li>
               <li>
                 <Link
-                  to='/Profile'
+                  to='/Profile/2'
                   onClick={() => {
                     window.scrollTo({
                       left: 0,

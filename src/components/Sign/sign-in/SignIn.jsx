@@ -79,7 +79,7 @@ const onChangeHandler =  (e)=>{
    dispatch(logInAction(user));
   getFavouriteHandler(user,()=>{
 
-    navigate('/Profile');
+    navigate('/Profile/1');
 window.scrollTo({
   top: 0,
   left: 0,

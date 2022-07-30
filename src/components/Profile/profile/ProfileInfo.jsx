@@ -235,8 +235,8 @@ console.log('updatedUser',updatedUser);
           {isLoading && !error && <div className='loading-state-container-profile'> <LoadingState/></div> }
         </div>
       </section>
-        {orderDone && <DualModal type='success' navigateTo = '/Profile' text={'your data has been updated!'}/>}
-        {error && <DualModal type='error' navigateTo = '/Profile' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
+        {orderDone && <DualModal type='success' navigateTo = '/Profile/1' text={'your data has been updated!'}/>}
+        {error && <DualModal type='error' navigateTo = '/Profile/1' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
     </>
   );
 }

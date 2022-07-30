@@ -11,6 +11,7 @@ import {instance,url} from '../../../API/axios';
 import { useSelector } from 'react-redux';
 import ProgressState from '../../Shared/ProgressState';
 import DualModal from '../../Shared/DualModal';
+import { handleImageSize } from '../../../helpers/imagesResizer';
 
 const theme = createTheme({
   breakpoints: {
@@ -38,7 +39,7 @@ const style = {
   [theme.breakpoints.down(531)]: {
     width: '95%',
   },
-  height: '88vh',
+  maxHeight: '90vh',
   bgcolor: 'background.paper',
   border: '2px solid #000',
 
@@ -108,8 +109,20 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
     setProductData({ ...productData, sizes: sizeValues });
   };
 
+  // useEffect(async()=>{
+  //   for (const [key, value] of Object.entries(images)) {
+  //     console.log('image ', value);
+  //     console.log('image sizeeee', value.size);
+
+  //     const newImg = await handleImageSize(value);
+  //     console.log('newImg ', newImg);
+  //     console.log('newImg sizeeee', newImg.size);
+      
+  //   }
+  // },[images]);
+
   // onSubmit function
-  const submitHandler =  (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
       setIsLoading(true);
 
@@ -119,9 +132,8 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
       // this part to upload the images into Firebase
       for (const [key, value] of Object.entries(images)) {
         indexImgCounter++;
-
-
-        const file = value;
+        const resizedImg = await handleImageSize(value);
+        const file = resizedImg;
         const directory = 'products';
         const currentdate = new Date();
         const datetime = currentdate.getDate() + '-' + (currentdate.getMonth() + 1) + '-' + currentdate.getFullYear() + '@' + currentdate.getHours() + ':' + currentdate.getMinutes();

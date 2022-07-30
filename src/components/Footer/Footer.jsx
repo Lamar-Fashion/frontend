@@ -6,8 +6,18 @@ import master from '../../images/header/MasterCard_Logo.svg.png';
 import visa from '../../images/header/Visa_Logo.png';
 import apple_pay from '../../images/header/apple-pay.png';
 import cash from '../../images/header/cash-on-delivery.png';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 function Footer() {
+  const navigate = useNavigate();
+
+  const navigateToAbaya = ()=>{
+    navigate('/Abaya');
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: 'smooth',
+    });
+  }
   return (
     <>
       <div className='footer'>
@@ -125,12 +135,12 @@ function Footer() {
             </div>
           </div>
           <div className='box footer-gallery'>
-            <img src='https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg' alt='' />
-            <img src='https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg' alt='' />
-            <img src='https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg' alt='' />
-            <img src='https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg' alt='' />
-            <img src='https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg' alt='' />
-            <img src='https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg' alt='' />
+            <img src='https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg' alt='img1' onClick={navigateToAbaya}/>
+            <img src='https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg' alt='img2' onClick={navigateToAbaya} />
+            <img src='https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg' alt='img3'  onClick={navigateToAbaya} />
+            <img src='https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg' alt='img4'  onClick={navigateToAbaya}/>
+            <img src='https://i.pinimg.com/originals/67/ef/32/67ef3247138572050210b5ba91e5b4ce.jpg' alt='img5' onClick={navigateToAbaya} />
+            <img src='https://i.pinimg.com/originals/ba/19/3c/ba193c385cbd91c7b22ea891c30818fb.jpg' alt='img6'  onClick={navigateToAbaya}/>
           </div>
         </div>
         <div className='footer-pay'>

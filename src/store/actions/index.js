@@ -3,9 +3,6 @@ import { encryptAndSaveToStorage } from "../../helpers/CryptoJS";
 
 // LogInAction
 export const logInAction = (userData) => {
-  // encryptAndSaveToStorage('cart',[]);
-  // encryptAndSaveToStorage('cartNumber',0);
-  // encryptAndSaveToStorage('total',0);
   return {
     type: 'SIGN_UP_IN',
     payload: userData,

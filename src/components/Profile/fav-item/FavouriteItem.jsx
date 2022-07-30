@@ -20,33 +20,35 @@ function FavouriteItem() {
      const deleteItem = async(item)=>{
       try {
 
-        setIsLoading(true);
+        // setIsLoading(true);
         const response = await instance.delete(url+`/favourite/${user.id}/${item.id}`,{
           headers:{
             authorization:`Bearer ${user.token}`
       
           }
         });
-setIsLoading(false);
+// setIsLoading(false);
 
-        getFavouriteHandler(user.id);
+        // getFavouriteHandler(user.id);
+        const deletedId = item.id;
+if (response) {
+  favArray.map((item,idx)=>{
+    if (item.id == deletedId) {
+      favArray.splice(idx,1);
+      return;
+    }
+  });
+let updateFav = favArray;
+  setFavArray([]);
+  setFavArray(updateFav);
+  dispatch(assignFavourite(favArray.length));
+}
 
       } catch (error) {
         error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while delete favourite');
         console.error('Error while delete favourite',error.message);
       }
-// const deletedId = item.id;
-// if (response) {
-//   favArray.map((item,idx)=>{
-//     if (item.id == deletedId) {
-//       favArray.splice(idx,1);
-//       return;
-//     }
-//   });
-// let updateFav = favArray;
-//   setFavArray([]);
-//   setFavArray(updateFav);
-//   dispatch(assignFavourite(favArray.length));
+
 
   
 // }
@@ -143,7 +145,7 @@ setIsLoading(false);
             {isLoading && <div className='loading-state-container'><LoadingState/></div> }
         </section>
            
-        {error && <DualModal type='error' navigateTo = '/Profile' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
+        {error && <DualModal type='error' navigateTo = '/Profile/2' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
         </>
     )
 }

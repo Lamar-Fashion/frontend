@@ -1,4 +1,4 @@
-import * as React from "react";
+import {React,useEffect,useState} from "react";
 import { Link } from "react-router-dom";
 import "../../../styles/profile/profile.css";
 import FavouriteItem from "../fav-item/FavouriteItem";
@@ -9,12 +9,17 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ProfileInfo from "./ProfileInfo";
 import { useSelector } from "react-redux";
+import {useParams} from 'react-router-dom';
 
 function Profile() {
-  const [value, setValue] = React.useState("1");
+  const { path } = useParams();
+  const [value, setValue] = useState("2");
   const {isLoggedIn,user,role} = useSelector((state) => state.authReducer);
 
-
+useEffect(()=>{
+  console.log('path',path);
+if (path) setValue(path);
+},[])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

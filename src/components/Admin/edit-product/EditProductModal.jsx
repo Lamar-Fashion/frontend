@@ -38,7 +38,7 @@ const style = {
   [theme.breakpoints.down(531)]: {
     width: "95%",
   },
-  height: "92.5vh",
+  maxHeight: '93vh',
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,

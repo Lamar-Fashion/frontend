@@ -81,7 +81,7 @@ else dispatch(logOutAction());
           <Route exact path='/DeliveryPolicy' element={<DeliveryPolicy />} />
           <Route exact path='/PrivacyPolicy' element={<PrivacyPolicy />} />
           <Route exact path='/ProductDetails' element={<ProductDetails />} />
-          <Route exact path='/Profile' element={<Profile />} />
+          <Route exact path='/Profile/:path' element={<Profile />} />
           <Route exact path='/Contact-us' element={<ContactUs />} />
           <Route exact path='/AllUsers' element={<AllUsers />} />
           <Route exact path='/PendingOrders' element={<PendingOrders />} />
