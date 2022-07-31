@@ -76,21 +76,16 @@
  z-index: 1;
 
 }
-.product-d .lamar-container .image-product .big-image:hover {
- transform: scale(1.2);
- z-index: 3;
-}
+
 @media(min-width:531px){
-  .product-d .lamar-container .image-product .big-image imgg:hover-removed {
-    transform:scale(1.4);
-    -ms-transform:scale(1.4); /* IE 9 */
-    -moz-transform:scale(1.4); /* Firefox */
-    -webkit-transform:scale(1.4); /* Safari and Chrome */
-    -o-transform:scale(1.4); /* Opera */
-    transition: all .2s ease;
-    vertical-align: middle;
   
-  }
+  .product-d .lamar-container .image-product .big-image:hover {
+    transform: scale(1.2);
+    z-index: 4;
+    max-height: 95vh;
+    position: relative;
+    right: -25%;
+   }
 }
 
 .product-d .lamar-container .image-product img {
