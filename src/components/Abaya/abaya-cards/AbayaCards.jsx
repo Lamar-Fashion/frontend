@@ -247,8 +247,9 @@ window.location.reload();
               </div>
             </div>
           )}
-          <div className='image'>
+          <div className='image' >
             <img src={item.images[0]} alt='' className='img-product' />
+            {/* <div className='img-box' style={{"backgroundImage": `url(${item.images[0]})`}}></div> */}
             <Link
               to='/ProductDetails'
               onClick={() => {

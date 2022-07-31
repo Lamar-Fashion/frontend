@@ -10,6 +10,7 @@ import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/Cr
 import {instance, url} from '../../API/axios';
 import {assignFavourite} from '../../store/actions/index';
 import DualModal from '../Shared/DualModal';
+import PinchZoomPan from "react-image-zoom-pan";
 
 
 function ProductDetails() {
@@ -188,7 +189,10 @@ const addToFavourite = async (item) => {
         <div className='lamar-container'>
           <div className='image-product'>
             <div className='big-image'>
+              <PinchZoomPan maxScale={3}>
               <img src={state} alt='' />
+
+              </PinchZoomPan>
             </div>
 
             <div className='left-images'>

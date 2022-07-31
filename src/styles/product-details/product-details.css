@@ -73,6 +73,12 @@
   height: 470px;
   transition: width 0.5s;
   overflow: hidden;
+ z-index: 1;
+
+}
+.product-d .lamar-container .image-product .big-image:hover {
+ transform: scale(1.2);
+ z-index: 3;
 }
 @media(min-width:531px){
   .product-d .lamar-container .image-product .big-image img:hover {
@@ -90,7 +96,7 @@
 .product-d .lamar-container .image-product img {
   width: 100%;
   height: 100%;
-  /* object-fit: fill ; */
+  object-fit: fill ;
 }
 @media (max-width: 530px) {
   .product-d .lamar-container .image-product .big-image {
