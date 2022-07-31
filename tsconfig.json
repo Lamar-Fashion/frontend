@@ -24,8 +24,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "typeRoots": [
-        "./node_modules/@types",
-        "./src/@types"
+        "node_modules/@types",
+        "src/@types"
       ]
   }
 }
