@@ -81,7 +81,7 @@
  z-index: 3;
 }
 @media(min-width:531px){
-  .product-d .lamar-container .image-product .big-image img:hover {
+  .product-d .lamar-container .image-product .big-image imgg:hover-removed {
     transform:scale(1.4);
     -ms-transform:scale(1.4); /* IE 9 */
     -moz-transform:scale(1.4); /* Firefox */
