@@ -13,6 +13,7 @@ import {instance, url} from '../../API/axios';
 import {assignFavourite} from '../../store/actions/index';
 import DualModal from '../Shared/DualModal';
 
+// @ts-ignore
 import PinchZoomPan from "react-image-zoom-pan";
 
 
