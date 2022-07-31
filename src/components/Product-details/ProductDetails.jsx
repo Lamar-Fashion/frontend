@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+
 
 import { React, useState } from 'react';
 import '../../styles/product-details/product-details.css';
@@ -13,7 +12,8 @@ import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/Cr
 import {instance, url} from '../../API/axios';
 import {assignFavourite} from '../../store/actions/index';
 import DualModal from '../Shared/DualModal';
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import PinchZoomPan from "react-image-zoom-pan";
 
 
