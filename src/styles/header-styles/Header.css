@@ -650,7 +650,7 @@
   .header .lamar-container .rightContainer {
     height: 70px !important;
     position: relative;
-    top: 3.5px;
+    top: 2.5px;
   }
 }
 @media (max-width: 768px) {

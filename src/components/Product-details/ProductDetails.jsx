@@ -2,12 +2,12 @@
 
 import { React, useState } from 'react';
 import '../../styles/product-details/product-details.css';
+
 import { Link,useNavigate } from 'react-router-dom';
 import Flicking from '@egjs/react-flicking';
 import Alert from '@mui/material/Alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartAction } from '../../store/actions';
-// import {Spinner} from 'react-bootstrap'
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 import {instance, url} from '../../API/axios';
 import {assignFavourite} from '../../store/actions/index';
@@ -15,7 +15,6 @@ import DualModal from '../Shared/DualModal';
 
 // @ts-ignore
 import PinchZoomPan from "react-image-zoom-pan";
-
 
 function ProductDetails() {
   const dispatch = useDispatch();
@@ -26,7 +25,6 @@ function ProductDetails() {
  const [orderDone, setOrderDone] = useState(false);
  const [addedToFavItem, setAddedToFavItem] = useState(null);
  const [error, setError] = useState(null);
-//  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
  
  let obj =  decryptAndGetFromStorage('product');
  
@@ -193,12 +191,12 @@ const addToFavourite = async (item) => {
         <div className='lamar-container'>
           <div className='image-product'>
             <div className='big-image'>
-              <PinchZoomPan maxScale={3}>
+              <PinchZoomPan maxScale={3} doubleTapBehavior='zoom'>
               <img src={state} alt='' />
 
               </PinchZoomPan>
             </div>
-
+<div className='full-area-backgound'></div>
             <div className='left-images'>
               <Flicking circular={true}>
                 {images.map((item, indx) => {

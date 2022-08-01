@@ -153,6 +153,9 @@
   .abaya-cards .nav-info .left-info .sort-item {
     width: 60%;
   }
+  .abaya-cards .nav-info .left-info .sort-item.shrink-width {
+    width: fit-content;
+  }
 }
 .abaya-cards .nav-info .left-info label {
   cursor: pointer;

@@ -352,7 +352,8 @@ window.location.reload();
                     <option value='all'>all</option>
                   </select>
                 </div>
-                <div className='sort-item'>
+            
+                <div className={role === 'admin' ? 'sort-item' : 'sort-item shrink-width'} >
                   <label htmlFor='sort-item'>Category : </label>
                   <select name='sort-item' id='sort-item' value={category} onChange={handleSort}>
                     <option value='all'>All</option>
