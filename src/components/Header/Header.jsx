@@ -25,6 +25,7 @@ function Header() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [searchResult, setSearchResult] = useState([]);
+  const [showSearchResultList, setShowSearchResultList] = useState(false);
 
   const [cartNumber, setCartNumber] = useState(decryptAndGetFromStorage('cartNumber') ? decryptAndGetFromStorage('cartNumber') : 0);
 
@@ -68,18 +69,21 @@ function Header() {
   //search handler
   const searchHandler = (e)=>{
     const searchedText = e.target.value;
-    if(!searchedText) return setSearchResult([]);
+    if(!searchedText) {
+      setShowSearchResultList(false);
+      setSearchResult([]);
+      return;
+    }
     setIsLoading(true);
     setTimeout(async() => {
       try {
         const response = await instance.get(url+'/search/'+searchedText);
-        console.log('response searchhhhhh',response.data);
     setIsLoading(false);
     setSearchResult(response.data);
-
+    setShowSearchResultList(true);
       } catch (error) {
-    setSearchResult([]);
-
+        setShowSearchResultList(false);
+        setSearchResult([]);
         console.error('Error while searching',error.message);
       }
     }, 50);
@@ -91,6 +95,7 @@ function Header() {
   window.onclick = function(event) {
   const searchResultModal = document.querySelector('#search-modal');
    if (searchResultModal && event.target != searchResultModal) {
+    setShowSearchResultList(false);
     setSearchResult([]);
     }
 
@@ -560,7 +565,7 @@ function Header() {
               <a href='#' className='btn' onClick={() => setShowSearchTextField(!showSearchTextField)}>
                 <i className='fas fa-search'></i>
               </a>
-              {searchResult.length > 0 && <SearchList products={searchResult} setSearchResult={setSearchResult}/>}
+              {showSearchResultList && <SearchList products={searchResult} setShowSearchResultList={setShowSearchResultList} setSearchResult={setSearchResult}/>}
             </div>
             <ul className='right-nav'>
               <li>

@@ -3,12 +3,13 @@ import {useNavigate} from 'react-router-dom';
 import {encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 import '../../styles/header-styles/search-list.css';
 
-function SearchList({products,setSearchResult}) {
+function SearchList({products,setSearchResult,setShowSearchResultList}) {
     const navigate = useNavigate();
 
 const goToProductDetails =(item)=>{
     encryptAndSaveToStorage('product',item);
     setSearchResult([]);
+    setShowSearchResultList(false);
     navigate('/ProductDetails');
     window.scrollTo({
         left: 0,
@@ -19,7 +20,7 @@ const goToProductDetails =(item)=>{
 
     return(
         <div id='search-modal' className='search-list-box'>
-{products.map((item,idx)=>{
+{products.length>0&& products.map((item,idx)=>{
     return(
         <secction className='item-box' key={item.id} onClick={()=>goToProductDetails(item)}>
 <div className='img-box'>
@@ -43,6 +44,7 @@ const goToProductDetails =(item)=>{
         </secction>
     )
 })}
+{!products.length && <secction className='no-results-box'>no results found</secction>}
         </div>
     )
 }

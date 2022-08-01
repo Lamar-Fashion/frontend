@@ -32,6 +32,10 @@ function App() {
   const [y, setY] = useState(window.scrollY);
   window.onscroll = function () {
     setY(window.scrollY);
+
+    //hide search result list if user scrolls
+    const searchResultModal = document.querySelector('#search-modal');
+  if(searchResultModal)  searchResultModal.style.display= 'none';
   };
 
   useEffect(()=>{
