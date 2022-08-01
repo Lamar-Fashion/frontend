@@ -84,6 +84,19 @@ function Header() {
       }
     }, 50);
   }
+
+  
+  
+  // When the user clicks anywhere outside of the  search result list modal, close it
+  window.onclick = function(event) {
+  const searchResultModal = document.querySelector('#search-modal');
+   if (searchResultModal && event.target != searchResultModal) {
+    setSearchResult([]);
+    }
+
+  
+
+}
   return (
     <>
       <section className={y > 0 ? 'header header-scroll' : 'header'}>

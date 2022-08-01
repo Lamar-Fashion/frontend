@@ -18,7 +18,7 @@ const goToProductDetails =(item)=>{
 }
 
     return(
-        <div className='search-list-box'>
+        <div id='search-modal' className='search-list-box'>
 {products.map((item,idx)=>{
     return(
         <secction className='item-box' key={item.id} onClick={()=>goToProductDetails(item)}>
