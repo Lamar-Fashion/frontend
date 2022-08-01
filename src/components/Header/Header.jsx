@@ -9,6 +9,7 @@ import { navigateAction,logOutAction,assignFavourite } from '../../store/actions
 import cookies from 'react-cookies';
 import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
 import {instance,url} from '../../API/axios';
+import SearchList from './SearchList';
 
 function Header() {
   const dispatch = useDispatch();
@@ -21,9 +22,16 @@ function Header() {
   const [showDropHome, setShowDropHome] = useState(false);
   const [dropDown, setDropDown] = useState(false);
   const [showSearchTextField, setShowSearchTextField] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [searchResult, setSearchResult] = useState([]);
+
   const [cartNumber, setCartNumber] = useState(decryptAndGetFromStorage('cartNumber') ? decryptAndGetFromStorage('cartNumber') : 0);
+
   const [favNumber, setFavNumber] = useState(decryptAndGetFromStorage('favNumber') ? decryptAndGetFromStorage('favNumber') : 0);
+
   const [y, setY] = useState(0);
+
   function scrollHandler() {
     setY(window.scrollY);
   }
@@ -55,6 +63,26 @@ function Header() {
     dispatch(assignFavourite(0));
     navigate('/');
     window.location.reload();
+  }
+
+  //search handler
+  const searchHandler = (e)=>{
+    const searchedText = e.target.value;
+    if(!searchedText) return setSearchResult([]);
+    setIsLoading(true);
+    setTimeout(async() => {
+      try {
+        const response = await instance.get(url+'/search/'+searchedText);
+        console.log('response searchhhhhh',response.data);
+    setIsLoading(false);
+    setSearchResult(response.data);
+
+      } catch (error) {
+    setSearchResult([]);
+
+        console.error('Error while searching',error.message);
+      }
+    }, 50);
   }
   return (
     <>
@@ -514,11 +542,12 @@ function Header() {
           </div>
           <section className={y > 0 ? 'rightContainer rightContainer-scroll ' : 'rightContainer'}>
             <div className='searchContainer'>
-              <input type='text' name='search' placeholder='Search...' className={showSearchTextField ? 'input' : 'hidden-input'} />
+              <input type='text' name='searchedText' placeholder='Search...' className={showSearchTextField ? 'input' : 'hidden-input'} onChange={searchHandler}/>
 
               <a href='#' className='btn' onClick={() => setShowSearchTextField(!showSearchTextField)}>
                 <i className='fas fa-search'></i>
               </a>
+              {searchResult.length > 0 && <SearchList products={searchResult} setSearchResult={setSearchResult}/>}
             </div>
             <ul className='right-nav'>
               <li>
