@@ -103,7 +103,13 @@
 .product-d .lamar-container .image-product img {
   width: 100%;
   height: 100%;
-  object-fit: fill ;
+  object-fit: cover ;
+  
+}
+.product-d .lamar-container .image-product .big-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover ;
 cursor: zoom-in !important;
   
 }
@@ -126,6 +132,8 @@ cursor: zoom-in !important;
   /* justify-content: space-between; */
   align-items: center;
   margin-left: -167px;
+  cursor: grab;
+
 }
 @media (max-width: 530px) {
   .product-d .lamar-container .image-product .left-images .flicking-camera {

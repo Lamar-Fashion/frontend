@@ -313,7 +313,7 @@
   width: 100%;
   height: 100%;
   transition: transform 0.5s;
-  object-fit: fill;
+  object-fit: cover;
 }
 .abaya-cards .image .img-box {
   width: 100%;
