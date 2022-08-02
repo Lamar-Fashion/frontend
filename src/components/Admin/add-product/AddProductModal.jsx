@@ -1,17 +1,17 @@
-import { React, useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import '../../../styles/admin/add-product/addProduct-modal.css';
-import { default as ReactSelect } from 'react-select';
-import { components } from 'react-select';
-import { storage } from '../../../firebase';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {instance,url} from '../../../API/axios';
-import { useSelector } from 'react-redux';
-import ProgressState from '../../Shared/ProgressState';
-import DualModal from '../../Shared/DualModal';
-import { handleImageSize } from '../../../helpers/imagesResizer';
+import { React, useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+import "../../../styles/admin/add-product/addProduct-modal.css";
+import { default as ReactSelect } from "react-select";
+import { components } from "react-select";
+import { storage } from "../../../firebase";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { instance, url } from "../../../API/axios";
+import { useSelector } from "react-redux";
+import ProgressState from "../../Shared/ProgressState";
+import DualModal from "../../Shared/DualModal";
+import { handleImageSize } from "../../../helpers/imagesResizer";
 
 const theme = createTheme({
   breakpoints: {
@@ -27,48 +27,47 @@ const theme = createTheme({
 });
 // material-ui styling
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
 
-  width: '60%',
+  width: "60%",
   [theme.breakpoints.down(992)]: {
-    width: '80%',
+    width: "80%",
   },
   [theme.breakpoints.down(531)]: {
-    width: '95%',
+    width: "95%",
   },
-  maxHeight: '90vh',
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  maxHeight: "90vh",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
 
   boxShadow: 24,
-  overflow: 'auto',
-  // paddingBottom: '5px',
+  overflow: "auto",
 };
 
 // color options
 const colourOptions = [
-  { value: 'ocean1', label: 'Ocean' },
-  { value: 'blue', label: 'Blue' },
-  { value: 'purple', label: 'Purple' },
-  { value: 'red', label: 'Red' },
-  { value: 'orange', label: 'Orange' },
-  { value: 'yellow', label: 'Yellow' },
-  { value: 'green', label: 'Green' },
-  { value: 'forest', label: 'Forest' },
-  { value: 'slate', label: 'Slate' },
-  { value: 'silver', label: 'Silver' },
+  { value: "ocean1", label: "Ocean" },
+  { value: "blue", label: "Blue" },
+  { value: "purple", label: "Purple" },
+  { value: "red", label: "Red" },
+  { value: "orange", label: "Orange" },
+  { value: "yellow", label: "Yellow" },
+  { value: "green", label: "Green" },
+  { value: "forest", label: "Forest" },
+  { value: "slate", label: "Slate" },
+  { value: "silver", label: "Silver" },
 ];
 
 // size options
 const sizeOptions = [
-  { value: 'XS', label: 'XS' },
-  { value: 'S', label: 'S' },
-  { value: 'M', label: 'M' },
-  { value: 'L', label: 'L' },
-  { value: 'XL', label: 'XL' },
+  { value: "XS", label: "XS" },
+  { value: "S", label: "S" },
+  { value: "M", label: "M" },
+  { value: "L", label: "L" },
+  { value: "XL", label: "XL" },
 ];
 
 // for react-select library (for multiple selection)
@@ -76,14 +75,20 @@ const Option = (props) => {
   return (
     <div>
       <components.Option {...props}>
-        <input type='checkbox' checked={props.isSelected} onChange={() => null} /> <label>{props.label}</label>
+        <input
+          type="checkbox"
+          checked={props.isSelected}
+          onChange={() => null}
+        />{" "}
+        <label>{props.label}</label>
       </components.Option>
     </div>
   );
 };
 
 function AddProductModal({ openAddproduct, setOpenAddProduct }) {
-  const user = useSelector((state)=> state.authReducer.user);
+  const user = useSelector((state) => state.authReducer.user);
+
   const [colorsSelected, setColorsSelected] = useState(null);
   const [sizesSelected, setSizesSelected] = useState(null);
   const [productData, setProductData] = useState({ productIamges: [] });
@@ -97,173 +102,157 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
   const [orderDone, setOrderDone] = useState(false);
 
   // handle change for colors selection
-  const colorsHandleChange = (selected) => {    
-    let colorValues = selected.map(color=> color.value);
+  const colorsHandleChange = (selected) => {
+    let colorValues = selected.map((color) => color.value);
     setColorsSelected(selected);
     setProductData({ ...productData, colors: colorValues });
   };
+
   // handle change for sizes selection
   const sizesHandleChange = (selected) => {
-    let sizeValues = selected.map(size=> size.value);
+    let sizeValues = selected.map((size) => size.value);
     setSizesSelected(selected);
     setProductData({ ...productData, sizes: sizeValues });
   };
 
-  // useEffect(async()=>{
-  //   for (const [key, value] of Object.entries(images)) {
-  //     console.log('image ', value);
-  //     console.log('image sizeeee', value.size);
-
-  //     const newImg = await handleImageSize(value);
-  //     console.log('newImg ', newImg);
-  //     console.log('newImg sizeeee', newImg.size);
-      
-  //   }
-  // },[images]);
-
   // onSubmit function
   const submitHandler = async (e) => {
     e.preventDefault();
-      setIsLoading(true);
+    setIsLoading(true);
 
-         let counter = 0;
-         let indexImgCounter = 0;
-         let maxPrgressValue = 0;
-      // this part to upload the images into Firebase
-      for (const [key, value] of Object.entries(images)) {
-        indexImgCounter++;
-        const resizedImg = await handleImageSize(value);
-        const file = resizedImg;
-        const directory = 'products';
-        const currentdate = new Date();
-        const datetime = currentdate.getDate() + '-' + (currentdate.getMonth() + 1) + '-' + currentdate.getFullYear() + '@' + currentdate.getHours() + ':' + currentdate.getMinutes();
-        const name = datetime + ' - ' + file.name;
-        console.log('file.name', file.name);
-        const storageRef = storage.ref(`${directory}/${name}`);
+    let counter = 0;
+    let indexImgCounter = 0;
+    let maxPrgressValue = 0;
+    // this part to upload the images into Firebase
+    for (const [key, value] of Object.entries(images)) {
+      indexImgCounter++;
+      const resizedImg = await handleImageSize(value);
+      const file = resizedImg;
+      const directory = "products";
+      const currentdate = new Date();
+      const datetime =
+        currentdate.getDate() +
+        "-" +
+        (currentdate.getMonth() + 1) +
+        "-" +
+        currentdate.getFullYear() +
+        "@" +
+        currentdate.getHours() +
+        ":" +
+        currentdate.getMinutes();
+      const name = datetime + " - " + file.name;
+      const storageRef = storage.ref(`${directory}/${name}`);
 
-        storageRef.put(file).on(
-          'state_changed',
-          (snapshot) => {
-            //   Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-           if(maxPrgressValue < Number(progress).toFixed(0)) maxPrgressValue = Number(progress).toFixed(0);
-           if (maxPrgressValue > imgUploadPerecentage ) setImgUploadPerecentage(maxPrgressValue);
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-              case 'paused':
-                console.log('Upload is paused');
-                break;
-              case 'running':
-                console.log('Upload is running');
-                break;
-              default:
-            }
-          },
-          (error) => {
-            console.log('errorr firebase',error);
-            error?.code ?  setError(error.code) : setError('Uploading images Firebase Error!');
-            return;
-            // switch (error.code) {
-            //   case 'storage/unauthorized':
-            //     //   User doesn't have permission to access the object
-            //     break;
-            //   case 'storage/canceled':
-            //     //   User canceled the upload
-            //     break;
-            //   case 'storage/unknown':
-            //     //   Unknown error occurred, inspect error.serverResponse
-            //     break;
-            //   default:
-            // }
-          },
-          () => {
-        setIndexOfUploadedIMG(indexImgCounter);
+      storageRef.put(file).on(
+        "state_changed",
+        (snapshot) => {
+          //   Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          if (maxPrgressValue < Number(progress).toFixed(0))
+            maxPrgressValue = Number(progress).toFixed(0);
+          if (maxPrgressValue > imgUploadPerecentage)
+            setImgUploadPerecentage(maxPrgressValue);
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+          }
+        },
+        (error) => {
+          console.error("errorr firebase", error);
+          error?.code
+            ? setError(error.code)
+            : setError("Uploading images Firebase Error!");
+          return;
+          // switch (error.code) {
+          //   case 'storage/unauthorized':
+          //     //   User doesn't have permission to access the object
+          //     break;
+          //   case 'storage/canceled':
+          //     //   User canceled the upload
+          //     break;
+          //   case 'storage/unknown':
+          //     //   Unknown error occurred, inspect error.serverResponse
+          //     break;
+          //   default:
+          // }
+        },
+        () => {
+          setIndexOfUploadedIMG(indexImgCounter);
 
-            //   Upload completed successfully, now we can get the download URL
-            storageRef.getDownloadURL().then(async(downloadURL) => {
-              try {
-              
+          //   Upload completed successfully, now we can get the download URL
+          storageRef.getDownloadURL().then(async (downloadURL) => {
+            try {
               counter++;
-              console.log('File available at', downloadURL);
+              console.log("File available at", downloadURL);
               productData.productIamges.push(downloadURL);
-              
-              if (counter == Object.keys(images).length) {
-                // console.log('key',key);
 
-                // setOpenAddProduct(false);
-                console.log('this obj ready to go to the backend: productData', productData);
-          
+              if (counter == Object.keys(images).length) {
                 // send req to backend
-          const addedProduct = await instance.post(url+'/product',productData, {
-            headers: {
-              authorization: `Bearer ${user.token}`,
-            },
-          });
-          setOrderDone(true);
-          setIsLoading(false);
-                console.log('added product',addedProduct);
-          
-                 //success Modal will reset all states, by reloading the page.
-                
-                // setProductData({ productIamges: [] });
-                // setImages({});
-                // setIsValid(false);
-                // setColorsSelected([]);
-                // setSizesSelected([]);
-                // console.log('all uploaded');
-                // window.location.reload();
+                const addedProduct = await instance.post(
+                  url + "/product",
+                  productData,
+                  {
+                    headers: {
+                      authorization: `Bearer ${user.token}`,
+                    },
+                  }
+                );
+                setOrderDone(true);
+                setIsLoading(false);
               }
             } catch (error) {
-              error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while adding product');
-              console.log('Error while adding product', error.message);
-            } 
-            });
-          }
-        );
-      }
-
-   
-  
+              error?.response?.data?.error
+                ? setError(error.response.data.error)
+                : setError("Error while adding product");
+              console.error("Error while adding product", error.message);
+            }
+          });
+        }
+      );
+    }
   };
 
-  // validate file type, accept only images (jpg, jpeg, png)
   let obj = {};
+  // validate file type, accept only images (jpg, jpeg, png)
   function validateFileType(key, file) {
     let fileName = file.name;
-    let idxDot = fileName.lastIndexOf('.') + 1;
+    let idxDot = fileName.lastIndexOf(".") + 1;
     let extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-    if (extFile == 'jpg' || extFile == 'jpeg' || extFile == 'png') {
+    if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
       obj[key] = file;
     } else {
-      alert('Only jpg/jpeg and png files are allowed!');
+      alert("Only jpg/jpeg and png files are allowed!");
     }
     return obj;
   }
 
   // on change handler
   const handleChange = (e) => {
-    if (e.target.name == 'images') {
+    if (e.target.name == "images") {
       for (const [key, value] of Object.entries(e.target.files)) {
         setImages(validateFileType(key, value));
       }
     } else {
-      console.log('e.target.value',e.target.value);
-      if(e.target.name=='addToHomePage') {
-        if (e.target.value === 'true') {
+      if (e.target.name == "addToHomePage") {
+        if (e.target.value === "true") {
           setAddToHomePage(true);
-          
         }
-        if (e.target.value === 'false') {
+        if (e.target.value === "false") {
           setAddToHomePage(false);
-          
         }
-           }
+      }
 
       setProductData({ ...productData, [e.target.name]: e.target.value });
     }
   };
 
-  // productIamges, category, status, code, description, price, colors, sizes, totalInStock, addToHomePage
   useEffect(() => {
     // verify the user to enter the whole data before submission
     if (
@@ -276,12 +265,12 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
       productData.description &&
       productData.status &&
       productData.price &&
-      (productData.addToHomePage == 'false' || productData.addToHomePage == 'true')
+      (productData.addToHomePage == "false" ||
+        productData.addToHomePage == "true")
     ) {
       setIsValid(true);
-    }else{
+    } else {
       setIsValid(false);
-
     }
   }, [productData]);
 
@@ -292,7 +281,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
     setProductData({ productIamges: [] });
     setImages({});
     setIsValid(false);
-    setAddToHomePage(null)
+    setAddToHomePage(null);
     setColorsSelected([]);
     setSizesSelected([]);
     setOrderDone(false);
@@ -300,46 +289,83 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
     setImgUploadPerecentage(0);
     setIndexOfUploadedIMG(1);
   }
+
   return (
     <>
-      <Modal open={openAddproduct} onClose={handleClose} aria-labelledby='modal-modal-title' aria-describedby='modal-modal-description' >
+      <Modal
+        open={openAddproduct}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
         <ThemeProvider theme={theme}>
-          <Box sx={style} className='box-container'>
-            <div className='modal-header'>
-              <Typography id='modal-modal-title' variant='h6' component='h2'>
+          <Box sx={style} className="box-container">
+            <div className="modal-header">
+              <Typography id="modal-modal-title" variant="h6" component="h2">
                 Add Product Form:
               </Typography>
-              <i className='fas fa-times' onClick={handleClose}></i>
+              <i className="fas fa-times" onClick={handleClose}></i>
             </div>
-            <div className='form-container'>
-              <form className='add-from'  onSubmit={submitHandler}>
-                <div className='product-brand'>
-                  <label htmlFor='category'>Category :</label>
-                  <select name='category' required id='category' onChange={handleChange}>
-                    <option value=''>--choose option--</option>
-                    <option value='newArrivals'>New Arrivals</option>
-                    <option value='onSales'>On Sales</option>
+            <div className="form-container">
+              <form className="add-from" onSubmit={submitHandler}>
+                <div className="product-brand">
+                  <label htmlFor="category">Category :</label>
+                  <select
+                    name="category"
+                    required
+                    id="category"
+                    onChange={handleChange}
+                  >
+                    <option value="">--choose option--</option>
+                    <option value="newArrivals">New Arrivals</option>
+                    <option value="onSales">On Sales</option>
                   </select>
                 </div>
-                <div className='collection'>
-                  <label htmlFor='status'>Status :</label>
-                  <select name='status' required id='status' onChange={handleChange}>
-                    <option value=''>--choose option--</option>
-                    <option value='notReadyToWear'>يحتاج الى تفصيل</option>
-                    <option value='readyToWear'>Ready To Wear</option>
+                <div className="collection">
+                  <label htmlFor="status">Status :</label>
+                  <select
+                    name="status"
+                    required
+                    id="status"
+                    onChange={handleChange}
+                  >
+                    <option value="">--choose option--</option>
+                    <option value="notReadyToWear">يحتاج الى تفصيل</option>
+                    <option value="readyToWear">Ready To Wear</option>
                   </select>
                 </div>
-                <div className='code'>
-                  <input type='text' name='code' required id='code' placeholder='Product Code' onChange={handleChange} />
+                <div className="code">
+                  <input
+                    type="text"
+                    name="code"
+                    required
+                    id="code"
+                    placeholder="Product Code"
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className='description'>
-                  <textarea type='text' name='description' required id='description' placeholder='Product Description' onChange={handleChange} />
+                <div className="description">
+                  <textarea
+                    type="text"
+                    name="description"
+                    required
+                    id="description"
+                    placeholder="Product Description"
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className='price'>
-                  <input type='number' name='price' required id='price' placeholder='Product Price' onChange={handleChange} />
+                <div className="price">
+                  <input
+                    type="number"
+                    name="price"
+                    required
+                    id="price"
+                    placeholder="Product Price"
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className='sizes'>
-                  <label htmlFor='sizes'>Sizes :</label>
+                <div className="sizes">
+                  <label htmlFor="sizes">Sizes :</label>
                   <ReactSelect
                     options={sizeOptions}
                     isMulti
@@ -354,8 +380,8 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
                     value={sizesSelected}
                   />
                 </div>
-                <div className='colors'>
-                  <label htmlFor='colors'>Colors :</label>
+                <div className="colors">
+                  <label htmlFor="colors">Colors :</label>
                   <ReactSelect
                     options={colourOptions}
                     isMulti
@@ -368,36 +394,65 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
                     allowSelectAll={true}
                     value={colorsSelected}
                   />
-                  {/* <div className='code'>
-                  <input type='text' name='code' required id='code' placeholder='Product Code' onChange={handleChange} />
-                </div> */}
                 </div>
-                <div className='availability'>
-                  {/* <label htmlFor='totalInStock'>Total in Stock :</label> */}
-                  <input type='number' name='totalInStock' required id='totalInStock' placeholder='Total in Stock' onChange={handleChange} />
+                <div className="availability">
+                  <input
+                    type="number"
+                    name="totalInStock"
+                    required
+                    id="totalInStock"
+                    placeholder="Total in Stock"
+                    onChange={handleChange}
+                  />
                 </div>
-                {/* <div className='deliveryTime'>
-                  <label htmlFor='deliveryTime'>Delivery Time :</label>
-                  <select name='deliveryTime' required id='deliveryTime' onChange={handleChange}>
-                    <option value=''>--choose option--</option>
-                    <option value='1To2Weeks'>1 - 2 weeks</option>
-                    <option value='24To48Hours'>24 - 48 hours</option>
-                  </select>
-                </div> */}
-                <div className='images'>
-                <label htmlFor='images'>upload images</label>
-                  <input type='file' multiple name='images' required id='images' placeholder='Product images' onChange={handleChange} accept='image/png,image/jpeg' />
+
+                <div className="images">
+                  <label htmlFor="images">upload images</label>
+                  <input
+                    type="file"
+                    multiple
+                    name="images"
+                    required
+                    id="images"
+                    placeholder="Product images"
+                    onChange={handleChange}
+                    accept="image/png,image/jpeg"
+                  />
                 </div>
-                <div className='addToHomePage'>
-                  <label htmlFor='addToHomePage'>Add this product to the Home page? </label>
+                <div className="addToHomePage">
+                  <label htmlFor="addToHomePage">
+                    Add this product to the Home page?{" "}
+                  </label>
                   <br />
                   <section>
-                    <input type='radio' id='addToHomePage' name='addToHomePage' value={true} checked={addToHomePage == true} onChange={handleChange} />  <label htmlFor={true}>yes</label>
-                      <input type='radio' id='addToHomePage' name='addToHomePage' value={false} checked={addToHomePage == false} onChange={handleChange} />  <label htmlFor={false}>no</label>
+                    <input
+                      type="radio"
+                      id="addToHomePage"
+                      name="addToHomePage"
+                      value={true}
+                      checked={addToHomePage == true}
+                      onChange={handleChange}
+                    />
+                      <label htmlFor={true}>yes</label>
+                     {" "}
+                    <input
+                      type="radio"
+                      id="addToHomePage"
+                      name="addToHomePage"
+                      value={false}
+                      checked={addToHomePage == false}
+                      onChange={handleChange}
+                    />
+                      <label htmlFor={false}>no</label>
                   </section>
                 </div>
 
-                <button type='submit' value='create an account' className='submit' disabled={!isValid}>
+                <button
+                  type="submit"
+                  value="create an account"
+                  className="submit"
+                  disabled={!isValid}
+                >
                   add product
                 </button>
               </form>
@@ -405,20 +460,39 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
               {!isValid && <p>You must fill the form..</p>}
             </div>
           </Box>
-          {isLoading &&  !error && <section className='progress-container'>
-<span>uploading images</span>
-<div className='flex-row'>
+          {isLoading && !error && (
+            <section className="progress-container">
+              <span>uploading images</span>
+              <div className="flex-row">
+                <ProgressState
+                  count={imgUploadPerecentage}
+                  style={{ opacity: 1, width: `${imgUploadPerecentage}%` }}
+                />
+                <span>
+                  {indexOfUploadedIMG}/{Object.keys(images).length}
+                </span>
+              </div>
+            </section>
+          )}
 
-      <ProgressState count={imgUploadPerecentage} style={
-         { opacity: 1,
-          width: `${imgUploadPerecentage}%`}
-        }/>
-        <span>{indexOfUploadedIMG}/{Object.keys(images).length}</span>
-</div>
-          </section>}
-
-          {orderDone  && <DualModal type='success' navigateTo = '/Abaya' showHeader={true} text={"your product has been added successfully"}/>}
-        {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
+          {orderDone && (
+            <DualModal
+              type="success"
+              navigateTo="/Abaya"
+              showHeader={true}
+              text={"your product has been added successfully"}
+            />
+          )}
+          {error && (
+            <DualModal
+              type="error"
+              navigateTo="/Abaya"
+              text={
+                error ? error : "Something went wrong! <br/> please try again"
+              }
+              showHeader={true}
+            />
+          )}
         </ThemeProvider>
       </Modal>
     </>

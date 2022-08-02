@@ -1,10 +1,14 @@
-import {React, useState} from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import "../../../styles/sign-styles/sign-in.css"
+import { React, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../../../styles/sign-styles/sign-in.css";
 import validateToken from "../../../helpers/validateToken";
-import {useDispatch} from 'react-redux';
-import {instance,url} from '../../../API/axios';
-import {logInAction,logOutAction,assignFavourite} from '../../../store/actions/index';
+import { useDispatch } from "react-redux";
+import { instance, url } from "../../../API/axios";
+import {
+  logInAction,
+  logOutAction,
+  assignFavourite,
+} from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import DualModal from "../../Shared/DualModal";
 
@@ -12,114 +16,108 @@ function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
-  const [validEmail,setValidEmail] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-const onChangeHandler =  (e)=>{
-  if (e.target.name == 'email'){
-    setEmail(e.target.value);
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)) {
-      setValidEmail(true);
-  
-    } else {
-      
-      setValidEmail(false);
-    }
-  }  
-  if (e.target.name == 'password') setPassword(e.target.value);
-};
-
-
- // get favourite handler >> to get fav number for first time and before the user goes to his wishlist.
- const getFavouriteHandler = async(user,callback)=>{
-
-  try {
-    
-    setIsLoading(true);
-    const response = await instance.get(url+`/favourite/${user.id}`,{
-      headers:{
-        authorization:`Bearer ${user?.token}`
-  
+  const onChangeHandler = (e) => {
+    if (e.target.name == "email") {
+      setEmail(e.target.value);
+      if (
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(e.target.value)
+      ) {
+        setValidEmail(true);
+      } else {
+        setValidEmail(false);
       }
-    });
-    setIsLoading(false);
-    dispatch(assignFavourite(response.data.length));
-  
-    if(callback) callback();
-  } catch (error) {
-    error?.response?.data?.error ?  setError(error.response.data.error) : setError('error while getting favourites');
-    console.error('error while getting favourites', error.message);
-    
-  }
+    }
+    if (e.target.name == "password") setPassword(e.target.value);
+  };
 
-}
+  // get favourite handler >> to get fav number for first time and before the user goes to his wishlist.
+  const getFavouriteHandler = async (user, callback) => {
+    try {
+      setIsLoading(true);
+      const response = await instance.get(url + `/favourite/${user.id}`, {
+        headers: {
+          authorization: `Bearer ${user?.token}`,
+        },
+      });
+      setIsLoading(false);
+      dispatch(assignFavourite(response.data.length));
 
+      if (callback) callback();
+    } catch (error) {
+      error?.response?.data?.error
+        ? setError(error.response.data.error)
+        : setError("error while getting favourites");
+      console.error("error while getting favourites", error.message);
+    }
+  };
 
-  const signInHandler = (e)=>{
+  const signInHandler = (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    setTimeout(async() => {
-      
-    try {
-  const loggedInUser = await instance.post(url+'/signin',{},{
-    auth: {
-      username:email,
-      password
-    }
-  });
-  console.log('loggedInUser',loggedInUser.data);
- const user= validateToken(loggedInUser.data.token);
- if (user) {
-  setIsLoading(false);
+    setTimeout(async () => {
+      try {
+        const loggedInUser = await instance.post(
+          url + "/signin",
+          {},
+          {
+            auth: {
+              username: email,
+              password,
+            },
+          }
+        );
+        const user = validateToken(loggedInUser.data.token);
+        if (user) {
+          setIsLoading(false);
 
-   dispatch(logInAction(user));
-  getFavouriteHandler(user,()=>{
+          dispatch(logInAction(user));
+          getFavouriteHandler(user, () => {
+            navigate("/Profile/1");
+            window.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: "smooth",
+            });
+          });
+        }
 
-    navigate('/Profile/1');
-window.scrollTo({
-  top: 0,
-  left: 0,
-  behavior: 'smooth',
-});
-
-
-  })
-
-
-
- } 
-
-e.target.reset();
-      
-    } catch (error) {
-      error?.response?.data?.error ?  setError(error.response.data.error) : setError('error while signing in');
-      console.error('error while signing in', error.message);
-    }
-  }, 1000);
-
+        e.target.reset();
+      } catch (error) {
+        error?.response?.data?.error
+          ? setError(error.response.data.error)
+          : setError("error while signing in");
+        console.error("error while signing in", error.message);
+      }
+    }, 1000);
   };
 
   return (
     <>
       <div className="sign-in" id="sign-in">
-      <div className="nav-container">
-      <div className="nav-info">
-          <div className="left-nav">
-            <Link to='/'><i className="fas fa-home i-home"></i></Link>  
-            <i className="fas fa-angle-right"></i> <span >SignIn</span>
-          </div>
-          <div className="right-nav">
-            <Link to="/SignUp"> <span className="exat-path">create an account</span> </Link>
+        <div className="nav-container">
+          <div className="nav-info">
+            <div className="left-nav">
+              <Link to="/">
+                <i className="fas fa-home i-home"></i>
+              </Link>
+              <i className="fas fa-angle-right"></i> <span>SignIn</span>
+            </div>
+            <div className="right-nav">
+              <Link to="/SignUp">
+                {" "}
+                <span className="exat-path">create an account</span>{" "}
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-        
-        
-       
+
         <div className="lamar-container">
           <form onSubmit={signInHandler}>
             <h2>sign in</h2>
@@ -147,17 +145,29 @@ e.target.reset();
                 onChange={onChangeHandler}
               />
             </div>
-            <button type="submit"  className={email && validEmail && password && !error && !isLoading? "submit active" : "submit"}>
-               submit
-             
+            <button
+              type="submit"
+              className={
+                email && validEmail && password && !error && !isLoading
+                  ? "submit active"
+                  : "submit"
+              }
+            >
+              submit
             </button>
           </form>
-      
-      
-          {isLoading && !error && <div className='loading-state-container-signin'> <LoadingState/></div> }
+
+          {isLoading && !error && (
+            <div className="loading-state-container-signin">
+              {" "}
+              <LoadingState />
+            </div>
+          )}
         </div>
       </div>
-      {error && <DualModal type={'error'} navigateTo={'/SignIn'} text={error}/>}
+      {error && (
+        <DualModal type={"error"} navigateTo={"/SignIn"} text={error} />
+      )}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/admin/admin.css';
+
 function Admin() {
   const navigate = useNavigate();
 
@@ -14,7 +15,6 @@ function Admin() {
                 <i className='fas fa-home i-home'></i>
               </Link>
               <i className='fas fa-angle-right'></i> <span>Admin </span>
-              {/* <i className='fas fa-angle-right'></i> <span>{catagory}</span> */}
             </div>
           </div>
         </div>

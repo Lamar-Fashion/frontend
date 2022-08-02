@@ -17,7 +17,6 @@ function LoadingState() {
           <div className="circular_7"></div>
           <div className="circular_8"></div>
         </div>
-        {/* <div className="text-loading">Loading Text</div> */}
         </div>
     )
 }

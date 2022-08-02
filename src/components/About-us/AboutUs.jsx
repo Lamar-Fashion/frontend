@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../styles/about-us/about-us.css';
+
 function AboutUs() {
   return (
     <>

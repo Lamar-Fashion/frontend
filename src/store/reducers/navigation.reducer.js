@@ -8,7 +8,6 @@ const initialState = {
     const { type, payload } = action;
     switch (type) {
       case 'NAVIGATE':
-        console.log(payload);
         return {
           category: payload ? payload : state.category
           

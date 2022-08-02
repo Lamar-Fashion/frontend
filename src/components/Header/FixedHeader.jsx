@@ -9,11 +9,6 @@ function FixedHeader() {
       <div className='fixed-header'>
         <div className='lamar-container'>
           <section className='contact-container'>
-            {/* <div className='contact-info location'>
-              <i className='fas fa-map-marker-alt fa-fw icon'></i>
-
-              <p className='contact-text'>Suhaim Bin Hamad Street, Doha, Qatar</p>
-            </div> */}
             <div className='contact-info'>
               <i className='fab fa-whatsapp fa-fw icon'></i>
               <a className='contact-text' href='http://wa.me/+97466881109' target='_blank'>

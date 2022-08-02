@@ -1,24 +1,34 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { React, useState, useEffect } from 'react';
-import '../../styles/header-styles/Header.css';
-import logo from '../../images/header/lamar-logo-small.png';
-import { BsCartFill, BsFillHeartFill, BsPersonCircle } from 'react-icons/bs';
-import { useNavigate, Link,useLocation } from 'react-router-dom';
-import { useSelector ,useDispatch} from 'react-redux';
-import { navigateAction,logOutAction,assignFavourite } from '../../store/actions';
-import cookies from 'react-cookies';
-import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
-import {instance,url} from '../../API/axios';
-import SearchList from './SearchList';
+import { React, useState, useEffect } from "react";
+import "../../styles/header-styles/Header.css";
+import logo from "../../images/header/lamar-logo-small.png";
+import { BsCartFill, BsFillHeartFill, BsPersonCircle } from "react-icons/bs";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  navigateAction,
+  logOutAction,
+  assignFavourite,
+} from "../../store/actions";
+import cookies from "react-cookies";
+import {
+  decryptAndGetFromStorage,
+  encryptAndSaveToStorage,
+} from "../../helpers/CryptoJS";
+import { instance, url } from "../../API/axios";
+import SearchList from "./SearchList";
 
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const {user,role,isLoggedIn} = useSelector((state) => state.authReducer);
-  const cartProductsNumber = useSelector((state) => state.cartReducer.cartProductsNumber);
-  const favouritesNumber = useSelector((state) => state.favouriteReducer.favouritesNumber);
+  const { user, role, isLoggedIn } = useSelector((state) => state.authReducer);
+  const cartProductsNumber = useSelector(
+    (state) => state.cartReducer.cartProductsNumber
+  );
+  const favouritesNumber = useSelector(
+    (state) => state.favouriteReducer.favouritesNumber
+  );
 
   const [showVerticalNav, setshowVerticalNav] = useState(false);
   const [showDropHome, setShowDropHome] = useState(false);
@@ -29,9 +39,17 @@ function Header() {
   const [searchResult, setSearchResult] = useState([]);
   const [showSearchResultList, setShowSearchResultList] = useState(false);
 
-  const [cartNumber, setCartNumber] = useState(decryptAndGetFromStorage('cartNumber') ? decryptAndGetFromStorage('cartNumber') : 0);
+  const [cartNumber, setCartNumber] = useState(
+    decryptAndGetFromStorage("cartNumber")
+      ? decryptAndGetFromStorage("cartNumber")
+      : 0
+  );
 
-  const [favNumber, setFavNumber] = useState(decryptAndGetFromStorage('favNumber') ? decryptAndGetFromStorage('favNumber') : 0);
+  const [favNumber, setFavNumber] = useState(
+    decryptAndGetFromStorage("favNumber")
+      ? decryptAndGetFromStorage("favNumber")
+      : 0
+  );
 
   const [y, setY] = useState(0);
 
@@ -40,117 +58,124 @@ function Header() {
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', scrollHandler, true);
-    dispatch(assignFavourite(decryptAndGetFromStorage('favNumber') ? decryptAndGetFromStorage('favNumber') : 0));
+    window.addEventListener("scroll", scrollHandler, true);
+    dispatch(
+      assignFavourite(
+        decryptAndGetFromStorage("favNumber")
+          ? decryptAndGetFromStorage("favNumber")
+          : 0
+      )
+    );
   }, []);
 
   // trigger redux, save to storage, and render it
   useEffect(() => {
-  encryptAndSaveToStorage('cartNumber',cartProductsNumber);
+    encryptAndSaveToStorage("cartNumber", cartProductsNumber);
 
     setCartNumber(cartProductsNumber);
   }, [cartProductsNumber]);
 
   useEffect(() => {
-    console.log('favouritesNumber',favouritesNumber);
-  encryptAndSaveToStorage('favNumber',favouritesNumber);
-// console.log('favouritesNumber',favouritesNumber);
-  setFavNumber(favouritesNumber);
+    encryptAndSaveToStorage("favNumber", favouritesNumber);
+    setFavNumber(favouritesNumber);
   }, [favouritesNumber]);
 
   //log out handler
-  const logoutHandler = ()=>{
-    console.log('from sign out');
-    cookies.remove('token');
+  const logoutHandler = () => {
+    cookies.remove("token");
     dispatch(logOutAction());
     dispatch(assignFavourite(0));
-    navigate('/');
+    navigate("/");
     window.location.reload();
-  }
+  };
 
   //search handler
-  const searchHandler = (e)=>{
+  const searchHandler = (e) => {
     const searchedText = e.target.value;
-    if(!searchedText) {
+    if (!searchedText) {
       setShowSearchResultList(false);
       setSearchResult([]);
       return;
     }
     setIsLoading(true);
-    setTimeout(async() => {
+    setTimeout(async () => {
       try {
-        const response = await instance.get(url+'/search/'+searchedText);
-    setIsLoading(false);
-    setSearchResult(response.data);
-    setShowSearchResultList(true);
+        const response = await instance.get(url + "/search/" + searchedText);
+        setIsLoading(false);
+        setSearchResult(response.data);
+        setShowSearchResultList(true);
       } catch (error) {
         setShowSearchResultList(false);
         setSearchResult([]);
-        console.error('Error while searching',error.message);
+        console.error("Error while searching", error.message);
       }
     }, 50);
-  }
+  };
 
   // go to favourite handler
-  const goToFavHandler = ()=>{
-    navigate('/Profile/2');
-  }
-  
-  
+  const goToFavHandler = () => {
+    navigate("/Profile/2");
+  };
+
   // When the user clicks anywhere outside of the  search result list modal, close it
-  window.onclick = function(event) {
-  const searchResultModal = document.querySelector('#search-modal');
-   if (searchResultModal && event.target != searchResultModal) {
-    setShowSearchResultList(false);
-    setSearchResult([]);
+  window.onclick = function (event) {
+    const searchResultModal = document.querySelector("#search-modal");
+    if (searchResultModal && event.target != searchResultModal) {
+      setShowSearchResultList(false);
+      setSearchResult([]);
     }
-
-  
-
-}
+  };
   return (
     <>
-      <section className={y > 0 ? 'header header-scroll' : 'header'}>
+      <section className={y > 0 ? "header header-scroll" : "header"}>
         {showVerticalNav && (
           <>
             <div
-              className='close-vertical'
+              className="close-vertical"
               onClick={() => {
                 setshowVerticalNav(false);
               }}
             ></div>
-            <div className='vertical-nav-container'>
-              <ul className='main-nav-phone'>
-                {role === 'admin' ? (
+            <div className="vertical-nav-container">
+              <ul className="main-nav-phone">
+                {role === "admin" ? (
                   <li>
                     <Link
-                      to='/Admin'
+                      to="/Admin"
                       onClick={() => {
                         window.scrollTo({
                           left: 0,
                           top: 0,
-                          behavior: 'smooth',
+                          behavior: "smooth",
                         });
                       }}
                     >
                       <a>Admin</a>
                     </Link>
                     <i
-                      className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
+                      className={
+                        dropDown ? "fas fa-angle-up" : "fas fa-angle-down"
+                      }
                       onClick={() => {
                         setShowDropHome(!showDropHome);
                         setDropDown(!dropDown);
                       }}
                     ></i>
-                    <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
+                    <ul
+                      className={
+                        showDropHome
+                          ? "drop-ul-phone drop-ul-phone-scroll"
+                          : "drop-ul-phone"
+                      }
+                    >
                       <li>
                         <Link
-                          to='/PendingOrders'
+                          to="/PendingOrders"
                           onClick={() => {
                             window.scrollTo({
                               left: 0,
                               top: 0,
-                              behavior: 'smooth',
+                              behavior: "smooth",
                             });
                           }}
                         >
@@ -159,12 +184,12 @@ function Header() {
                       </li>
                       <li>
                         <Link
-                          to='/DoneOrders'
+                          to="/DoneOrders"
                           onClick={() => {
                             window.scrollTo({
                               left: 0,
                               top: 0,
-                              behavior: 'smooth',
+                              behavior: "smooth",
                             });
                           }}
                         >
@@ -173,12 +198,12 @@ function Header() {
                       </li>
                       <li>
                         <Link
-                          to='/RejectedOrders'
+                          to="/RejectedOrders"
                           onClick={() => {
                             window.scrollTo({
                               left: 0,
                               top: 0,
-                              behavior: 'smooth',
+                              behavior: "smooth",
                             });
                           }}
                         >
@@ -187,12 +212,12 @@ function Header() {
                       </li>
                       <li>
                         <Link
-                          to='/AllUsers'
+                          to="/AllUsers"
                           onClick={() => {
                             window.scrollTo({
                               left: 0,
                               top: 0,
-                              behavior: 'smooth',
+                              behavior: "smooth",
                             });
                           }}
                         >
@@ -215,33 +240,41 @@ function Header() {
                 ) : (
                   <li>
                     <Link
-                      to='/'
+                      to="/"
                       onClick={() => {
                         window.scrollTo({
                           left: 0,
                           top: 0,
-                          behavior: 'smooth',
+                          behavior: "smooth",
                         });
                       }}
                     >
                       <a>Home</a>
                     </Link>
                     <i
-                      className={dropDown ? 'fas fa-angle-up' : 'fas fa-angle-down'}
+                      className={
+                        dropDown ? "fas fa-angle-up" : "fas fa-angle-down"
+                      }
                       onClick={() => {
                         setShowDropHome(!showDropHome);
                         setDropDown(!dropDown);
                       }}
                     ></i>
-                    <ul className={showDropHome ? 'drop-ul-phone drop-ul-phone-scroll' : 'drop-ul-phone'}>
+                    <ul
+                      className={
+                        showDropHome
+                          ? "drop-ul-phone drop-ul-phone-scroll"
+                          : "drop-ul-phone"
+                      }
+                    >
                       <li>
                         <Link
-                          to='/Contact-us'
+                          to="/Contact-us"
                           onClick={() => {
                             window.scrollTo({
                               left: 0,
                               top: 0,
-                              behavior: 'smooth',
+                              behavior: "smooth",
                             });
                           }}
                         >
@@ -264,12 +297,12 @@ function Header() {
                 )}
                 <li>
                   <Link
-                    to='/Abaya'
+                    to="/Abaya"
                     onClick={() => {
                       window.scrollTo({
                         left: 0,
                         top: 0,
-                        behavior: 'smooth',
+                        behavior: "smooth",
                       });
                       dispatch(navigateAction("all"));
                     }}
@@ -281,28 +314,32 @@ function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link to='/Abaya' 
-                   onClick={() => {
-                    window.scrollTo({
-                      left: 0,
-                      top: 0,
-                      behavior: 'smooth',
-                    });
-                    dispatch(navigateAction("New Arrival"));
-                  }}>
+                  <Link
+                    to="/Abaya"
+                    onClick={() => {
+                      window.scrollTo({
+                        left: 0,
+                        top: 0,
+                        behavior: "smooth",
+                      });
+                      dispatch(navigateAction("New Arrival"));
+                    }}
+                  >
                     <a>New Arrivals</a>
                   </Link>
                 </li>
                 <li>
-                  <Link to='/Abaya' 
-                  onClick={() => {
-                    window.scrollTo({
-                      left: 0,
-                      top: 0,
-                      behavior: 'smooth',
-                    });
-                    dispatch(navigateAction("On Sales"));
-                  }}>
+                  <Link
+                    to="/Abaya"
+                    onClick={() => {
+                      window.scrollTo({
+                        left: 0,
+                        top: 0,
+                        behavior: "smooth",
+                      });
+                      dispatch(navigateAction("On Sales"));
+                    }}
+                  >
                     <a>on Sales</a>
                   </Link>
                 </li>
@@ -355,26 +392,32 @@ function Header() {
             </div>
           </>
         )}
-        <div className={y > 0 ? 'lamar-container lamar-container-scroll ' : 'lamar-container'}>
-          <ul className={y > 0 ? 'main-nav main-nav-scroll ' : 'main-nav'}>
-            {role === 'admin' ? (
+        <div
+          className={
+            y > 0
+              ? "lamar-container lamar-container-scroll "
+              : "lamar-container"
+          }
+        >
+          <ul className={y > 0 ? "main-nav main-nav-scroll " : "main-nav"}>
+            {role === "admin" ? (
               <li>
                 <Link
-                  to='/Admin'
+                  to="/Admin"
                   onClick={() => {
                     window.scrollTo({
                       left: 0,
                       top: 0,
-                      behavior: 'smooth',
+                      behavior: "smooth",
                     });
                   }}
                 >
                   <a>
                     Admin
-                    <i className='fas fa-angle-down'></i>
+                    <i className="fas fa-angle-down"></i>
                   </a>
                 </Link>
-                <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
+                <ul className={y > 0 ? "drop-ul-home-scroll" : "drop-ul-home"}>
                   {/* <li>
                   <a href='#brands'>collection</a>
                 </li>
@@ -386,12 +429,12 @@ function Header() {
                 </li> */}
                   <li>
                     <Link
-                      to='/PendingOrders'
+                      to="/PendingOrders"
                       onClick={() => {
                         window.scrollTo({
                           left: 0,
                           top: 0,
-                          behavior: 'smooth',
+                          behavior: "smooth",
                         });
                       }}
                     >
@@ -400,12 +443,12 @@ function Header() {
                   </li>
                   <li>
                     <Link
-                      to='/DoneOrders'
+                      to="/DoneOrders"
                       onClick={() => {
                         window.scrollTo({
                           left: 0,
                           top: 0,
-                          behavior: 'smooth',
+                          behavior: "smooth",
                         });
                       }}
                     >
@@ -414,12 +457,12 @@ function Header() {
                   </li>
                   <li>
                     <Link
-                      to='/RejectedOrders'
+                      to="/RejectedOrders"
                       onClick={() => {
                         window.scrollTo({
                           left: 0,
                           top: 0,
-                          behavior: 'smooth',
+                          behavior: "smooth",
                         });
                       }}
                     >
@@ -428,12 +471,12 @@ function Header() {
                   </li>
                   <li>
                     <Link
-                      to='/AllUsers'
+                      to="/AllUsers"
                       onClick={() => {
                         window.scrollTo({
                           left: 0,
                           top: 0,
-                          behavior: 'smooth',
+                          behavior: "smooth",
                         });
                       }}
                     >
@@ -445,21 +488,21 @@ function Header() {
             ) : (
               <li>
                 <Link
-                  to='/'
+                  to="/"
                   onClick={() => {
                     window.scrollTo({
                       left: 0,
                       top: 0,
-                      behavior: 'smooth',
+                      behavior: "smooth",
                     });
                   }}
                 >
                   <a>
                     Home
-                    <i className='fas fa-angle-down'></i>
+                    <i className="fas fa-angle-down"></i>
                   </a>
                 </Link>
-                <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
+                <ul className={y > 0 ? "drop-ul-home-scroll" : "drop-ul-home"}>
                   {/* <li>
     <a href='#brands'>collection</a>
   </li>
@@ -471,12 +514,12 @@ function Header() {
   </li> */}
                   <li>
                     <Link
-                      to='/Contact-us'
+                      to="/Contact-us"
                       onClick={() => {
                         window.scrollTo({
                           left: 0,
                           top: 0,
-                          behavior: 'smooth',
+                          behavior: "smooth",
                         });
                       }}
                     >
@@ -488,17 +531,15 @@ function Header() {
             )}
             <li>
               <Link
-                to='/Abaya'
+                to="/Abaya"
                 onClick={() => {
                   window.scrollTo({
                     left: 0,
                     top: 0,
-                    behavior: 'smooth',
+                    behavior: "smooth",
                   });
                   dispatch(navigateAction("all"));
-
                 }}
-                
               >
                 <a>
                   Abayas
@@ -521,78 +562,100 @@ function Header() {
               </ul> */}
             </li>
             <li>
-              <Link  to='/Abaya'
+              <Link
+                to="/Abaya"
                 onClick={() => {
                   window.scrollTo({
                     left: 0,
                     top: 0,
-                    behavior: 'smooth',
+                    behavior: "smooth",
                   });
                   dispatch(navigateAction("New Arrival"));
-
-                }}>
-                <a >New Arrivals</a>
+                }}
+              >
+                <a>New Arrivals</a>
               </Link>
             </li>
             <li>
-              <Link  to='/Abaya'
+              <Link
+                to="/Abaya"
                 onClick={() => {
                   window.scrollTo({
                     left: 0,
                     top: 0,
-                    behavior: 'smooth',
+                    behavior: "smooth",
                   });
                   dispatch(navigateAction("On Sales"));
-
-                }}>
-                <a >On Sales</a>
+                }}
+              >
+                <a>On Sales</a>
               </Link>
             </li>
           </ul>
 
-          <div className={y > 0 ? 'image image-scroll ' : 'image'}>
+          <div className={y > 0 ? "image image-scroll " : "image"}>
             <Link
-              to='/'
+              to="/"
               onClick={() => {
                 window.scrollTo({
                   left: 0,
                   top: 0,
-                  behavior: 'smooth',
+                  behavior: "smooth",
                 });
               }}
             >
-              <img src={logo} alt='logo' className='logo' />
+              <img src={logo} alt="logo" className="logo" />
             </Link>
           </div>
-          <section className={y > 0 ? 'rightContainer rightContainer-scroll ' : 'rightContainer'}>
-            <div className='searchContainer'>
-              <input type='text' name='searchedText' placeholder='Search...' className={showSearchTextField ? 'input' : 'hidden-input'} onChange={searchHandler}/>
+          <section
+            className={
+              y > 0 ? "rightContainer rightContainer-scroll " : "rightContainer"
+            }
+          >
+            <div className="searchContainer">
+              <input
+                type="text"
+                name="searchedText"
+                placeholder="Search..."
+                className={showSearchTextField ? "input" : "hidden-input"}
+                onChange={searchHandler}
+              />
 
-              <a href='#' className='btn' onClick={() => setShowSearchTextField(!showSearchTextField)}>
-                <i className='fas fa-search'></i>
+              <a
+                href="#"
+                className="btn"
+                onClick={() => setShowSearchTextField(!showSearchTextField)}
+              >
+                <i className="fas fa-search"></i>
               </a>
-              {showSearchResultList && <SearchList products={searchResult} setShowSearchResultList={setShowSearchResultList} setSearchResult={setSearchResult}/>}
+              {showSearchResultList && (
+                <SearchList
+                  products={searchResult}
+                  setShowSearchResultList={setShowSearchResultList}
+                  setSearchResult={setSearchResult}
+                />
+              )}
             </div>
-            <ul className='right-nav'>
+            <ul className="right-nav">
               <li>
                 {!isLoggedIn && (
                   <Link
-                    to='/SignIn'
+                    to="/SignIn"
                     onClick={() => {
                       window.scrollTo({
                         left: 0,
                         top: 0,
-                        behavior: 'smooth',
+                        behavior: "smooth",
                       });
                     }}
                   >
-                    <a className='a-sign' >
-                       <i className='fas fa-sign-in-alt header-icons profile'></i>
+                    <a className="a-sign">
+                      <i className="fas fa-sign-in-alt header-icons profile"></i>
                     </a>
                     {/* <a className='a-sign' >
                       sign-in <i className='fas fa-sign-in-alt header-icons profile'></i>
                     </a> */}
-                   </Link>
+                  </Link>
                 )}
                 {isLoggedIn && (
                   // <Link
@@ -605,47 +668,46 @@ function Header() {
                   //     });
                   //   }}
                   // >
-                    <a className='a-sign' onClick={logoutHandler}>
-                       <i className='fas fa-sign-out-alt header-icons profile'></i>
-                    </a>
-                    // <a className='a-sign' onClick={logoutHandler}>
-                    //   sign-out <i className='fas fa-sign-out-alt header-icons profile'></i>
-                    // </a>
+                  <a className="a-sign" onClick={logoutHandler}>
+                    <i className="fas fa-sign-out-alt header-icons profile"></i>
+                  </a>
+                  // <a className='a-sign' onClick={logoutHandler}>
+                  //   sign-out <i className='fas fa-sign-out-alt header-icons profile'></i>
+                  // </a>
                   // </Link>
                 )}
               </li>
               <li>
-                <a onClick={goToFavHandler}
->
+                <a onClick={goToFavHandler}>
                   <a>
-                    <BsFillHeartFill className='header-icons fav' />
+                    <BsFillHeartFill className="header-icons fav" />
 
-                    <strong className='number'>{favNumber}</strong>
+                    <strong className="number">{favNumber}</strong>
                   </a>
                 </a>
               </li>
               <li>
                 <Link
-                  to='/Cart'
+                  to="/Cart"
                   onClick={() => {
                     window.scrollTo({
                       left: 0,
                       top: 0,
-                      behavior: 'smooth',
+                      behavior: "smooth",
                     });
                   }}
                 >
                   <a>
-                    <BsCartFill className='header-icons cart' />
+                    <BsCartFill className="header-icons cart" />
 
-                    <strong className='number'>{cartNumber}</strong>
+                    <strong className="number">{cartNumber}</strong>
                   </a>
                 </Link>
               </li>
             </ul>
           </section>
           <div
-            className={showVerticalNav ? 'three-dashs active' : 'three-dashs'}
+            className={showVerticalNav ? "three-dashs active" : "three-dashs"}
             onClick={() => {
               setshowVerticalNav(!showVerticalNav);
             }}

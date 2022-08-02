@@ -6,9 +6,8 @@ import "../../../styles/admin/add-product/addProduct-modal.css";
 import { default as ReactSelect } from "react-select";
 import { components } from "react-select";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useSelector } from 'react-redux';
-import { instance,url } from "../../../API/axios";
-import { Link,useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { instance, url } from "../../../API/axios";
 import LoadingState from "../../Shared/LoadingState";
 import DualModal from "../../Shared/DualModal";
 
@@ -38,12 +37,11 @@ const style = {
   [theme.breakpoints.down(531)]: {
     width: "95%",
   },
-  maxHeight: '93vh',
+  maxHeight: "93vh",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   overflow: "auto",
-
 };
 
 // color options
@@ -85,10 +83,8 @@ const Option = (props) => {
   );
 };
 
-
-function EditProductModal({abaya, setOpenEditProduct, openEditProduct }) {
+function EditProductModal({ abaya, setOpenEditProduct, openEditProduct }) {
   const user = useSelector((state) => state.authReducer.user);
-  const navigate = useNavigate();
 
   const [colorsSelected, setColorsSelected] = useState(null);
   const [sizesSelected, setSizesSelected] = useState(null);
@@ -99,13 +95,15 @@ function EditProductModal({abaya, setOpenEditProduct, openEditProduct }) {
   const [error, setError] = useState(null);
   const [orderDone, setOrderDone] = useState(false);
 
-console.log('addToHomePage',addToHomePage);
   // did mount
   useEffect(() => {
-    console.log('item',abaya);
     // add label & value for react-selector
-    const colors = abaya.colors.map(color=> { return {value: color, label:color}});
-    const sizes = abaya.sizes.map(size=> { return {value: size, label:size}});
+    const colors = abaya.colors.map((color) => {
+      return { value: color, label: color };
+    });
+    const sizes = abaya.sizes.map((size) => {
+      return { value: size, label: size };
+    });
     setSizesSelected(sizes);
     setColorsSelected(colors);
     setProductData({
@@ -124,15 +122,16 @@ console.log('addToHomePage',addToHomePage);
 
   // handle change for colors selection
   const colorsHandleChange = (selected) => {
-    let colorValues = selected.map(color=> color.value);
+    let colorValues = selected.map((color) => color.value);
     setColorsSelected(selected);
     setProductData({ ...productData, colors: colorValues });
     // if the user edit anything allow him to submit
     setIsValid(true);
   };
+
   // handle change for sizes selection
   const sizesHandleChange = (selected) => {
-    let sizeValues = selected.map(size=> size.value);
+    let sizeValues = selected.map((size) => size.value);
     setSizesSelected(selected);
     setProductData({ ...productData, sizes: sizeValues });
     // if the user edit anything allow him to submit
@@ -140,45 +139,42 @@ console.log('addToHomePage',addToHomePage);
   };
 
   // onSubmit function
-  const submitHandler =  (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    setTimeout(async() => {
-      
-    try {
-const editedAbaya = await instance.put(url+`/product${productData.id}`,productData,{
-  headers: {
-    authorization: `Bearer ${user.token}`
-  }
-});
-setIsLoading(true);
-setOrderDone(true);
-      // setOpenEditProduct(false);
-      // navigate(0);
+    setTimeout(async () => {
+      try {
+        const editedAbaya = await instance.put(
+          url + `/product${productData.id}`,
+          productData,
+          {
+            headers: {
+              authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+        setIsLoading(true);
+        setOrderDone(true);
       } catch (error) {
-        error?.response?.data?.error ?  setError(error.response.data.error) : setError('Error while editing product');
-      console.log("Edit Product Error", error.message);
-    }
-  }, 1000);
-
+        error?.response?.data?.error
+          ? setError(error.response.data.error)
+          : setError("Error while editing product");
+        console.error("Edit Product Error", error.message);
+      }
+    }, 1000);
   };
-
-
 
   // on change handler
   const handleChange = (e) => {
-   console.log('e.target.value',e.target.value);
-   if(e.target.name=='addToHomePage') {
-if (e.target.value === 'true') {
-  setAddToHomePage(true);
-  
-}
-if (e.target.value === 'false') {
-  setAddToHomePage(false);
-  
-}
-   }
+    if (e.target.name == "addToHomePage") {
+      if (e.target.value === "true") {
+        setAddToHomePage(true);
+      }
+      if (e.target.value === "false") {
+        setAddToHomePage(false);
+      }
+    }
 
     setProductData({ ...productData, [e.target.name]: e.target.value });
 
@@ -197,10 +193,10 @@ if (e.target.value === 'false') {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        className='modal'
+        className="modal"
       >
         <ThemeProvider theme={theme}>
-          <Box sx={style} className='box-container'>
+          <Box sx={style} className="box-container">
             <div className="modal-header">
               <Typography id="modal-modal-title" variant="h6" component="h2">
                 Edit Product Form:
@@ -232,7 +228,7 @@ if (e.target.value === 'false') {
                     onChange={handleChange}
                     value={productData?.status}
                   >
-                    <option value="" >--choose option--</option>
+                    <option value="">--choose option--</option>
                     <option value="notReadyToWear">يحتاج الى تفصيل</option>
                     <option value="readyToWear">Ready To Wear</option>
                   </select>
@@ -316,9 +312,7 @@ if (e.target.value === 'false') {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="images">
-                  {/* <input type='file' multiple name='images' required id='images' placeholder='Product images' onChange={handleChange} accept='image/png,image/jpeg' /> */}
-                </div>
+             
                 <div className="addToHomePage">
                   <label htmlFor="addToHomePage">
                     Add this product to the Home page?{" "}
@@ -337,13 +331,13 @@ if (e.target.value === 'false') {
                      
                     <input
                       type="radio"
-                      id="addToHomePage" 
+                      id="addToHomePage"
                       name="addToHomePage"
                       value={false}
                       onChange={handleChange}
                       checked={addToHomePage == false}
                     />
-                     <label htmlFor={false} > no</label>
+                     <label htmlFor={false}> no</label>
                   </section>
                 </div>
 
@@ -360,12 +354,30 @@ if (e.target.value === 'false') {
               {!isValid && <p>you didn't edit anything yet!</p>}
             </div>
           </Box>
-          {isLoading &&  !error && <section className='progress-container'>
-     <LoadingState/>
-          </section>}
+          {isLoading && !error && (
+            <section className="progress-container">
+              <LoadingState />
+            </section>
+          )}
 
-          {orderDone  && <DualModal type='success' navigateTo = '/Abaya' showHeader={true} text={"your product has been updated successfully"}/>}
-        {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
+          {orderDone && (
+            <DualModal
+              type="success"
+              navigateTo="/Abaya"
+              showHeader={true}
+              text={"your product has been updated successfully"}
+            />
+          )}
+          {error && (
+            <DualModal
+              type="error"
+              navigateTo="/Abaya"
+              text={
+                error ? error : "Something went wrong! <br/> please try again"
+              }
+              showHeader={true}
+            />
+          )}
         </ThemeProvider>
       </Modal>
     </>

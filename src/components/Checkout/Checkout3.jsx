@@ -1,24 +1,25 @@
 /* eslint-disable no-mixed-operators */
 import { React, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/checkout/checkout.css";
 import apple_pay from "../../images/header/apple-pay.png";
 import cash from "../../images/shop/cash.png";
-import {decryptAndGetFromStorage,encryptAndSaveToStorage} from '../../helpers/CryptoJS';
+import {
+  decryptAndGetFromStorage,
+  encryptAndSaveToStorage,
+} from "../../helpers/CryptoJS";
 import { instance, url } from "../../API/axios";
-import {useSelector,useDispatch} from 'react-redux';
-import {resetCartAction} from '../../store/actions/index';
+import { useSelector, useDispatch } from "react-redux";
+import { resetCartAction } from "../../store/actions/index";
 import LoadingState from "../Shared/LoadingState";
 import DualModal from "../Shared/DualModal";
 
 function Checkout3() {
-  const user = useSelector((state) => state.authReducer.user);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-  const total =  decryptAndGetFromStorage('total');
-  const cartArray =decryptAndGetFromStorage('cart');
-  const checkout_person_info =decryptAndGetFromStorage('checkout_person_info');
+
+  const total = decryptAndGetFromStorage("total");
+  const cartArray = decryptAndGetFromStorage("cart");
+  const checkout_person_info = decryptAndGetFromStorage("checkout_person_info");
 
   const [state, setstate] = useState("");
   const [policy, setPolicy] = useState(false);
@@ -33,48 +34,38 @@ function Checkout3() {
   const handlePolicy = () => {
     setPolicy(!policy);
   };
-const makeOrderHandler = async (e)=>{
-  e.preventDefault();
-if(isLoading || orderDone) return;
-  console.log('checkout_person_info',checkout_person_info);
-  console.log('total',total);
-  console.log('cartArray',cartArray);
   
-  let bookedData = {
-    productInfo: cartArray,
-    personalInfo: checkout_person_info,
-    totalPrice : total
-  }
-  setIsLoading(true);
-setTimeout(async() => {
-  try {
+  const makeOrderHandler = async (e) => {
+    e.preventDefault();
+    if (isLoading || orderDone) return;
 
-  const bookedOrder = await instance.post(url+'/addToCart',bookedData);
-  
-  console.log('bookedOrder',bookedOrder);
-  // sessionStorage.removeItem('checkout_person_info');
-  // sessionStorage.removeItem('cartNumber');
-  sessionStorage.removeItem('cart');
-  dispatch(resetCartAction());
-  encryptAndSaveToStorage('total',0);
-  setIsLoading(false);
-  setOrderDone(true);
+    let bookedData = {
+      productInfo: cartArray,
+      personalInfo: checkout_person_info,
+      totalPrice: total,
+    };
+    setIsLoading(true);
+    setTimeout(async () => {
+      try {
+        const bookedOrder = await instance.post(url + "/addToCart", bookedData);
 
-  // sessionStorage.removeItem('total');
-    // navigate('/Abaya');
-    
-  } catch (error) {
-    sessionStorage.removeItem('cart');
-    dispatch(resetCartAction());
-    encryptAndSaveToStorage('total',0);
+        sessionStorage.removeItem("cart");
+        dispatch(resetCartAction());
+        encryptAndSaveToStorage("total", 0);
+        setIsLoading(false);
+        setOrderDone(true);
+      } catch (error) {
+        sessionStorage.removeItem("cart");
+        dispatch(resetCartAction());
+        encryptAndSaveToStorage("total", 0);
 
-    error?.response?.data?.error ?  setError(error.response.data.error) : setError('book order error');
-    console.error('book order error',error.message)
-  }
-}, 1000);
-}
-  // console.log(policy);
-  // console.log(state);
+        error?.response?.data?.error
+          ? setError(error.response.data.error)
+          : setError("book order error");
+        console.error("book order error", error.message);
+      }
+    }, 1000);
+  };
 
   return (
     <>
@@ -87,17 +78,14 @@ setTimeout(async() => {
               </Link>
               <i className="fas fa-angle-right"></i>
               <Link to="/Cart" className="exat-path">
-                {" "}
                 <span>cart</span>
               </Link>
               <i className="fas fa-angle-right"></i>
               <Link to="/Checkout" className="exat-path">
-                {" "}
                 <span>Shipping</span>
               </Link>
               <i className="fas fa-angle-right"></i>
               <Link to="/Checkout2" className="exat-path">
-                {" "}
                 <span>Payment</span>
               </Link>
               <i className="fas fa-angle-right"></i>
@@ -115,7 +103,7 @@ setTimeout(async() => {
             <span>
               Review & Payments <i className="far fa-check-circle"></i>
             </span>
-            <i className="fas fa-angle-right"></i>{" "}
+            <i className="fas fa-angle-right"></i>
             <span className="active">
               Order Complete <span className="steps">3</span>
             </span>
@@ -125,10 +113,16 @@ setTimeout(async() => {
               <h4 className="Shipping-title">Payment Method</h4>
 
               <div className="pay-method">
-                <form action="" onSubmit={makeOrderHandler} >
+                <form action="" onSubmit={makeOrderHandler}>
                   <div className="pay">
                     <div className="cash">
-                      <input type="radio" name="pay" value="cash" id="cash" onChange={handleCahnge}/>
+                      <input
+                        type="radio"
+                        name="pay"
+                        value="cash"
+                        id="cash"
+                        onChange={handleCahnge}
+                      />
                       <label htmlFor="cash">Cash On Delivery (COD)</label>
                     </div>
                     <div className="image">
@@ -194,26 +188,26 @@ setTimeout(async() => {
                       <img src={apple_pay} alt="" />
                     </div>
                   </div> */}
-                    {
-                      state==="credit_card"&& 
-                      <div className="credit_card">
-                          <i className="fas fa-money-check"></i>
-                          <p>
-                            
-After clicking “Complete order”, you will be redirected to Mastercard - Visacard - Payment Gateway Services - Simplify to complete your purchase securely.
-                          </p>
-                      </div>
-                    }
-                     {
-                      state==="Pay-Pal"&& 
-                      <div className="credit_card">
-                          <i className="fas fa-money-check"></i>
-                          <p>
-                            
-After clicking “Complete order”, you will be redirected to Pay-Pal Payment Gateway Services - Simplify to complete your purchase securely.
-                          </p>
-                      </div>
-                    }
+                  {state === "credit_card" && (
+                    <div className="credit_card">
+                      <i className="fas fa-money-check"></i>
+                      <p>
+                        After clicking “Complete order”, you will be redirected
+                        to Mastercard - Visacard - Payment Gateway Services -
+                        Simplify to complete your purchase securely.
+                      </p>
+                    </div>
+                  )}
+                  {state === "Pay-Pal" && (
+                    <div className="credit_card">
+                      <i className="fas fa-money-check"></i>
+                      <p>
+                        After clicking “Complete order”, you will be redirected
+                        to Pay-Pal Payment Gateway Services - Simplify to
+                        complete your purchase securely.
+                      </p>
+                    </div>
+                  )}
                   <div className="place-order">
                     <div className="Conditions">
                       <input
@@ -234,17 +228,29 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
                             });
                           }}
                         >
-                           Terms & Conditions
+                          Terms & Conditions
                         </Link>
                       </label>
                     </div>
 
                     {(state && policy && (
-                      <button  className={isLoading || orderDone || error ? "next not-place" : "next"} type="submit">
-                        {!isLoading && !orderDone && 'complete order'}
-                        {!isLoading && orderDone && 'Done'}
-                        { error && 'Failed'}
-                      {isLoading && !error && <div className='loading-state-container'> <LoadingState/></div> }
+                      <button
+                        className={
+                          isLoading || orderDone || error
+                            ? "next not-place"
+                            : "next"
+                        }
+                        type="submit"
+                      >
+                        {!isLoading && !orderDone && "complete order"}
+                        {!isLoading && orderDone && "Done"}
+                        {error && "Failed"}
+                        {isLoading && !error && (
+                          <div className="loading-state-container">
+                            {" "}
+                            <LoadingState />
+                          </div>
+                        )}
                       </button>
                     )) || <div className="not-place"> complete order</div>}
                   </div>
@@ -291,10 +297,22 @@ After clicking “Complete order”, you will be redirected to Pay-Pal Payment G
             </div>
           </div>
         </div>
-
       </section>
-        {orderDone && <DualModal type='success' navigateTo = '/Abaya' text={"We've received your order<br/>we will get in touch soon."}/>}
-        {error && <DualModal type='error' navigateTo = '/Abaya' text={error ? error : 'Something went wrong! <br/> please try again'} showHeader={true}/>}
+      {orderDone && (
+        <DualModal
+          type="success"
+          navigateTo="/Abaya"
+          text={"We've received your order<br/>we will get in touch soon."}
+        />
+      )}
+      {error && (
+        <DualModal
+          type="error"
+          navigateTo="/Abaya"
+          text={error ? error : "Something went wrong! <br/> please try again"}
+          showHeader={true}
+        />
+      )}
     </>
   );
 }

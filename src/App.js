@@ -22,7 +22,6 @@ import PendingOrders from './components/Admin/pending-orders/PendingOrders';
 import DoneOrders from './components/Admin/done-orders/DoneOrders';
 import RejectedOrders from './components/Admin/rejected-orders/RejectedOrders';
 import Admin from './components/Admin/Admin';
-import AddProductModal from './components/Admin/add-product/AddProductModal';
 import validateToken from './helpers/validateToken';
 import { useDispatch } from 'react-redux';
 import {logOutAction,logInAction} from './store/actions/index';
@@ -30,6 +29,7 @@ import {logOutAction,logInAction} from './store/actions/index';
 function App() {
   const dispatch = useDispatch();
   const [y, setY] = useState(window.scrollY);
+  
   window.onscroll = function () {
     setY(window.scrollY);
 

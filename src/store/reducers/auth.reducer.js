@@ -17,7 +17,6 @@ const authReducer = (state = initialState, action) => {
         role:payload.role
       };
     case 'LOG_OUT':
-      console.log('hello from log out action');
       return {
         isLoggedIn: false,
         user: null,
