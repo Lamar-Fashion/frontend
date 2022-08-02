@@ -1,6 +1,6 @@
 
 
-import { React, useState } from 'react';
+import { React, useState,useEffect } from 'react';
 import '../../styles/product-details/product-details.css';
 
 import { Link,useNavigate } from 'react-router-dom';
@@ -16,6 +16,9 @@ import DualModal from '../Shared/DualModal';
 // @ts-ignore
 import PinchZoomPan from "react-image-zoom-pan";
 
+const tall = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63];
+let obj,images, firstImg,code,price,size,color,description,inStock,category;
+
 function ProductDetails() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,18 +29,21 @@ function ProductDetails() {
  const [addedToFavItem, setAddedToFavItem] = useState(null);
  const [error, setError] = useState(null);
  
- let obj =  decryptAndGetFromStorage('product');
+ obj =  decryptAndGetFromStorage('product');
+ if(!obj){
+   navigate('/');
+  }
  
- let images = obj.images;
- let firstImg = obj.images[0];
+  images = obj?.images;
+  firstImg = obj?.images[0];
  const [state, setstate] = useState(firstImg);
-  let code = obj.code;
-  let price = obj.price;
-  let size = obj.sizes;
-  let color = obj.colors;
-  let description = obj.description;
-  let inStock = obj.inStock;
-  let category = obj.category;
+   code = obj?.code;
+   price = obj?.price;
+   size = obj?.sizes;
+   color = obj?.colors;
+   description = obj?.description;
+   inStock = obj?.inStock;
+   category = obj?.category;
   const [selectedProduct, setSelectedProduct] = useState({
     ...obj,
     size: false,
@@ -60,7 +66,15 @@ function ProductDetails() {
   });
   const [errorAlert, setErrorAlert] = useState(false);
   const [seccessAlert, setSeccessAlert] = useState(false);
-
+//did mount
+useEffect(()=>{
+  window.scrollTo({
+    left: 0,
+    top: 75,
+    behavior: 'smooth',
+  });
+},[])
+// add to cart handler
   const addEntry = (obj) => {
     let FavArray = decryptAndGetFromStorage('cart');
     if (FavArray == null) FavArray = [];
@@ -108,7 +122,6 @@ function ProductDetails() {
 
     }, 2000);
   };
-  const tall = [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63];
 
 // add to favourite handler
 const addToFavourite = async (item) => {
@@ -199,7 +212,7 @@ const addToFavourite = async (item) => {
 <div className='full-area-backgound'></div>
             <div className='left-images'>
               <Flicking circular={true}>
-                {images.map((item, indx) => {
+                {images?.map((item, indx) => {
                   return (
                     <div
                       className='image'
@@ -227,8 +240,8 @@ const addToFavourite = async (item) => {
                   QAR <span>{price}</span>
                 </h2>
                 <p>
-                  <span>* {obj.status == 'readyToWear' ? 'Ready To Wear' : 'يحتاج إلى تفصيل'}</span>
-                  {obj.inStock > 0 ? (
+                  <span>* {obj?.status == 'readyToWear' ? 'Ready To Wear' : 'يحتاج إلى تفصيل'}</span>
+                  {obj?.inStock > 0 ? (
                     <span>
                       *Availabilty : (<strong>{obj.inStock}</strong>) Items In Stock
                     </span>
@@ -237,8 +250,8 @@ const addToFavourite = async (item) => {
                   )}
                 </p>
               </div>
-              {obj.status === 'readyToWear' && <li>The Order Takes ( 1 - 5 ) days.</li>}
-              {obj.status === 'notReadyToWear' && <li>The Order Takes ( 1 - 2 ) Weeks.</li>}
+              {obj?.status === 'readyToWear' && <li>The Order Takes ( 1 - 5 ) days.</li>}
+              {obj?.status === 'notReadyToWear' && <li>The Order Takes ( 1 - 2 ) Weeks.</li>}
             </div>
 
             <div className='hr'></div>
@@ -246,7 +259,7 @@ const addToFavourite = async (item) => {
               <div className='size'>
                 <h4>size :</h4>
                 <div className='avialable'>
-                  {size.map((item, idx) => (
+                  {size?.map((item, idx) => (
                     <button
                       className={selectedStyleSize.show && selectedStyleSize.id === idx ? 'selected' : ''}
                       key={item}
@@ -268,7 +281,7 @@ const addToFavourite = async (item) => {
               <div className='size'>
                 <h4>tall :</h4>
                 <div className='avialable'>
-                  {tall.map((item, idx) => (
+                  {tall?.map((item, idx) => (
                     <button
                       className={selectedStyleTall.show && selectedStyleTall.id === idx ? 'selected' : ''}
                       key={item}
@@ -290,7 +303,7 @@ const addToFavourite = async (item) => {
               <div className='colors'>
                 <h4>color :</h4>
                 <div className='avialable av-colors'>
-                  {color.map((item, idx) => (
+                  {color?.map((item, idx) => (
                     <button
                       className={selectedStyleColor.show && selectedStyleColor.id === idx ? 'selected' : ''}
                       key={item}
