@@ -3,7 +3,7 @@ import { React, useState, useEffect } from 'react';
 import '../../styles/header-styles/Header.css';
 import logo from '../../images/header/lamar-logo-small.png';
 import { BsCartFill, BsFillHeartFill, BsPersonCircle } from 'react-icons/bs';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link,useLocation } from 'react-router-dom';
 import { useSelector ,useDispatch} from 'react-redux';
 import { navigateAction,logOutAction,assignFavourite } from '../../store/actions';
 import cookies from 'react-cookies';
@@ -14,6 +14,8 @@ import SearchList from './SearchList';
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const {user,role,isLoggedIn} = useSelector((state) => state.authReducer);
   const cartProductsNumber = useSelector((state) => state.cartReducer.cartProductsNumber);
   const favouritesNumber = useSelector((state) => state.favouriteReducer.favouritesNumber);
@@ -89,6 +91,10 @@ function Header() {
     }, 50);
   }
 
+  // go to favourite handler
+  const goToFavHandler = ()=>{
+    navigate('/Profile/2');
+  }
   
   
   // When the user clicks anywhere outside of the  search result list modal, close it
@@ -609,22 +615,14 @@ function Header() {
                 )}
               </li>
               <li>
-                <Link
-                  to='/Profile/2'
-                  onClick={() => {
-                    window.scrollTo({
-                      left: 0,
-                      top: 0,
-                      behavior: 'smooth',
-                    });
-                  }}
-                >
+                <a onClick={goToFavHandler}
+>
                   <a>
                     <BsFillHeartFill className='header-icons fav' />
 
                     <strong className='number'>{favNumber}</strong>
                   </a>
-                </Link>
+                </a>
               </li>
               <li>
                 <Link

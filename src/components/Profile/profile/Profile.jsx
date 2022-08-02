@@ -9,17 +9,31 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import ProfileInfo from "./ProfileInfo";
 import { useSelector } from "react-redux";
-import {useParams} from 'react-router-dom';
+import {useParams,useNavigate} from 'react-router-dom';
 
 function Profile() {
   const { path } = useParams();
+  const navigate = useNavigate();
+  
   const [value, setValue] = useState("2");
   const {isLoggedIn,user,role} = useSelector((state) => state.authReducer);
 
 useEffect(()=>{
-  console.log('path',path);
-if (path) setValue(path);
-},[])
+if (path) {
+  setValue(path);
+}
+
+window.scrollTo({
+  left: 0,
+  top: 0,
+  behavior: 'smooth',
+});
+},[]);
+
+
+useEffect(()=>{
+setValue(path);
+},[path]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -65,12 +79,14 @@ if (path) setValue(path);
                       label="Personal Info"
                       value="1"
                       className="Tab-profile"
-                      
+                      onClick={()=>navigate('/Profile/1')}
                     />
                     <Tab
                       label="Your Wishlist."
                       value="2"
                       className="Tab-profile"
+                      onClick={()=>navigate('/Profile/2')}
+
                     />
                   </TabList>
                 </Box>
