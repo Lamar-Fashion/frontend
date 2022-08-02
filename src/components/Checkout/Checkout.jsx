@@ -75,7 +75,7 @@ function Checkout() {
                   name="email"
                   id="email"
                   placeholder="Email Address *"
-                  value={values?.email}
+                  value={values?.email ? values.email : ''}
                   required
                   onChange={handleChange}
                 />
@@ -101,7 +101,7 @@ function Checkout() {
                   placeholder="Phone Number *"
                   required
                   onChange={handleChange}
-                  value={values?.phone}
+                  value={values?.phone ? values.phone : ''}
                 />
                 <i
                   className="far fa-question-circle question"
@@ -121,7 +121,7 @@ function Checkout() {
                     type="text"
                     name="Fname"
                     id="Fname"
-                    value={values?.Fname}
+                    value={values?.Fname ? values.Fname : ''}
                     placeholder="First Name *"
                     required
                     onChange={handleChange}
@@ -133,7 +133,7 @@ function Checkout() {
                     type="text"
                     name="Lname"
                     id="Lname"
-                    value={values?.Lname}
+                    value={values?.Lname ? values.Lname : ''}
                     placeholder="Last Name *"
                     required
                     onChange={handleChange}
@@ -147,7 +147,7 @@ function Checkout() {
                   name="country"
                   id="country"
                   placeholder="country"
-                  value={values?.country}
+                  value={values?.country ? values.country : ''}
                   required
                   onChange={handleChange}
                 />
@@ -161,7 +161,7 @@ function Checkout() {
                   placeholder="City *"
                   required
                   onChange={handleChange}
-                  value={values?.city}
+                  value={values?.city ? values.city : ''}
                 />
               </div>
               <div className="zone">
@@ -171,7 +171,7 @@ function Checkout() {
                   name="Zone"
                   id="Zone"
                   placeholder="Zone  *"
-                  value={values.Zone ? values.Zone : ""}
+                  value={values?.Zone ? values.Zone : ""}
                   required
                   onChange={handleChange}
                 />
@@ -186,7 +186,7 @@ function Checkout() {
                     placeholder="Street Address *"
                     required
                     onChange={handleChange}
-                    value={values?.StreetAddress}
+                    value={values?.StreetAddress ? values.StreetAddress : ''}
                   />
                 </div>
                 <div className="Laddress">
@@ -213,8 +213,7 @@ function Checkout() {
               <div className="container-info">
                 {cartArray?.map((item, indx) => {
                   return (
-                    <>
-                      <div className="info-products">
+                      <div className="info-products" key={item?.id}>
                         <div className="info">
                           <div className="image">
                             <img src={item.images[0]} alt="" />
@@ -234,7 +233,6 @@ function Checkout() {
                           <h4>QAR {item.price}</h4>
                         </div>
                       </div>
-                    </>
                   );
                 })}
               </div>

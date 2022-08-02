@@ -22,7 +22,7 @@ function SearchList({ products, setSearchResult, setShowSearchResultList }) {
       {products.length > 0 &&
         products.map((item, idx) => {
           return (
-            <secction
+            <section
               className="item-box"
               key={item.id}
               onClick={() => goToProductDetails(item)}
@@ -41,11 +41,11 @@ function SearchList({ products, setSearchResult, setShowSearchResultList }) {
                   <strong>QAR {item.price}</strong>
                 </span>
               </div>
-            </secction>
+            </section>
           );
         })}
       {!products.length && (
-        <secction className="no-results-box">no results found</secction>
+        <section className="no-results-box">no results found</section>
       )}
     </div>
   );

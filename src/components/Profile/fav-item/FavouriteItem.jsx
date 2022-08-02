@@ -69,7 +69,7 @@ function FavouriteItem() {
           : setError("Error while getting favourites");
         console.error("Error while getting favourites", error.message);
       }
-    }, 500);
+    }, 50);
   };
 
   //did mount

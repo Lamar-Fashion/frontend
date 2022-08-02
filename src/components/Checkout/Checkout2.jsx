@@ -127,8 +127,7 @@ function Checkout2() {
               <div className="container-info">
                 {cartArray?.map((item, indx) => {
                   return (
-                    <>
-                      <div className="info-products">
+                      <div className="info-products" key={item?.id}>
                         <div className="info">
                           <div className="image">
                             <img src={item.images[0]} alt="" />
@@ -148,7 +147,6 @@ function Checkout2() {
                           <h4>QAR {item.price}</h4>
                         </div>
                       </div>
-                    </>
                   );
                 })}
               </div>

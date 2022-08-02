@@ -150,7 +150,7 @@ function Header() {
                         });
                       }}
                     >
-                      <a>Admin</a>
+                      <span>Admin</span>
                     </Link>
                     <i
                       className={
@@ -249,7 +249,7 @@ function Header() {
                         });
                       }}
                     >
-                      <a>Home</a>
+                      <span>Home</span>
                     </Link>
                     <i
                       className={
@@ -307,10 +307,10 @@ function Header() {
                       dispatch(navigateAction("all"));
                     }}
                   >
-                    <a>
+                    <span>
                       Abayas
                       {/* <i className='fas fa-angle-down'></i> */}
-                    </a>
+                    </span>
                   </Link>
                 </li>
                 <li>
@@ -325,7 +325,7 @@ function Header() {
                       dispatch(navigateAction("New Arrival"));
                     }}
                   >
-                    <a>New Arrivals</a>
+                    <span>New Arrivals</span>
                   </Link>
                 </li>
                 <li>
@@ -340,7 +340,7 @@ function Header() {
                       dispatch(navigateAction("On Sales"));
                     }}
                   >
-                    <a>on Sales</a>
+                    <span>on Sales</span>
                   </Link>
                 </li>
 
@@ -412,10 +412,10 @@ function Header() {
                     });
                   }}
                 >
-                  <a>
+                  <span>
                     Admin
                     <i className="fas fa-angle-down"></i>
-                  </a>
+                  </span>
                 </Link>
                 <ul className={y > 0 ? "drop-ul-home-scroll" : "drop-ul-home"}>
                   {/* <li>
@@ -497,10 +497,10 @@ function Header() {
                     });
                   }}
                 >
-                  <a>
+                  <span>
                     Home
                     <i className="fas fa-angle-down"></i>
-                  </a>
+                  </span>
                 </Link>
                 <ul className={y > 0 ? "drop-ul-home-scroll" : "drop-ul-home"}>
                   {/* <li>
@@ -541,10 +541,10 @@ function Header() {
                   dispatch(navigateAction("all"));
                 }}
               >
-                <a>
+                <span>
                   Abayas
                   {/* <i className='fas fa-angle-down'></i> */}
-                </a>
+                </span>
               </Link>
               {/* <ul className={y > 0 ? 'drop-ul-home-scroll' : 'drop-ul-home'}>
                 <li>
@@ -573,7 +573,7 @@ function Header() {
                   dispatch(navigateAction("New Arrival"));
                 }}
               >
-                <a>New Arrivals</a>
+                <span>New Arrivals</span>
               </Link>
             </li>
             <li>
@@ -588,7 +588,7 @@ function Header() {
                   dispatch(navigateAction("On Sales"));
                 }}
               >
-                <a>On Sales</a>
+                <span>On Sales</span>
               </Link>
             </li>
           </ul>
@@ -649,9 +649,9 @@ function Header() {
                       });
                     }}
                   >
-                    <a className="a-sign">
+                    <span className="a-sign">
                       <i className="fas fa-sign-in-alt header-icons profile"></i>
-                    </a>
+                    </span>
                     {/* <a className='a-sign' >
                       sign-in <i className='fas fa-sign-in-alt header-icons profile'></i>
                     </a> */}
@@ -679,11 +679,11 @@ function Header() {
               </li>
               <li>
                 <a onClick={goToFavHandler}>
-                  <a>
+                  <span>
                     <BsFillHeartFill className="header-icons fav" />
 
                     <strong className="number">{favNumber}</strong>
-                  </a>
+                  </span>
                 </a>
               </li>
               <li>
@@ -697,11 +697,11 @@ function Header() {
                     });
                   }}
                 >
-                  <a>
+                  <span>
                     <BsCartFill className="header-icons cart" />
 
                     <strong className="number">{cartNumber}</strong>
-                  </a>
+                  </span>
                 </Link>
               </li>
             </ul>

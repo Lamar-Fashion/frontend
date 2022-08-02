@@ -94,7 +94,7 @@ function Cart() {
               </thead>
               {cartArray?.map((item, indx) => {
                 return (
-                  <tbody>
+                  <tbody key={item?.id}>
                     <tr className="cart-table-body-r">
                       <td className="col1">
                         <div className="info">
