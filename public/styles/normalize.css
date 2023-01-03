@@ -13,18 +13,13 @@
   outline: none;
 }
 :root {
-  /* --main-color-alt: #5fd4da; */
-  /* --main-color-alt: #e4e1e8; */
-  /* --main-color-alt: #d6c4a8; */
-  --main-color-alt: whitesmoke;
-  /* --main-color-alt: #f3ed9ec4; */
+  --main-color-alt: #cabfab42;
+  --main-color-alt2: #FAF9F0;
+  --main-color-alt3: #CABFAB;
+  --text-color: #666;
   --main-transition: 0.5s;
   --main-padding-top: 80px;
   --main-padding-bottom: 80px;
-  /* --main-color-alt2:whitesmoke; */
-  /* --main-color-alt2: #e4e1e8; */
-  --main-color-alt2: #ececec;
-  --text-color: #666;
 }
 html {
   scroll-behavior: smooth;
@@ -57,16 +52,14 @@ ul {
   background-color: var(--main-color-alt);
   padding: 0.5rem;
   border-radius: 0.3rem;
-  border: var(--main-color-alt) 2px solid;
+  border: var(--main-color-alt) 1px solid;
   font-weight: bold;
   width: 160px;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: black;
-  color: var(--main-color-alt);
-  border: black 2px solid;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
   transition: var(--main-transition);
 }
 
@@ -88,11 +81,11 @@ ul {
 
 .go-up i {
   font-size: 30px;
-  color: whitesmoke;
+  color:  var(--main-color-alt2);
   cursor: pointer;
 }
 .go-up:hover {
-  background-color: whitesmoke;
+  background-color: var(--main-color-alt2);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 .go-up:hover i {
@@ -118,22 +111,22 @@ ul {
 .main-title {
   text-transform: uppercase;
   margin: 0 auto 30px;
-  border: 3px solid var(--main-color-alt2);
+  border: 3px solid var(--main-color-alt3);
   padding: 10px 20px;
   font-size: 30px;
   width: fit-content;
   position: relative;
   z-index: 1;
   transition: var(--main-transition);
-  background-color: black;
-  color: var(--main-color-alt2);
+  background-color: var(--main-color-alt);
+  color: var(--main-color-alt3);
 }
 .main-title::before,
 .main-title::after {
   content: '';
   width: 12px;
   height: 12px;
-  background-color: black;
+  background-color: var(--main-color-alt3);
   position: absolute;
   border-radius: 50%;
   top: 50%;
@@ -148,15 +141,15 @@ ul {
 .main-title:hover::before {
   z-index: -1;
   animation: left-move 0.5s linear forwards;
-  background-color: var(--main-color-alt2);
+  background-color: var(--main-color-alt3);
 }
 .main-title:hover::after {
   z-index: -1;
   animation: right-move 0.5s linear forwards;
-  background-color: var(--main-color-alt2);
+  background-color: var(--main-color-alt3);
 }
 .main-title:hover {
-  color: black;
+  color: var(--main-color-alt2);
   border: 2px solid var(--main-color-alt2);
   transition-delay: 0.5s;
   cursor: default;
@@ -190,9 +183,13 @@ ul {
 }
 
 .title-section p {
-  color: var(--text-color);
+  color: var(--main-color-alt3);
   font-size: 22px;
   margin: 5px auto;
+}
+
+.text-danger {
+  color: red;
 }
 
 /*  end main title  */

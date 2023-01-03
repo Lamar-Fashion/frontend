@@ -1,11 +1,12 @@
 /* abayas */
 .abaya {
   padding: 220px 0 100px;
-  background-color: var(--main-color-alt);
+  background-color: var(--main-color-alt2);
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 25px;
+  border-bottom: 1px solid;
 }
 @media (max-width: 530px) {
   .abaya{
@@ -85,7 +86,7 @@
 
 /* ===========  start Abay cards =========*/
 .abaya-cards {
-  background-color: var(--main-color-alt);
+  background-color: var(--main-color-alt2);
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -120,7 +121,7 @@
   /* height: 40px; */
   min-height: 40px;
   max-height: max-content;
-  background-color: var(--main-color-alt);
+  background-color: var(--main-color-alt2);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
@@ -139,7 +140,7 @@
   /* height: 40px; */
   min-height: 40px;
   max-height: max-content;
-  background-color: var(--main-color-alt);
+  background-color: var(--main-color-alt2);
   box-shadow: 0 2px 12px rgb(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
@@ -170,10 +171,12 @@
   background-color: transparent;
   width: fit-content;
   cursor: pointer;
-  background-color: var(--main-color-alt);
   text-align: center;
   margin: auto;
 
+}
+.abaya-cards .nav-info .left-info select option{
+  background-color: var(--main-color-alt2);
 }
 
 @media (max-width: 530px) {
@@ -390,9 +393,9 @@
 
 }
 .abaya-cards .box .info h2 .first-price{
-  opacity: 0.8;
-  text-decoration: line-through red 2px;
-  font-size: 16px;
+  opacity: 0.5;
+  text-decoration: line-through red 1px;
+  font-size: 22px;
 }
 /* vertical filter css */
 
@@ -424,4 +427,45 @@
   position: relative;
   top: 65px;
 
+}
+
+.abaya-cards #voucher {
+  font-family: 'Roboto', sans-serif;
+  position: absolute;
+  top: 0;
+  right: 25px;
+  z-index: 1;
+  text-align: center;
+}
+
+.abaya-cards .vc {
+  background: #ff0045;
+  border-radius: 30px 0 0 30px;
+  color: #fff;
+  width: 108px;
+  text-align: center;
+  padding: 6.5px;
+  position: relative;
+  border-right: 1px dashed #fff;
+}
+.abaya-cards .vc:after {
+  width: 0;
+  height: 0;
+  border: 12.5px solid transparent;
+  position: absolute;
+  content: "";
+  border-top-color: #ff0045;
+  right: -26px;
+  top: 0px;
+  border-left-color: #ff0045;
+}
+.abaya-cards .vc:before {
+    width: 0;
+    height: 0;
+    border: 13px solid transparent;
+    position: absolute;
+    content: "";
+    border-bottom-color: #ff0045;
+    right: -25px;
+    top: -1px;
 }

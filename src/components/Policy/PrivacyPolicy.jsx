@@ -13,7 +13,7 @@ function PrivacyPolicy() {
           </div>
         </div>
       </div>
-        <div className="lamar-container">
+        {/* <div className="lamar-container">
             <p>This privacy and policy describe how we collect the information you provide on our Website, and how we use the information, some of the security steps taken to protect the information, and the choices you must review, revise and/or restrict our usage of this information. This Policy is part of the Terms & Conditions of Use that govern the Website and is binding on all Website users. All credit/debit cards details and personally identifiable information will NOT be stored, sold, shared, rented or leased to any third parties. Security capabilities and policy for transmission of payment card details has to be mentioned on the website.</p>
             <ol>
                 <li>Why Your Personal Information</li>
@@ -80,8 +80,10 @@ function PrivacyPolicy() {
             </ol>
             
                
-        </div>
+        </div> */}
+        <div className="lamar-container"><span>not available yet.</span></div>
         </section>
+        
             
         </>
     )

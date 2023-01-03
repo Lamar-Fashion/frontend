@@ -9,6 +9,8 @@ import {
   navigateAction,
   logOutAction,
   assignFavourite,
+  clearAdminSettings,
+  setAdminSettings
 } from "../../store/actions";
 import cookies from "react-cookies";
 import {
@@ -56,7 +58,23 @@ function Header() {
   function scrollHandler() {
     setY(window.scrollY);
   }
-
+  // get admin settings on reload.
+  const fetchAdminSettings = async (user, callback) => {
+    try {
+      const response = await instance.get(url + "/adminSettings", {
+        headers: {
+          authorization: `Bearer ${user?.token}`,
+        },
+      });
+      if (response && response.data && response.data.length) {
+        callback(null, response.data[0]);
+      } else {
+        callback(null, null);
+      }
+    } catch (error) {
+      callback(error, null);
+    }
+  };
   useEffect(() => {
     window.addEventListener("scroll", scrollHandler, true);
     dispatch(
@@ -66,7 +84,25 @@ function Header() {
           : 0
       )
     );
+
   }, []);
+
+  useEffect(()=>{
+    if (!user?.token) {
+      return;
+    }
+    fetchAdminSettings(user, (err, adminSettings) => {
+      if (err) {
+        console.error('Error getting admin Settings', err);
+        return;
+      }
+
+      if (adminSettings) {
+        dispatch(setAdminSettings(adminSettings));
+      }
+
+    });
+  }, [user])
 
   // trigger redux, save to storage, and render it
   useEffect(() => {
@@ -84,6 +120,7 @@ function Header() {
   const logoutHandler = () => {
     cookies.remove("token");
     dispatch(logOutAction());
+    dispatch(clearAdminSettings());
     dispatch(assignFavourite(0));
     navigate("/");
     window.location.reload();
@@ -168,6 +205,20 @@ function Header() {
                           : "drop-ul-phone"
                       }
                     >
+                      <li>
+                        <Link
+                          to="/AdminSettings"
+                          onClick={() => {
+                            window.scrollTo({
+                              left: 0,
+                              top: 0,
+                              behavior: "smooth",
+                            });
+                          }}
+                        >
+                          General Settings
+                        </Link>
+                      </li>
                       <li>
                         <Link
                           to="/PendingOrders"
@@ -427,6 +478,20 @@ function Header() {
                 <li>
                   <a href='#feedback'>feedback</a>
                 </li> */}
+                  <li>
+                    <Link
+                      to="/AdminSettings"
+                      onClick={() => {
+                        window.scrollTo({
+                          left: 0,
+                          top: 0,
+                          behavior: "smooth",
+                        });
+                      }}
+                    >
+                      General Settings
+                    </Link>
+                  </li>
                   <li>
                     <Link
                       to="/PendingOrders"

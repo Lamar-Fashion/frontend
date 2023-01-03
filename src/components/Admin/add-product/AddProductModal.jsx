@@ -249,6 +249,19 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
         }
       }
 
+      if (e.target.name === "discount") {
+        let discount = e.target.value; 
+        if (discount < 0) {
+          discount = 0;
+        }
+        if (discount > 100) {
+          discount = 100;
+        }
+        e.target.value = discount;
+        setProductData({ ...productData, discount: discount });
+        return;
+      }
+
       setProductData({ ...productData, [e.target.name]: e.target.value });
     }
   };
@@ -364,6 +377,22 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
                     onChange={handleChange}
                   />
                 </div>
+                { productData.category === "onSales" &&  <div className="discount">
+                Discount
+                <br/>
+                  <input
+                    type="number"
+                    name="discount"
+                    required
+                    id="discount"
+                    placeholder=""
+                    onChange={handleChange}
+                    style={{width: "50px"}}
+                    max="100"
+                    min="0"
+                  />
+                  %
+                </div>}
                 <div className="sizes">
                   <label htmlFor="sizes">Sizes :</label>
                   <ReactSelect

@@ -111,7 +111,7 @@ function Cart() {
                               <span>color : </span> {item.color}
                             </p>
                             <p>
-                              <span>tall :</span> {item.tall}
+                              <span>length :</span> {item.tall}
                             </p>
                             <p>
                               <span>buttons :</span> {item.buttons}
@@ -168,8 +168,8 @@ function Cart() {
                 <h5>QAR {total}</h5>
               </div>
               <div className="sub-total">
-                <h4>Shipping (Free Shipping - Free)</h4>
-                <h5>QAR 0.00</h5>
+                <h4>Shipping Fees</h4>
+                <h5>QAR 50.00</h5>
               </div>
               <hr />
               <div className="order-total">

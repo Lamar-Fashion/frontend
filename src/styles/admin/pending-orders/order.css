@@ -258,3 +258,14 @@
   box-shadow: black 5px 5px 5px;
   margin: 5px;
 }
+
+.orderContainer .rejection-note {
+  width: 100%;
+  resize: none;
+  background: var(--main-color-alt2);
+  border: 1px solid;
+  height: 80px;
+}
+.orderContainer .rejection-note.error {
+  border: 2px solid red;
+}

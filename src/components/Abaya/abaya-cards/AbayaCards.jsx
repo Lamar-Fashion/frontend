@@ -253,22 +253,26 @@ function AbayaCards() {
                   </div>
                 </Link>
               </div>
+              {!isLoggedIn && <div id="voucher">
+                <h6 class="vc">10% OFF on Sign in</h6>
+              </div>}
               <div className="info">
                 <h3>{item.code}</h3>
                 {item.category == "newArrivals" ? (
-                  <h2>QAR {item.price}</h2>
+                  <h2 className="on-sale">
+                    {isLoggedIn && <span className="first-price">
+                      QAR {item.price}
+                    </span>}
+                      QAR {Math.floor(
+                        (Number(item.price) * (isLoggedIn ? (100 - 10) : 100))/100)}
+                  </h2>
                 ) : (
                   <h2 className="on-sale">
-                    <span className="first-price">
-                      
-                      QAR
-                      {Math.floor(
-                        (Number(item.price) *
-                          (Math.random() * (1.3 - 1.1) + 1.1)) /
-                          10
-                      ) * 10}
-                    </span>
-                    QAR {item.price}
+                    {((item?.discount && item.discount != 0) || isLoggedIn) && <span className="first-price">
+                      QAR {item.price}
+                    </span>}
+                      QAR {Math.floor(
+                        (Number(item.price) * (100 - Number(item?.discount) - (isLoggedIn ? 10 : 0))/100))}
                   </h2>
                 )}
               </div>

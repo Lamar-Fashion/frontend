@@ -40,6 +40,7 @@ function ProductDetails() {
   const [orderDone, setOrderDone] = useState(false);
   const [addedToFavItem, setAddedToFavItem] = useState(null);
   const [error, setError] = useState(null);
+  const [zoomImageActive, setZoomImageActive] = useState(false);
 
   obj = decryptAndGetFromStorage("product");
   if (!obj) {
@@ -178,6 +179,13 @@ function ProductDetails() {
     }
   };
 
+  const zoomImageHandler = (e)=>{
+    setZoomImageActive(true);
+  };
+  const closeZoomScreen = (e)=>{
+    setZoomImageActive(false);
+  };
+
   return (
     <>
       <section className="product-d">
@@ -208,9 +216,9 @@ function ProductDetails() {
               <Link to="/Cart">shopping cart</Link>
             </Alert>
           )}
-          {inStock === 0 && (
+          {inStock == 0 && (
             <Alert severity="error" id="alert">
-              unfortunately this item doesn't exist right know
+              out of stock!
             </Alert>
           )}
           {addedToFavItem && orderDone && (
@@ -230,12 +238,12 @@ function ProductDetails() {
 
         <div className="lamar-container">
           <div className="image-product">
-            <div className="big-image">
+            <div className={zoomImageActive ? 'big-image clicked' : 'big-image'} onClick={(e)=>zoomImageHandler(e)} onTouchStart={(e)=>zoomImageHandler(e)}>
               <PinchZoomPan maxScale={3} doubleTapBehavior="zoom">
                 <img src={state} alt="" />
               </PinchZoomPan>
             </div>
-            <div className="full-area-backgound"></div>
+            <div className="full-area-backgound" onClick={(e)=>closeZoomScreen(e)}></div>
             <div className="left-images">
               <Flicking circular={true}>
                 {images?.map((item, indx) => {
@@ -274,8 +282,7 @@ function ProductDetails() {
                   </span>
                   {obj?.inStock > 0 ? (
                     <span>
-                      *Availabilty : (<strong>{obj.inStock}</strong>) Items In
-                      Stock
+                      *Availabilty : available.
                     </span>
                   ) : (
                     <span className="not-Availabilty">
@@ -322,7 +329,7 @@ function ProductDetails() {
                 )}
               </div>
               <div className="size">
-                <h4>tall :</h4>
+                <h4>length :</h4>
                 <div className="avialable">
                   {tall?.map((item, idx) => (
                     <button
@@ -373,6 +380,8 @@ function ProductDetails() {
                   </span>
                 )}
               </div>
+            <div className="hr"></div>
+
               <div className="container-buttons">
                 <div className="avialable">
                   <div className="buttuns">
@@ -404,7 +413,6 @@ function ProductDetails() {
                 )}
               </div>
             </div>
-            <div className="hr"></div>
 
             <div className="qun-product ">
               <div className="add-fav">

@@ -120,7 +120,7 @@
 .feedback .box .box-profile {
   height: 30%;
   width: 100%;
-  background-color: #ececec;
+  background-color: var(--main-color-alt2);
   position: absolute;
   bottom: 0;
   border-radius: 85% 68px 0 0;
@@ -128,7 +128,7 @@
 
 .feedback .box .box-profile img {
   width: 25%;
-  border: 8px solid #ececec;
+  border: 8px solid var(--main-color-alt2);
   border-radius: 50%;
   position: absolute;
   bottom: 65px;
@@ -170,5 +170,5 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 100px;
-  color: #ececec;
+  color: var(--main-color-alt2);
 }

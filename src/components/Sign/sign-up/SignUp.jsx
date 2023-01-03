@@ -24,7 +24,10 @@ function SignUp() {
   const signUpHandlerOnSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-
+    if (!firstName || !lastName || !email || !validEmail || !password || !confirmedPass || password !== confirmedPass ) {
+      setError("Missing Required info.");
+      return;
+    }
     setTimeout(async () => {
       try {
         const newUser = await instance.post(url + "/signup", {

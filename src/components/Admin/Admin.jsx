@@ -28,6 +28,16 @@ function Admin() {
             <div
               className='features'
               onClick={() => {
+                navigate('/AdminSettings');
+              }}
+            >
+              <div className='above-div'>
+                <span>General Settings</span>
+              </div>
+            </div>
+            <div
+              className='features'
+              onClick={() => {
                 navigate('/PendingOrders');
               }}
             >

@@ -108,8 +108,7 @@ color: var(--text-color);
   font-size: 14px;
   color: black;
   border-radius: 50%;
-  border: 1px solid black;
-  background-color: white;
+  border: 2px solid;
 }
 @media(max-width:767px){
   .checkout .lamar-container h2 {
@@ -264,7 +263,7 @@ z-index: 10;
 .checkout .lamar-container .next {
   width: 100%;
   height: 50px;
-  background-color: whitesmoke;
+  background-color: var(--main-color-alt2);
   border: none;
   color: black;
   font-size: 20px;
@@ -377,16 +376,17 @@ text-align: center;
   height: 100px;
   border: 1px solid #ccc;
   background-color: white;
+  resize: none;
 }
 .checkout .lamar-container .container-payment table tbody tr textarea:focus::placeholder{
   opacity: 0;
 }
-.checkout .lamar-container  .Shipping-info .next{
+.checkout .lamar-container .Shipping-info .next{
   width: 100%;
   height: 50px;
   text-align: center;
   margin: 0 auto;
-  background-color: whitesmoke;
+  background-color: var(--main-color-alt2);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
   color: black;
   text-transform: capitalize;
@@ -415,11 +415,13 @@ box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 .checkout .lamar-container .summary{
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: fit-content;
   border: 0.5px solid;
   padding: 10px;
-  background-color: white;
+  background-color: var(--main-color-alt2);
+  grid-gap: 5px;
   gap: 5px;
+  max-height: 360px;
 }
 
 @media(max-width:768px){
@@ -522,7 +524,7 @@ color: black;
 .checkout .lamar-container .container-complete-order .pay-method {
   width: 100%;
   border: 1px solid #ccc;
-  background-color: #ececec;
+  background-color: var(--main-color-alt2);
   padding: 10px;
 }
 

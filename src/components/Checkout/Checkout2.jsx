@@ -74,9 +74,18 @@ function Checkout2() {
             <div className="Shipping-info">
               <h4 className="Shipping-title">Shipping Info</h4>
               <table>
+              <tbody>
+                  <tr>
+                    <td className="td1">phone number</td>
+                    <td className="td2">{InformationData.phone}</td>
+                    <td className="td3">
+                      <Link to="/Checkout">change</Link>
+                    </td>
+                  </tr>
+                </tbody>
                 <tbody>
                   <tr>
-                    <td className="td1">contact</td>
+                    <td className="td1">contact email</td>
                     <td className="td2">{InformationData.email}</td>
                     <td className="td3">
                       <Link to="/Checkout">change</Link>
@@ -95,22 +104,13 @@ function Checkout2() {
                   </tr>
                 </tbody>
                 <tbody>
-                  <tr>
-                    <td className="td1">Method</td>
-                    <td className="td2">Free Shipping - Free</td>
-                    <td className="td3">
-                      <Link to="/Checkout">change</Link>
-                    </td>
-                  </tr>
-                </tbody>
-                <tbody>
                   <tr className="tr-text">
                     <textarea
                       name="comment"
                       id="comment"
                       cols="30"
                       rows="10"
-                      placeholder="Leave A Comment"
+                      placeholder="Leave a comment"
                       value={values?.comment}
                       onChange={handleChange}
                     ></textarea>
@@ -139,7 +139,7 @@ function Checkout2() {
                             <h4>{item.name}</h4>
                             <p>size: {item.size}</p>
                             <p>color: {item.color}</p>
-                            <p>tall: {item.tall}</p>
+                            <p>length: {item.tall}</p>
                             <p>buttons:{item.buttons}</p>
                           </div>
                         </div>

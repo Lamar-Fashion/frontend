@@ -21,6 +21,7 @@ import AllUsers from './components/Admin/all-users/AllUsers';
 import PendingOrders from './components/Admin/pending-orders/PendingOrders';
 import DoneOrders from './components/Admin/done-orders/DoneOrders';
 import RejectedOrders from './components/Admin/rejected-orders/RejectedOrders';
+import AdminSettings from './components/Admin/admin-settings/AdminSettings';
 import Admin from './components/Admin/Admin';
 import validateToken from './helpers/validateToken';
 import { useDispatch } from 'react-redux';
@@ -90,6 +91,7 @@ else dispatch(logOutAction());
           <Route exact path='/Profile/:path' element={<Profile />} />
           <Route exact path='/Contact-us' element={<ContactUs />} />
           <Route exact path='/AllUsers' element={<AllUsers />} />
+          <Route exact path='/AdminSettings' element={<AdminSettings />} />
           <Route exact path='/PendingOrders' element={<PendingOrders />} />
           <Route exact path='/DoneOrders' element={<DoneOrders />} />
           <Route exact path='/RejectedOrders' element={<RejectedOrders />} />

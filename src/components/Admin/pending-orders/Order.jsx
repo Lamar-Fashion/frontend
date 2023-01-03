@@ -6,11 +6,21 @@ import { useSelector } from "react-redux";
 function Order({ order, idx, from }) {
   const user = useSelector((state) => state.authReducer.user);
   const [openDetails, setOpenDetails] = useState(false);
+  const [rejectionNote, setRejectionNote] = useState('');
+  const [showRejectionNote, setShowRejectionNote] = useState(false);
 
   const updatePendingOrder = async (order, newStatus) => {
+    if (newStatus === "rejected" && !rejectionNote) {
+      setShowRejectionNote(true);
+      return;
+    }
+
     try {
       let updatedOrder = order;
       updatedOrder.orderStatus = newStatus;
+      if (newStatus === "rejected") {
+        updatedOrder.rejectionNote = rejectionNote;
+      }
       const response = await instance.put(
         url + `/order${updatedOrder.id}`,
         updatedOrder,
@@ -41,6 +51,10 @@ function Order({ order, idx, from }) {
                     <th>order Status:</th>
                     <td>{order.orderStatus}</td>
                   </tr>
+                  { order.orderStatus === "rejected" && order.rejectionNote && <tr>
+                    <th>Rejection Note:</th>
+                    <td>{order.rejectionNote}</td>
+                  </tr>}
                   <tr className="order-row">
                     <th>Order ID</th>
                     <th>Total Price</th>
@@ -92,7 +106,7 @@ function Order({ order, idx, from }) {
                     <th>city</th>
                     <th>Zone</th>
                     <th>Street Address</th>
-                    <th>Flat Number</th>
+                    <th>Building Number</th>
                   </tr>
 
                   <tr className="client-row">
@@ -143,7 +157,7 @@ function Order({ order, idx, from }) {
                     <td>{order.personalInfo.StreetAddress}</td>
                   </tr>
                   <tr className="client-column">
-                    <th>Flat Num.</th>
+                    <th>Building Num.</th>
                     <td>{order.personalInfo.FlatNumber}</td>
                   </tr>
                 </tbody>
@@ -267,7 +281,11 @@ function Order({ order, idx, from }) {
                 );
               })}
             </section>
-
+            {showRejectionNote && 
+              <textarea className={showRejectionNote && !rejectionNote ?"error rejection-note": "rejection-note"} type="text" placeholder="rejection note" onChange={(e)=> setRejectionNote(e.target.value)}>
+              </textarea>
+            }
+            {showRejectionNote && !rejectionNote && <span className="text-danger">Required.</span>}
             {order.orderStatus == "pending" && (
               <section className="control">
                 <button

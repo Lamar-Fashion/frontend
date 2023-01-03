@@ -6,7 +6,7 @@
   overflow: hidden;
   height: 100vh;
   padding-top: 12rem;
-  background-color: #ececec;
+  background-color: var(--main-color-alt2);
 }
 @media (max-width: 530px) {
   .hero {
@@ -66,8 +66,8 @@
   height: 100%;
   background-image: linear-gradient(
     to bottom,
-    black,
-    rgba(255, 255, 255, 0.456)
+    var(--main-color-alt3),
+    var(--main-color-alt2)
   );
 }
 .hero .info .top-info h3 {
@@ -75,6 +75,8 @@
   text-transform: capitalize;
   font-weight: bold;
   margin: 0;
+  max-width:70%;
+  color: var(--main-color-alt3);
 }
 .hero .info .top-info h5 {
   font-size: 20px;
@@ -116,18 +118,19 @@
   font-weight: bold;
   background-image: linear-gradient(
     to right,
-    black,
-    rgba(0, 0, 0, 0.805),
-    rgba(255, 255, 255, 0.456)
+    var(--main-color-alt3),
+    var(--main-color-alt2)
+
   );
   text-transform: capitalize;
   border: none;
   border-radius: 5px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  color: white;
+  color: var(--main-color-alt3);
   transition: 0.3s;
   cursor: pointer;
 }
+
 .hero .info .bottom-info a:hover {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
   transform: translateY(-10px);
@@ -177,12 +180,7 @@
   position: absolute;
   width: 100%;
   height: 300px;
-  background-image: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.85),
-    black
-  );
+  background-image: linear-gradient( to right, var(--main-color-alt3), var(--main-color-alt2) );
   top: 60px;
   left: 150px;
   display: flex;
@@ -200,27 +198,27 @@
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  color: white;
+  color: var(--main-color-alt3);
   cursor: pointer;
   position: relative;
   z-index: 2;
 }
 .hero .imag-detail .add-cart a .plus-container {
-  border: 1px solid white;
+  border: 2.5px solid var(--main-color-alt3);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   width: 35px;
   height: 35px;
-  color: white;
+  color: var(--main-color-alt3);
   font-weight: bold;
   cursor: pointer;
   position: relative;
   z-index: 2;
 }
 .hero .imag-detail .add-cart a h6{
-  font-size: 15px;
+  font-size: 18px;
 }
 .hero .imag-detail .add-cart a i {
   transition: 0.3s;
@@ -240,3 +238,8 @@
     left: 0;
   }
 }
+
+.hero .sub-title{
+color: var(--text-color);
+}
+

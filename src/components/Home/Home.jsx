@@ -12,7 +12,7 @@ function Home() {
       <Brand />
       <Shop />
       <Products />
-      <Feedback />
+      {/* <Feedback /> */}
     </>
   );
 }

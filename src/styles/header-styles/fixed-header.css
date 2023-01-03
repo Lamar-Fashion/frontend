@@ -3,7 +3,7 @@
   position: fixed;
   height: 2rem;
   width: 100%;
-  color: var(--main-color-alt);
+  color: var(--main-color-alt3);
   z-index: 4;
 }
 /* very small */
@@ -105,7 +105,7 @@
 .fixed-header .lamar-container .contact-container .contact-info .contact-text {
   margin: auto;
   font-size: 14px;
-  color: var(--main-color-alt);
+  color: var(--main-color-alt3);
 }
 
 .fixed-header .icons-container {
@@ -116,7 +116,7 @@
   gap: 15px;
 }
 .fixed-header .icons-container .icons {
-  color: var(--main-color-alt);
+  color: var(--main-color-alt3);
 }
 .fixed-header .icons-container .icons i {
   cursor: pointer;

@@ -1,0 +1,122 @@
+.general-settings {
+    padding: 220px 0 100px;
+    background-color: var(--main-color-alt);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+/* @media (max-width: 991px) {
+.general-settings {
+    padding-top: 190px;
+}
+}
+@media (max-width: 768px) {
+.general-settings {
+    padding-top: 160px;
+}
+}
+@media (max-width: 530px) {
+.general-settings {
+    padding-top: 130px;
+}
+} */
+  
+  
+@media (max-width: 530px) {
+.general-settings{
+    padding: 125px 0;
+}
+}
+@media (min-width: 530px) and (max-width:767px) {
+.general-settings{
+    padding: 145px 0;
+}
+}
+/* nav styling */
+
+.general-settings .left-nav .i-home {
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+}
+.general-settings .nav-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+.general-settings .nav-info i {
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+    margin-right: 10px;
+}
+.general-settings .nav-info span {
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+    /* text-transform: capitalize; */
+    margin-right: 10px;
+}
+
+.general-settings .nav-info .exat-path{
+    text-decoration: underline !important;
+    color: black;
+}
+
+/* finish nav styling */
+
+
+.general-settings .container-admin-hero .admin-hero {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.general-settings .container-admin-hero .admin-hero h4 {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 500;
+    color: black;
+    position: relative;
+    text-align: center;
+}
+.general-settings .container-admin-hero .admin-hero h4::before {
+    content: '';
+    position: absolute;
+    height: 5px;
+    width: 50%;
+    bottom: -10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    border-radius: 20px;
+}
+
+.general-settings  .lamar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.general-settings .bigContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 1rem;
+    grid-gap: 15px;
+    gap: 15px;
+    border: 1px solid;
+}
+
+.general-settings .bigContainer .signin-discount span {
+    font-weight: bold;
+    margin-right: 5px;
+}
+.general-settings .bigContainer .signin-discount input {
+    width: 50px;
+}

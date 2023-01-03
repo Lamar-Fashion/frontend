@@ -16,9 +16,7 @@ function AboutUs() {
       </div>
         <div className='lamar-container'>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis sit excepturi quod similique dolorem eveniet iste autem, reiciendis, unde magni expedita voluptatem hic non! Unde dolor
-            molestias corporis nisi in! Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, quia similique? Assumenda est velit qui, doloremque voluptatem error, ducimus modi laudantium
-            aliquam veritatis sunt architecto dolorum amet, expedita totam numquam.
+            Clothes brand based in Qatar, specialist in (Abayas & Jelabeyya).
           </p>
           <ul>
             <li>
@@ -26,10 +24,10 @@ function AboutUs() {
             </li>
 
             <li>
-              <span>Contact information :</span> +974 3025411
+              <span>Contact information :</span> +974 66881109
             </li>
             <li>
-              <span>CR number :</span> 101369
+              {/* <span>CR number :</span> 101369 */}
             </li>
           </ul>
         </div>

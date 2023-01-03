@@ -14,16 +14,16 @@ function Hero() {
         <div className="lamar-container">
           <div className="info">
             <div className="top-info">
-              <h3>A325s</h3>
-              <h3>New Arrivals</h3>
-              <h5>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Similique ipsa fuga ad quidem, labore in! Cupiditate voluptate
-                nobis{" "}
+              {/* <h3>A325s</h3>
+              <h3>New Arrivals</h3> */}
+              <h3>Discover our new collections</h3>
+              <h5 className="sub-title">
+                {/* this should be dynamic text by admin */}
+                A325s, New Arrivals 
               </h5>
             </div>
             <div className="bottom-info">
-              <h6> QAR 300 </h6>
+              {/* <h6> QAR 300 </h6> */}
               <Link
                 to="/Abaya"
                 onClick={() => {

@@ -195,7 +195,7 @@ function Checkout() {
                     type="text"
                     name="FlatNumber"
                     id="Laddress"
-                    placeholder="Flat / Villa Number  *"
+                    placeholder="Building / Villa Number  *"
                     required
                     onChange={handleChange}
                     value={values?.FlatNumber ? values.FlatNumber : ""}
@@ -225,7 +225,7 @@ function Checkout() {
                             <h4>{item.name}</h4>
                             <p>size: {item.size}</p>
                             <p>color: {item.color}</p>
-                            <p>tall:{item.tall}</p>
+                            <p>length:{item.tall}</p>
                             <p>buttons:{item.buttons}</p>
                           </div>
                         </div>

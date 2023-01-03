@@ -54,3 +54,17 @@ export const assignFavourite = (favNumber) => {
     payload: favNumber,
   };
 };
+// set admin settings
+export const setAdminSettings = (adminSettings) => {
+  console.log('ADMIN SETTINGS FROM DISPATCH', adminSettings);
+  return {
+    type: 'SET_ADMIN_SETTINGS',
+    payload: { adminSettings },
+  };
+};
+// clear admin settings
+export const clearAdminSettings = () => {
+  return {
+    type: 'CLEAR_ADMIN_SETTINGS',
+  };
+};

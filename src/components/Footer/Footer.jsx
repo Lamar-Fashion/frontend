@@ -23,7 +23,8 @@ function Footer() {
       <div className='footer'>
         <div className='lamar-container'>
           <div className='box'>
-            <h4>Lamar Fashion</h4>
+            <h3>Lamar Fashion</h3>
+            <p className='text'>Find us on:</p>
             <ul className='social'>
               <li>
                 <a href='https://m.facebook.com/Lamar-Fashion-Qatar-100896018825886/' className='facebook' target='_blank'>
@@ -41,8 +42,6 @@ function Footer() {
                 </a>
               </li> */}
             </ul>
-            <p className='text'>Lamar Fashion,You Can Find Us All Time 
-            Lorem ipsum dolor sit,</p>
           </div>
           <div className='box'>
             <ul className='links'>
@@ -60,7 +59,7 @@ function Footer() {
                   <i className='fas fa-angle-double-right'></i> About Us
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to='/DeliveryPolicy'
                   onClick={() => {
@@ -73,7 +72,7 @@ function Footer() {
                 >
                   <i className='fas fa-angle-double-right'></i> Delivery
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   to='/PrivacyPolicy'

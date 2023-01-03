@@ -275,7 +275,7 @@ function Checkout3() {
                             <h4>{item.name}</h4>
                             <p>size: {item.size}</p>
                             <p>color: {item.color}</p>
-                            <p>tall: {item.tall}</p>
+                            <p>length: {item.tall}</p>
                             <p>buttons:{item.buttons}</p>
                           </div>
                         </div>
@@ -300,7 +300,7 @@ function Checkout3() {
         <DualModal
           type="success"
           navigateTo="/Abaya"
-          text={"We've received your order<br/>we will get in touch soon."}
+          text={"will get in touch soon for delivery."}
         />
       )}
       {error && (

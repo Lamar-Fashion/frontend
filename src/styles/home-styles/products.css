@@ -134,12 +134,12 @@
 }
 .multi-slider .details .type a {
   color: #222222;
-  padding: 8px;
   margin: 5px 0;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: capitalize;
   font-size: 1.1rem;
+  margin-bottom: 10px;
 
 }
 .multi-slider .details .type span {
@@ -154,11 +154,12 @@
   align-items: center;
   gap: 5px;
   flex-direction: column;
+  margin-top: 10px;
 }
 .multi-slider .details .price .first-price{
-  text-decoration: line-through red 1px ;
-  opacity: 0.65;
-
+  text-decoration: line-through red 1px;
+  opacity: 0.5;
+  font-size: 20px;
 }
 
 /* End Slider styling */

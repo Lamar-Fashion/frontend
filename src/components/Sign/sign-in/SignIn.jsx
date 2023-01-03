@@ -8,6 +8,8 @@ import {
   logInAction,
   logOutAction,
   assignFavourite,
+  setAdminSettings,
+  clearAdminSettings
 } from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import DualModal from "../../Shared/DualModal";
@@ -57,6 +59,88 @@ function SignIn() {
     }
   };
 
+  const fetchAdminSettings = async (user, callback) => {
+    try {
+      const response = await instance.get(url + "/adminSettings", {
+        headers: {
+          authorization: `Bearer ${user?.token}`,
+        },
+      });
+      if (response && response.data && response.data.length) {
+        callback(null, response.data[0]);
+      } else {
+        callback(null, null);
+      }
+    } catch (error) {
+      callback(error, null);
+    }
+  };
+  const saveDefaultAdminSettings = async (user, callback) => {
+    const adminSettings = {
+      signInDiscount: 10,
+      promoCodes: [{
+        code: "",
+        discountPercentage: 0,
+        type: "", // noLimit/maxLimit/oneTimeUse >> per phone number.
+        counter: 0,
+        usedByPhoneNumbers: [],
+        expirationDate: ""
+      }],
+      hero: {
+        mainText: "",
+        text2: "",
+        imageUrl: ""
+      },
+      collection: {
+        imageOneUrl: "",
+        imageTwoUrl: "",
+        imageThreeUrl: ""
+      },
+    };
+    try {
+      const response = await instance.post(url + "/adminSettings", adminSettings, 
+      {
+        headers: {
+          authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      callback(null, 'saved');
+      
+    } catch (error) {
+      callback(error, null);
+    }
+  };
+
+  const handleAdminSettings = (user) => {
+    return new Promise ((resolve, reject) => {
+      //get admin settings. (first row)
+      fetchAdminSettings(user, (err, adminSettings) => {
+        if (err) {
+          reject('Error While getting admin settings');
+          return;
+        }
+
+        if (adminSettings) {
+          //set admin settings to reducer.
+          dispatch(setAdminSettings(adminSettings));
+          resolve();
+        } else {
+          //save default to database.
+          saveDefaultAdminSettings(user, (err, adminSettings) => {
+            if (err) {
+              reject('Error While save default admin settings');
+              return;
+            }
+            //set admin settings to reducer. >> same as initial state.
+            resolve();
+          });
+        }
+      });
+    });
+      
+  };
+
   const signInHandler = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -75,6 +159,25 @@ function SignIn() {
         );
         const user = validateToken(loggedInUser.data.token);
         if (user) {
+          if (user.role === "admin") {
+            handleAdminSettings(user).then(()=>{
+              setIsLoading(false);
+              dispatch(logInAction(user));
+              getFavouriteHandler(user, () => {
+                navigate("/Profile/1");
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth",
+                });
+              });
+            })
+            .catch((err)=>{
+              console.error(err);
+              setError(err);
+            });
+            return;
+          }
           setIsLoading(false);
 
           dispatch(logInAction(user));

@@ -112,6 +112,7 @@ function EditProductModal({ abaya, setOpenEditProduct, openEditProduct }) {
       inStock: abaya.inStock,
       category: abaya.category,
       price: abaya.price,
+      discount: abaya.discount,
       code: abaya.code,
       status: abaya.status,
       sizes: abaya.sizes,
@@ -175,11 +176,22 @@ function EditProductModal({ abaya, setOpenEditProduct, openEditProduct }) {
         setAddToHomePage(false);
       }
     }
-
-    setProductData({ ...productData, [e.target.name]: e.target.value });
-
     // if the user edit anything allow him to submit
     setIsValid(true);
+    if (e.target.name === "discount") {
+      let discount = e.target.value; 
+      if (discount < 0) {
+        discount = 0;
+      }
+      if (discount > 100) {
+        discount = 100;
+      }
+      e.target.value = discount;
+      setProductData({ ...productData, discount: discount });
+      return;
+    }
+    setProductData({ ...productData, [e.target.name]: e.target.value });
+
   };
 
   // Close modal handler
@@ -269,6 +281,23 @@ function EditProductModal({ abaya, setOpenEditProduct, openEditProduct }) {
                     value={productData?.price}
                   />
                 </div>
+                { productData.category === "onSales" && <div className="discount">
+                  <label>Discount :</label>
+                  <br/>
+                  <input
+                    type="number"
+                    name="discount"
+                    required
+                    id="discount"
+                    placeholder="Product Discount"
+                    onChange={handleChange}
+                    value={productData?.discount ? productData.discount : 0}
+                    style={{width: "50px"}}
+                    max="100"
+                    min="0"
+                  />
+                  %
+                </div>}
                 <div className="sizes">
                   <label htmlFor="sizes">Sizes :</label>
                   <ReactSelect

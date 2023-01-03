@@ -47,11 +47,15 @@
   outline: none;
   height: 30px;
   width: 200px;
-  background: #ececec;
-    font-size: 16px;
-    flex: 1 1;
-    border-radius: 6px;
-    cursor: pointer;
+  background: var(--main-color-alt2);
+  font-size: 16px;
+  flex: 1 1;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
+}
+.profile-info-section .lamar-container #edit-pass:hover {
+  background: white;
 }
 
 .profile-info-section .lamar-container input:-webkit-autofill,
@@ -102,6 +106,7 @@
   position: relative;
   z-index: 2;
   overflow: hidden;
+  background-color: var(--main-color-alt);
 }
 .profile-info-section .lamar-container .submit.active {
   width: 100%;

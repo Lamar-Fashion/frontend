@@ -66,19 +66,14 @@ function Slider() {
             ) : (
               <div>
                 <a href="#" className="price">
-                  QAR {item.price}
+                QAR {Math.floor(
+                        (Number(item.price) * (100 - Number(item?.discount)))/100)}
                 </a>
-                <a href="#" className="price on-sale">
+                {item?.discount && item.discount != 0 && <a href="#" className="price on-sale">
                   <span className="first-price">
-                    {" "}
-                    QAR{" "}
-                    {Math.floor(
-                      (Number(item.price) *
-                        (Math.random() * (1.3 - 1.1) + 1.1)) /
-                        10
-                    ) * 10}
+                    QAR {item.price}
                   </span>
-                </a>
+                </a>}
               </div>
             )}
           </div>
