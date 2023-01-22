@@ -519,6 +519,22 @@ text-transform: capitalize;
 color: black;
 }
 
+.checkout .lamar-container .summary .sub-total{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+}
+.checkout .lamar-container .summary .sub-total h4 , h5{
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  color: var(--text-color);
+}
+.checkout .lamar-container .summary .sub-total h5{
+  color: black;
+}
 
 /*  checkout 3 */
 .checkout .lamar-container .container-complete-order .pay-method {

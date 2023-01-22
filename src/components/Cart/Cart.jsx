@@ -7,9 +7,12 @@ import {
   decryptAndGetFromStorage,
   encryptAndSaveToStorage,
 } from "../../helpers/CryptoJS";
+import { checkProductDiscounts } from "../../helpers";
 
 function Cart() {
   const dispatch = useDispatch();
+  const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
+  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
 
   const [cartArray, setCartArray] = useState(decryptAndGetFromStorage("cart"));
   const [quantity, setQuantity] = useState({});
@@ -17,11 +20,16 @@ function Cart() {
   encryptAndSaveToStorage("total", total);
 
   useEffect(() => {
-    let summ = 0;
+    let sum = 0;
     cartArray?.map(
-      (item) => (summ += Number(item.price) * Number(item.quantity))
+      (item) => {
+        sum += checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount) * Number(item.quantity);
+
+      }
     );
-    setTotal(summ);
+    //add delivery fees
+    sum = sum + 50;
+    setTotal(sum);
   }, []);
 
   const deleteItem = (item, indx) => {
@@ -30,7 +38,7 @@ function Cart() {
 
     // update redux with cart number
     dispatch(removeFromCartAction(item.quantity));
-    setTotal(total - Number(item.price));
+    setTotal(total - checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount) * Number(item.quantity));
   };
 
   const addItem = (item, indx) => {
@@ -43,7 +51,7 @@ function Cart() {
 
     // update redux with cart number
     dispatch(addToCartAction());
-    setTotal(total + Number(item.price));
+    setTotal(total + checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount));
   };
 
   const decresItem = (item, indx) => {
@@ -56,7 +64,7 @@ function Cart() {
       encryptAndSaveToStorage("cart", cartArray);
       // update redux with cart number
       dispatch(removeFromCartAction());
-      setTotal(total - item.price);
+      setTotal(total - checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount));
     }
   };
   
@@ -102,7 +110,7 @@ function Cart() {
                             <img src={item.images[0]} alt="" />
                           </div>
                           <div className="info-shop">
-                            <h4>{item.name}</h4>
+                            <h4>{item.code}</h4>
                             <p>
                               <span>size : </span>
                               <strong className="cart-size">{item.size}</strong>
@@ -120,7 +128,7 @@ function Cart() {
                         </div>
                       </td>
                       <td className="col2">
-                        QAR <span>{item.price}</span>
+                        QAR <span>{checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount)}</span>
                       </td>
                       <td className="col3">
                         <div className="quantity">
@@ -165,7 +173,7 @@ function Cart() {
               <hr />
               <div className="sub-total">
                 <h4>Subtotal</h4>
-                <h5>QAR {total}</h5>
+                <h5>QAR {total - 50}</h5>
               </div>
               <div className="sub-total">
                 <h4>Shipping Fees</h4>

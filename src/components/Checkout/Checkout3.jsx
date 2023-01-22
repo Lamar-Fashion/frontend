@@ -13,10 +13,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetCartAction } from "../../store/actions/index";
 import LoadingState from "../Shared/LoadingState";
 import DualModal from "../Shared/DualModal";
+import { checkProductDiscounts } from "../../helpers";
 
 function Checkout3() {
   const dispatch = useDispatch();
-
+  const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
+  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
   const total = decryptAndGetFromStorage("total");
   const cartArray = decryptAndGetFromStorage("cart");
   const checkout_person_info = decryptAndGetFromStorage("checkout_person_info");
@@ -47,7 +49,11 @@ function Checkout3() {
     setIsLoading(true);
     setTimeout(async () => {
       try {
-        const bookedOrder = await instance.post(url + "/addToCart", bookedData);
+        const bookedOrder = await instance.post(url + "/addToCart", bookedData, {
+          headers: {
+            authorization: `Bearer ${user?.token}`,
+          },
+        });
 
         sessionStorage.removeItem("cart");
         dispatch(resetCartAction());
@@ -280,7 +286,7 @@ function Checkout3() {
                           </div>
                         </div>
                         <div className="price">
-                          <h4>QAR {item.price}</h4>
+                          <h4>QAR {checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount)}</h4>
                         </div>
                       </div>
                   );
@@ -288,6 +294,10 @@ function Checkout3() {
               </div>
 
               <hr />
+              <div className="sub-total">
+                <h4>Shipping Fees</h4>
+                <h5>QAR 50.00</h5>
+              </div>
               <div className="total">
                 <h4>Total</h4>
                 <h4>QAR {total}</h4>

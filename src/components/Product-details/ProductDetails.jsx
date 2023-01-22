@@ -13,6 +13,7 @@ import {
 import { instance, url } from "../../API/axios";
 import { assignFavourite } from "../../store/actions/index";
 import DualModal from "../Shared/DualModal";
+import { checkProductDiscounts } from "../../helpers";
 
 // @ts-ignore
 import PinchZoomPan from "react-image-zoom-pan";
@@ -29,13 +30,16 @@ let obj,
   color,
   description,
   inStock,
-  category;
+  category,
+  discount;
 
 function ProductDetails() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { user, isLoggedIn } = useSelector((state) => state.authReducer);
+  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
+
   const [message, setMessage] = useState(null);
   const [orderDone, setOrderDone] = useState(false);
   const [addedToFavItem, setAddedToFavItem] = useState(null);
@@ -57,6 +61,7 @@ function ProductDetails() {
   description = obj?.description;
   inStock = obj?.inStock;
   category = obj?.category;
+  discount = obj?.discount;
   const [selectedProduct, setSelectedProduct] = useState({
     ...obj,
     size: false,
@@ -271,7 +276,7 @@ function ProductDetails() {
 
               <div className="price">
                 <h2>
-                  QAR <span>{price}</span>
+                  QAR <span>{checkProductDiscounts(price, isLoggedIn, signInDiscount, discount)}</span>
                 </h2>
                 <p>
                   <span>

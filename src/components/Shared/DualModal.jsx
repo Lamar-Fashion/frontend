@@ -5,7 +5,9 @@ function DualModal({
   type,
   navigateTo,
   text,
+  title,
   showHeader,
+  successButtonText,
   deleteHandler,
   setOpenDeletModal,
   setDeletedItem,
@@ -37,7 +39,7 @@ function DualModal({
                 <div className="icon">
                   <span className="fa fa-check"></span>
                 </div>
-                <h1>Success!</h1>
+                <h1>{title ? title : "Success!"}</h1>
                 <p>
                   {text.split("<br/>")[0]}
                   <br />
@@ -48,7 +50,7 @@ function DualModal({
                   onClick={closeSuccessModal}
                   className="redo btn"
                 >
-                  Ok
+                  {successButtonText ? successButtonText : 'Ok'}
                 </button>
                 <span className="change"></span>
               </div>

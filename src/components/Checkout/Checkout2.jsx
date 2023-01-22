@@ -2,20 +2,25 @@ import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/checkout/checkout.css";
 import { useNavigate } from "react-router-dom";
+import {useSelector} from "react-redux";
 import {
   decryptAndGetFromStorage,
   encryptAndSaveToStorage,
 } from "../../helpers/CryptoJS";
+import { checkProductDiscounts } from "../../helpers";
+import DualModal from "../Shared/DualModal";
 
 function Checkout2() {
   const navigate = useNavigate();
   const InformationData = decryptAndGetFromStorage("checkout_person_info");
-
+  const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
+  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
   let [values, setValues] = useState(
     decryptAndGetFromStorage("checkout_person_info")
       ? decryptAndGetFromStorage("checkout_person_info")
       : {}
   );
+  const [proceedToPayment, setProceedToPayment] = useState(false);
 
   const cartArray = decryptAndGetFromStorage("cart");
   const total = decryptAndGetFromStorage("total");
@@ -26,13 +31,7 @@ function Checkout2() {
   
   const handleClick = () => {
     encryptAndSaveToStorage("checkout_person_info", values);
-
-    navigate("/Checkout3");
-    window.scrollTo({
-      left: 0,
-      top: 0,
-      behavior: "smooth",
-    });
+    setProceedToPayment(true);
   };
   return (
     <>
@@ -144,7 +143,7 @@ function Checkout2() {
                           </div>
                         </div>
                         <div className="price">
-                          <h4>QAR {item.price}</h4>
+                          <h4>QAR {checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount)}</h4>
                         </div>
                       </div>
                   );
@@ -152,6 +151,10 @@ function Checkout2() {
               </div>
 
               <hr />
+              <div className="sub-total">
+                <h4>Shipping Fees</h4>
+                <h5>QAR 50.00</h5>
+              </div>
               <div className="total">
                 <h4>Total</h4>
                 <h4>QAR {total}</h4>
@@ -159,6 +162,14 @@ function Checkout2() {
             </div>
           </div>
         </div>
+        {proceedToPayment && <DualModal
+          type="success"
+          title="تأكيد الطلب"
+          navigateTo="/Checkout3"
+          showHeader={true}
+          successButtonText="إتمام عملية الدفع"
+          text={ " :مجموع طلبك هو" + '<br/>' + total + " QAR "}
+          />}
       </section>
     </>
   );

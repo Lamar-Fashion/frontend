@@ -2,14 +2,20 @@ import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/checkout/checkout.css";
 import { useNavigate } from "react-router-dom";
+import {useSelector} from "react-redux";
 import {
   decryptAndGetFromStorage,
   encryptAndSaveToStorage,
 } from "../../helpers/CryptoJS";
+import { checkProductDiscounts } from "../../helpers";
 
 function Checkout() {
   const cartArray = decryptAndGetFromStorage("cart");
   const total = decryptAndGetFromStorage("total");
+
+  const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
+  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
+
   const [showAnswer, setShowAnswer] = useState({ email: false, phone: false });
   const navigate = useNavigate();
   let [values, setValues] = useState(
@@ -230,7 +236,7 @@ function Checkout() {
                           </div>
                         </div>
                         <div className="price">
-                          <h4>QAR {item.price}</h4>
+                          <h4>QAR { checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount) }</h4>
                         </div>
                       </div>
                   );
@@ -238,6 +244,10 @@ function Checkout() {
               </div>
 
               <hr />
+              <div className="sub-total">
+                <h4>Shipping Fees</h4>
+                <h5>QAR 50.00</h5>
+              </div>
               <div className="total">
                 <h4>Total</h4>
                 <h4>QAR {total}</h4>
