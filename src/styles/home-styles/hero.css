@@ -72,7 +72,6 @@
 }
 .hero .info .top-info h3 {
   font-size: 40px;
-  text-transform: capitalize;
   font-weight: bold;
   margin: 0;
   max-width:70%;
@@ -81,12 +80,10 @@
 .hero .info .top-info h5 {
   font-size: 20px;
   font-weight: 400;
-  text-transform: capitalize;
 }
 @media (max-width: 768px) {
   .hero .info .top-info h3 {
     font-size: 24px;
-    text-transform: capitalize;
     font-weight: bolder;
     margin: 0;
     width: 100%;
@@ -94,7 +91,6 @@
   .hero .info .top-info h5 {
     font-size: 18px;
     font-weight: 400;
-    text-transform: capitalize;
     width: 100%;
   }
 }
@@ -109,7 +105,9 @@
   font-weight: 500;
 }
 .hero .info .bottom-info a {
-  width: 150px;
+  width: fit-content;
+  min-width: 150px;
+  padding: 10px;
   height: 50px;
   display: flex;
   align-items: center;
@@ -117,12 +115,12 @@
   font-size: 18px;
   font-weight: bold;
   background-image: linear-gradient(
-    to right,
-    var(--main-color-alt3),
+    90deg,
+    /* var(--main-color-alt3), */
+    #cabfaba1,
     var(--main-color-alt2)
 
   );
-  text-transform: capitalize;
   border: none;
   border-radius: 5px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
@@ -219,6 +217,8 @@
 }
 .hero .imag-detail .add-cart a h6{
   font-size: 18px;
+  max-width: 35%;
+
 }
 .hero .imag-detail .add-cart a i {
   transition: 0.3s;

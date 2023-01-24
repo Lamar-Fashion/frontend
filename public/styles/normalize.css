@@ -192,6 +192,11 @@ ul {
   color: red;
 }
 
+tooltip {
+  font-size: small;
+  color: red;
+}
+
 /*  end main title  */
 
 @media (max-width: 768px) {

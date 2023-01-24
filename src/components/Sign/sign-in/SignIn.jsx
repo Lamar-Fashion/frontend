@@ -84,7 +84,9 @@ function SignIn() {
       }],
       hero: {
         mainText: "",
-        text2: "",
+        subText: "",
+        buttonText: "",
+        arrowText: "",
         imageUrl: ""
       },
       collection: {

@@ -11,7 +11,9 @@ const adminSettings = {
   }],
   hero: {
     mainText: "",
-    text2: "",
+    subText: "",
+    buttonText: "",
+    arrowText: "",
     imageUrl: ""
   },
   collection: {
@@ -19,7 +21,7 @@ const adminSettings = {
     imageTwoUrl: "",
     imageThreeUrl: ""
   },
-}
+};
 
 //auth Reducer
 const adminSettingsReducer = (state = adminSettings, action) => {

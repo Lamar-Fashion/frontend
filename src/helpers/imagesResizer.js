@@ -2,7 +2,7 @@ import Resizer from "react-image-file-resizer";
 
 
 // check image width handler
- const checkImageWidth = async (file) => {
+const checkImageWidth = async (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -16,17 +16,17 @@ import Resizer from "react-image-file-resizer";
         reader.onerror = (err) => reject(err);
       };
     });
-  };
+};
 
 
 // resize image handler
- const resizeImage = (file) => {
+const resizeImage = (file) => {
   let quality = 100;
-//4MB image file
+  //4MB image file
   if (file.size > 4000000) {
     quality = 90;
   }
-//8MB image file
+  //8MB image file
   if (file.size > 8000000) {
     quality = 85;
   }
@@ -56,4 +56,4 @@ if (width <= 1440) {
     
      return resizedImage;
     }
-  };
+};

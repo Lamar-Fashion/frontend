@@ -1,12 +1,12 @@
 import React from "react";
 import "../../../styles/home-styles/brand.css";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { navigateAction } from "../../../store/actions/index";
 
 function Brand() {
   const dispatch = useDispatch();
-
+  const { collection } = useSelector((state) => state.adminSettingsReducer)
   return (
     <>
       <section className="brand" id="collection">
@@ -41,7 +41,7 @@ function Brand() {
           </p>
         </div>
         <div className="lamar-container">
-          <div className="item1">
+          <div className="item1"style={{"backgroundImage": collection.imageOneUrl ?  `url(${collection.imageOneUrl})` : "null"}}>
             <div className="item-topdiv">
               <h3 className="item-title">New Arrivals</h3>
               <Link to="/Abaya">
@@ -57,7 +57,7 @@ function Brand() {
             </div>
           </div>
 
-          <div className="item3">
+          <div className="item3" style={{"backgroundImage": collection.imageTwoUrl ?  `url(${collection.imageTwoUrl})` : "null"}}>
             <div className="item-topdiv">
               <h3 className="item-title">On Sales</h3>
               <Link to="/Abaya">
@@ -72,7 +72,7 @@ function Brand() {
               </Link>
             </div>
           </div>
-          <div className="item4">
+          <div className="item4" style={{"backgroundImage": collection.imageThreeUrl ?  `url(${collection.imageThreeUrl})` : "null"}}>
             <div className="item-topdiv">
               <h3 className="item-title">Abayas</h3>
               <Link to="/Abaya">

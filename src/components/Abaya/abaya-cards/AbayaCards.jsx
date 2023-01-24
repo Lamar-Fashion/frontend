@@ -12,6 +12,7 @@ import { navigateAction, assignFavourite } from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import Alert from "@mui/material/Alert";
 import DualModal from "../../Shared/DualModal";
+import { deleteFirebaseImages } from "../../../helpers";
 
 const arralen = 10;
 
@@ -129,11 +130,9 @@ function AbayaCards() {
         },
       });
 
-      // delete the images from the firebase
-      for (let i = 0; i < item.images.length; i++) {
-        let pictureRef = storage.refFromURL(item.images[i]);
-        const deletedImg = await pictureRef.delete();
-      }
+      
+      await deleteFirebaseImages(item.images);
+      
       setIsLoading(false);
       setDeletedItem(null);
       setOpenDeletModal(false);

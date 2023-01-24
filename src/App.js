@@ -25,11 +25,14 @@ import AdminSettings from './components/Admin/admin-settings/AdminSettings';
 import Admin from './components/Admin/Admin';
 import validateToken from './helpers/validateToken';
 import { useDispatch } from 'react-redux';
-import {logOutAction,logInAction} from './store/actions/index';
+import {logOutAction, logInAction, setAdminSettings} from './store/actions/index';
+import { instance, url } from "./API/axios";
+import LoadingState from './components/Shared/LoadingState';
 
 function App() {
   const dispatch = useDispatch();
   const [y, setY] = useState(window.scrollY);
+  const [isLoading, setIsLoading] = useState(false);
   
   window.onscroll = function () {
     setY(window.scrollY);
@@ -39,11 +42,48 @@ function App() {
   if(searchResultModal)  searchResultModal.style.display= 'none';
   };
 
-  useEffect(()=>{
-// check if the token exists in the cookies, so keep the user loggedin
-const user = validateToken();
-if(user) dispatch(logInAction(user));
-else dispatch(logOutAction());
+    // get admin settings on reload.
+    const fetchAdminSettings = async (callback) => {
+      try {
+        setIsLoading(true);
+        const response = await instance.get(url + "/adminSettings");
+        if (response && response.data && response.data.length) {
+          callback(null, response.data[0]);
+        } else {
+          callback(null, null);
+        }
+        //make delay for loading to be like real loading not flickering when response was fast.
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 750);
+  
+      } catch (error) {
+        callback(error, null);
+        setIsLoading(false);
+  
+      }
+    };
+
+  useEffect(() => {
+
+    //fetch admin settings
+    fetchAdminSettings((err, adminSettings) => {
+      if (err) {
+        console.error('Error getting admin Settings', err);
+        return;
+      }
+
+      if (adminSettings) {
+        dispatch(setAdminSettings(adminSettings));
+      }
+
+    });
+
+    // check if the token exists in the cookies, so keep the user loggedin
+    const user = validateToken();
+    if(user) dispatch(logInAction(user));
+    else dispatch(logOutAction());
+
   },[]);
  
   window.onbeforeunload = function () {
@@ -57,7 +97,10 @@ else dispatch(logOutAction());
 
   return (
     <>
-      <Router>
+      {isLoading && (
+          <LoadingState />
+      )}
+      {!isLoading && <Router>
         {Number(y) >= 120 && (
           <button
             className='go-up'
@@ -98,7 +141,7 @@ else dispatch(logOutAction());
           <Route exact path='/Admin' element={<Admin />} />
         </Routes>
         <Footer />
-      </Router>
+      </Router>}
     </>
   );
 }

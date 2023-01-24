@@ -120,3 +120,9 @@
 .general-settings .bigContainer .signin-discount input {
     width: 50px;
 }
+
+.general-settings .collection-images {
+    width: 90%;
+    height: 330px;
+    max-width: 330px;
+}

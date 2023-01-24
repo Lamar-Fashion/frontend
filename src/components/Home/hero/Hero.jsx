@@ -1,12 +1,13 @@
 import React from "react";
 import "../../../styles/home-styles/hero.css";
-import hero6 from "../../../images/hero/hero6.jpg";
+import heroImage from "../../../images/hero/hero6.jpg";
 import { Link } from "react-router-dom";
 import { navigateAction } from "../../../store/actions/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Hero() {
   const dispatch = useDispatch();
+  const {signInDiscount, promoCodes, hero, collection} = useSelector((state)=> state.adminSettingsReducer);
 
   return (
     <>
@@ -16,10 +17,10 @@ function Hero() {
             <div className="top-info">
               {/* <h3>A325s</h3>
               <h3>New Arrivals</h3> */}
-              <h3>Discover our new collections</h3>
+              <h3>{hero && hero.mainText ? hero.mainText : "Discover our new collections"}</h3>
               <h5 className="sub-title">
                 {/* this should be dynamic text by admin */}
-                A325s, New Arrivals 
+                {hero && hero.subText ? hero.subText : "A325s, New Arrivals "}
               </h5>
             </div>
             <div className="bottom-info">
@@ -30,20 +31,20 @@ function Hero() {
                   dispatch(navigateAction("all"));
                 }}
               >
-                Shop Now
+                {hero && hero.buttonText ? hero.buttonText : "Shop Now"}
               </Link>
             </div>
           </div>
           <div className="imag-detail">
             <div className="image">
-              <img src={hero6} alt="" />
+              <img src={hero.imageUrl ? hero.imageUrl : heroImage} alt="hero_image" />
             </div>
             <div className="add-cart">
               <Link to="/Abaya">
                 <div className="plus-container">
-                  <i className="fas fa-arrow-right"></i>{" "}
+                  <i className="fas fa-arrow-right"></i>
                 </div>
-                <h6>Discover</h6>
+                <h6>{hero && hero.arrowText ? hero.arrowText : "Discover"}</h6>
               </Link>
             </div>
           </div>

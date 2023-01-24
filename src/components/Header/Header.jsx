@@ -58,19 +58,7 @@ function Header() {
   function scrollHandler() {
     setY(window.scrollY);
   }
-  // get admin settings on reload.
-  const fetchAdminSettings = async (user, callback) => {
-    try {
-      const response = await instance.get(url + "/adminSettings");
-      if (response && response.data && response.data.length) {
-        callback(null, response.data[0]);
-      } else {
-        callback(null, null);
-      }
-    } catch (error) {
-      callback(error, null);
-    }
-  };
+
   useEffect(() => {
     window.addEventListener("scroll", scrollHandler, true);
     dispatch(
@@ -83,22 +71,6 @@ function Header() {
 
   }, []);
 
-  useEffect(()=>{
-    if (!user?.token) {
-      return;
-    }
-    fetchAdminSettings(user, (err, adminSettings) => {
-      if (err) {
-        console.error('Error getting admin Settings', err);
-        return;
-      }
-
-      if (adminSettings) {
-        dispatch(setAdminSettings(adminSettings));
-      }
-
-    });
-  }, [user])
 
   // trigger redux, save to storage, and render it
   useEffect(() => {

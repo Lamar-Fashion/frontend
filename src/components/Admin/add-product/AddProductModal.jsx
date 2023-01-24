@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import ProgressState from "../../Shared/ProgressState";
 import DualModal from "../../Shared/DualModal";
 import { handleImageSize } from "../../../helpers/imagesResizer";
+import { uploadImagesToFirebase, validateFileTypeImage } from "../../../helpers";
 
 const theme = createTheme({
   breakpoints: {
@@ -95,7 +96,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
   const [images, setImages] = useState({});
   const [isValid, setIsValid] = useState(false);
   const [addToHomePage, setAddToHomePage] = useState(null);
-  const [imgUploadPerecentage, setImgUploadPerecentage] = useState(0);
+  const [imgUploadPercentage, setImgUploadPercentage] = useState(0);
   const [indexOfUploadedIMG, setIndexOfUploadedIMG] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -120,124 +121,50 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
     e.preventDefault();
     setIsLoading(true);
 
-    let counter = 0;
-    let indexImgCounter = 0;
-    let maxPrgressValue = 0;
-    // this part to upload the images into Firebase
-    for (const [key, value] of Object.entries(images)) {
-      indexImgCounter++;
-      const resizedImg = await handleImageSize(value);
-      const file = resizedImg;
-      const directory = "products";
-      const currentdate = new Date();
-      const datetime =
-        currentdate.getDate() +
-        "-" +
-        (currentdate.getMonth() + 1) +
-        "-" +
-        currentdate.getFullYear() +
-        "@" +
-        currentdate.getHours() +
-        ":" +
-        currentdate.getMinutes();
-      const name = datetime + " - " + file.name;
-      const storageRef = storage.ref(`${directory}/${name}`);
+    uploadImagesToFirebase (images, 'products', setImgUploadPercentage, setIndexOfUploadedIMG, async (err, arrayOfDownloadUrls) => {
+      if (err) {
+        setError(err);
+        return;
+      }
+      if (!arrayOfDownloadUrls) {
+        arrayOfDownloadUrls = [];
+      }
 
-      storageRef.put(file).on(
-        "state_changed",
-        (snapshot) => {
-          //   Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          if (maxPrgressValue < Number(progress).toFixed(0))
-            maxPrgressValue = Number(progress).toFixed(0);
-          if (maxPrgressValue > imgUploadPerecentage)
-            setImgUploadPerecentage(maxPrgressValue);
-          console.log("Upload is " + progress + "% done");
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
+      try {
+        //convert array of objects to array of strings (download urls)
+        const arrayOfUrls = [];
+        arrayOfDownloadUrls.forEach((urlObj, idx) => arrayOfUrls.push(urlObj[Object.keys(urlObj)[idx]]));
+        productData.productIamges.push(...arrayOfDownloadUrls);
+        // send req to backend
+        const addedProduct = await instance.post(
+          url + "/product",
+          productData,
+          {
+            headers: {
+              authorization: `Bearer ${user.token}`,
+            },
           }
-        },
-        (error) => {
-          console.error("errorr firebase", error);
-          error?.code
-            ? setError(error.code)
-            : setError("Uploading images Firebase Error!");
-          return;
-          // switch (error.code) {
-          //   case 'storage/unauthorized':
-          //     //   User doesn't have permission to access the object
-          //     break;
-          //   case 'storage/canceled':
-          //     //   User canceled the upload
-          //     break;
-          //   case 'storage/unknown':
-          //     //   Unknown error occurred, inspect error.serverResponse
-          //     break;
-          //   default:
-          // }
-        },
-        () => {
-          setIndexOfUploadedIMG(indexImgCounter);
+        );
+        setOrderDone(true);
+        setIsLoading(false);
 
-          //   Upload completed successfully, now we can get the download URL
-          storageRef.getDownloadURL().then(async (downloadURL) => {
-            try {
-              counter++;
-              console.log("File available at", downloadURL);
-              productData.productIamges.push(downloadURL);
+      } catch (error) {
+        error?.response?.data?.error
+          ? setError(error.response.data.error)
+          : setError("Error while adding product");
+        console.error("Error while adding product", error.message);
+      }
 
-              if (counter == Object.keys(images).length) {
-                // send req to backend
-                const addedProduct = await instance.post(
-                  url + "/product",
-                  productData,
-                  {
-                    headers: {
-                      authorization: `Bearer ${user.token}`,
-                    },
-                  }
-                );
-                setOrderDone(true);
-                setIsLoading(false);
-              }
-            } catch (error) {
-              error?.response?.data?.error
-                ? setError(error.response.data.error)
-                : setError("Error while adding product");
-              console.error("Error while adding product", error.message);
-            }
-          });
-        }
-      );
-    }
+    });
+  
   };
-
-  let obj = {};
-  // validate file type, accept only images (jpg, jpeg, png)
-  function validateFileType(key, file) {
-    let fileName = file.name;
-    let idxDot = fileName.lastIndexOf(".") + 1;
-    let extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
-    if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
-      obj[key] = file;
-    } else {
-      alert("Only jpg/jpeg and png files are allowed!");
-    }
-    return obj;
-  }
 
   // on change handler
   const handleChange = (e) => {
     if (e.target.name == "images") {
+      const validatedImagesObj = {};
       for (const [key, value] of Object.entries(e.target.files)) {
-        setImages(validateFileType(key, value));
+        setImages(validateFileTypeImage(key, value, validatedImagesObj));
       }
     } else {
       if (e.target.name == "addToHomePage") {
@@ -299,7 +226,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
     setSizesSelected([]);
     setOrderDone(false);
     setIsLoading(false);
-    setImgUploadPerecentage(0);
+    setImgUploadPercentage(0);
     setIndexOfUploadedIMG(1);
   }
 
@@ -462,8 +389,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
                       checked={addToHomePage == true}
                       onChange={handleChange}
                     />
-                      <label htmlFor={true}>yes</label>
-                     {" "}
+                    <label htmlFor={true}>yes</label>
                     <input
                       type="radio"
                       id="addToHomePage"
@@ -472,7 +398,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
                       checked={addToHomePage == false}
                       onChange={handleChange}
                     />
-                      <label htmlFor={false}>no</label>
+                    <label htmlFor={false}>no</label>
                   </section>
                 </div>
 
@@ -494,8 +420,8 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
               <span>uploading images</span>
               <div className="flex-row">
                 <ProgressState
-                  count={imgUploadPerecentage}
-                  style={{ opacity: 1, width: `${imgUploadPerecentage}%` }}
+                  count={imgUploadPercentage}
+                  style={{ opacity: 1, width: `${imgUploadPercentage}%` }}
                 />
                 <span>
                   {indexOfUploadedIMG}/{Object.keys(images).length}
