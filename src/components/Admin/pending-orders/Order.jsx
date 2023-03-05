@@ -58,12 +58,22 @@ function Order({ order, idx, from }) {
                   <tr className="order-row">
                     <th>Order ID</th>
                     <th>Total Price</th>
+                    {order.promoCodeInfo.isPromoCodeUsed && 
+                    <td></td>
+                    }
+                    <th>Promo Code Applied</th>
+                    <th>Promo Code Discount %</th>
                     <th>Payment Method</th>
                     <th>Is Paid Successfully?</th>
                   </tr>
                   <tr className="order-row">
                     <td>{order.orderId}</td>
-                    <td>QAR {order.totalPrice}</td>
+                    <td className={order.promoCodeInfo.isPromoCodeUsed ? "line-through" : ""}>QAR {order.totalPrice}</td>
+                    {order.promoCodeInfo.isPromoCodeUsed && 
+                    <td>{order.promoCodeInfo.totalPromoApplied} QAR</td>
+                    }
+                    <td>{order.promoCodeInfo.isPromoCodeUsed ? order.promoCodeInfo.promoCode.code : ""}</td>
+                    <td>{order.promoCodeInfo.isPromoCodeUsed ? order.promoCodeInfo.promoCode.discountPercentage + " %" : ""}</td>
                     <td>{order.paymentMethod}</td>
                     <td>{from == "done" ? "true" : "false"}</td>
                   </tr>
@@ -73,7 +83,19 @@ function Order({ order, idx, from }) {
                   </tr>
                   <tr className="order-column">
                     <th>Total Price</th>
-                    <td>{order.totalPrice}</td>
+                    <td className={order.promoCodeInfo.isPromoCodeUsed ? "line-through" : ""}>{order.totalPrice} QAR</td>
+                  </tr>
+                  {order.promoCodeInfo.isPromoCodeUsed && <tr className="order-column">
+                    <th></th>
+                    <td>{order.promoCodeInfo.totalPromoApplied} QAR</td>
+                  </tr>}
+                  <tr className="order-column">
+                    <th>Promo Code Applied</th>
+                    <td>{order.promoCodeInfo.isPromoCodeUsed ? order.promoCodeInfo.promoCode.code : ""}</td>
+                  </tr>
+                  <tr className="order-column">
+                    <th>Promo Code Discount %</th>
+                    <td>{order.promoCodeInfo.isPromoCodeUsed ? order.promoCodeInfo.promoCode.discountPercentage + " %" : ""}</td>
                   </tr>
                   <tr className="order-column">
                     <th>Payment Method</th>
@@ -311,7 +333,7 @@ function Order({ order, idx, from }) {
               Order ID: <span>{order.orderId}</span>
             </span>
             <span className="total-price">
-              Total Price: <span>QAR {order.totalPrice}</span>
+              Total Price: <span>QAR {order.promoCodeInfo.isPromoCodeUsed ? order.promoCodeInfo.totalPromoApplied : order.totalPrice}</span>
             </span>
             <span className="status">
               Status: <span>{order.orderStatus}</span>

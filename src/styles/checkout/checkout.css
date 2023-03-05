@@ -421,7 +421,8 @@ box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
   background-color: var(--main-color-alt2);
   grid-gap: 5px;
   gap: 5px;
-  max-height: 360px;
+  max-height: 380px;
+  overflow: auto;
 }
 
 @media(max-width:768px){

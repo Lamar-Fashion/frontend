@@ -126,3 +126,52 @@
     height: 330px;
     max-width: 330px;
 }
+
+.general-settings .promo-codes-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.general-settings .promo-codes-box .input-box {
+    display: flex;
+    flex-direction: column;
+}
+.general-settings .input-field{
+    height: 40px;
+    font-size: 18px;
+
+}
+
+.general-settings .grid-container {
+    width: 100%;
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 12.2%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    border: 1px solid;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.general-settings .grid-container span {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    
+}
+.general-settings .grid-container span:not(:last-child) {
+    border-right: 1px solid grey;
+
+}
+.general-settings .grid-container .fa-trash-alt {
+    cursor: pointer;
+}
+.general-settings .grid-container .fa-trash-alt:hover {
+    color:red;
+}

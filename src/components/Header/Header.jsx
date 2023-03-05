@@ -74,14 +74,14 @@ function Header() {
 
   // trigger redux, save to storage, and render it
   useEffect(() => {
-    encryptAndSaveToStorage("cartNumber", cartProductsNumber);
-
-    setCartNumber(cartProductsNumber);
+     encryptAndSaveToStorage("cartNumber", cartProductsNumber);
+ 
+     setCartNumber(cartProductsNumber);
   }, [cartProductsNumber]);
 
   useEffect(() => {
-    encryptAndSaveToStorage("favNumber", favouritesNumber);
-    setFavNumber(favouritesNumber);
+      encryptAndSaveToStorage("favNumber", favouritesNumber);
+      setFavNumber(favouritesNumber);
   }, [favouritesNumber]);
 
   //log out handler

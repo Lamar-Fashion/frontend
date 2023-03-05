@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-operators */
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/checkout/checkout.css";
 import apple_pay from "../../images/header/apple-pay.png";
@@ -29,6 +29,20 @@ function Checkout3() {
   const [error, setError] = useState(null);
   const [orderDone, setOrderDone] = useState(false);
 
+  const [verifiedPromoCode, setVerifiedPromoCode] = useState("");
+  const [totalPromoApplied, setTotalPromoApplied] = useState("");
+
+  useEffect(()=>{
+    const verifiedPromoCode = decryptAndGetFromStorage("verifiedPromoCode");
+    const totalPromoApplied = decryptAndGetFromStorage("totalPromoApplied");
+    if (verifiedPromoCode) {
+      setVerifiedPromoCode(verifiedPromoCode);
+    }
+    if (totalPromoApplied) {
+      setTotalPromoApplied(totalPromoApplied);
+    }
+  },[]);
+
   const handleCahnge = (e) => {
     setstate(e.target.value);
   };
@@ -46,24 +60,40 @@ function Checkout3() {
       personalInfo: checkout_person_info,
       totalPrice: total,
     };
+    if (verifiedPromoCode) {
+      bookedData.verifiedPromoCode = verifiedPromoCode;
+    }
+    if (totalPromoApplied) {
+      bookedData.totalPromoApplied = totalPromoApplied;
+    }
     setIsLoading(true);
     setTimeout(async () => {
-      try {
-        const bookedOrder = await instance.post(url + "/addToCart", bookedData, {
+      let options = {};
+      if (user && user.token) {
+        options = {
           headers: {
             authorization: `Bearer ${user?.token}`,
-          },
-        });
+          }
+        };
+      }
+      try {
+        const bookedOrder = await instance.post(url + "/addToCart", bookedData, options);
 
         sessionStorage.removeItem("cart");
+        sessionStorage.removeItem("totalPromoApplied");
+        sessionStorage.removeItem("verifiedPromoCode");
         dispatch(resetCartAction());
         encryptAndSaveToStorage("total", 0);
+        encryptAndSaveToStorage("cartNumber", 0);
         setIsLoading(false);
         setOrderDone(true);
       } catch (error) {
         sessionStorage.removeItem("cart");
+        sessionStorage.removeItem("totalPromoApplied");
+        sessionStorage.removeItem("verifiedPromoCode");
         dispatch(resetCartAction());
         encryptAndSaveToStorage("total", 0);
+        encryptAndSaveToStorage("cartNumber", 0);
 
         error?.response?.data?.error
           ? setError(error.response.data.error)
@@ -300,8 +330,14 @@ function Checkout3() {
               </div>
               <div className="total">
                 <h4>Total</h4>
-                <h4>QAR {total}</h4>
+                <h4 className={totalPromoApplied ? "line-through" : ""}>QAR {total}</h4>
               </div>
+              {totalPromoApplied && <div className="total">
+                <h5></h5>
+                <h4>QAR {totalPromoApplied}</h4>
+              </div>}
+              <hr />
+              {verifiedPromoCode && <h5>"{verifiedPromoCode.code}" promo code applied</h5>}
             </div>
           </div>
         </div>

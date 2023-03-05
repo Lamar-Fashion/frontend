@@ -62,8 +62,8 @@ function SignIn() {
   const fetchAdminSettings = async (user, callback) => {
     try {
       const response = await instance.get(url + "/adminSettings");
-      if (response && response.data && response.data.length) {
-        callback(null, response.data[0]);
+      if (response && response.data) {
+        callback(null, response.data);
       } else {
         callback(null, null);
       }
@@ -74,14 +74,19 @@ function SignIn() {
   const saveDefaultAdminSettings = async (user, callback) => {
     const adminSettings = {
       signInDiscount: 10,
-      promoCodes: [{
-        code: "",
-        discountPercentage: 0,
-        type: "", // noLimit/maxLimit/oneTimeUse >> per phone number.
-        counter: 0,
-        usedByPhoneNumbers: [],
-        expirationDate: ""
-      }],
+      promoCodes: [
+        //promo code obj will look like this:
+        // {
+        // code: "",
+        // discountPercentage: 0,
+        // type: "", // noLimit/maxLimit/oneTimeUse >> per phone number.
+        // maxLimit: 0,
+        // counter: 0,
+        // usedByPhoneNumbers: [],
+        // expirationDate: "",
+        // isActive: false
+        // }
+      ],
       hero: {
         mainText: "",
         subText: "",

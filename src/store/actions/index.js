@@ -17,6 +17,7 @@ export const logOutAction = () => {
   encryptAndSaveToStorage('cart', []);
   encryptAndSaveToStorage('cartNumber', 0);
   encryptAndSaveToStorage('total', 0);
+  encryptAndSaveToStorage('favNumber', 0);
   return {
     type: 'LOG_OUT',
   };
@@ -59,7 +60,6 @@ export const assignFavourite = (favNumber) => {
 };
 // set admin settings
 export const setAdminSettings = (adminSettings) => {
-  console.log('ADMIN SETTINGS FROM DISPATCH', adminSettings);
   return {
     type: 'SET_ADMIN_SETTINGS',
     payload: { adminSettings },

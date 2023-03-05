@@ -8,25 +8,43 @@ function DualModal({
   title,
   showHeader,
   successButtonText,
+  secondButtonSuccessAction,
+  secondButtonSuccess,
   deleteHandler,
   setOpenDeletModal,
   setDeletedItem,
+  setCloseModalState,
+  closeModalStateValue
 }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const closeSuccessModal = () => {
-    if (location.pathname == navigateTo) window.location.reload();
-    else navigate(navigateTo);
+  const closeSuccessModal = (target) => {
+    if (setCloseModalState && !navigateTo) {
+      setCloseModalState(closeModalStateValue);
+      return;
+    };
+    let navTo = navigateTo;
+    if (target) {
+      navTo = target;
+    }
+    if (location.pathname == navTo) window.location.reload();
+    else navigate(navTo);
   };
   const closeErrorModal = () => {
+    if (setCloseModalState && !navigateTo) {
+      setCloseModalState(closeModalStateValue);
+      return;
+    };
+    
     if (setOpenDeletModal && setDeletedItem) {
       setDeletedItem(null);
       setOpenDeletModal(false);
       return;
     }
-    if (location.pathname == navigateTo) window.location.reload();
-    else navigate(navigateTo);
+    if (location.pathname == navigateTo) {
+      window.location.reload();
+    } else navigate(navigateTo);
   };
   
   return (
@@ -41,17 +59,28 @@ function DualModal({
                 </div>
                 <h1>{title ? title : "Success!"}</h1>
                 <p>
-                  {text.split("<br/>")[0]}
+                  {text && text.includes("<br/>") ? text.split("<br/>")[0] : text}
                   <br />
-                  {text.split("<br/>")[1]}
+                  {text && text.includes("<br/>") ? text.split("<br/>")[1] : ""}
                 </p>
+                {secondButtonSuccess && (
+                  <button
+                    type="button"
+                    style={{"marginRight": "15px"}}
+                    className="redo btn"
+                    onClick={()=>closeSuccessModal(secondButtonSuccessAction)}
+                  >
+                    {secondButtonSuccess}
+                  </button>
+                )}
                 <button
                   type="button"
-                  onClick={closeSuccessModal}
+                  onClick={()=>closeSuccessModal()}
                   className="redo btn"
                 >
                   {successButtonText ? successButtonText : 'Ok'}
                 </button>
+                
                 <span className="change"></span>
               </div>
             </div>
@@ -65,9 +94,9 @@ function DualModal({
                 {showHeader && <h1>Oops!</h1>}
 
                 <p>
-                  {text.split("<br/>")[0]}
+                {text && text.includes("<br/>") ? text.split("<br/>")[0] : text}
                   <br />
-                  {text.split("<br/>")[1]}
+                  {text && text.includes("<br/>") ? text.split("<br/>")[1] : ""}
                 </p>
                 {!deleteHandler && (
                   <button

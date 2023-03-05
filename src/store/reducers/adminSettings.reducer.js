@@ -5,9 +5,11 @@ const adminSettings = {
     code: "",
     discountPercentage: 0,
     type: "", // noLimit/maxLimit/oneTimeUse >> per phone number.
+    maxLimit: 0,
     counter: 0,
     usedByPhoneNumbers: [],
-    expirationDate: ""
+    expirationDate: "",
+    isActive: false
   }],
   hero: {
     mainText: "",

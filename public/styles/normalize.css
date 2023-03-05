@@ -197,6 +197,11 @@ tooltip {
   color: red;
 }
 
+.line-through {
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+
 /*  end main title  */
 
 @media (max-width: 768px) {

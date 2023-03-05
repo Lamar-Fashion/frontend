@@ -39,7 +39,7 @@ function App() {
 
     //hide search result list if user scrolls
     const searchResultModal = document.querySelector('#search-modal');
-  if(searchResultModal)  searchResultModal.style.display= 'none';
+    if(searchResultModal)  searchResultModal.style.display= 'none';
   };
 
     // get admin settings on reload.
@@ -47,8 +47,8 @@ function App() {
       try {
         setIsLoading(true);
         const response = await instance.get(url + "/adminSettings");
-        if (response && response.data && response.data.length) {
-          callback(null, response.data[0]);
+        if (response && response.data) {
+          callback(null, response.data);
         } else {
           callback(null, null);
         }
@@ -82,7 +82,7 @@ function App() {
     // check if the token exists in the cookies, so keep the user loggedin
     const user = validateToken();
     if(user) dispatch(logInAction(user));
-    else dispatch(logOutAction());
+    // else dispatch(logOutAction());
 
   },[]);
  

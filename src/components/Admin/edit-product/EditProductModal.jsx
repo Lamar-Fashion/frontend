@@ -146,6 +146,14 @@ function EditProductModal({ abaya, setOpenEditProduct, openEditProduct }) {
 
     setTimeout(async () => {
       try {
+        //TO DO
+        //check if the inStock number was zero then becomes available.
+        //if so:
+        //query from `favourites` get `userId` WHERE abayaId array has this (edited abaya) `id`
+        //so now we have all user ids who marked this item as favorite.
+        //query `email/phone` from `users` WHERE userId=userId;
+        //call `whatsapp/mail` api to notify them.
+        
         const editedAbaya = await instance.put(
           url + `/product${productData.id}`,
           productData,
@@ -197,7 +205,8 @@ function EditProductModal({ abaya, setOpenEditProduct, openEditProduct }) {
   // Close modal handler
   function handleClose() {
     setOpenEditProduct(false);
-  }
+  };
+
   return (
     <>
       <Modal
