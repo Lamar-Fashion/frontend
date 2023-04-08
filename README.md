@@ -15,4 +15,6 @@
 1- pagination not working as expected. (all option not working) & we should render 16 product per page. to fill the Abaya page.
 2- cart number in header. not synced on login/logout actions.
 3- resize all images (without cropping).
-4- on reloading profile page, style got distracted.
+4- prevent users to see promoCodes object. (return admin settings without it). / split routes for adminSettings: one with authentication and for admins only. and the other one is open for all users.
+5- total price in cart gets too long in some cases.
+6- messy data and incorrect price and product details if u select it from search in cart while u had different product booked.

@@ -13,12 +13,15 @@ import {
 } from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import DualModal from "../../Shared/DualModal";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [validEmail, setValidEmail] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -155,7 +158,7 @@ function SignIn() {
           {},
           {
             auth: {
-              username: email,
+              username: phoneNumber,
               password,
             },
           }
@@ -229,6 +232,16 @@ function SignIn() {
             <h2>sign in</h2>
 
             <div className="input-user">
+              {/* <i className="fas fa-solid fa-phone"></i> */}
+              <PhoneInput
+                placeholder="Enter phone number"
+                value={phoneNumber}
+                onChange={setPhoneNumber}
+                defaultCountry="JO"
+                required
+              />
+            </div>
+            {/* <div className="input-user">
               <i className="fas fa-mail-bulk"></i>
               <input
                 type="email"
@@ -238,7 +251,7 @@ function SignIn() {
                 value={email}
                 onChange={onChangeHandler}
               />
-            </div>
+            </div> */}
 
             <div className="input-pass">
               <i className="fas fa-unlock"></i>
@@ -254,10 +267,11 @@ function SignIn() {
             <button
               type="submit"
               className={
-                email && validEmail && password && !error && !isLoading
+                phoneNumber && password && !error && !isLoading
                   ? "submit active"
                   : "submit"
               }
+              disabled={!(phoneNumber && password && !error && !isLoading)}
             >
               submit
             </button>
@@ -265,7 +279,6 @@ function SignIn() {
 
           {isLoading && !error && (
             <div className="loading-state-container-signin">
-              {" "}
               <LoadingState />
             </div>
           )}

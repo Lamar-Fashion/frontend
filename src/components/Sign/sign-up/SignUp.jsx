@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { logOutAction, logInAction } from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import DualModal from "../../Shared/DualModal";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -15,17 +17,30 @@ function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPass, setConfirmedPass] = useState("");
   const [validEmail, setValidEmail] = useState(false);
+  const [phoneNumberVerified, setPhoneNumberVerified] = useState(false);
+  const [isOTPSent, setIsOTPSent] = useState(false);
+  const [phoneNumberOTP, setPhoneNumberOTP] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const signUpHandlerOnSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    if (!firstName || !lastName || !email || !validEmail || !password || !confirmedPass || password !== confirmedPass ) {
+  
+    if (!firstName || !lastName || !phoneNumber || (email && !validEmail) || !password || !confirmedPass || password !== confirmedPass ) {
       setError("Missing Required info.");
+      return;
+    }
+    if (!isOTPSent) {
+      sendOTPToPhoneNumber();
+      return;
+    }
+    if (phoneNumber && !phoneNumberVerified) {
+      setError("Verify Your Phone Number.");
       return;
     }
     setTimeout(async () => {
@@ -34,6 +49,7 @@ function SignUp() {
           firstName,
           lastName,
           email,
+          phoneNumber,
           password,
         });
         setIsLoading(false);
@@ -80,7 +96,35 @@ function SignUp() {
       }
     }
     if (e.target.name == "password") setPassword(e.target.value);
+    if (e.target.name == "phoneNumberOTP") setPhoneNumberOTP(e.target.value);
     if (e.target.name == "confirmedpassword") setConfirmedPass(e.target.value);
+  };
+
+  const verifyPhoneNumberOTP = async () => {
+    if ((!phoneNumberOTP || (phoneNumberOTP && phoneNumberVerified))) {
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const response = await instance.post(url + '/verifyOTP', {phoneNumber, OTP: phoneNumberOTP});
+      setPhoneNumberVerified(true);
+      setIsLoading(false);
+
+    } catch (error) {
+      setError(error.response.data.error)
+    }
+
+  };
+  const sendOTPToPhoneNumber = async () => {
+    setIsLoading(true);
+    try {
+      const response = await instance.post(url + '/sendOTP', {phoneNumber});
+      setIsOTPSent(true);
+      setIsLoading(false);
+
+    } catch (error) {
+      setError(error.response.data.error)
+    }
   };
 
   return (
@@ -128,6 +172,17 @@ function SignUp() {
                 />
               </div>
             </div>
+            <div className="input-user">
+            {/* <i className="fas fa-solid fa-phone"></i> */}
+              <PhoneInput
+                placeholder="Enter phone number"
+                value={phoneNumber}
+                onChange={setPhoneNumber}
+                defaultCountry="JO"
+                style={{width: "100%"}}
+                required
+              />
+            </div>
             <div className="email">
               <i className="fas fa-mail-bulk"></i>
               <input
@@ -158,23 +213,52 @@ function SignUp() {
                 onChange={onChangeHandler}
               />
             </div>
+            {/* phone number verification */}
+            {isOTPSent && <section className="verification-section">
+              {!phoneNumberVerified && <h4 className="text-danger">* Verification Code sent to {phoneNumber}</h4>}
+              <div className="verif-box">
+                <input
+                  type="text"
+                  name="phoneNumberOTP"
+                  id="phoneNumberOTP"
+                  placeholder="Type Verification Code"
+                  onChange={onChangeHandler}
+                />
+                <button
+                  className={(!phoneNumberOTP || (phoneNumberOTP && phoneNumberVerified)) ? "submit disabled" : "submit"}
+                  type="button"
+                  onClick={verifyPhoneNumberOTP}
+                >
+                  Verify
+                </button>
+              </div>
+              {phoneNumberVerified && <h4 className="text-success">{phoneNumber} Verified Successfully!</h4>}
+            </section>}
             <button
               type="submit"
-              value="create an account"
               className={
                 !firstName ||
                 !lastName ||
-                !email ||
-                !validEmail ||
+                !phoneNumber ||
+                (isOTPSent && !phoneNumberVerified)||
+                (email && !validEmail) ||
                 !password ||
                 !confirmedPass ||
                 password !== confirmedPass
                   ? "submit disabled"
                   : "submit"
               }
+              disabled={!firstName ||
+                !lastName ||
+                !phoneNumber ||
+                (isOTPSent && !phoneNumberVerified)||
+                (email && !validEmail) ||
+                !password ||
+                !confirmedPass ||
+                password !== confirmedPass}
             >
               
-              create an account
+              Create New Account
             </button>
           </form>
 

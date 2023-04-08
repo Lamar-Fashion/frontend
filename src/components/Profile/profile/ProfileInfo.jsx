@@ -9,16 +9,18 @@ import validateToken from "../../../helpers/validateToken";
 import { logInAction, logOutAction } from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import DualModal from "../../Shared/DualModal";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 function ProfileInfo() {
   const dispatch = useDispatch();
   const { isLoggedIn, user, role } = useSelector((state) => state.authReducer);
   
-  
   const [editMode, setEditMode] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [email, setEmail] = useState(user.email);
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
   const [oldPassword, setOldPassword] = useState("");
   const [editPassword, setEditPassword] = useState(false);
   const [isCorrectPassword, setIsCorrectPassword] = useState(false);
@@ -28,6 +30,9 @@ function ProfileInfo() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [orderDone, setOrderDone] = useState(false);
+  const [phoneNumberVerified, setPhoneNumberVerified] = useState(false);
+  const [isOTPSent, setIsOTPSent] = useState(false);
+  const [phoneNumberOTP, setPhoneNumberOTP] = useState("");
 
   //validate submit
   const validateSubmit = () => {
@@ -35,12 +40,14 @@ function ProfileInfo() {
       if (
         firstName &&
         lastName &&
+        phoneNumber &&
         email &&
         (email == user.email ? true : validEmail) &&
         isCorrectPassword &&
         newPassword &&
         confirmedNewPass &&
         newPassword == confirmedNewPass
+
       ) {
         return false;
       } else {
@@ -50,11 +57,15 @@ function ProfileInfo() {
       if (
         firstName &&
         lastName &&
+        phoneNumber &&
         email &&
         (email == user.email ? true : validEmail) &&
         (firstName != user.firstName ||
           lastName != user.lastName ||
-          email != user.email)
+          email != user.email ||
+          phoneNumber != user.phoneNumber  
+        )
+
       ) {
         return false;
       } else {
@@ -84,8 +95,8 @@ function ProfileInfo() {
       else setIsCorrectPassword(false);
     }
     if (e.target.name == "newPassword") setNewPassword(e.target.value);
-    if (e.target.name == "confirmedNewPass")
-      setConfirmedNewPass(e.target.value);
+    if (e.target.name == "confirmedNewPass") setConfirmedNewPass(e.target.value);
+    if (e.target.name == "phoneNumberOTP") setPhoneNumberOTP(e.target.value);
   };
 
   const editPasswordMode = (e) => {
@@ -97,14 +108,22 @@ function ProfileInfo() {
   const editProfileInfoOnSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-
+    if ((phoneNumber !== user.phoneNumber) && !isOTPSent) {
+      sendOTPToPhoneNumber();
+      return;
+    }
+    if ((phoneNumber && (phoneNumber !== user.phoneNumber)) && !phoneNumberVerified) {
+      setError("Verify Your Phone Number.");
+      return;
+    }
     let updatedUser = {};
-
+    
     if (editPassword) {
       updatedUser = {
         firstName,
         lastName,
         email,
+        phoneNumber,
         password: newPassword,
         oldPassword,
       };
@@ -113,6 +132,7 @@ function ProfileInfo() {
         firstName,
         lastName,
         email,
+        phoneNumber
       };
     }
     setTimeout(async () => {
@@ -144,6 +164,33 @@ function ProfileInfo() {
       }
     }, 1000);
   };
+
+ const verifyPhoneNumberOTP = async () => {
+    if ((!phoneNumberOTP || (phoneNumberOTP && phoneNumberVerified))) {
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const response = await instance.post(url + '/verifyOTP', {phoneNumber, OTP: phoneNumberOTP});
+      setPhoneNumberVerified(true);
+      setIsLoading(false);
+
+    } catch (error) {
+      setError(error.response.data.error)
+    }
+
+  };
+  const sendOTPToPhoneNumber = async () => {
+    setIsLoading(true);
+    try {
+      const response = await instance.post(url + '/sendOTP', {phoneNumber});
+      setIsOTPSent(true);
+      setIsLoading(false);
+
+    } catch (error) {
+      setError(error.response.data.error)
+    }
+  };
   return (
     <>
       <section className="profile-info-section">
@@ -169,8 +216,18 @@ function ProfileInfo() {
                   style={{ border: "none" }}
                 />
               </div>
-
-              <div className="input-pass">
+              <div className="input-user">
+              <i className="fas fa-solid fa-phone"></i>
+                <input
+                  type="phone"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  placeholder="Phone Number"
+                  defaultValue={user.phoneNumber}
+                  style={{ border: "none" }}
+                />
+              </div>
+              {user.email && <div className="input-pass">
                 <i className="fas fa-mail-bulk"></i>
                 <input
                   type="email1"
@@ -180,7 +237,7 @@ function ProfileInfo() {
                   defaultValue={user.email}
                   style={{ border: "none" }}
                 />
-              </div>
+              </div>}
             </form>
           ) : (
             <>
@@ -247,7 +304,17 @@ function ProfileInfo() {
                     onChange={onChangeHandler}
                   />
                 </div>
-
+                <div className="input-user">
+                    {/* <i className="fas fa-solid fa-phone"></i> */}
+                    <PhoneInput
+                      placeholder="Enter phone number"
+                      value={phoneNumber}
+                      onChange={setPhoneNumber}
+                      defaultCountry="JO"
+                      style={{width: "100%"}}
+                      required
+                    />
+                </div>
                 <div className="input-pass">
                   <i className="fas fa-mail-bulk"></i>
                   <input
@@ -311,10 +378,32 @@ function ProfileInfo() {
                     )}
                   </>
                 )}
-
+                {/* phone number verification */}
+                {isOTPSent && <section className="verification-section">
+                  {!phoneNumberVerified && <h4 className="text-danger">* Verification Code sent to {phoneNumber}</h4>}
+                  <div className="verif-box">
+                    <input
+                      type="text"
+                      name="phoneNumberOTP"
+                      id="phoneNumberOTP"
+                      placeholder="Type Verification Code"
+                      onChange={onChangeHandler}
+                    />
+                    <button
+                      className={(!phoneNumberOTP || (phoneNumberOTP && phoneNumberVerified)) ? "submit" : "submit active"}
+                      type="button"
+                      onClick={verifyPhoneNumberOTP}
+                      disabled={(!phoneNumberOTP || (phoneNumberOTP && phoneNumberVerified))}
+                    >
+                      Verify
+                    </button>
+                  </div>
+                  {phoneNumberVerified && <h4 className="text-success">{phoneNumber} Verified Successfully!</h4>}
+                </section>}
                 <button
                   type="submit"
                   className={validateSubmit() ? "submit" : "submit active"}
+                  disabled={validateSubmit()}
                 >
                   submit
                 </button>
@@ -342,6 +431,8 @@ function ProfileInfo() {
           navigateTo="/Profile/1"
           text={error ? error : "Something went wrong! <br/> please try again"}
           showHeader={true}
+          // setCloseModalState={setError}
+          // closeModalStateValue=""
         />
       )}
     </>

@@ -154,3 +154,24 @@
   width: 100%;
   height: 100%;
 }
+
+.profile-info-section .lamar-container .verification-section {
+  width: 100%;
+}
+.profile-info-section .lamar-container .verification-section h4{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.profile-info-section .lamar-container .verification-section .verif-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+.profile-info-section .lamar-container .verification-section .verif-box input{
+  width: 100%
+}
+.profile-info-section .lamar-container .verification-section .verif-box button{
+  width: 30%
+}

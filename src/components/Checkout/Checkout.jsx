@@ -8,21 +8,23 @@ import {
   encryptAndSaveToStorage,
 } from "../../helpers/CryptoJS";
 import { checkProductDiscounts } from "../../helpers";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 function Checkout() {
   const cartArray = decryptAndGetFromStorage("cart");
   const total = decryptAndGetFromStorage("total");
+  const savedData = decryptAndGetFromStorage("checkout_person_info")
+  ? decryptAndGetFromStorage("checkout_person_info")
+  : {};
 
   const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
   const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
 
   const [showAnswer, setShowAnswer] = useState({ email: false, phone: false });
   const navigate = useNavigate();
-  let [values, setValues] = useState(
-    decryptAndGetFromStorage("checkout_person_info")
-      ? decryptAndGetFromStorage("checkout_person_info")
-      : {}
-  );
+  const [values, setValues] = useState(savedData);
+  const [phone, setPhone] = useState(savedData.phone ? savedData.phone : "");
 
   const handleChange = (e) => {
     setValues((values) => ({ ...values, [e.target.name]: e.target.value }));
@@ -30,8 +32,9 @@ function Checkout() {
   
   function handleSubmit(e) {
     e.preventDefault();
-
-    encryptAndSaveToStorage("checkout_person_info", values);
+    const valuesObj = {...values};
+    valuesObj.phone = phone;
+    encryptAndSaveToStorage("checkout_person_info", valuesObj);
 
     navigate("/Checkout2");
     window.scrollTo({
@@ -99,8 +102,8 @@ function Checkout() {
                 </i>
               </div>
               <div className="phone">
-                <i className="fas fa-phone"></i>
-                <input
+                {/* <i className="fas fa-phone"></i> */}
+                {/* <input
                   type="tel"
                   name="phone"
                   id="phone"
@@ -108,6 +111,14 @@ function Checkout() {
                   required
                   onChange={handleChange}
                   value={values?.phone ? values.phone : ''}
+                /> */}
+                <PhoneInput
+                  placeholder="Enter phone number"
+                  value={phone}
+                  onChange={setPhone}
+                  defaultCountry="JO"
+                  style={{width: "100%"}}
+                  required
                 />
                 <i
                   className="far fa-question-circle question"

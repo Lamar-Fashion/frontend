@@ -191,6 +191,9 @@ ul {
 .text-danger {
   color: red;
 }
+.text-success {
+  color: green;
+}
 
 tooltip {
   font-size: small;
@@ -200,6 +203,11 @@ tooltip {
 .line-through {
   text-decoration: line-through;
   text-decoration-color: red;
+}
+/* override react-phone-number-input lib style 
+ */
+.PhoneInputCountry {
+  margin-right: 10px !important;
 }
 
 /*  end main title  */

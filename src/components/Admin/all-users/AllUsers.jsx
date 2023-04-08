@@ -81,7 +81,7 @@ function AllUsers() {
                     />
                     <div className="data">
                       <h5>{user.firstName + " " + user.lastName}</h5>
-                      <h5>{user.email}</h5>
+                      <h5>{user.phoneNumber}</h5>
                     </div>
                   </div>
                 );

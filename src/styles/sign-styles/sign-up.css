@@ -206,3 +206,20 @@
   top: 64%;
 
 }
+
+.sign-up .lamar-container .verification-section {
+  width: 100%;
+}
+
+.sign-up .lamar-container .verification-section .verif-box {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+.sign-up .lamar-container .verification-section .verif-box input{
+  width: 100%
+}
+.sign-up .lamar-container .verification-section .verif-box button{
+  width: 30%
+}
