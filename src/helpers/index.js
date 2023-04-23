@@ -1,5 +1,7 @@
 import { handleImageSize } from "./imagesResizer";
 import { storage } from "../firebase";
+import { encryptAndSaveToStorage } from "./CryptoJS";
+
 //get product price including all available discounts.
 export function checkProductDiscounts (price, isLoggedIn, signInDiscount, productDiscount) {
     price = Number(price);
@@ -15,7 +17,8 @@ export function checkProductDiscounts (price, isLoggedIn, signInDiscount, produc
     if (productDiscount) {
         totalDiscountPercentage = totalDiscountPercentage + productDiscount;
     }
-    const newPrice = (price*(100 - totalDiscountPercentage))/100;
+    let newPrice = (price*(100 - totalDiscountPercentage))/100;
+    newPrice = Math.floor(newPrice / 5) * 5; //round price to near lowest five.
     return newPrice;
 };
 
@@ -149,4 +152,10 @@ export function validateFileTypeImage(key, file, validatedImagesObj) {
   }
   return validatedImagesObj;
 };
-  
+
+//reset cart
+export function resetCart () {
+  encryptAndSaveToStorage('cart', []);
+  encryptAndSaveToStorage('cartNumber', 0);
+  encryptAndSaveToStorage('total', 0);
+};

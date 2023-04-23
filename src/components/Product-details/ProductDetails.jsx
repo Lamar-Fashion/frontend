@@ -185,7 +185,11 @@ function ProductDetails() {
   };
 
   const zoomImageHandler = (e)=>{
-    setZoomImageActive(true);
+    if (zoomImageActive && e.target.tagName == 'DIV') { //that means user clicking on black area to close the modal
+      setZoomImageActive(false);
+    } else {
+      setZoomImageActive(true);
+    }
   };
   const closeZoomScreen = (e)=>{
     setZoomImageActive(false);
@@ -244,8 +248,8 @@ function ProductDetails() {
         <div className="lamar-container">
           <div className="image-product">
             <div className={zoomImageActive ? 'big-image clicked' : 'big-image'} onClick={(e)=>zoomImageHandler(e)} onTouchStart={(e)=>zoomImageHandler(e)}>
-              <PinchZoomPan maxScale={3} doubleTapBehavior="zoom">
-                <img src={state} alt="" />
+              <PinchZoomPan id="testtt" maxScale={3} doubleTapBehavior="zoom">
+                <img src={state} alt="big_product_image" id="bigImage"/>
               </PinchZoomPan>
             </div>
             <div className="full-area-backgound" onClick={(e)=>closeZoomScreen(e)}></div>

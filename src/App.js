@@ -42,27 +42,27 @@ function App() {
     if(searchResultModal)  searchResultModal.style.display= 'none';
   };
 
-    // get admin settings on reload.
-    const fetchAdminSettings = async (callback) => {
-      try {
-        setIsLoading(true);
-        const response = await instance.get(url + "/adminSettings");
-        if (response && response.data) {
-          callback(null, response.data);
-        } else {
-          callback(null, null);
-        }
-        //make delay for loading to be like real loading not flickering when response was fast.
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 750);
-  
-      } catch (error) {
-        callback(error, null);
-        setIsLoading(false);
-  
+  // get admin settings on reload.
+  const fetchAdminSettings = async (callback) => {
+    try {
+      setIsLoading(true);
+      const response = await instance.get(url + "/adminSettings");
+      if (response && response.data) {
+        callback(null, response.data);
+      } else {
+        callback(null, null);
       }
-    };
+      //make delay for loading to be like real loading not flickering when response was fast.
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 750);
+
+    } catch (error) {
+      callback(error, null);
+      setIsLoading(false);
+
+    }
+  };
 
   useEffect(() => {
 

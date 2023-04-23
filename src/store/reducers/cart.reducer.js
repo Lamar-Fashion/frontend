@@ -1,9 +1,8 @@
 import { decryptAndGetFromStorage } from "../../helpers/CryptoJS";
+const cartNumberStorage = decryptAndGetFromStorage("cartNumber");
 // initial State
 const initialState = {
-  cartProductsNumber: decryptAndGetFromStorage("cartNumber")
-  ? decryptAndGetFromStorage("cartNumber")
-  : 0,
+  cartProductsNumber: cartNumberStorage? cartNumberStorage : 0,
 };
 
 //cart Reducer

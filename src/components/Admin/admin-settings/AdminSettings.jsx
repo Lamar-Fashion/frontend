@@ -292,7 +292,7 @@ function AdminSettings() {
                 <div className="signin-discount" >
                     <h2>Sign-In Discount:</h2>
                     <span>discount percentage on signing-in:</span>
-                    <input className="input-field" type="number" name="signInDiscount" value={signInDiscount} onChange={handleChange}/>%
+                    <input className="input-field text-align-center" type="number" name="signInDiscount" value={signInDiscount} onChange={handleChange}/>%
                 </div>
 
                 <hr/>
@@ -389,7 +389,7 @@ function AdminSettings() {
                   <span className="input-box">
                     <label htmlFor="discountPercentage">Discount Percentage:</label>
                     <div>
-                    <input className="input-field" type="number" value={discountPercentage} placeholder="0" name="discountPercentage" min={0} max={100} onChange={handleChange} />%
+                    <input className="input-field text-align-center" type="number" value={discountPercentage} placeholder="0" name="discountPercentage" min={0} max={100} onChange={handleChange} />%
                     </div>
                   </span>
                   <span className="input-box">
@@ -419,7 +419,7 @@ function AdminSettings() {
                     <input className="input-field" type="date" min={new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]} placeholder="0" name="expirationDate" value={expirationDate} onChange={handleChange} />
                   </span>}
 
-                  <span className="input-box">
+                  <span className="input-box" style={{alignSelf: 'end'}}>
                     <button className="button" type="submit" onClick={addPromoCode}>Add Promo Code</button>
                   </span>
                   

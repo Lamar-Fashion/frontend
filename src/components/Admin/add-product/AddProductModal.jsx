@@ -132,9 +132,7 @@ function AddProductModal({ openAddproduct, setOpenAddProduct }) {
 
       try {
         //convert array of objects to array of strings (download urls)
-        const arrayOfUrls = [];
-        arrayOfDownloadUrls.forEach((urlObj, idx) => arrayOfUrls.push(urlObj[Object.keys(urlObj)[idx]]));
-        productData.productIamges.push(...arrayOfDownloadUrls);
+        arrayOfDownloadUrls.forEach((urlObj, idx) => productData.productIamges.push(urlObj[idx]));
         // send req to backend
         const addedProduct = await instance.post(
           url + "/product",

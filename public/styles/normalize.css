@@ -194,6 +194,9 @@ ul {
 .text-success {
   color: green;
 }
+.text-align-center {
+  text-align: center;
+}
 
 tooltip {
   font-size: small;

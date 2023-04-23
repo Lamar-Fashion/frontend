@@ -9,12 +9,14 @@ import {
   logOutAction,
   assignFavourite,
   setAdminSettings,
-  clearAdminSettings
+  clearAdminSettings,
+  resetCartAction
 } from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import DualModal from "../../Shared/DualModal";
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import { resetCart } from "../../../helpers";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -169,6 +171,8 @@ function SignIn() {
             handleAdminSettings(user).then(()=>{
               setIsLoading(false);
               dispatch(logInAction(user));
+              dispatch(resetCartAction());
+              resetCart();
               getFavouriteHandler(user, () => {
                 navigate("/Profile/1");
                 window.scrollTo({
@@ -187,6 +191,8 @@ function SignIn() {
           setIsLoading(false);
 
           dispatch(logInAction(user));
+          dispatch(resetCartAction());
+          resetCart();
           getFavouriteHandler(user, () => {
             navigate("/Profile/1");
             window.scrollTo({

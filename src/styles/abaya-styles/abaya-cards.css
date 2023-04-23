@@ -208,13 +208,20 @@
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   row-gap: 60px;
+  justify-content: space-around;
 }
-@media (max-width: 530px) {
+@media (min-width: 415px) and (max-width: 569px) {
   .abaya-cards .lamar-container {
     display: grid;
-    grid-template-columns: 47% 47%;
+    grid-template-columns: auto auto;
     gap: 20px;
     row-gap: 50px;
+  }
+}
+@media (max-width: 414px) {
+  .abaya-cards .lamar-container {
+    display: grid;
+    grid-template-columns: auto;
   }
 }
 .abaya-cards .pagaination {
@@ -229,8 +236,10 @@
 }
 
 .abaya-cards .box {
-  height: 400px;
+  /* height: 400px; */
+  height: 430px;
   width: 100%;
+  max-width: 270px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -240,7 +249,7 @@
 }
 @media (max-width: 530px) {
   .abaya-cards .box {
-    height: 280px;
+    /* height: 280px; */
   }
 }
 
@@ -301,22 +310,27 @@
 }
 .abaya-cards .image {
   width: 100%;
-  height: 320px;
+  max-width: 270px;
+  /* height: 320px; */
+  height: 350px;
   z-index: 1;
   margin-bottom: 12px;
   position: relative;
 
 }
-@media (max-width: 530px) {
+@media (max-width: 569px) {
   .abaya-cards .image {
-    height: 220px;
+    /* height: 220px;
+    max-width: 185px; */
+    min-width: 185px;
+    max-width: 185px;
   }
 }
 .abaya-cards .image img {
   width: 100%;
   height: 100%;
   transition: transform 0.5s;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 .abaya-cards .image .img-box {
   width: 100%;

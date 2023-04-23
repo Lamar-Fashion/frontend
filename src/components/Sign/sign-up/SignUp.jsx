@@ -4,11 +4,12 @@ import "../../../styles/sign-styles/sign-up.css";
 import { instance, url } from "../../../API/axios";
 import validateToken from "../../../helpers/validateToken";
 import { useDispatch } from "react-redux";
-import { logOutAction, logInAction } from "../../../store/actions/index";
+import { logOutAction, logInAction, resetCartAction } from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import DualModal from "../../Shared/DualModal";
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import { resetCart } from "../../../helpers";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -56,6 +57,8 @@ function SignUp() {
         const user = validateToken(newUser.data.token);
         if (user) {
           dispatch(logInAction(user));
+          dispatch(resetCartAction());
+          resetCart();
           navigate("/Profile/1");
           window.scrollTo({
             top: 0,

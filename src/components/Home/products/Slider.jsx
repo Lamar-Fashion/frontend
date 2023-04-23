@@ -8,8 +8,13 @@ import {
   encryptAndSaveToStorage,
 } from "../../../helpers/CryptoJS";
 import { instance, url } from "../../../API/axios";
+import { checkProductDiscounts } from "../../../helpers";
+import { useSelector } from "react-redux";
 
 function Slider() {
+  const { role, user, isLoggedIn } = useSelector((state) => state.authReducer);
+  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
+
   const [homePageProducts, setHomePageProducts] = useState([]);
   const [renderedProducts, setRenderedProducts] = useState([]);
 
@@ -59,17 +64,16 @@ function Slider() {
               </span>
             </div>
 
-            {item.category === "newArrivals" ? (
+            {item.category === "newArrivals" && !(isLoggedIn && signInDiscount) ? (
               <a href="#" className="price">
                 QAR {item.price}
               </a>
             ) : (
               <div>
                 <a href="#" className="price">
-                QAR {Math.floor(
-                        (Number(item.price) * (100 - Number(item?.discount)))/100)}
+                QAR {checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount)}
                 </a>
-                {item?.discount && item.discount != 0 && <a href="#" className="price on-sale">
+                {((item?.discount && item.discount != 0) || (isLoggedIn && signInDiscount)) && <a href="#" className="price on-sale">
                   <span className="first-price">
                     QAR {item.price}
                   </span>

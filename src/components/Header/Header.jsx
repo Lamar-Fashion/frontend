@@ -25,12 +25,8 @@ function Header() {
   const navigate = useNavigate();
 
   const { user, role, isLoggedIn } = useSelector((state) => state.authReducer);
-  const cartProductsNumber = useSelector(
-    (state) => state.cartReducer.cartProductsNumber
-  );
-  const favouritesNumber = useSelector(
-    (state) => state.favouriteReducer.favouritesNumber
-  );
+  const cartProductsNumber = useSelector((state) => state.cartReducer.cartProductsNumber);
+  const favouritesNumber = useSelector((state) => state.favouriteReducer.favouritesNumber);
 
   const [showVerticalNav, setshowVerticalNav] = useState(false);
   const [showDropHome, setShowDropHome] = useState(false);
@@ -40,12 +36,6 @@ function Header() {
   const [error, setError] = useState(null);
   const [searchResult, setSearchResult] = useState([]);
   const [showSearchResultList, setShowSearchResultList] = useState(false);
-
-  const [cartNumber, setCartNumber] = useState(
-    decryptAndGetFromStorage("cartNumber")
-      ? decryptAndGetFromStorage("cartNumber")
-      : 0
-  );
 
   const [favNumber, setFavNumber] = useState(
     decryptAndGetFromStorage("favNumber")
@@ -75,8 +65,6 @@ function Header() {
   // trigger redux, save to storage, and render it
   useEffect(() => {
      encryptAndSaveToStorage("cartNumber", cartProductsNumber);
- 
-     setCartNumber(cartProductsNumber);
   }, [cartProductsNumber]);
 
   useEffect(() => {
@@ -733,7 +721,7 @@ function Header() {
                   <span>
                     <BsCartFill className="header-icons cart" />
 
-                    <strong className="number">{cartNumber}</strong>
+                    <strong className="number">{cartProductsNumber}</strong>
                   </span>
                 </Link>
               </li>

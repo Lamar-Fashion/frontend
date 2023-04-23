@@ -12,20 +12,20 @@ import { navigateAction, assignFavourite } from "../../../store/actions/index";
 import LoadingState from "../../Shared/LoadingState";
 import Alert from "@mui/material/Alert";
 import DualModal from "../../Shared/DualModal";
-import { deleteFirebaseImages } from "../../../helpers";
+import { checkProductDiscounts, deleteFirebaseImages } from "../../../helpers";
 
-const arralen = 10;
 
 function AbayaCards() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { role, user, isLoggedIn } = useSelector((state) => state.authReducer);
   const category = useSelector((state) => state.navigationReducer.category);
+  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
 
   const [openAddproduct, setOpenAddProduct] = useState(false);
   const [openEditProduct, setOpenEditProduct] = useState(false);
   const [openModalById, setOpenModalById] = useState(null);
-  const [showItems, setShowItems] = useState(15);
+  const [showItems, setShowItems] = useState(16);
   const [pageNumber, setPageNumber] = useState(0);
   const pagesVisited = pageNumber * showItems;
 
@@ -234,7 +234,8 @@ function AbayaCards() {
                 </div>
               )}
               <div className="image">
-                <img src={item.images[0]} alt="" className="img-product" />
+                {/* <img src={'https://apmyztgbko.cloudimg.io/s/height/400/'+item.images[0]} alt="" className="img-product" /> */}
+                <img src={item.images[0]} alt="Abaya_Image" className="img-product" />
                 {/* <div className='img-box' style={{"backgroundImage": `url(${item.images[0]})`}}></div> */}
                 <Link
                   to="/ProductDetails"
@@ -252,26 +253,24 @@ function AbayaCards() {
                   </div>
                 </Link>
               </div>
-              {!isLoggedIn && <div id="voucher">
-                <h6 class="vc">10% OFF on Sign in</h6>
-              </div>}
+              {signInDiscount && !isLoggedIn ? <div id="voucher">
+                <h6 class="vc">{signInDiscount}% OFF on Sign in</h6>
+              </div> : null}
+
               <div className="info">
                 <h3>{item.code}</h3>
-                {item.category == "newArrivals" ? (
+                {item.category == "newArrivals" && !(isLoggedIn && signInDiscount)? (
                   <h2 className="on-sale">
-                    {isLoggedIn && <span className="first-price">
+                    <span className="">
                       QAR {item.price}
-                    </span>}
-                      QAR {Math.floor(
-                        (Number(item.price) * (isLoggedIn ? (100 - 10) : 100))/100)}
+                    </span>
                   </h2>
                 ) : (
                   <h2 className="on-sale">
-                    {((item?.discount && item.discount != 0) || isLoggedIn) && <span className="first-price">
+                    {((item?.discount && item.discount != 0) || (isLoggedIn && signInDiscount && signInDiscount != 0 )) && <span className="first-price">
                       QAR {item.price}
                     </span>}
-                      QAR {Math.floor(
-                        (Number(item.price) * (100 - Number(item?.discount) - (isLoggedIn ? 10 : 0))/100))}
+                      QAR {checkProductDiscounts(item.price, isLoggedIn, signInDiscount, item.discount)}
                   </h2>
                 )}
               </div>
@@ -280,7 +279,7 @@ function AbayaCards() {
         });
 
     setDisplayedAbayas(displayedAbayas);
-  }, [allAbayas, openEditProduct, category, pageNumber]);
+  }, [allAbayas, openEditProduct, category, pageNumber, showItems]);
 
   const pageCount = Math.ceil(
     allAbayas?.filter((item) => {
@@ -333,8 +332,8 @@ function AbayaCards() {
                       name="show-item"
                       id="show-item"
                       onChange={(e) => {
-                        if (e.target.value === "all" && showItems !== arralen) {
-                          setShowItems(arralen + 10);
+                        if (e.target.value === "all" && showItems !== allAbayas.length) {
+                          setShowItems(allAbayas.length + 10);
                           setPageNumber(0);
                         } else if (showItems !== e.target.value) {
                           setPageNumber(0);
@@ -342,7 +341,7 @@ function AbayaCards() {
                         }
                       }}
                     >
-                      <option value="15">15</option>
+                      <option value="16">16</option>
                       <option value="30">30</option>
                       <option value="45">45</option>
                       <option value="all">all</option>
@@ -404,7 +403,7 @@ function AbayaCards() {
             </div>
 
             <div className="pagaination">
-              {showItems !== arralen && ( // here i put arralength becouse in onCahnge we put this value instade of "all" !!
+              {showItems !== allAbayas.length && ( // here i put arralength becouse in onCahnge we put this value instade of "all" !!
                 <Pagination
                   count={pageCount}
                   color="secondary"
