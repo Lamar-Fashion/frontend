@@ -6,10 +6,9 @@ function SearchList({ products, setSearchResult, setShowSearchResultList }) {
   const navigate = useNavigate();
 
   const goToProductDetails = (item) => {
-    encryptAndSaveToStorage("product", item);
     setSearchResult([]);
     setShowSearchResultList(false);
-    navigate("/ProductDetails");
+    navigate(`/ProductDetails/${item.id}`);
     window.scrollTo({
       left: 0,
       top: 0,

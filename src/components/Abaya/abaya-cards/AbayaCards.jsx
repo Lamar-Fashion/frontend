@@ -182,15 +182,13 @@ function AbayaCards() {
                 </div>
               </div>
               <Link
-                to="/ProductDetails"
+                to={"/ProductDetails/" + item.id}
                 onClick={() => {
                   window.scrollTo({
                     left: 0,
                     top: 0,
                     behavior: "smooth",
                   });
-
-                  encryptAndSaveToStorage("product", item);
                 }}
               >
                 <div className="over-view">
@@ -238,14 +236,13 @@ function AbayaCards() {
                 <img src={item.images[0]} alt="Abaya_Image" className="img-product" />
                 {/* <div className='img-box' style={{"backgroundImage": `url(${item.images[0]})`}}></div> */}
                 <Link
-                  to="/ProductDetails"
+                  to={"/ProductDetails/" + item.id}
                   onClick={() => {
                     window.scrollTo({
                       left: 0,
                       top: 0,
                       behavior: "smooth",
                     });
-                    encryptAndSaveToStorage("product", item);
                   }}
                 >
                   <div className="overlay">

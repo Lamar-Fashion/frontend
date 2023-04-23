@@ -21,8 +21,8 @@ DONE:
 10 - handle big image width & height on responsive //should be good now.
 5- total price in cart gets too long in some cases.
 11- put console.error in all catch blocks in the server.
+6- messy data and incorrect price and product details if u select it from search in cart while u had different product booked.
+7- handle productDetails page to be as a route.
 
 TODO:
 4- prevent users to see promoCodes object. (return admin settings without it). / split routes for adminSettings: one with authentication and for admins only. and the other one is open for all users.
-6- messy data and incorrect price and product details if u select it from search in cart while u had different product booked.
-7- handle productDetails page to be as a route.

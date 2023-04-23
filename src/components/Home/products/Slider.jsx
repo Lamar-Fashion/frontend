@@ -39,15 +39,13 @@ function Slider() {
             <div className="overlay">
               <Link
                 className="buy-btn"
-                to="/ProductDetails"
+                to={"/ProductDetails/" + item.id}
                 onClick={() => {
                   window.scrollTo({
                     left: 0,
                     top: 0,
                     behavior: "smooth",
                   });
-
-                  encryptAndSaveToStorage("product", item);
                 }}
               >
                 {" "}

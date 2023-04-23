@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import "../../styles/product-details/product-details.css";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Flicking from "@egjs/react-flicking";
 import Alert from "@mui/material/Alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,59 +17,29 @@ import { checkProductDiscounts } from "../../helpers";
 
 // @ts-ignore
 import PinchZoomPan from "react-image-zoom-pan";
+import LoadingState from "../Shared/LoadingState";
+import { BsCartFill } from "react-icons/bs";
 
 const tall = [
   47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63,
 ];
-let obj,
-  images,
-  firstImg,
-  code,
-  price,
-  size,
-  color,
-  description,
-  inStock,
-  category,
-  discount;
 
 function ProductDetails() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { abayaId } = useParams();
   const { user, isLoggedIn } = useSelector((state) => state.authReducer);
   const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
 
   const [message, setMessage] = useState(null);
   const [orderDone, setOrderDone] = useState(false);
   const [addedToFavItem, setAddedToFavItem] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [zoomImageActive, setZoomImageActive] = useState(false);
+  const [activeImage, setActiveImage] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState({});
 
-  obj = decryptAndGetFromStorage("product");
-  if (!obj) {
-    navigate("/");
-  }
-
-  images = obj?.images;
-  firstImg = obj?.images[0];
-  const [state, setstate] = useState(firstImg);
-  code = obj?.code;
-  price = obj?.price;
-  size = obj?.sizes;
-  color = obj?.colors;
-  description = obj?.description;
-  inStock = obj?.inStock;
-  category = obj?.category;
-  discount = obj?.discount;
-  const [selectedProduct, setSelectedProduct] = useState({
-    ...obj,
-    size: false,
-    color: false,
-    buttons: false,
-    tall: false,
-    quantity: 1,
-  });
   const [selectedStyleSize, setSelectedStyleSize] = useState({
     show: false,
     id: "",
@@ -84,14 +54,38 @@ function ProductDetails() {
   });
   const [errorAlert, setErrorAlert] = useState(false);
   const [seccessAlert, setSeccessAlert] = useState(false);
-  
-  //did mount
-  useEffect(() => {
+
+  const getProduct = async () => {
+    setIsLoading(true);
+    try {
+      const response = await instance.get(url + "/product/" + abayaId);
+      const abaya = response.data[0];
+      console.log('abyaaaa', abaya);
+      setSelectedProduct({
+        ...abaya,
+        size: false,
+        color: false,
+        buttons: false,
+        tall: false,
+        quantity: 1,
+      });
+      setActiveImage(abaya.images[0]);
+    } catch (error) {
+      error?.response?.data?.error
+          ? setError(error.response.data.error)
+          : setError("Error while getting product");
+        console.error("Error while getting product", error.message);
+    }
+    setIsLoading(false);
     window.scrollTo({
       left: 0,
       top: 75,
       behavior: "smooth",
     });
+  };
+  //did mount
+  useEffect(() => {
+    getProduct();
   }, []);
 
   // add to cart handler
@@ -209,7 +203,7 @@ function ProductDetails() {
             </div>
           </div>
         </div>
-
+        {!isLoading && <>
         <div className="nav-container">
           {(selectedProduct.size === false ||
             selectedProduct.buttons === false ||
@@ -221,11 +215,11 @@ function ProductDetails() {
             )}
           {seccessAlert && (
             <Alert severity="success" id="alert">
-              You added <strong>{code}</strong> to your
+              You added <strong>{selectedProduct.code}</strong> to your
               <Link to="/Cart">shopping cart</Link>
             </Alert>
           )}
-          {inStock == 0 && (
+          {selectedProduct.inStock == 0 && (
             <Alert severity="error" id="alert">
               out of stock!
             </Alert>
@@ -249,19 +243,19 @@ function ProductDetails() {
           <div className="image-product">
             <div className={zoomImageActive ? 'big-image clicked' : 'big-image'} onClick={(e)=>zoomImageHandler(e)} onTouchStart={(e)=>zoomImageHandler(e)}>
               <PinchZoomPan id="testtt" maxScale={3} doubleTapBehavior="zoom">
-                <img src={state} alt="big_product_image" id="bigImage"/>
+                <img src={activeImage} alt="big_product_image" id="bigImage"/>
               </PinchZoomPan>
             </div>
             <div className="full-area-backgound" onClick={(e)=>closeZoomScreen(e)}></div>
             <div className="left-images">
               <Flicking circular={true}>
-                {images?.map((item, indx) => {
+                {selectedProduct.images?.map((item, indx) => {
                   return (
                     <div
                       className="image"
                       key={item}
                       onClick={() => {
-                        setstate(item);
+                        setActiveImage(item);
                       }}
                     >
                       <img src={item} alt={indx} />
@@ -275,21 +269,21 @@ function ProductDetails() {
           <div className="product-info">
             <div className="name-p">
               <h2>
-                product code : <span>{code}</span>
+                product code : <span>{selectedProduct.code}</span>
               </h2>
 
               <div className="price">
                 <h2>
-                  QAR <span>{checkProductDiscounts(price, isLoggedIn, signInDiscount, discount)}</span>
+                  QAR <span>{checkProductDiscounts(selectedProduct.price, isLoggedIn, signInDiscount, selectedProduct.discount)}</span>
                 </h2>
                 <p>
                   <span>
                     *
-                    {obj?.status == "readyToWear"
+                    {selectedProduct.status == "readyToWear"
                       ? "Ready To Wear"
                       : "يحتاج إلى تفصيل"}
                   </span>
-                  {obj?.inStock > 0 ? (
+                  {selectedProduct.inStock > 0 ? (
                     <span>
                       *Availabilty : available.
                     </span>
@@ -301,10 +295,10 @@ function ProductDetails() {
                   )}
                 </p>
               </div>
-              {obj?.status === "readyToWear" && (
+              {selectedProduct.status === "readyToWear" && (
                 <li>The Order Takes ( 1 - 5 ) days.</li>
               )}
-              {obj?.status === "notReadyToWear" && (
+              {selectedProduct.status === "notReadyToWear" && (
                 <li>The Order Takes ( 1 - 2 ) Weeks.</li>
               )}
             </div>
@@ -314,7 +308,7 @@ function ProductDetails() {
               <div className="size">
                 <h4>size :</h4>
                 <div className="avialable">
-                  {size?.map((item, idx) => (
+                  {selectedProduct.sizes?.map((item, idx) => (
                     <button
                       className={
                         selectedStyleSize.show && selectedStyleSize.id === idx
@@ -366,7 +360,7 @@ function ProductDetails() {
               <div className="colors">
                 <h4>color :</h4>
                 <div className="avialable av-colors">
-                  {color?.map((item, idx) => (
+                  {selectedProduct.colors?.map((item, idx) => (
                     <button
                       className={
                         selectedStyleColor.show && selectedStyleColor.id === idx
@@ -437,7 +431,7 @@ function ProductDetails() {
                       top: 50,
                       behavior: "smooth",
                     });
-                    if (inStock > 0) {
+                    if (selectedProduct.inStock > 0) {
                       if (
                         !selectedProduct.size ||
                         !selectedProduct.color ||
@@ -458,28 +452,39 @@ function ProductDetails() {
                   add to cart
                 </button>
               </div>
+              <div className="go-to-cart" onClick={()=> navigate("/Cart")}>
+                <span>
+                    <BsCartFill className="cart-icon" title="Go to Cart" />
+                </span>
+              </div>
             </div>
             <div className="hr"></div>
 
             <div className="about-p">
               <h4>
-                catagory :
+                category :
                 <span className="vendor">
                   
-                  {category == "newArrivals" ? "New Arrivals" : "On Sales"}
+                  {selectedProduct.category == "newArrivals" ? "New Arrivals" : "On Sales"}
                 </span>
               </h4>
               <h4>About This Item :</h4>
 
-              <p>{description}</p>
+              <p>{selectedProduct.description}</p>
             </div>
           </div>
         </div>
+        </>}
+        {isLoading && (
+          <div className="loading-state-product-details">
+            <LoadingState />
+          </div>
+        )}
       </section>
       {error && (
         <DualModal
           type="error"
-          navigateTo="/ProductDetails"
+          navigateTo={"/ProductDetails/" + selectedProduct.id}
           text={error ? error : "Something went wrong! <br/> please try again"}
           showHeader={true}
         />

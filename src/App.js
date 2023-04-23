@@ -130,7 +130,7 @@ function App() {
           <Route exact path='/Checkout3' element={<Checkout3 />} />
           <Route exact path='/DeliveryPolicy' element={<DeliveryPolicy />} />
           <Route exact path='/PrivacyPolicy' element={<PrivacyPolicy />} />
-          <Route exact path='/ProductDetails' element={<ProductDetails />} />
+          <Route exact path='/ProductDetails/:abayaId' element={<ProductDetails />} />
           <Route exact path='/Profile/:path' element={<Profile />} />
           <Route exact path='/Contact-us' element={<ContactUs />} />
           <Route exact path='/AllUsers' element={<AllUsers />} />

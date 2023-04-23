@@ -94,15 +94,13 @@ function FavouriteItem() {
                   <img src={item.images[0]} alt="" className="img-product" />
 
                   <Link
-                    to="/ProductDetails"
+                    to={"/ProductDetails/" + item.id}
                     onClick={() => {
                       window.scrollTo({
                         left: 0,
                         top: 0,
                         behavior: "smooth",
                       });
-
-                      encryptAndSaveToStorage("product", item);
                     }}
                   >
                     <div className="overlay">
