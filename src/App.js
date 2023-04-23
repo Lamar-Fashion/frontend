@@ -1,4 +1,4 @@
-import { React, useState,useEffect } from 'react';
+import { React, useState, useEffect } from 'react';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
@@ -24,13 +24,15 @@ import RejectedOrders from './components/Admin/rejected-orders/RejectedOrders';
 import AdminSettings from './components/Admin/admin-settings/AdminSettings';
 import Admin from './components/Admin/Admin';
 import validateToken from './helpers/validateToken';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {logOutAction, logInAction, setAdminSettings} from './store/actions/index';
 import { instance, url } from "./API/axios";
 import LoadingState from './components/Shared/LoadingState';
 
 function App() {
   const dispatch = useDispatch();
+  const { isLoggedIn, user, role } = useSelector((state) => state.authReducer);
+
   const [y, setY] = useState(window.scrollY);
   const [isLoading, setIsLoading] = useState(false);
   
@@ -46,7 +48,15 @@ function App() {
   const fetchAdminSettings = async (callback) => {
     try {
       setIsLoading(true);
-      const response = await instance.get(url + "/adminSettings");
+      let headers = {};
+      if (user && user.token) {
+        headers = {
+          headers: {
+            authorization: `Bearer ${user.token}`,
+          },
+        };
+      }
+      const response = await instance.get(url + "/adminSettings", headers);
       if (response && response.data) {
         callback(null, response.data);
       } else {

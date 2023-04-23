@@ -66,7 +66,11 @@ function SignIn() {
 
   const fetchAdminSettings = async (user, callback) => {
     try {
-      const response = await instance.get(url + "/adminSettings");
+      const response = await instance.get(url + "/adminSettings", {
+        headers: {
+          authorization: `Bearer ${user?.token}`,
+        },
+      });
       if (response && response.data) {
         callback(null, response.data);
       } else {
