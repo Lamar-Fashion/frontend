@@ -23,6 +23,6 @@ DONE:
 11- put console.error in all catch blocks in the server.
 6- messy data and incorrect price and product details if u select it from search in cart while u had different product booked.
 7- handle productDetails page to be as a route.
+4- prevent users to see promoCodes object. (return admin settings without it). / split routes for adminSettings: one with authentication and for admins only. and the other one is open for all users.
 
 TODO:
-4- prevent users to see promoCodes object. (return admin settings without it). / split routes for adminSettings: one with authentication and for admins only. and the other one is open for all users.
