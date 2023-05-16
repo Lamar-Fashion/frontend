@@ -18,7 +18,7 @@ import { checkProductDiscounts } from "../../helpers";
 function Checkout3() {
   const dispatch = useDispatch();
   const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
-  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
+  const {signInDiscount, shippingFees, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
   const total = decryptAndGetFromStorage("total");
   const cartArray = decryptAndGetFromStorage("cart");
   const checkout_person_info = decryptAndGetFromStorage("checkout_person_info");
@@ -326,7 +326,7 @@ function Checkout3() {
               <hr />
               <div className="sub-total">
                 <h4>Shipping Fees</h4>
-                <h5>QAR 50.00</h5>
+                <h5>QAR {shippingFees}</h5>
               </div>
               <div className="total">
                 <h4>Total</h4>

@@ -1,6 +1,8 @@
 // initial State
 const adminSettings = {
-  signInDiscount: 10,
+  signInDiscount: 0,
+  shippingFees: 50,
+  other: {},
   promoCodes: [{
     code: "",
     discountPercentage: 0,

@@ -15,7 +15,7 @@ function Checkout2() {
   const navigate = useNavigate();
   const InformationData = decryptAndGetFromStorage("checkout_person_info");
   const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
-  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
+  const {signInDiscount, shippingFees, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
   let [values, setValues] = useState(
     decryptAndGetFromStorage("checkout_person_info")
       ? decryptAndGetFromStorage("checkout_person_info")
@@ -59,7 +59,7 @@ function Checkout2() {
       const promoCode = response.data;
       setVerifiedPromoCode(promoCode);
       //don't include "shipping fees" in discount (50 QAR).
-      let totalAfterPromoCodeDiscount = total - (total-50)*(Number(promoCode.discountPercentage)/100);
+      let totalAfterPromoCodeDiscount = total - (total - shippingFees)*(Number(promoCode.discountPercentage)/100);
       //round it up to nearest 5
       totalAfterPromoCodeDiscount = Math.ceil(totalAfterPromoCodeDiscount/5)*5;
       setTotalPromoApplied(totalAfterPromoCodeDiscount);
@@ -197,7 +197,7 @@ function Checkout2() {
               <hr />
               <div className="sub-total">
                 <h4>Shipping Fees</h4>
-                <h5>QAR 50.00</h5>
+                <h5>QAR {shippingFees}</h5>
               </div>
               <div className="total">
                 <h4>Total</h4>

@@ -28,6 +28,7 @@ function AdminSettings() {
   const adminSettings = useSelector((state) => state.adminSettingsReducer);
 
   const [signInDiscount, setSignInDiscount] = useState(adminSettings.signInDiscount);
+  const [shippingFees, setShippingFees] = useState(adminSettings.shippingFees);
   const [promoCodes, setPromoCodes] = useState(adminSettings.promoCodes);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -52,6 +53,7 @@ function AdminSettings() {
   
   useEffect(() => {
     setSignInDiscount(adminSettings.signInDiscount);
+    setShippingFees(adminSettings.shippingFees);
     setPromoCodes(adminSettings.promoCodes);
   }, [adminSettings]);
   
@@ -60,6 +62,9 @@ function AdminSettings() {
 
     if (e.target.name === "signInDiscount") {
         setSignInDiscount(e.target.value);
+    }
+    if (e.target.name === "shippingFees") {
+        setShippingFees(e.target.value);
     }
     if (e.target.name == "imageOneUrl") {
       const validatedImagesObj = {};
@@ -241,6 +246,8 @@ function AdminSettings() {
     async function updateAdminSettings () {
       const updatedSettings = adminSettings;
       updatedSettings.signInDiscount = signInDiscount;
+      updatedSettings.shippingFees = shippingFees;
+      updatedSettings.other = {};
       updatedSettings.promoCodes = promoCodes;
       updatedSettings.hero = hero;
       updatedSettings.collection = collection;
@@ -293,6 +300,13 @@ function AdminSettings() {
                     <h2>Sign-In Discount:</h2>
                     <span>discount percentage on signing-in:</span>
                     <input className="input-field text-align-center" type="number" name="signInDiscount" value={signInDiscount} onChange={handleChange}/>%
+                </div>
+
+                <hr/>
+                <div className="signin-discount" >
+                    <h2>Shipping Fees:</h2>
+                    {/* <span></span> */}
+                    <input className="input-field text-align-center" placeholder="50" type="number" name="shippingFees" value={shippingFees} onChange={handleChange}/> QAR
                 </div>
 
                 <hr/>
@@ -440,7 +454,7 @@ function AdminSettings() {
                   <span>Is Active:</span>
                   <span>Delete Promo</span>
                 </div>
-                  {promoCodes.map(promo => {
+                  {promoCodes?.map(promo => {
                     return (
                       <div className="grid-container">
                         <span>{promo.code}</span>
@@ -456,7 +470,7 @@ function AdminSettings() {
                       </div>
                     );
                   })}
-                  {!promoCodes.length && <span>You Have No Promo Codes.</span>}
+                  {!promoCodes?.length && <span>You Have No Promo Codes.</span>}
                 <hr/>
 
                 <button className="button" onClick={saveGeneralSettings}>Save</button>

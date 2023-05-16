@@ -12,7 +12,7 @@ import { checkProductDiscounts } from "../../helpers";
 function Cart() {
   const dispatch = useDispatch();
   const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
-  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
+  const {signInDiscount, shippingFees, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
 
   const [cartArray, setCartArray] = useState(decryptAndGetFromStorage("cart"));
   const [quantity, setQuantity] = useState({});
@@ -28,7 +28,7 @@ function Cart() {
       }
     );
     //add delivery fees
-    sum = sum + 50;
+    sum = sum + shippingFees;
     setTotal(sum);
   }, []);
 
@@ -173,11 +173,11 @@ function Cart() {
               <hr />
               <div className="sub-total">
                 <h4>Subtotal</h4>
-                <h5>QAR {total - 50}</h5>
+                <h5>QAR {total - shippingFees}</h5>
               </div>
               <div className="sub-total">
                 <h4>Shipping Fees</h4>
-                <h5>QAR 50.00</h5>
+                <h5>QAR {shippingFees}</h5>
               </div>
               <hr />
               <div className="order-total">

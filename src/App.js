@@ -45,11 +45,11 @@ function App() {
   };
 
   // get admin settings on reload.
-  const fetchAdminSettings = async (callback) => {
+  const fetchAdminSettings = async (user, callback) => {
     try {
       setIsLoading(true);
       let headers = {};
-      if (user && user.token) {
+      if (user && user.token && user.role == 'admin') {
         headers = {
           headers: {
             authorization: `Bearer ${user.token}`,
@@ -75,9 +75,13 @@ function App() {
   };
 
   useEffect(() => {
+    // check if the token exists in the cookies, so keep the user loggedin
+    const user = validateToken();
+    if(user) dispatch(logInAction(user));
+    // else dispatch(logOutAction());
 
     //fetch admin settings
-    fetchAdminSettings((err, adminSettings) => {
+    fetchAdminSettings(user, (err, adminSettings) => {
       if (err) {
         console.error('Error getting admin Settings', err);
         return;
@@ -88,11 +92,6 @@ function App() {
       }
 
     });
-
-    // check if the token exists in the cookies, so keep the user loggedin
-    const user = validateToken();
-    if(user) dispatch(logInAction(user));
-    // else dispatch(logOutAction());
 
   },[]);
  

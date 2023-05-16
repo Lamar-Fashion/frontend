@@ -115,8 +115,8 @@ function Footer() {
                 <i className='far fa-paper-plane fa-fw'></i>
                 <div className='info'>
                   <span>
-                    <a href='mailto:Info@lamarfashion.qa' target='_blank'>
-                      Info@lamarfashion.qa
+                    <a href='mailto:info@lamarfashion.qa' target='_blank'>
+                      info@lamarfashion.qa
                     </a>
                   </span>
                 </div>

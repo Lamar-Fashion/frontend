@@ -17,8 +17,8 @@ function FixedHeader() {
             </div>
             <div className='contact-info email'>
               <i className='far fa-envelope icon'></i>
-              <a className='contact-text' href='mailto:Info@lamarfashion.qa' target='_blank'>
-                Info@lamarfashion.qa
+              <a className='contact-text' href='mailto:info@lamarfashion.qa' target='_blank'>
+                info@lamarfashion.qa
               </a>
             </div>
           </section>

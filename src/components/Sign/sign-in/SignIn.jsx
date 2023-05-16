@@ -82,7 +82,9 @@ function SignIn() {
   };
   const saveDefaultAdminSettings = async (user, callback) => {
     const adminSettings = {
-      signInDiscount: 10,
+      signInDiscount: 0,
+      shippingFees: 50,
+      other: {},
       promoCodes: [
         //promo code obj will look like this:
         // {

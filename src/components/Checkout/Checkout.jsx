@@ -19,7 +19,7 @@ function Checkout() {
   : {};
 
   const {role, user, isLoggedIn} = useSelector((state)=> state.authReducer);
-  const {signInDiscount, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
+  const {signInDiscount, shippingFees, promoCodes, hero, collection} = useSelector((state) => state.adminSettingsReducer);
 
   const [showAnswer, setShowAnswer] = useState({ email: false, phone: false });
   const navigate = useNavigate();
@@ -257,7 +257,7 @@ function Checkout() {
               <hr />
               <div className="sub-total">
                 <h4>Shipping Fees</h4>
-                <h5>QAR 50.00</h5>
+                <h5>QAR {shippingFees}</h5>
               </div>
               <div className="total">
                 <h4>Total</h4>

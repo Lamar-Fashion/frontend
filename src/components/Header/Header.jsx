@@ -633,7 +633,7 @@ function Header() {
               y > 0 ? "rightContainer rightContainer-scroll " : "rightContainer"
             }
           >
-            <div className="searchContainer">
+            <div className="searchContainer" title="Search Products">
               <input
                 type="text"
                 name="searchedText"
@@ -669,6 +669,7 @@ function Header() {
                         behavior: "smooth",
                       });
                     }}
+                    title="Log In"
                   >
                     <span className="a-sign">
                       <i className="fas fa-sign-in-alt header-icons profile"></i>
@@ -689,7 +690,7 @@ function Header() {
                   //     });
                   //   }}
                   // >
-                  <a className="a-sign" onClick={logoutHandler}>
+                  <a className="a-sign" title="Log Out" onClick={logoutHandler}>
                     <i className="fas fa-sign-out-alt header-icons profile"></i>
                   </a>
                   // <a className='a-sign' onClick={logoutHandler}>
@@ -699,7 +700,7 @@ function Header() {
                 )}
               </li>
               <li>
-                <a onClick={goToFavHandler}>
+                <a onClick={goToFavHandler} title="Your Profile - Wishlist">
                   <span>
                     <BsFillHeartFill className="header-icons fav" />
 
@@ -717,6 +718,7 @@ function Header() {
                       behavior: "smooth",
                     });
                   }}
+                  title="Cart"
                 >
                   <span>
                     <BsCartFill className="header-icons cart" />

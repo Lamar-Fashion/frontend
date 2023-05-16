@@ -60,7 +60,6 @@ function ProductDetails() {
     try {
       const response = await instance.get(url + "/product/" + abayaId);
       const abaya = response.data[0];
-      console.log('abyaaaa', abaya);
       setSelectedProduct({
         ...abaya,
         size: false,
@@ -75,6 +74,8 @@ function ProductDetails() {
           ? setError(error.response.data.error)
           : setError("Error while getting product");
         console.error("Error while getting product", error.message);
+        //on error getting product ex: trying to get deleted product so navigate to Abayas page.
+        navigate("/Abaya");
     }
     setIsLoading(false);
     window.scrollTo({
@@ -419,7 +420,7 @@ function ProductDetails() {
 
             <div className="qun-product ">
               <div className="add-fav">
-                <button onClick={() => addToFavourite(selectedProduct)}>
+                <button title="add to wishlist" onClick={() => addToFavourite(selectedProduct)}>
                   🖤
                 </button>
               </div>
@@ -453,9 +454,9 @@ function ProductDetails() {
                 </button>
               </div>
               <div className="go-to-cart" onClick={()=> navigate("/Cart")}>
-                <span>
+                <button>
                     <BsCartFill className="cart-icon" title="Go to Cart" />
-                </span>
+                </button>
               </div>
             </div>
             <div className="hr"></div>
