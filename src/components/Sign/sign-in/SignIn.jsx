@@ -251,6 +251,7 @@ function SignIn() {
                 onChange={setPhoneNumber}
                 defaultCountry="QA"
                 required
+                style={{width: "100%"}}
               />
             </div>
             {/* <div className="input-user">
