@@ -310,7 +310,7 @@ function ProfileInfo() {
                       placeholder="Enter phone number"
                       value={phoneNumber}
                       onChange={setPhoneNumber}
-                      defaultCountry="JO"
+                      defaultCountry="QA"
                       style={{width: "100%"}}
                       required
                     />

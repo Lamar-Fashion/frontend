@@ -116,7 +116,7 @@ function Checkout() {
                   placeholder="Enter phone number"
                   value={phone}
                   onChange={setPhone}
-                  defaultCountry="JO"
+                  defaultCountry="QA"
                   style={{width: "100%"}}
                   required
                 />

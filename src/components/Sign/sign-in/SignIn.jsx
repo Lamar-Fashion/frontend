@@ -249,7 +249,7 @@ function SignIn() {
                 placeholder="Enter phone number"
                 value={phoneNumber}
                 onChange={setPhoneNumber}
-                defaultCountry="JO"
+                defaultCountry="QA"
                 required
               />
             </div>
